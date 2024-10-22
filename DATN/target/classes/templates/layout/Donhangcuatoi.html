@@ -1,0 +1,97 @@
+
+    <style>
+        body {
+            background-color: #FFE4E1; /* Màu nền giống như trong ảnh */
+        }
+
+        .order-header {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .order-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* Đường kẻ dưới mỗi sản phẩm */
+        }
+
+        .order-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            background-color: #ccc; /* Placeholder cho hình ảnh */
+        }
+
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 2px solid #000; /* Đường kẻ giữa phần chi tiết đơn hàng và footer */
+        }
+
+        .btn-buy-again {
+            background-color: #0004ff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-buy-again:hover {
+            background-color: #8a76e2;
+        }
+
+    </style>
+
+
+<div class="container mt-5">
+    <!-- Đầu trang đơn hàng -->
+    <div class="order-header row py-2 bg-light text-center">
+        <div class="col-3">Hình</div>
+        <div class="col-3">Tên sản phẩm</div>
+        <div class="col-2">Thể loại</div>
+        <div class="col-2">Số lượng</div>
+        <div class="col-2">Giá</div>
+ 
+    </div>
+
+    <!-- Chi tiết sản phẩm -->
+    <div class="order-item row bg-light text-center">
+        <div class="col-3 d-flex align-items-center justify-content-center">
+            <img src="https://via.placeholder.com/50" alt="Product Image">
+         
+        </div>
+        <div class="col-3 d-flex align-items-center justify-content-center">Tên sản phẩm 1</div>
+        <div class="col-2 d-flex align-items-center justify-content-center">Thể loại 1</div>
+        <div class="col-2 d-flex align-items-center justify-content-center">1</div>
+        <div class="col-2 d-flex align-items-center justify-content-center">100.000 VND</div>
+        
+    </div>
+    <div class="order-item row bg-light text-center">
+        <div class="col-3 d-flex align-items-center justify-content-center">
+            <img src="https://via.placeholder.com/50" alt="Product Image">
+         
+        </div>
+        <div class="col-3 d-flex align-items-center justify-content-center">Tên sản phẩm 1</div>
+        <div class="col-2 d-flex align-items-center justify-content-center">Thể loại 1</div>
+        <div class="col-2 d-flex align-items-center justify-content-center">1</div>
+        <div class="col-2 d-flex align-items-center justify-content-center">100.000 VND</div>
+        
+    </div>
+
+    <!-- Phần cuối đơn hàng -->
+    <div class="order-footer row text-center">
+        <div class="col-6">
+            <h5>Trạng thái đơn hàng: Đang giao</h5>
+        </div>
+        <div class="col-3">
+            <h5>Tổng cộng: 500.000 VND</h5>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-primary btn-buy-again">Mua lại</button>
+        </div>
+    </div>
+</div>
+
+
