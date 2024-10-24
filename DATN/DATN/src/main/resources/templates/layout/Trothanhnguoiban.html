@@ -1,67 +1,110 @@
 
     <style>
-
-     
-        
-        .form-title {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 20px;
+        body {
+            background-color: #FFE4E1;
         }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-control {
-            background-color: #f0f0f0; /* Màu nền giống với các ô input trong hình */
-        }
-
-        .btn-container {
-            
-        
-            margin-top: 20px;
-        }
-
-        .btn-custom {
-            background-color: #0400ff; /* Màu giống với nút trong hình */
-            border: none;
-            padding: 10px 20px;
+        /* Hiệu ứng hover cho nút Đăng nhập */
+        .btn-outline-secondary:hover {
+            background-color: #FF9999;
+            border-color: #FF9999;
             color: white;
         }
 
-        .btn-custom:hover {
-            background-color: #8a76e2;
+        /* Hiệu ứng hover cho nút Đăng ký */
+        .btn-dark:hover {
+            background-color: #FF9999;
+            border-color: #FF9999;
+            color: white;
+        }
+
+        /* Form styling */
+
+    .clearfix{
+        text-align: center;
+    }
+        /* Button styling */
+        .btn-primary {
+            background-color: #FF6666;
+            border-color: #FF6666;
+        }
+
+        .btn-primary:hover {
+            background-color: #FF9999;
+            border-color: #FF9999;
+        }
+
+        .btn-secondary {
+            background-color: #999;
+            border-color: #999;
+        }
+
+        .btn-secondary:hover {
+            background-color: #666;
+            border-color: #666;
+        }
+
+        /* Input field styling */
+        input[type="text"], input[type="password"], input[type="tel"], input[type="number"] {
+            border-radius: 10px;
+        }
+
+        /* Style for cancel button */
+        .cancelbtn {
+            background-color: #ccc;
+            border-radius: 10px;
+        }
+
+        .signupbtn {
+            border-radius: 10px;
         }
     </style>
 
 
-<div class="seller-form">
-    <h4 class="form-title">TRỞ THÀNH NGƯỜI BÁN</h4>
-    <form>
-        <!-- Tên Cửa Hàng -->
-        <div class="form-group">
-            <label for="store-name">Tên Cửa Hàng</label>
-            <input type="text" class="form-control" id="store-name" placeholder="Nhập tên cửa hàng">
-        </div>
-        
-        <!-- Email -->
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Nhập email">
-        </div>
 
-        <!-- Số điện thoại -->
-        <div class="form-group">
-            <label for="phone">Sđt</label>
-            <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại">
-        </div>
+<!-- Form Đăng Ký -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div>
+            <div class="form-container">
+                <form action="action_page.php" method="post">
+                    <h1 class="text-center">Đăng Ký Người Bán Hàng</h1>
+                    <p class="text-center">Vui lòng điền thông tin để tạo tài khoản.</p>
+                    <hr>
 
-        <!-- Buttons -->
-        <div class="btn-container">
-            <button type="submit" class="btn btn-custom" style="  margin-right: 20px;">Gửi yêu cầu</button>
-            <button type="button" class="btn btn-custom">Hủy</button>
+                    <div class="mb-3">
+                        <label for="username" class="form-label"><b>Tên cửa hàng</b></label>
+                        <input type="text" placeholder="Nhập Tên cửa hàng" class="form-control" name="username" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label"><b>Số điện thoại</b></label>
+                        <input type="tel" placeholder="Nhập Số điện thoại" class="form-control" name="phone" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="otp" class="form-label"><b>Email</b></label>
+                        <input type="number" placeholder="Nhập email" class="form-control" name="otp" required maxlength="4">
+                    </div>
+
+
+
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" name="remember" checked>
+                        <label class="form-check-label" for="remember">Ghi nhớ tôi</label>
+                    </div>
+
+                    <p class="text-center">Bằng cách tạo tài khoản, bạn đồng ý với <a href="#" style="color:dodgerblue">Điều khoản & Quyền riêng tư</a>.</p>
+
+                    <div class="clearfix">
+                        <button type="button" class="btn btn-secondary me-2 cancelbtn">Hủy</button>
+                        <button type="submit" class="btn btn-primary signupbtn">Đăng Ký</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </form>
+    </div>
 </div>
+
+
 
