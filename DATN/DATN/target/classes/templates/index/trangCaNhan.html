@@ -55,6 +55,11 @@
     .col-sm-9 {
         margin: 0 auto;
         padding: 20px;
+        min-height: 100vh; /* Đảm bảo body chiếm toàn bộ chiều cao trang */
+    }
+
+    .content {
+        flex: 1; /* Đảm bảo nội dung chính chiếm không gian còn lại, đẩy footer xuống cuối */
     }
 
     /* Hiệu ứng hover cho nút Đăng nhập */
@@ -89,6 +94,39 @@
         }
     }
 
+
+
+    .product-name {
+        min-height: 60px;
+        max-height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+
+    .trend-section {
+        background-color: white;
+        border-radius: 10px;
+        padding: 1rem;
+    }
+
+    .menu {
+        background-color: #ffc0cb;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .menu a {
+        display: block;
+        color: #000;
+        text-decoration: none;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
     a h4 {
         color: #343a40;
         font-size: 1.2rem;
@@ -96,18 +134,20 @@
         border-radius: 8px;
         transition: background-color 0.3s ease, color 0.3s ease;
         text-align: center;
-        
     }
 
     a:hover h4 {
         background-color: #FF9999;
+    }
+
+    a:hover h4 {
+        background-color: #87CEFA;
         color: white;
     }
 
     a {
         text-decoration: none;
     }
-
     hr {
         margin-left: -7px;
         margin-right: -21px;
@@ -169,7 +209,7 @@
                 <hr style="border-top: 3px solid;">
                 <a href="#!Đơn hàng của tôi">
                     <h4 class="title">Đơn hàng của tôi</h4>
-                </a>
+                </a>s
                 <hr style="border-top: 3px solid;">
                 <a href="#!Trở thành người bán">
                     <h4 class="title">Trở thành người bán</h4>
@@ -182,6 +222,25 @@
             <div class="col-sm-9 mt-3">
                 <div ng-view></div>
             </div>
+<div class="content"> <!-- Thêm class content -->
+    <div class="row">
+        <div class="col-2 mt-3" style="border-right: 1px solid black;  height: 100vh;">
+            <h4 style="text-align: center;">Tài khoản</h4>
+            <a href="#!Thông tin cá nhân">
+                <h4 class="title">Thông tin cá nhân</h4>
+            </a>
+            <a href="#!Đơn hàng của tôi">
+                <h4 class="title">Đơn hàng của tôi</h4>
+            </a>
+            <a href="#!Trở thành người bán">
+                <h4 class="title">Trở thành người bán</h4>
+            </a>
+            <a href="#!Quản lý sản phẩm">
+                <h4 class="title">Quản lý sản phẩm</h4>
+            </a>
+        </div>
+        <div class="col-7 mt-3" style="margin: 0 auto;">
+            <div ng-view></div>
         </div>
     </div>
 </div>
@@ -192,7 +251,7 @@
         <p>© 2024 THEGIOISACH. Bản quyền thuộc về công ty THEGIOISACH.</p>
     </div>
 </footer>
-
+</body>
 <!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
