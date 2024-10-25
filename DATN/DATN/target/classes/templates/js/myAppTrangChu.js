@@ -11,12 +11,15 @@ app.config(function($routeProvider){
             templateUrl: '../layoutTrangChu/ThongBao.html'
         })
         .when('/Giỏ hàng', {
-            templateUrl: '../layoutTrangChu/GioHang.html'
+            templateUrl: '../layoutTrangChu/gioHang.html'
         })
         .when('/Đăng nhập', {
             templateUrl: '../layout/dangNhap.html'
         })
         .when('/Đăng ký', {
             templateUrl: '../layout/dangKy.html'
+        })
+        .when('/Mua ngay', {
+            templateUrl: '../layoutTrangChu/chiTietSanPham.html'
         })
 });
