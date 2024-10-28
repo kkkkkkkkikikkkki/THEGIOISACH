@@ -93,9 +93,6 @@
             margin-bottom: 15px;
         }
     }
-
-
-
     .product-name {
         min-height: 60px;
         max-height: 60px;
@@ -134,6 +131,12 @@
         border-radius: 8px;
         transition: background-color 0.3s ease, color 0.3s ease;
         text-align: center;
+
+        
+    }
+
+    a:hover h4 {
+        background-color: #FF9999;
     }
 
     a:hover h4 {
@@ -142,6 +145,7 @@
 
     a:hover h4 {
         background-color: #87CEFA;
+
         color: white;
     }
 
@@ -209,7 +213,8 @@
                 <hr style="border-top: 3px solid;">
                 <a href="#!Đơn hàng của tôi">
                     <h4 class="title">Đơn hàng của tôi</h4>
-                </a>s
+                </a>
+                </a>
                 <hr style="border-top: 3px solid;">
                 <a href="#!Trở thành người bán">
                     <h4 class="title">Trở thành người bán</h4>
@@ -241,6 +246,7 @@
         </div>
         <div class="col-7 mt-3" style="margin: 0 auto;">
             <div ng-view></div>
+
         </div>
     </div>
 </div>
@@ -252,6 +258,7 @@
     </div>
 </footer>
 </body>
+
 <!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
