@@ -86,7 +86,6 @@
         color: white; /* Màu chữ khi hover */
     }
 </style>
-
 <div class="container mt-5">
     <h2 class="text-center mb-4">Quản lý Sản Phẩm</h2>
 
@@ -108,7 +107,6 @@
         <table class="table table-bordered table-striped table-hover">
             <thead class="table-dark">
                 <tr>
-
     <style>
         body {
             background-color: #FFE4E1; /* Màu nền */
@@ -250,6 +248,7 @@
 
                     <td th:text="${product.price}">100,000 VND</td>
                     <td>
+                        <!-- Edit Button -->
                         <!-- Edit Button
 
                         <button class="btn btn-info btn-sm" 
@@ -268,15 +267,17 @@
                                 [[${product.price}]])">Sửa</button>
 
                                 '[[${product.productionDate}]]', 
+                                [[${product.price}]])">Sửa</button>
                                 [[${product.price}]])">Sửa</button> -->
-
-
                         <!-- Delete Product Button -->
                         <form th:action="@{/seller/product/delete/{id}(id=${product.id})}" method="post" class="d-inline">
                             <input type="hidden" name="_method" value="delete" />
 
                             <button style="margin-top: 10px;" type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?');">Xóa</button>
-
+                        <!-- Delete Product Button -->
+                        <form th:action="@{/seller/product/delete/{id}(id=${product.id})}" method="post" class="d-inline">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button style="margin-top: 10px;" type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?');">Xóa</button>
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?');">Xóa</button>
 
                         </form>
@@ -285,6 +286,71 @@
             </tbody>
         </table>
     </div>
+</div>
+
+<!-- Modal Edit Product -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProductModalLabel">Chỉnh sửa Sản Phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Edit Product Form -->
+                <form th:action="@{/seller/product/update}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="editProductId" name="id">
+
+                    <!-- Product Image -->
+                    <div class="mb-3">
+                        <label for="editProductImage" class="form-label">Hình Ảnh Sản Phẩm</label>
+                        <input type="file" class="form-control" id="editProductImage" name="image">
+                        <img id="editProductImagePreview" class="img-thumbnail mt-2" style="width: 100px; height: auto;">
+                    </div>
+                    <!-- Product Name -->
+                    <div class="mb-3">
+                        <label for="editProductName" class="form-label">Tên Sản Phẩm</label>
+                        <input type="text" class="form-control" id="editProductName" name="name" required>
+                    </div>
+                    <!-- Product Category -->
+                    <div class="mb-3">
+                        <label for="editProductCategory" class="form-label">Thể Loại</label>
+                        <select class="form-select" id="editProductCategory" name="category" required>
+                            <option value="Sách Kinh Tế">Sách Kinh Tế</option>
+                            <option value="Sách Văn Học">Sách Văn Học</option>
+                            <option value="Sách Giáo Khoa">Sách Giáo Khoa</option>
+                            <!-- Thêm các danh mục khác -->
+                        </select>
+                    </div>
+                    <!-- Product Author -->
+                    <div class="mb-3">
+                        <label for="editProductAuthor" class="form-label">Tác Giả</label>
+                        <input type="text" class="form-control" id="editProductAuthor" name="author" required>
+                    </div>
+                    <!-- Product Publisher -->
+                    <div class="mb-3">
+                        <label for="editProductPublisher" class="form-label">Nhà Xuất Bản</label>
+                        <input type="text" class="form-control" id="editProductPublisher" name="publisher" required>
+                    </div>
+                    <!-- Production Date -->
+                    <div class="mb-3">
+                        <label for="editProductProductionDate" class="form-label">Ngày Sản Xuất</label>
+                        <input type="date" class="form-control" id="editProductProductionDate" name="productionDate" required>
+                    </div>
+                    <!-- Product Price -->
+                    <div class="mb-3">
+                        <label for="editProductPrice" class="form-label">Giá</label>
+                        <input type="number" class="form-control" id="editProductPrice" name="price" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Cập Nhật Sản Phẩm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </div>
 
@@ -355,6 +421,9 @@
 <!-- JavaScript to Handle Editing -->
 <script>
     function editProduct(id, image, name, category, author, publisher, productionDate, price, soluong) {
+<!-- JavaScript to Handle Editing -->
+<script>
+    function editProduct(id, image, name, category, author, publisher, productionDate, price) {
         // Set form values based on product data
         document.getElementById('editProductId').value = id;
         document.getElementById('editProductImagePreview').src = image;
@@ -367,8 +436,6 @@
         document.getElementById('editProductPrice').value = price;
     }
 </script>
-
-
     <!-- Modal Edit Product -->
     <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
         <div class="modal-dialog">
