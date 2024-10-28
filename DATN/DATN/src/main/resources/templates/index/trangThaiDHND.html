@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trạng thái đơn hàng người dùng </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/myoder.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<style>
+    body {
+        background-color: #f8d7da;
+        /* Màu nền nhẹ nhàng */
+    }
+
+    .navbar {
+        background-color: #fff;
+        /* Nền navbar trắng */
+        padding: 10px 20px;
+        /* Padding cho navbar */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Đổ bóng nhẹ cho navbar */
+    }
+
+    .navbar-brand img {
+        max-height: 40px;
+        /* Chiều cao tối đa cho logo */
+    }
+
+    .dropdown-toggle {
+        padding: 8px 15px;
+        /* Padding cho nút dropdown */
+        margin-right: 15px;
+        /* Khoảng cách bên phải */
+        border: 1px solid transparent;
+        /* Đường viền trong suốt */
+        background-color: transparent;
+        /* Nền trong suốt */
+        color: #333;
+        /* Màu chữ đen */
+        transition: background-color 0.3s, color 0.3s;
+        /* Hiệu ứng chuyển màu khi hover */
+    }
+
+    .dropdown-toggle:hover {
+        background-color: #f8d7da;
+        /* Màu nền khi hover */
+        color: #000;
+        /* Màu chữ đen khi hover */
+    }
+
+    .search-input {
+        width: 400px;
+        /* Chiều rộng cố định cho ô tìm kiếm */
+        border-radius: 20px 0 0 20px;
+        /* Bo góc trái */
+        border: 1px solid #f8d7da;
+        /* Đường viền màu hồng nhạt */
+        padding: 10px;
+        /* Padding cho input */
+        transition: border 0.3s;
+        /* Hiệu ứng chuyển khi border */
+    }
+
+    .search-input:focus {
+        border-color: #ff7f7f;
+        /* Đổi màu border khi focus */
+        outline: none;
+        /* Bỏ outline mặc định */
+    }
+
+    .search-button {
+        border-radius: 0 20px 20px 0;
+        /* Bo góc phải */
+        background-color: #f8d7da;
+        /* Màu hồng nhạt cho nút tìm kiếm */
+        color: black;
+        /* Màu chữ đen */
+        padding: 10px 15px;
+        /* Padding cho nút tìm kiếm */
+        border: none;
+        /* Bỏ viền */
+        transition: background-color 0.3s;
+        /* Hiệu ứng chuyển màu */
+    }
+
+    .search-button:hover {
+        background-color: #ff7f7f;
+        /* Màu hồng đậm hơn khi hover */
+    }
+
+    .nav-icons a {
+        margin: 0 70px;
+        /* Khoảng cách giữa các biểu tượng */
+        color: black;
+        /* Màu sắc đen cho biểu tượng */
+        font-size: 24px;
+        /* Kích thước biểu tượng */
+        transition: color 0.3s;
+        /* Hiệu ứng chuyển màu */
+    }
+
+    .nav-icons a:hover {
+        color: #ff7f7f;
+        /* Đổi màu khi hover */
+    }
+
+    .dropdown-menu {
+        border-radius: 10px;
+        /* Bo góc cho menu dropdown */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Đổ bóng cho menu */
+    }
+
+    .dropdown-item {
+        color: black;
+        /* Màu chữ item */
+        transition: background-color 0.3s;
+        /* Hiệu ứng chuyển màu cho item */
+    }
+
+    .dropdown-item:hover {
+        background-color: #f0f0f0;
+        /* Màu nền khi hover trên item */
+    }
+
+    .dropdown-toggle img,
+    .dropdown-item img {
+        margin-right: 5px;
+        /* Khoảng cách giữa hình ảnh cờ và chữ */
+    }
+
+    h2 {
+        color: #333;
+        /* Màu tiêu đề chính */
+        margin-bottom: 20px;
+        /* Khoảng cách dưới tiêu đề */
+    }
+
+    .list-group-item {
+        background-color: #fff;
+        /* Nền trắng cho item trong danh sách */
+        border: 1px solid #ddd;
+        /* Đường viền cho item */
+        border-radius: 8px;
+        /* Bo góc cho item */
+        margin-bottom: 15px;
+        /* Khoảng cách giữa các item */
+        padding: 15px;
+        /* Padding cho item */
+    }
+
+    .list-group-item h5 {
+        margin: 0;
+        /* Bỏ margin cho tiêu đề */
+    }
+
+    .list-group-item p {
+        margin: 5px 0;
+        /* Khoảng cách giữa các đoạn văn */
+    }
+
+    .order-id {
+        color: #007bff;
+        /* Màu cho mã đơn hàng */
+    }
+
+    .price {
+        color: #dc3545;
+        /* Màu cho giá tiền */
+        font-weight: bold;
+        /* Làm đậm giá */
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        /* Màu chính cho nút xem chi tiết */
+        border: none;
+        /* Bỏ viền */
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        /* Màu khi hover */
+    }
+
+    .badge {
+        font-size: 1rem;
+        /* Kích thước chữ cho badge */
+    }
+
+    .order-details {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .shipping-details ul {
+        list-style-type: none;
+        /* Loại bỏ ký hiệu mặc định của danh sách */
+        padding-left: 0;
+        /* Xóa khoảng cách bên trái */
+    }
+
+    .shipping-details ul li {
+        margin-bottom: 10px;
+        /* Khoảng cách giữa các mục trong lộ trình */
+        display: flex;
+        /* Sắp xếp icon và văn bản theo chiều ngang */
+        align-items: center;
+        /* Căn giữa icon và văn bản */
+    }
+
+    .shipping-details ul li i {
+        font-size: 18px;
+        /* Kích thước của icon */
+        margin-right: 10px;
+        /* Khoảng cách giữa icon và văn bản */
+        color: #007bff;
+        /* Màu xanh cho icon */
+    }
+
+    .order-details h6 {
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    /* Thêm CSS để làm mượt phần hiển thị/ẩn */
+    .order-details {
+        display: none;
+        transition: max-height 0.3s ease-out;
+        overflow: hidden;
+    }
+
+    /* Hiệu ứng chuyển đổi khi hiện chi tiết */
+    .order-details.show {
+        display: block;
+    }
+
+    /* Phong cách cho phần thông tin vận chuyển */
+    .shipping-details p {
+        font-size: 14px;
+        margin: 0;
+    }
+
+    /* Styling cho phần checkbox lý do hủy */
+    .shipping-details ul {
+        list-style-type: none;
+        /* Loại bỏ ký hiệu mặc định */
+        padding-left: 0;
+    }
+
+    .shipping-details ul li {
+        margin-bottom: 10px;
+        /* Khoảng cách giữa các lý do */
+        display: flex;
+        align-items: center;
+    }
+
+    .shipping-details ul li input[type="checkbox"] {
+        margin-right: 10px;
+        /* Khoảng cách giữa checkbox và văn bản */
+    }
+
+    .shipping-details label {
+        font-size: 14px;
+        color: #333;
+    }
+
+    .order-details h6 {
+        margin-bottom: 15px;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .bg-pink-light {
+        background-color: #ff9999;
+        /* Màu hồng nhạt, bạn có thể thay đổi mã màu tùy thích */
+        color: #fff;
+        /* Màu chữ, bạn có thể thay đổi nếu cần */
+    }
+
+    .bg-pink-dark {
+        background-color: #ffccd5;
+        /* Màu hồng đậm, bạn có thể thay đổi mã màu tùy thích */
+        color: #fff;
+        /* Màu chữ, bạn có thể thay đổi nếu cần */
+    }
+
+    .order-image {
+        width: 100px;
+        /* Chiều rộng hình ảnh */
+        height: auto;
+        /* Tự động chiều cao */
+        margin: 0;
+        /* Không có lề */
+        padding: 0;
+        /* Không có đệm */
+        display: block;
+        /* Hiển thị hình ảnh như một khối */
+    }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
+            </a>
+            <!-- Toggle button for small screens -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Navbar items (left aligned) -->
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#!Trang chủ">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#!Thông báo">Thông báo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#!Giỏ hàng">Giỏ hàng</a>
+                    </li>
+                </ul>
+                <!-- Search Form (centered) -->
+                <form class="d-flex mx-auto" role="search" style="width: 400px;">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
+                        <i class="fas fa-search"></i> <!-- Icon search -->
+                    </button>
+                </form>
+                <!-- Navbar items (right aligned) -->
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-secondary me-2" href="#!Đăng nhập">Đăng nhập</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-dark" href="#!Đăng ký">Đăng ký</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <h2 class="text-center">Trạng thái đơn hàng</h2>
+        <div class="list-group mt-4">
+            <!-- Đơn hàng 1 - Đa giao -->
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col-md-8 d-flex align-items-center">
+                        <img src="images/hinh1.webp" alt="Sách anime" class="order-image me-2">
+                        <div>
+                            <h5>Mã đơn hàng: <span class="order-id">#123456</span></h5>
+                            <p>Ngày đặt: <span class="order-date">15/10/2024</span></p>
+                            <p>Chi tiết sản phẩm: <strong>Sách tâm lý học</strong></p>
+                            <p>Giá: <strong class="price">₫380.500</strong></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <span class="badge bg-primary btn-sm me-2">Đã giao hàng</span>
+                        <button class="btn btn-primary btn-sm" data-order-id="123456">Xem chi tiết</button>
+                    </div>
+                </div>
+                <!-- Chi tiết lộ trình đơn hàng (ẩn đi) -->
+                <div class="order-details" id="order-details-123456" style="display: none; margin-top: 15px;">
+                    <p>Thông tin nhận: <strong>Nam - 456 Đường DEF</strong></p>
+                    <p>Thanh toán: <strong>Đã thanh toán</strong></p>
+                    <div class="shipping-details">
+                        <h6>Lộ trình đơn hàng:</h6>
+                        <ul>
+                            <li><i class="bi bi-archive-fill"></i> Ngày 16/10 - Đã xử lý</li>
+                            <li><i class="bi bi-truck"></i> Ngày 18/10 - Đã vận chuyển</li>
+                            <li><i class="bi bi-house"></i> Ngày 20/10 - Đã giao hàng</li>
+                        </ul>
+                        <p>Đã giao ngày: 20/10/2024, 2:30 PM</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Đơn hàng 2 - dang giao -->
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col-md-8 d-flex align-items-center">
+                        <img src="images/hinh6.webp" alt="Sách tâm linh" class="order-image me-2">
+                        <div>
+                            <h5>Mã đơn hàng: <span class="order-id">#123457</span></h5>
+                            <p>Ngày đặt: <span class="order-date">16/10/2024</span></p>
+                            <p>Chi tiết sản phẩm: <strong>Sách học lập trình</strong></p>
+                            <p>Giá: <strong class="price">₫250.000</strong></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <span class="badge bg-pink-light btn-sm me-2">Đang giao hàng</span>
+                        <button class="btn btn-primary btn-sm" data-order-id="123457">Xem chi tiết</button>
+                    </div>
+                </div>
+                <!-- Chi tiết lộ trình đơn hàng (ẩn đi) -->
+                <div class="order-details" id="order-details-123457" style="display: none; margin-top: 15px;">
+                    <p>Thông tin nhận: <strong>Nam - 456 Đường DEF</strong></p>
+                    <p>Thanh toán: <strong>Đã thanh toán</strong></p>
+                    <div class="shipping-details">
+                        <h6>Lộ trình đơn hàng:</h6>
+                        <ul>
+                            <li><i class="bi bi-archive-fill"></i> Ngày 12/10 - Đã xử lý</li>
+                            <li><i class="bi bi-truck"></i> Ngày 14/10 - Đang vận chuyển</li>
+                            <li><i class="bi bi-house"></i> Ngày 17/10 - Dự kiến giao</li>
+                        </ul>
+                        <p>Thời gian dự kiến giao: 17/10/2024, 10:00 AM</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Đơn hàng 3 - chua giao -->
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col-md-8 d-flex align-items-center">
+                        <img src="images/hinh5.webp" alt="Sách tâm lý" class="order-image me-2">
+                        <div>
+                            <h5>Mã đơn hàng: <span class="order-id">#123459</span></h5>
+                            <p>Ngày đặt: <span class="order-date">14/10/2024</span></p>
+                            <p>Chi tiết sản phẩm: <strong>Sách tình yêu đôi lứa</strong></p>
+                            <p>Giá: <strong class="price">₫500.000</strong></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <span class="badge bg-pink-dark btn-sm me-2">Chưa giao hàng</span>
+                        <button class="btn btn-primary btn-sm" data-order-id="123459">Xem chi tiết</button>
+                    </div>
+                </div>
+                <!-- Chi tiết lộ trình đơn hàng (ẩn đi) -->
+                <div class="order-details" id="order-details-123459" style="display: none; margin-top: 15px;">
+                    <p>Thông tin nhận: <strong>Huy - 789 Đường GHI</strong></p>
+                    <p>Thanh toán: <strong>Đã thanh toán</strong></p>
+                    <div class="shipping-details">
+                        <h6>Lộ trình đơn hàng:</h6>
+                        <ul>
+                            <li><i class="bi bi-archive-fill"></i> Ngày 10/10 - Đang xử lý</li>
+                            <li><i class="bi bi-truck"></i> Ngày 12/10 - Chưa vận chuyển</li>
+                            <li><i class="bi bi-house"></i> Ngày 15/10 - Dự kiến giao</li>
+                        </ul>
+                        <p>Thời gian dự kiến giao: 15/10/2024, 10:00 AM</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Đơn hàng 4 - Đã hủy -->
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col-md-8 d-flex align-items-center">
+                        <img src="images/hinh4.webp" alt="Sách tâm than" class="order-image me-2">
+                        <div>
+                            <h5>Mã đơn hàng: <span class="order-id">#123458</span></h5>
+                            <p>Ngày đặt: <span class="order-date">17/10/2024</span></p>
+                            <p>Chi tiết sản phẩm: <strong>Truyện cổ tích Tấm Cám</strong></p>
+                            <p>Giá: <strong class="price">₫100.000</strong></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <span class="badge bg-danger btn-sm me-2">Đã hủy</span>
+                        <button class="btn btn-primary btn-sm" data-order-id="123458">Xem chi tiết</button>
+                    </div>
+                </div>
+                <div class="order-details" id="order-details-123458" style="display: none; margin-top: 15px;">
+                    <p>Thông tin nhận: <strong>Nam - 456 Đường DEF</strong></p>
+                    <p>Thanh toán: <strong>Đã hoàn tiền</strong></p>
+                    <div class="shipping-details">
+                        <h6>Lý do hủy đơn hàng:</h6>
+                        <div id="cancellation-reasons" style="display: none;">
+                            <div>
+                                <input type="checkbox" id="reason1" disabled>
+                                <label for="reason1">Sản phẩm không còn hàng</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="reason2" disabled>
+                                <label for="reason2">Thời gian giao hàng quá lâu</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="reason3" disabled>
+                                <label for="reason3">Đổi ý, không muốn mua nữa</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="reason4" disabled>
+                                <label for="reason4">Giá quá cao</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="orderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderDetailModalLabel">Chi tiết đơn hàng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Thông tin nhận hàng:</h6>
+                    <p id="recipientName"></p>
+                    <p id="recipientAddress"></p>
+                    <p id="recipientPhone"></p>
+
+                    <h6>Thông tin giao hàng:</h6>
+                    <p id="deliveryDate"></p>
+                    <p id="deliveryPerson"></p>
+
+                    <h6>Thông tin hủy đơn:</h6>
+                    <p id="cancellationReason"></p>
+                    <p id="cancellationDate"></p>
+
+                    <h6>Thanh vận chuyển:</h6>
+                    <div class="progress">
+                        <div id="deliveryProgress" class="progress-bar bg-success" style="width: 100%;"
+                            role="progressbar">Đã giao</div>
+                        <div class="progress-bar bg-warning" style="width: 50%;" role="progressbar">Đang giao</div>
+                        <div class="progress-bar bg-danger" style="width: 0%;" role="progressbar">Đã hủy</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p>© 2024 THEGIOISACH. Bản quyền thuộc về công ty THEGIOISACH.</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const orderDetailsButtons = document.querySelectorAll('.btn-primary');
+
+            orderDetailsButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const orderDetailsId = this.getAttribute('data-order-id');
+                    const orderDetailsDiv = document.getElementById('order-details-' + orderDetailsId);
+
+                    // Toggle hiển thị chi tiết đơn hàng
+                    if (orderDetailsDiv && orderDetailsDiv.style.display === 'none') {
+                        orderDetailsDiv.style.display = 'block';
+                    } else if (orderDetailsDiv) {
+                        orderDetailsDiv.style.display = 'none';
+                    }
+
+                    // Nếu đơn hàng đã hủy (mã đơn hàng #123458), hiển thị lý do hủy và tick vào một lý do
+                    if (orderDetailsId === '123458') {
+                        const cancellationSection = document.getElementById('cancellation-reasons');
+                        if (cancellationSection) {
+                            cancellationSection.style.display = 'block'; // Hiển thị phần lý do hủy
+
+                            // Tự động tick vào ô lý do "Sản phẩm không còn hàng"
+                            document.getElementById('reason3').checked = true;
+                        }
+                    }
+                });
+            });
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
