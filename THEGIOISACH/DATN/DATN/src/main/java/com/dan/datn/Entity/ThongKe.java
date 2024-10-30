@@ -1,4 +1,4 @@
-package com.dan.datn.entity;
+package com.dan.datn.Entity;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;
