@@ -1,0 +1,422 @@
+<div class="cart-container mt-4">
+    <h1>Giỏ Hàng Của Bạn</h1>
+    <!-- Checkbox chọn tất cả -->
+    <div class="select-all-container d-flex align-items-center">
+        <input type="checkbox" id="select-all" class="me-2">
+        <label for="select-all">Chọn Tất Cả</label>
+    </div>
+    <!-- Sản phẩm 1 -->
+    <div class="cart-item d-flex">
+        <input type="checkbox" class="select-product me-2">
+        <img src="images/hinh1.webp" alt="Tên sản phẩm 1" class="product-image">
+        <div class="product-details d-flex justify-content-between align-items-center">
+            <div class="product-info">
+                <h2 class="product-name">Tên Sản Phẩm 1</h2>
+                <p class="product-author"><strong>Tác Giả:</strong> <span>Nguyễn Văn A</span></p>
+                <p class="product-supplier"><strong>Thể loại:</strong> <span>Tâm lý</span></p>
+                <p class="product-price"><strong>Giá:</strong> <span class="price">200.000 VNĐ</span></p>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="quantity-container">
+                    <label for="quantity1"><strong>Số Lượng:</strong> </label>
+                    <input type="number" id="quantity1" name="quantity" value="1" min="1" class="quantity-input">
+                </div>
+                <button class="remove-button">Xóa</button>
+            </div>
+        </div>
+    </div>
+    <!-- Sản phẩm 2 -->
+    <div class="cart-item d-flex">
+        <input type="checkbox" class="select-product me-2">
+        <img src="images/hinh4.webp" alt="Tên sản phẩm 2" class="product-image">
+        <div class="product-details d-flex justify-content-between align-items-center">
+            <div class="product-info">
+                <h2 class="product-name">Tên Sản Phẩm 2</h2>
+                <p class="product-author"><strong>Tác Giả:</strong> <span>Nguyễn Văn A</span></p>
+                <p class="product-supplier"><strong>Thể loại:</strong> <span>Tình cảm</span></p>
+                <p class="product-price"><strong>Giá:</strong> <span class="price">200.000 VNĐ</span></p>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="quantity-container">
+                    <label for="quantity1"><strong>Số Lượng:</strong> </label>
+                    <input type="number" id="quantity2" name="quantity" value="1" min="1" class="quantity-input">
+                </div>
+                <button class="remove-button">Xóa</button>
+            </div>
+        </div>
+    </div>
+    <!-- Sản phẩm 3 -->
+    <div class="cart-item d-flex">
+        <input type="checkbox" class="select-product me-2">
+        <img src="images/hinh5.webp" alt="Tên sản phẩm 3" class="product-image">
+        <div class="product-details d-flex justify-content-between align-items-center">
+            <div class="product-info">
+                <h2 class="product-name">Tên Sản Phẩm 3</h2>
+                <p class="product-author"><strong>Tác Giả:</strong> <span>Nguyễn Văn A</span></p>
+                <p class="product-supplier"><strong>Thể loại:</strong> <span>Ngôn ngữ</span></p>
+                <p class="product-price"><strong>Giá:</strong> <span class="price">200.000 VNĐ</span></p>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="quantity-container">
+                    <label for="quantity1"><strong>Số Lượng:</strong> </label>
+                    <input type="number" id="quantity3" name="quantity" value="1" min="1" class="quantity-input">
+                </div>
+                <button class="remove-button">Xóa</button>
+            </div>
+        </div>
+    </div>
+    <div class="cart-summary d-flex justify-content-between align-items-center mt-3">
+        <p>Tổng cộng: <span class="total-price">650.000 VNĐ</span></p>
+        <button class="checkout-button">Thanh Toán</button>
+    </div>
+</div>
+<script>
+    // Lấy tất cả các nút "Xóa" và các trường số lượng
+    const removeButtons = document.querySelectorAll('.remove-button');
+    const quantityInputs = document.querySelectorAll('.quantity-input');
+    const checkoutButton = document.querySelector('.checkout-button');
+
+    // Hàm tính toán tổng giá trị giỏ hàng
+    function calculateTotal() {
+        let total = 0;
+        const cartItems = document.querySelectorAll('.cart-item');
+
+        cartItems.forEach(item => {
+            const priceText = item.querySelector('.product-price .price').textContent.replace('.', '').replace(' VNĐ', '');
+            const quantity = item.querySelector('.quantity-input').value;
+            total += parseInt(priceText) * parseInt(quantity);
+        });
+
+        // Cập nhật giá trị tổng
+        document.querySelector('.total-price').textContent = total.toLocaleString('vi-VN') + ' VNĐ';
+    }
+
+    // Lắng nghe sự kiện thay đổi trên các trường số lượng
+    quantityInputs.forEach(input => {
+        input.addEventListener('change', calculateTotal);
+    });
+
+    // Lắng nghe sự kiện click cho các nút "Xóa"
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            // Xóa sản phẩm khỏi giỏ hàng
+            const cartItem = this.closest('.cart-item');
+            cartItem.remove();
+
+            // Tính lại tổng giá trị giỏ hàng
+            calculateTotal();
+        });
+    });
+
+    // Lắng nghe sự kiện click cho nút "Thanh Toán"
+    checkoutButton.addEventListener('click', function () {
+        // Hiển thị thông báo hoặc chuyển hướng đến trang thanh toán
+        alert('Bạn đã chọn thanh toán. Tổng cộng: ' + document.querySelector('.total-price').textContent);
+        // Có thể chuyển hướng đến trang thanh toán
+        // window.location.href = 'payment.html'; // Thay đổi thành URL trang thanh toán của bạn
+    });
+
+    // Tính toán tổng giá trị giỏ hàng ban đầu
+    calculateTotal();
+
+    // Lấy checkbox "Chọn Tất Cả" và tất cả các checkbox sản phẩm
+    const selectAllCheckbox = document.getElementById('select-all');
+    const productCheckboxes = document.querySelectorAll('.select-product');
+
+    // Hàm xử lý sự kiện khi checkbox "Chọn Tất Cả" được thay đổi
+    selectAllCheckbox.addEventListener('change', function () {
+        // Duyệt qua tất cả các checkbox sản phẩm và đặt giá trị checked giống như checkbox "Chọn Tất Cả"
+        productCheckboxes.forEach(checkbox => {
+            checkbox.checked = this.checked;
+        });
+    });
+
+    // Xử lý sự kiện cho từng checkbox sản phẩm để cập nhật trạng thái của "Chọn Tất Cả"
+    productCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            // Nếu tất cả các sản phẩm được chọn, đặt checkbox "Chọn Tất Cả" thành true, ngược lại false
+            selectAllCheckbox.checked = Array.from(productCheckboxes).every(cb => cb.checked);
+        });
+    });
+
+
+</script>
+<style>
+    /* Thiết lập chung */
+    body {
+        background-color: #f8d7da;
+        /* Màu nền nhẹ nhàng */
+    }
+
+    .container {
+        padding: 20px;
+        /* Padding cho container */
+    }
+
+    /* Navbar */
+    .navbar {
+        background-color: #fff;
+        /* Nền navbar trắng */
+        padding: 10px 20px;
+        /* Padding cho navbar */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Đổ bóng nhẹ cho navbar */
+    }
+
+    .navbar-brand img {
+        max-height: 40px;
+        /* Chiều cao tối đa cho logo */
+    }
+
+    /* Dropdown */
+    .dropdown-toggle {
+        padding: 8px 15px;
+        /* Padding cho nút dropdown */
+        margin-right: 15px;
+        /* Khoảng cách bên phải */
+        border: 1px solid transparent;
+        /* Đường viền trong suốt */
+        background-color: transparent;
+        /* Nền trong suốt */
+        color: #333;
+        /* Màu chữ đen */
+        transition: background-color 0.3s, color 0.3s;
+        /* Hiệu ứng chuyển màu khi hover */
+    }
+
+    .dropdown-toggle:hover {
+        background-color: #f8d7da;
+        /* Màu nền khi hover */
+        color: #000;
+        /* Màu chữ đen khi hover */
+    }
+
+    /* Search input */
+    .search-input {
+        width: 400px;
+        /* Chiều rộng cố định cho ô tìm kiếm */
+        border-radius: 20px 0 0 20px;
+        /* Bo góc trái */
+        border: 1px solid #f8d7da;
+        /* Đường viền màu hồng nhạt */
+        padding: 10px;
+        /* Padding cho input */
+        transition: border 0.3s;
+        /* Hiệu ứng chuyển khi border */
+    }
+
+    .search-input:focus {
+        border-color: #ff7f7f;
+        /* Đổi màu border khi focus */
+        outline: none;
+        /* Bỏ outline mặc định */
+    }
+
+    .search-button {
+        border-radius: 0 20px 20px 0;
+        /* Bo góc phải */
+        background-color: #f8d7da;
+        /* Màu hồng nhạt cho nút tìm kiếm */
+        color: black;
+        /* Màu chữ đen */
+        padding: 10px 15px;
+        /* Padding cho nút tìm kiếm */
+        border: none;
+        /* Bỏ viền */
+        transition: background-color 0.3s;
+        /* Hiệu ứng chuyển màu */
+    }
+
+    .search-button:hover {
+        background-color: #ff7f7f;
+        /* Màu hồng đậm hơn khi hover */
+    }
+
+    /* Navbar icons */
+    .nav-icons a {
+        margin: 0 70px;
+        /* Khoảng cách giữa các biểu tượng */
+        color: black;
+        /* Màu sắc đen cho biểu tượng */
+        font-size: 24px;
+        /* Kích thước biểu tượng */
+        transition: color 0.3s;
+        /* Hiệu ứng chuyển màu */
+    }
+
+    .nav-icons a:hover {
+        color: #ff7f7f;
+        /* Đổi màu khi hover */
+    }
+
+    /* Dropdown menu */
+    .dropdown-menu {
+        border-radius: 10px;
+        /* Bo góc cho menu dropdown */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Đổ bóng cho menu */
+    }
+
+    .dropdown-item {
+        color: black;
+        /* Màu chữ item */
+        transition: background-color 0.3s;
+        /* Hiệu ứng chuyển màu cho item */
+    }
+
+    .dropdown-item:hover {
+        background-color: #f0f0f0;
+        /* Màu nền khi hover trên item */
+    }
+
+    .dropdown-item img {
+        margin-right: 5px;
+        /* Khoảng cách giữa hình ảnh cờ và chữ */
+    }
+
+    /* Cart container */
+    .cart-container {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 1400px;
+        margin: auto;
+        animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Cart item */
+    .cart-item {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 15px 0;
+    }
+
+    .product-image {
+        width: 100px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-right: 15px;
+    }
+
+    .product-details {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .product-name {
+        font-size: 1.4em;
+        color: #007bff;
+        margin: 0;
+    }
+
+    .product-author,
+    .product-publisher,
+    .product-supplier,
+    .product-price,
+    .product-rating {
+        margin: 5px 0;
+        font-size: 0.9em;
+        color: #555;
+    }
+
+    .quantity-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .quantity-input {
+        width: 50px;
+        margin-left: 10px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Remove button */
+    .remove-button {
+        background-color: #ff4d4f;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 20px;
+        display: inline-block;
+        transition: background-color 0.3s;
+    }
+
+    .remove-button:hover {
+        background-color: #e63946;
+    }
+
+    /* Cart summary */
+    .cart-summary {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .total-price {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    /* Checkout button */
+    .checkout-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .checkout-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Select all container */
+    .select-all-container {
+        margin-bottom: 15px;
+        padding: 10px 0;
+        border-radius: 2px;
+    }
+
+    .select-all-container input[type="checkbox"] {
+        transform: scale(1.2);
+    }
+
+    .select-all-container label {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Cart item checkbox */
+    .select-product {
+        margin-right: 15px;
+    }
+</style>
