@@ -1,0 +1,143 @@
+<style>
+    /* Custom styling */
+    .modal-body {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    .modal-title {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control[readonly] {
+        background-color: #e9ecef;
+        border: none;
+        font-size: 1rem;
+    }
+
+    .info-icon {
+        margin-right: 5px;
+        color: #0d6efd;
+    }
+
+    .title {
+        color: #000000;
+        font-weight: bold;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <h2 class="text-center mb-4 title">Quản lý Tài Khoản Người Dùng</h2>
+    </div>
+    <hr>
+
+    <!-- Search Bar -->
+    <div class="row mb-4" style="margin-top: 30px;">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Tìm kiếm người dùng..."
+                   aria-label="Tìm kiếm người dùng">
+        </div>
+        <div class="col-md-6 text-end">
+            <button class="btn btn-primary">Thêm Người Dùng</button>
+        </div>
+    </div>
+
+    <!-- User Table -->
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark text-center">
+        <tr>
+            <th>ID</th>
+            <th>Tên Người Dùng</th>
+            <th>Email</th>
+            <th>Hành Động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="text-center">1</td>
+            <td>Nguyễn Văn A</td>
+            <td>nguyenvana@gmail.com</td>
+            <td class="text-center">
+                <!-- View Details Button -->
+                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#userDetailModal1">
+                    <i class="bi bi-eye-fill"></i> Xem Chi Tiết
+                </button>
+
+                <!-- Delete User Button -->
+<!--                <form th:action="@{/admin/user/delete/{id}(id=${user.id})}" method="post" class="d-inline">-->
+<!--                    <input type="hidden" name="_method" value="delete" />-->
+<!--                    <button type="submit" class="btn btn-danger btn-sm"-->
+<!--                            onclick="return confirm('Bạn có chắc muốn xóa người dùng này không?');">-->
+<!--                        <i class="bi bi-trash-fill"></i> Xóa-->
+<!--                    </button>-->
+<!--                </form>-->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- Modal for User Details -->
+    <div class="modal fade" id="userDetailModal1" tabindex="-1" aria-labelledby="userDetailModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userDetailModalLabel">Thông tin chi tiết: Nguyễn Văn A</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <!-- User ID -->
+                        <div class="mb-3">
+                            <label for="userId" class="form-label">
+                                <i class="bi bi-person-badge-fill info-icon"></i> ID
+                            </label>
+                            <input type="text" class="form-control" id="userId" value="1" readonly>
+                        </div>
+
+                        <!-- User Name -->
+                        <div class="mb-3">
+                            <label for="userName" class="form-label">
+                                <i class="bi bi-person-fill info-icon"></i> Tên Người Dùng
+                            </label>
+                            <input type="text" class="form-control" id="userName" value="Nguyễn Văn A" readonly>
+                        </div>
+
+                        <!-- User Email -->
+                        <div class="mb-3">
+                            <label for="userEmail" class="form-label">
+                                <i class="bi bi-envelope-fill info-icon"></i> Email
+                            </label>
+                            <input type="email" class="form-control" id="userEmail" value="nguyenvana@gmail.com"
+                                   readonly>
+                        </div>
+
+                        <!-- User Phone -->
+                        <div class="mb-3">
+                            <label for="userPhone" class="form-label">
+                                <i class="bi bi-telephone-fill info-icon"></i> Số Điện Thoại
+                            </label>
+                            <input type="text" class="form-control" id="userPhone" value="0123456789" readonly>
+                        </div>
+
+                        <!-- Registration Date -->
+                        <div class="mb-3">
+                            <label for="userJoinDate" class="form-label">
+                                <i class="bi bi-calendar-event-fill info-icon"></i> Ngày Đăng Ký
+                            </label>
+                            <input type="text" class="form-control" id="userJoinDate" value="2024-10-01" readonly>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
