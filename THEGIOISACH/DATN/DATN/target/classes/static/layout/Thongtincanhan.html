@@ -1,64 +1,162 @@
-
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Thông Tin Tài Khoản</title>
     <style>
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
+        .btn-primary {
+            background-color: #FF9999;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-
-
-
-
-.btn-primary {
-    background-color: #FF9999;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-}
-.btn-primary:hover{
-    background-color: #8a76e2;
-}
-
+        .btn-primary:hover {
+            background-color: #8a76e2;
+        }
     </style>
-    <div class="container mt-5">
-        <h2>THÔNG TIN TÀI KHOẢN</h2>
-        <form>
-            <div class="mb-3">
-                <label for="surname" class="form-label">Họ</label>
-                <input type="text" class="form-control" id="surname" placeholder="Nhập họ">
-            </div>
-            <div class="mb-3">
-                <label for="amount" class="form-label">Tên</label>
-                <input type="number" class="form-control" id="amount" placeholder="Nhập tên">
-            </div>
-            <div class="mb-3">
-                <label for="phone" class="form-label">Số điện thoại</label>
-                <input type="tel" class="form-control" id="phone" placeholder="Nhập số điện thoại">
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Nhập email">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Giới tính</label>
-                <div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-                        <label class="form-check-label" for="male">Nam</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="female" value="female">
-                        <label class="form-check-label" for="female">Nữ</label>
-                    </div>
+</head>
+<body>
+<div class="container mt-5">
+    <h2>THÔNG TIN TÀI KHOẢN</h2>
+    <form id="accountForm">
+        <div class="mb-3">
+            <label for="surname" class="form-label">Họ</label>
+            <input type="text" class="form-control" id="surname" name="surname" placeholder="Nhập họ" >
+        </div>
+        <div class="mb-3">
+            <label for="amount" class="form-label">Tên</label>
+            <input type="text" class="form-control" id="amount" name="amount" placeholder="Nhập tên" >
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Số điện thoại</label>
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại" >
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Giới tính</label>
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                    <label class="form-check-label" for="male">Nam</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                    <label class="form-check-label" for="female">Nữ</label>
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="dob" class="form-label">Ngày sinh</label>
-                <input type="date" class="form-control" id="dob">
+        </div>
+        <div class="mb-3">
+            <label for="dob" class="form-label">Ngày sinh</label>
+            <input type="date" class="form-control" id="dob" name="dob">
+        </div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editAccountModal">Sửa</button>
+    </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editAccountModal" tabindex="-1" aria-labelledby="editAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editAccountModalLabel">Chỉnh Sửa Thông Tin Tài Khoản</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <button type="submit" class="btn btn-primary">Update</button>
-        </form>
+            <div class="modal-body">
+                <form id="editAccountForm">
+                    <div class="mb-3">
+                        <label for="editSurname" class="form-label">Họ</label>
+                        <input type="text" class="form-control" id="editSurname" name="surname" placeholder="Nhập họ">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editAmount" class="form-label">Tên</label>
+                        <input type="text" class="form-control" id="editAmount" name="amount" placeholder="Nhập tên">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editPhone" class="form-label">Số điện thoại</label>
+                        <input type="tel" class="form-control" id="editPhone" name="phone" placeholder="Nhập số điện thoại">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="editEmail" name="email" placeholder="Nhập email">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Giới tính</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="editMale" value="male">
+                                <label class="form-check-label" for="editMale">Nam</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="editFemale" value="female">
+                                <label class="form-check-label" for="editFemale">Nữ</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDob" class="form-label">Ngày sinh</label>
+                        <input type="date" class="form-control" id="editDob" name="dob">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="updateBtn">Cập Nhật</button>
+            </div>
+        </div>
     </div>
- 
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Khi nút "Sửa" được nhấn
+    document.querySelector('.btn-primary').addEventListener('click', function() {
+        // Lấy giá trị từ các trường nhập liệu
+        document.getElementById('editSurname').value = document.getElementById('surname').value;
+        document.getElementById('editAmount').value = document.getElementById('amount').value;
+        document.getElementById('editPhone').value = document.getElementById('phone').value;
+        document.getElementById('editEmail').value = document.getElementById('email').value;
+        document.getElementById('editDob').value = document.getElementById('dob').value;
+
+        // Cập nhật giá trị giới tính
+        const gender = document.querySelector('input[name="gender"]:checked');
+        if (gender) {
+            document.getElementById('edit' + gender.id.charAt(0).toUpperCase() + gender.id.slice(1)).checked = true;
+        }
+    });
+
+    // Khi nút "Cập Nhật" trong modal được nhấn
+    document.getElementById('updateBtn').addEventListener('click', function() {
+        // Cập nhật thông tin tài khoản
+        document.getElementById('surname').value = document.getElementById('editSurname').value;
+        document.getElementById('amount').value = document.getElementById('editAmount').value;
+        document.getElementById('phone').value = document.getElementById('editPhone').value;
+        document.getElementById('email').value = document.getElementById('editEmail').value;
+        document.getElementById('dob').value = document.getElementById('editDob').value;
+
+        // Cập nhật giới tính
+        const editGender = document.querySelector('input[name="gender"]:checked', document.getElementById('editAccountForm'));
+        if (editGender) {
+            document.querySelector(`input[name="gender"][value="${editGender.value}"]`).checked = true;
+        }
+
+        // Đóng modal
+        $('#editAccountModal').modal('hide');
+
+        // Thông báo cập nhật thành công
+        alert("Thông tin tài khoản đã được cập nhật!");
+    });
+</script>
+</body>
+</html>

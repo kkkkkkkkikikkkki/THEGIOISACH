@@ -6,18 +6,21 @@ app.config(function($routeProvider){
     $routeProvider
 
         .when('/Thông tin cá nhân', {
-            templateUrl: '../layout/Thongtincanhan.html'
+            templateUrl: 'layout/Thongtincanhan.html'
         })
         .when('/Đơn hàng của tôi', {
-            templateUrl: '../layout/Donhangcuatoi.html'
+            templateUrl: 'layout/Donhangcuatoi.html'
         })
         .when('/Trở thành người bán', {
-            templateUrl: '../layout/Trothanhnguoiban.html'
+            templateUrl: 'layout/Trothanhnguoiban.html'
         })
         .when('/Quản lý sản phẩm', {
-            templateUrl: '../layout/Quanlysanpham.html'
+            templateUrl: 'layout/Quanlysanpham.html'
         })
         .when('/Phân quyền', {
-            templateUrl: '../layout/Setting.html'
+            templateUrl: 'layout/Setting.html'
         })
+        .otherwise({
+            redirectTo: '/'
+        });
 });

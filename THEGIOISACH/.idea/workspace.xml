@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="sua lai footer" />
+    <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="sua lai footer">
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/trangCaNhanController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/SanPham.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/TheLoai.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutAdmin/Quanlysanpham.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutTrangChu/LayoutTrangChu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutTrangChu/ThongBao.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutTrangChu/chiTietSanPham.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutTrangChu/gioHang.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutTrangChu/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/js/myApptrangCaNhan.js" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/js/myApptrangCaNhan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Quanlysanpham.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Thongtincanhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Thongtincanhan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Trothanhnguoiban.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Trothanhnguoiban.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/js/myApptrangCaNhan.js" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/static/js/myApptrangCaNhan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Quanlysanpham.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Thongtincanhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Thongtincanhan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Trothanhnguoiban.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Trothanhnguoiban.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangCaNhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangCaNhan.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,8 +36,8 @@
       <list>
         <option value="Interface" />
         <option value="HTML File" />
-        <option value="Class" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -34,24 +55,13 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+        <entry key="$PROJECT_DIR$/.." value="khai" />
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "kkkkkkkkikikkkki"
-  }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/kkkkkkkkikikkkki/THEGIOISACH.git",
-    "accountId": "0263250b-68a8-4fbd-b550-5ebe0add2059"
-  }
-}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -69,10 +79,10 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.DatnApplication.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "kiet",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/du an/THEGIOISACH",
+    "last_opened_file_path": "D:/du an/THEGIOISACH/DATN/DATN/src/main/resources/static",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -84,25 +94,21 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\du an\THEGIOISACH\DATN\DATN\src\main\resources\static" />
       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static" />
       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\templates\index" />
       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\templates\layoutAdmin" />
       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\templates" />
-      <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static\layout" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\du an\THEGIOISACH\DATN\DATN\src\main\resources\static\layoutAdmin" />
       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static\layout" />
       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="DatnApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="DATN" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dan.datn.DatnApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RunManager" selected="Spring Boot.DatnApplication">
+    <configuration name="trangCaNhan.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/THEGIOISACH/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" useBuiltInWebServerPort="true">
+      <method v="2" />
     </configuration>
     <configuration name="DatnApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -112,12 +118,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DatnApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="DATN" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dan.datn.DatnApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.trangCaNhan.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
       </set>
     </attachedChunks>
   </component>
@@ -138,7 +157,6 @@
       <workItem from="1730117976933" duration="10861000" />
       <workItem from="1730164173173" duration="332000" />
       <workItem from="1730276041468" duration="5667000" />
-      <workItem from="1730287817933" duration="624000" />
     </task>
     <task id="LOCAL-00001" summary="done cac trang giao dien">
       <option name="closed" value="true" />
