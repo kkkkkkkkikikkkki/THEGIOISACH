@@ -10,105 +10,112 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
     <script th:src="@{/js/myApptrangCaNhan.js}"></script>
-</head>
-<body>
-<!-- Navbar -->
-<style>
-    body {
-        background-color: #FFE4E1;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh; /* Đảm bảo body chiếm toàn bộ chiều cao trang */
-    }
-
-    .content {
-        flex: 1; /* Đảm bảo nội dung chính chiếm không gian còn lại, đẩy footer xuống cuối */
-    }
-
-    /* Hiệu ứng hover cho nút Đăng nhập */
-    .btn-outline-secondary:hover {
-        background-color: #FF9999;
-        border-color: #FF9999;
-        color: white;
-    }
-
-    /* Hiệu ứng hover cho nút Đăng ký */
-    .btn-dark:hover {
-        background-color: #FF9999;
-        border-color: #FF9999;
-        color: white;
-    }
-
-    h5 i {
-        margin-right: 8px;
-    }
-
-    p {
-        font-weight: 500;
-    }
-
-    img {
-        border-radius: 5px;
-    }
-
-    @media (max-width: 768px) {
-        .col-md-2 {
-            margin-bottom: 15px;
+    <style>
+        body {
+            background-color: #FFE4E1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full height of the page */
         }
-    }
 
-    .product-name {
-        min-height: 60px;
-        max-height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        overflow: hidden;
-        white-space: normal;
-        word-wrap: break-word;
-    }
+        .content {
+            flex: 1; /* Ensure main content takes remaining space, pushing footer down */
+        }
 
-    .trend-section {
-        background-color: white;
-        border-radius: 10px;
-        padding: 1rem;
-    }
+        /* Hover effects for buttons */
+        .btn-outline-secondary:hover,
+        .btn-dark:hover,
+        .btn-logout:hover {
+            background-color: #FF9999;
+            border-color: #FF9999;
+            color: white;
+        }
 
-    .menu {
-        background-color: #ffc0cb;
-        padding: 20px;
-        border-radius: 10px;
-    }
+        h5 i {
+            margin-right: 8px;
+        }
 
-    .menu a {
-        display: block;
-        color: #000;
-        text-decoration: none;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
+        p {
+            font-weight: 500;
+        }
 
-    a h4 {
-        color: #343a40;
-        font-size: 1.2rem;
-        padding: 10px;
-        border-radius: 8px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        text-align: center;
-    }
+        img {
+            border-radius: 5px;
+        }
 
-    a:hover h4 {
-        background-color: #87CEFA;
-        color: white;
-    }
+        @media (max-width: 768px) {
+            .col-md-2 {
+                margin-bottom: 15px;
+            }
+        }
 
-    a {
-        text-decoration: none;
-    }
+        .product-name {
+            min-height: 60px;
+            max-height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            white-space: normal;
+            word-wrap: break-word;
+        }
 
-</style>
+        .trend-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1rem;
+        }
 
+        .menu {
+            background-color: #ffc0cb;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .menu a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        a h4 {
+            color: #343a40;
+            font-size: 1.2rem;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-align: center;
+        }
+
+        a:hover h4 {
+            background-color: #87CEFA;
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Styles for the Logout button */
+        .btn-logout {
+            background-color: #ff4d4d; /* Red background */
+            color: white; /* White text */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 20px; /* Padding */
+            margin-left: 55px;
+            font-weight: bold; /* Bold text */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .btn-logout:hover {
+            background-color: #cc0000; /* Darker red on hover */
+        }
+    </style>
+</head>
 <body ng-app="myApptrangCaNhan">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -151,7 +158,7 @@
     </div>
 </nav>
 
-<div class="content"> <!-- Thêm class content -->
+<div class="content">
     <div class="row">
         <div class="col-2 mt-3" style="border-right: 1px solid black;  height: 100vh;">
             <h4 style="text-align: center;">Tài khoản</h4>
@@ -161,7 +168,9 @@
             <a href="#!Đơn hàng của tôi">
                 <h4 class="title">Đơn hàng của tôi</h4>
             </a>
-
+            <div class="btn-container">
+                <button type="submit" class="btn btn-logout">Đăng xuất</button> <!-- Updated button -->
+            </div>
         </div>
         <div class="col-7 mt-3" style="margin: 0 auto;">
             <div ng-view></div>
@@ -176,7 +185,6 @@
     </div>
 </footer>
 
-</body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>

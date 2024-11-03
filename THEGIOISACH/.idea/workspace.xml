@@ -5,25 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="sua lai footer">
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/trangCaNhanController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/SanPham.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/TheLoai.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutAdmin/Quanlysanpham.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutTrangChu/LayoutTrangChu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutTrangChu/ThongBao.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutTrangChu/chiTietSanPham.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutTrangChu/gioHang.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutTrangChu/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_31_2024_2_39_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_31_2024_2_39_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/js/myApptrangCaNhan.js" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/js/myApptrangCaNhan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Quanlysanpham.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Thongtincanhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Thongtincanhan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Trothanhnguoiban.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Trothanhnguoiban.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Trothanhnguoiban.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/js/myApptrangCaNhan.js" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/static/js/myApptrangCaNhan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Quanlysanpham.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Thongtincanhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Thongtincanhan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Trothanhnguoiban.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Trothanhnguoiban.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Trothanhnguoiban.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangCaNhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangCaNhan.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,13 +41,25 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="khai" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "kkkkkkkkikikkkki"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kkkkkkkkikikkkki/THEGIOISACH.git&quot;,
+    &quot;accountId&quot;: &quot;0263250b-68a8-4fbd-b550-5ebe0add2059&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -129,14 +127,15 @@
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.trangCaNhan.html" />
+        <item itemvalue="JavaScript Debug.trangCaNhan.html" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -157,6 +156,7 @@
       <workItem from="1730117976933" duration="10861000" />
       <workItem from="1730164173173" duration="332000" />
       <workItem from="1730276041468" duration="5667000" />
+      <workItem from="1730630283050" duration="702000" />
     </task>
     <task id="LOCAL-00001" summary="done cac trang giao dien">
       <option name="closed" value="true" />
