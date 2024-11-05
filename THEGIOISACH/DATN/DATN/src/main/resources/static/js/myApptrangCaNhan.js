@@ -14,9 +14,6 @@ app.config(function($routeProvider){
         .when('/Trở thành người bán', {
             templateUrl: '../layout/Trothanhnguoiban.html'
         })
-        .when('/Quản lý sản phẩm', {
-            templateUrl: '../layout/Quanlysanpham.html'
-        })
         .when('/Phân quyền', {
             templateUrl: '../layout/Setting.html'
         })
