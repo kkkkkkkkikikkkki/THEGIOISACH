@@ -120,17 +120,23 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
+        <!-- Logo -->
         <a class="navbar-brand" href="#">
             <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Toggle button for small screens -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Navbar items (left aligned) -->
             <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/trangchu">Trang chủ</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Thông báo</a>
                 </li>
@@ -139,21 +145,28 @@
                 </li>
             </ul>
 
-            <form class="d-flex mx-auto" role="search" style="width: 400px;">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
-                    <i class="fas fa-search"></i>
-                </button>
-            </form>
 
+
+            <!-- Navbar items (right aligned) -->
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link btn btn-outline-secondary me-2" href="#">Đăng nhập</a>
+                <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/login}">Đăng nhập</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-dark" href="#">Đăng ký</a>
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
                 </li>
+
+                <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
+                <li th:if="${username != null}" class="nav-item">
+                    <a href="/trangcanhan" class="nav-link">
+                        <i class="fas fa-user-circle"></i> <!-- Thay thế bằng icon thông tin -->
+                        <span th:text="${username}"></span>
+                    </a>
+                </li>
+
             </ul>
+
         </div>
     </div>
 </nav>
@@ -169,14 +182,33 @@
                 <h4 class="title">Đơn hàng của tôi</h4>
             </a>
             <div class="btn-container">
-                <button type="submit" class="btn btn-logout">Đăng xuất</button> <!-- Updated button -->
+                <!-- Form cho nút Đăng xuất -->
+                <form action="/logout" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-logout">Đăng xuất</button>
+                </form>
             </div>
+
         </div>
         <div class="col-7 mt-3" style="margin: 0 auto;">
             <div ng-view></div>
         </div>
     </div>
 </div>
+
+
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+    <div id="loginToast" class="toast align-items-center text-white bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true" th:if="${error}">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-exclamation-circle"></i> <span th:text="${error}"></span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+
 
 <!-- Footer -->
 <footer class="bg-light py-4 mt-5">
@@ -190,5 +222,15 @@
         crossorigin="anonymous"></script>
 <!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Automatically show the toast if there is an error message
+    document.addEventListener("DOMContentLoaded", function () {
+        var toastElement = document.getElementById('loginToast');
+        if (toastElement) {
+            var toast = new bootstrap.Toast(toastElement);
+            toast.show();
+        }
+    });
+</script>
 </body>
 </html>
