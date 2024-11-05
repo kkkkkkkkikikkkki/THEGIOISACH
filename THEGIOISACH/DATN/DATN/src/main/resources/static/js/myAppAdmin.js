@@ -17,6 +17,9 @@ app.config(function($routeProvider){
         .when('/Quản lý người dùng', {
             templateUrl: 'layoutAdmin/QuanLyNguoiDung.html'
         })
+        .when('/Quản lý sản phẩm', {
+            templateUrl: 'layoutAdmin/Quanlysanpham.html'
+        })
         .when('/Phân quyền', {
             templateUrl: 'layoutAdmin/PhanQuyen.html'
         })

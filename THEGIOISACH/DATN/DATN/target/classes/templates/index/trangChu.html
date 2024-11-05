@@ -10,8 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
     <script th:src="@{/js/myAppTrangChu.js}"></script>
-
-
+    <script th:src="@{js/myAppTrangChu.js}"></script>
 </head>
 <body ng-app="myAppTrangChu">
 <!-- Navbar -->
@@ -94,6 +93,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#!Giỏ hàng">Giỏ hàng</a>
                 </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Thông báo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Giỏ hàng</a>
+                </li>
             </ul>
 
             <!-- Search Form (centered) -->
@@ -106,7 +112,6 @@
 
             <!-- Navbar items (right aligned) -->
             <ul class="navbar-nav ms-auto">
-
                 <li class="nav-item">
                     <a class="nav-link btn btn-outline-secondary me-2" th:href="@{dangnhap}">Đăng nhập</a>
                 </li>
@@ -114,12 +119,26 @@
                     <a class="nav-link btn btn-dark" th:href="@{dangky}">Đăng ký</a>
                 </li>
             </ul>
+                <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/login}">Đăng nhập</a>
+                </li>
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
+                </li>
+
+                <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
+                <li th:if="${username != null}" class="nav-item">
+                    <a href="/trangcanhan" class="nav-link">
+                        <i class="fas fa-user-circle"></i> <!-- Thay thế bằng icon thông tin -->
+                        <span th:text="${username}"></span>
+                    </a>
+                </li>
+
+            </ul>
         </div>
     </div>
 </nav>
-
-
-
 <!-- Banner -->
 
 <div ng-view></div>
@@ -131,6 +150,65 @@
 <footer class="bg-light py-4 mt-5">
     <div class="container text-center">
         <p>© 2024 THEGIOISACH. Bản quyền thuộc về công ty THEGIOISACH.</p>
+<body ng-app="myAppTrangChu">
+<div ng-view></div>
+</body>
+
+
+
+<!-- Footer -->
+<footer class="bg-light py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Company Info -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">THEGIOISACH</h5>
+                <p class="text-dark">© 2024 THEGIOISACH. Bản quyền thuộc về công ty THEGIOISACH.</p>
+            </div>
+
+            <!-- Services -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Dịch vụ</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Mua sách trực tuyến</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chính sách đổi trả</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Giao hàng tận nơi</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chăm sóc khách hàng</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Hỗ trợ</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Câu hỏi thường gặp</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Liên hệ hỗ trợ</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Liên hệ</h5>
+                <p class="text-dark">Email: support@thegioisach.com</p>
+                <p class="text-dark">Điện thoại: 1900 1234</p>
+                <div class="d-flex justify-content-start">
+                    <a href="#" class="me-3 text-dark" style="text-decoration: none;">
+                        <i class="bi bi-facebook" style="font-size: 24px;"></i>
+                    </a>
+                    <a href="#" class="me-3 text-dark" style="text-decoration: none;">
+                        <i class="bi bi-instagram" style="font-size: 24px;"></i>
+                    </a>
+                    <a href="#" class="me-3 text-dark" style="text-decoration: none;">
+                        <i class="bi bi-tiktok" style="font-size: 24px;"></i>
+                    </a>
+                    <a href="#" class="text-dark" style="text-decoration: none;">
+                        <i class="bi bi-twitter" style="font-size: 24px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
 

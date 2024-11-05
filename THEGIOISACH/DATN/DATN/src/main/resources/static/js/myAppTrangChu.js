@@ -2,6 +2,9 @@ var app = angular.module('myAppTrangChu', ['ngRoute']);
 
 app.config(function($routeProvider) {
     $routeProvider
+var app = angular.module('myAppTrangChu',['ngRoute']);
+app.config(function($routeProvider){
+    $routeProvider
         .when('/', {
             templateUrl: 'layoutTrangChu/layoutTrangChu.html',
         })
@@ -16,8 +19,13 @@ app.config(function($routeProvider) {
         })
         .when('/Mua ngay', {
             templateUrl: 'layoutTrangChu/chiTietSanPham.html'
+            templateUrl: 'layoutTrangChu/layoutTrangChu.html'
+        })
+        .when('/Giỏ hàng', {
+            templateUrl: 'layoutAdmin/gioHang.html'
         })
         .otherwise({
             redirectTo: '/'
         });
+});
 });
