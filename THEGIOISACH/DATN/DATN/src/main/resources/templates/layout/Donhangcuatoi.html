@@ -221,6 +221,44 @@
         .btn-logout:hover {
             background-color: #cc0000; /* Darker red on hover */
         }
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 2px solid #000; /* Đường kẻ giữa phần chi tiết đơn hàng và footer */
+            background-color: #f8f9fa; /* Nền sáng cho footer */
+            padding: 15px; /* Thêm padding cho phần footer */
+        }
+
+        .order-footer h5 {
+            margin: 0; /* Đảm bảo không có khoảng cách bên ngoài */
+            color: #333; /* Màu chữ cho trạng thái đơn hàng */
+        }
+
+        .btn-buy-again {
+            background-color: #007bff; /* Màu xanh chính của Bootstrap */
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            color: white; /* Màu chữ trắng */
+            border-radius: 5px; /* Đường bo góc */
+            font-weight: bold; /* Chữ đậm */
+            margin-right: 20px;
+        }
+
+        .btn-buy-again:hover {
+            background-color: #0056b3; /* Màu nền khi hover */
+        }
+
+        .total-amount {
+            font-weight: bold; /* Chữ đậm cho tổng tiền */
+            font-size: 1.2rem; /* Kích thước chữ lớn hơn */
+            color: #d9534f; /* Màu đỏ để nổi bật */
+            margin-top: 10px; /* Khoảng cách phía trên */
+        }
 
     </style>
 
@@ -277,7 +315,7 @@
             <a href="/thongtintaikhoan">
                 <h4 class="title">Thông tin cá nhân</h4>
             </a>
-            <a href="#!Đơn hàng của tôi">
+            <a href="/donhangcuatoi">
                 <h4 class="title">Đơn hàng của tôi</h4>
             </a>
             <div class="btn-container">
@@ -299,42 +337,29 @@
                 </div>
 
                 <!-- Chi tiết sản phẩm -->
-                <div class="order-item row bg-light text-center">
+                <div th:each="item : ${orderDetails}" class="order-item row bg-light text-center">
                     <div class="col-3 d-flex align-items-center justify-content-center">
-                        <img src="https://via.placeholder.com/50" alt="Product Image">
-
+                        <img th:src="${item.sanPham.hinh}" alt="Product Image" style="width: 50px; height: 50px;">
                     </div>
-                    <div class="col-3 d-flex align-items-center justify-content-center">Tên sản phẩm 1</div>
-                    <div class="col-2 d-flex align-items-center justify-content-center">Thể loại 1</div>
-                    <div class="col-2 d-flex align-items-center justify-content-center">1</div>
-                    <div class="col-2 d-flex align-items-center justify-content-center">100.000 VND</div>
+                    <div class="col-3 d-flex align-items-center justify-content-center" th:text="${item.tenSach}"></div>
+                    <div class="col-2 d-flex align-items-center justify-content-center" th:text="${item.sanPham.theLoai}"></div>
+                    <div class="col-2 d-flex align-items-center justify-content-center" th:text="${item.soLuong}"></div>
+                    <div class="col-2 d-flex align-items-center justify-content-center" th:text="${item.gia}"></div>
 
-                </div>
-                <div class="order-item row bg-light text-center">
-                    <div class="col-3 d-flex align-items-center justify-content-center">
-                        <img src="https://via.placeholder.com/50" alt="Product Image">
-
+                    <div class="order-footer row text-center">
+                        <div class="col-6 d-flex align-items-center justify-content-center">
+                            <h5>Trạng thái đơn hàng: Đã Thanh Toán</h5>
+                        </div>
+                        <div class="col-6 d-flex align-items-center justify-content-center total-amount" th:text="'Tổng tiền: ' + ${item.hoaDon.tongTien}"></div>
+                        <div class="col-12 d-flex justify-content-end mt-2"> <!-- Thay đổi từ justify-content-center thành justify-content-end -->
+                            <button class="btn btn-buy-again">Mua lại</button>
+                        </div>
                     </div>
-                    <div class="col-3 d-flex align-items-center justify-content-center">Tên sản phẩm 1</div>
-                    <div class="col-2 d-flex align-items-center justify-content-center">Thể loại 1</div>
-                    <div class="col-2 d-flex align-items-center justify-content-center">1</div>
-                    <div class="col-2 d-flex align-items-center justify-content-center">100.000 VND</div>
 
                 </div>
 
                 <!-- Phần cuối đơn hàng -->
-                <div class="order-footer row text-center">
-                    <div class="col-6">
-                        <h5>Trạng thái đơn hàng: Đang giao</h5>
-                    </div>
-                    <div class="col-3">
-                        <h5>Tổng cộng: 500.000 VND</h5>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn btn-primary btn-buy-again">Mua lại</button>
-                    </div>
-                </div>
-            </div>
+
 
         </div>
     </div>

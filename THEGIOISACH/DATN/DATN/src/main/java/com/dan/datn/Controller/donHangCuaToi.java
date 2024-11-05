@@ -1,11 +1,42 @@
 package com.dan.datn.Controller;
 
-import lombok.Getter;
+import com.dan.datn.Entity.HoaDon;
+import com.dan.datn.Entity.HoaDonChiTiet;
+import com.dan.datn.Service.HoaDonChiTietService;
+import com.dan.datn.Service.HoaDonService;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+
+import java.util.List;
 
 @Controller
 public class donHangCuaToi {
+
+    @Autowired
+    private HoaDonChiTietService hoaDonChiTietService;
+
     @GetMapping("/donhangcuatoi")
-    public String donhangcuatoi() {return "layout/Donhangcuatoi";}
+    public String getOrderDetails(Model model, HttpSession session) {
+        String username = (String) session.getAttribute("username");
+
+        if (username == null) {
+            model.addAttribute("error", "Bạn vui lòng đăng nhập trước khi truy cập đơn hàng của tôi.");
+            return "redirect:/login";
+        }
+
+        model.addAttribute("username", username);
+
+        List<HoaDonChiTiet> orderDetails = hoaDonChiTietService.getChiTietHoaDonByUsername(username);
+        model.addAttribute("orderDetails", orderDetails);
+
+        return "layout/donhangcuatoi";
+    }
+
+
+
+
 }

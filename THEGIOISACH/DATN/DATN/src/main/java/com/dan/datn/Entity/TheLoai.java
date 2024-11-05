@@ -19,10 +19,15 @@ public class TheLoai {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_the_loai")
-    private int idTheLoai;
+    private Integer id;
 
-    @Column(name = "The_loai", nullable = false, length = 50)
+    @Column(name = "The_loai", nullable = false)
     private String theLoai;
+
+    @Override
+    public String toString() {
+        return theLoai;  // Trả về tên thể loại khi in đối tượng
+    }
 
     @OneToMany(mappedBy = "theLoai", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<SanPham> sanPhams; // Changed variable name to plural for clarity
