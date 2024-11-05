@@ -9,121 +9,134 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
-    <script src="../../static/js/myApptrangCaNhan.js"></script>
-</head>
-<body>
-<!-- Navbar -->
-<style>
-    body {
-        background-color: #FFE4E1;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh; /* Đảm bảo body chiếm toàn bộ chiều cao trang */
-    }
-
-    .content {
-        flex: 1; /* Đảm bảo nội dung chính chiếm không gian còn lại, đẩy footer xuống cuối */
-    }
-
-    /* Hiệu ứng hover cho nút Đăng nhập */
-    .btn-outline-secondary:hover {
-        background-color: #FF9999;
-        border-color: #FF9999;
-        color: white;
-    }
-
-    /* Hiệu ứng hover cho nút Đăng ký */
-    .btn-dark:hover {
-        background-color: #FF9999;
-        border-color: #FF9999;
-        color: white;
-    }
-
-    h5 i {
-        margin-right: 8px;
-    }
-
-    p {
-        font-weight: 500;
-    }
-
-    img {
-        border-radius: 5px;
-    }
-
-    @media (max-width: 768px) {
-        .col-md-2 {
-            margin-bottom: 15px;
+    <script th:src="@{/js/myApptrangCaNhan.js}"></script>
+    <style>
+        body {
+            background-color: #FFE4E1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full height of the page */
         }
-    }
 
-    .product-name {
-        min-height: 60px;
-        max-height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        overflow: hidden;
-        white-space: normal;
-        word-wrap: break-word;
-    }
+        .content {
+            flex: 1; /* Ensure main content takes remaining space, pushing footer down */
+        }
 
-    .trend-section {
-        background-color: white;
-        border-radius: 10px;
-        padding: 1rem;
-    }
+        /* Hover effects for buttons */
+        .btn-outline-secondary:hover,
+        .btn-dark:hover,
+        .btn-logout:hover {
+            background-color: #FF9999;
+            border-color: #FF9999;
+            color: white;
+        }
 
-    .menu {
-        background-color: #ffc0cb;
-        padding: 20px;
-        border-radius: 10px;
-    }
+        h5 i {
+            margin-right: 8px;
+        }
 
-    .menu a {
-        display: block;
-        color: #000;
-        text-decoration: none;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
+        p {
+            font-weight: 500;
+        }
 
-    a h4 {
-        color: #343a40;
-        font-size: 1.2rem;
-        padding: 10px;
-        border-radius: 8px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        text-align: center;
-    }
+        img {
+            border-radius: 5px;
+        }
 
-    a:hover h4 {
-        background-color: #87CEFA;
-        color: white;
-    }
+        @media (max-width: 768px) {
+            .col-md-2 {
+                margin-bottom: 15px;
+            }
+        }
 
-    a {
-        text-decoration: none;
-    }
+        .product-name {
+            min-height: 60px;
+            max-height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            white-space: normal;
+            word-wrap: break-word;
+        }
 
-</style>
+        .trend-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1rem;
+        }
 
+        .menu {
+            background-color: #ffc0cb;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .menu a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        a h4 {
+            color: #343a40;
+            font-size: 1.2rem;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-align: center;
+        }
+
+        a:hover h4 {
+            background-color: #87CEFA;
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Styles for the Logout button */
+        .btn-logout {
+            background-color: #ff4d4d; /* Red background */
+            color: white; /* White text */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 20px; /* Padding */
+            margin-left: 55px;
+            font-weight: bold; /* Bold text */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .btn-logout:hover {
+            background-color: #cc0000; /* Darker red on hover */
+        }
+    </style>
+</head>
 <body ng-app="myApptrangCaNhan">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
+        <!-- Logo -->
         <a class="navbar-brand" href="#">
             <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Toggle button for small screens -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Navbar items (left aligned) -->
             <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/trangchu">Trang chủ</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Thông báo</a>
                 </li>
@@ -132,47 +145,70 @@
                 </li>
             </ul>
 
-            <form class="d-flex mx-auto" role="search" style="width: 400px;">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
-                    <i class="fas fa-search"></i>
-                </button>
-            </form>
 
+
+            <!-- Navbar items (right aligned) -->
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link btn btn-outline-secondary me-2" href="#">Đăng nhập</a>
+                <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/login}">Đăng nhập</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-dark" href="#">Đăng ký</a>
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
                 </li>
+
+                <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
+                <li th:if="${username != null}" class="nav-item">
+                    <a href="/trangcanhan" class="nav-link">
+                        <i class="fas fa-user-circle"></i> <!-- Thay thế bằng icon thông tin -->
+                        <span th:text="${username}"></span>
+                    </a>
+                </li>
+
             </ul>
+
         </div>
     </div>
 </nav>
 
-<div class="content"> <!-- Thêm class content -->
+<div class="content">
     <div class="row">
         <div class="col-2 mt-3" style="border-right: 1px solid black;  height: 100vh;">
             <h4 style="text-align: center;">Tài khoản</h4>
-            <a href="#!Thông tin cá nhân">
+            <a href="/thongtintaikhoan">
                 <h4 class="title">Thông tin cá nhân</h4>
             </a>
-            <a href="#!Đơn hàng của tôi">
+            <a href="/donhangcuatoi">
                 <h4 class="title">Đơn hàng của tôi</h4>
             </a>
-            <a href="#!Trở thành người bán">
-                <h4 class="title">Trở thành người bán</h4>
-            </a>
-            <a href="#!Quản lý sản phẩm">
-                <h4 class="title">Quản lý sản phẩm</h4>
-            </a>
+            <div class="btn-container">
+                <!-- Form cho nút Đăng xuất -->
+                <form action="/logout" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-logout">Đăng xuất</button>
+                </form>
+            </div>
+
         </div>
         <div class="col-7 mt-3" style="margin: 0 auto;">
             <div ng-view></div>
         </div>
     </div>
 </div>
+
+
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+    <div id="loginToast" class="toast align-items-center text-white bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true" th:if="${error}">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-exclamation-circle"></i> <span th:text="${error}"></span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+
 
 <!-- Footer -->
 <footer class="bg-light py-4 mt-5">
@@ -181,8 +217,20 @@
     </div>
 </footer>
 
-</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
 <!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Automatically show the toast if there is an error message
+    document.addEventListener("DOMContentLoaded", function () {
+        var toastElement = document.getElementById('loginToast');
+        if (toastElement) {
+            var toast = new bootstrap.Toast(toastElement);
+            toast.show();
+        }
+    });
+</script>
 </body>
 </html>

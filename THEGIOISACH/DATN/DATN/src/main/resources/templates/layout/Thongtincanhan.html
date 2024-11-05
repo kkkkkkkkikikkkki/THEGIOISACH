@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thông Tin Tài Khoản</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #FF9999;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #8a76e2;
+        }
+
+        body {
+            background-color: #FFE4E1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full height of the page */
+        }
+
+        .content {
+            flex: 1; /* Ensure main content takes remaining space, pushing footer down */
+        }
+
+        /* Floating form styles */
+        .floating-form {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -20%);
+            background-color: white;
+            border-radius: 10px;
+            padding: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: none; /* Hidden by default */
+            z-index: 1000;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none; /* Hidden by default */
+            z-index: 900;
+        }
+
+        /* Additional styles for buttons, links, etc. */
+        .btn-logout {
+            background-color: #ff4d4d; /* Red background */
+            color: white; /* White text */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 20px; /* Padding */
+            margin-left: 55px;
+            font-weight: bold; /* Bold text */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .btn-logout:hover {
+            background-color: #cc0000; /* Darker red on hover */
+        }
+
+        body {
+            background-color: #FFE4E1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full height of the page */
+        }
+
+        .content {
+            flex: 1; /* Ensure main content takes remaining space, pushing footer down */
+        }
+
+        /* Hover effects for buttons */
+        .btn-outline-secondary:hover,
+        .btn-dark:hover,
+        .btn-logout:hover {
+            background-color: #FF9999;
+            border-color: #FF9999;
+            color: white;
+        }
+
+        h5 i {
+            margin-right: 8px;
+        }
+
+        p {
+            font-weight: 500;
+        }
+
+        img {
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .col-md-2 {
+                margin-bottom: 15px;
+            }
+        }
+
+        .product-name {
+            min-height: 60px;
+            max-height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+
+        .trend-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .menu {
+            background-color: #ffc0cb;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .menu a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        a h4 {
+            color: #343a40;
+            font-size: 1.2rem;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-align: center;
+        }
+
+        a:hover h4 {
+            background-color: #87CEFA;
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Styles for the Logout button */
+        .btn-logout {
+            background-color: #ff4d4d; /* Red background */
+            color: white; /* White text */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 20px; /* Padding */
+            margin-left: 55px;
+            font-weight: bold; /* Bold text */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .btn-logout:hover {
+            background-color: #cc0000; /* Darker red on hover */
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/trangchu">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Thông báo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Giỏ hàng</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto">
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/login}">Đăng nhập</a>
+                </li>
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
+                </li>
+                <li th:if="${username != null}" class="nav-item">
+                    <a href="/trangcanhan" class="nav-link">
+                        <i class="fas fa-user-circle"></i>
+                        <span th:text="${username}"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="content">
+    <div class="row">
+        <div class="col-2 mt-3" style="border-right: 1px solid black;  height: 100vh;">
+            <h4 style="text-align: center;">
+                <a href="/trangcanhan">Tài khoản</a>
+            </h4>
+            <a href="/thongtintaikhoan">
+                <h4 class="title">Thông tin cá nhân</h4>
+            </a>
+            <a href="/donhangcuatoi">
+                <h4 class="title">Đơn hàng của tôi</h4>
+            </a>
+            <div class="btn-container">
+                <form action="/logout" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-logout">Đăng xuất</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-7 mt-3" style="margin: 0 auto;">
+            <div class="container mt-5">
+                <h2>THÔNG TIN TÀI KHOẢN</h2>
+                <form id="accountForm">
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Tên</label>
+                        <input type="text" class="form-control" id="amount" name="amount" th:value="${user.ten}" placeholder="Nhập tên" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Số điện thoại</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" th:value="${user.SDT}" placeholder="Nhập số điện thoại" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" th:value="${user.email}" placeholder="Nhập email" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="diachi" class="form-label">Địa chỉ</label>
+                        <input type="text" class="form-control" id="diachi" name="diachi" th:value="${user.Dia_chi}" placeholder="Nhập địa chỉ" readonly>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="editButton">Sửa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="floating-form" id="floatingForm">
+    <h5>Chỉnh Sửa Thông Tin Tài Khoản</h5>
+    <form id="editAccountForm">
+        <div class="mb-3">
+            <label for="editAmount" class="form-label">Tên</label>
+            <input type="text" class="form-control" id="editAmount" name="amount" placeholder="Nhập tên">
+        </div>
+        <div class="mb-3">
+            <label for="editPhone" class="form-label">Số điện thoại</label>
+            <input type="tel" class="form-control" id="editPhone" name="phone" placeholder="Nhập số điện thoại">
+        </div>
+        <div class="mb-3">
+            <label for="editEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="editEmail" name="email" placeholder="Nhập email">
+        </div>
+        <div class="mb-3">
+            <label for="editDiachi" class="form-label">Địa chỉ</label>
+            <input type="text" class="form-control" id="editDiachi" name="diachi" placeholder="Nhập địa chỉ">
+        </div>
+        <button type="button" class="btn btn-secondary" id="closeButton">Đóng</button>
+        <button type="button" class="btn btn-primary" id="updateBtn">Cập Nhật</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#editButton").click(function () {
+            // Show the floating form and overlay
+            $("#overlay").show();
+            $("#floatingForm").show();
+
+            // Populate the floating form with current values
+            $("#editAmount").val($("#amount").val());
+            $("#editPhone").val($("#phone").val());
+            $("#editEmail").val($("#email").val());
+            $("#editDiachi").val($("#diachi").val());
+        });
+
+        $("#closeButton").click(function () {
+            // Hide the floating form and overlay
+            $("#overlay").hide();
+            $("#floatingForm").hide();
+        });
+
+        $("#updateBtn").click(function () {
+            // Get updated values from the floating form
+            const updatedData = {
+                ten: $("#editAmount").val(),
+                sdt: $("#editPhone").val(),
+                email: $("#editEmail").val(),
+                diachi: $("#editDiachi").val(),
+            };
+
+            // Here you would typically send the updated data to your server via AJAX.
+            // For this example, we just log it to the console.
+            console.log("Updated Data: ", updatedData);
+
+            // Hide the floating form and overlay
+            $("#overlay").hide();
+            $("#floatingForm").hide();
+
+            // Optional: Update the original form fields with the new values
+            $("#amount").val(updatedData.ten);
+            $("#phone").val(updatedData.sdt);
+            $("#email").val(updatedData.email);
+            $("#diachi").val(updatedData.diachi);
+        });
+    });
+</script>
+</body>
+</html>
