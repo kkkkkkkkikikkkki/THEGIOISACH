@@ -18,7 +18,7 @@ public class User {
     private String ten;
 
     @Column(name = "SDT")
-    private String SDT;
+    private Integer SDT;
 
     @Column(name = "Dia_chi")
     private String Dia_chi;

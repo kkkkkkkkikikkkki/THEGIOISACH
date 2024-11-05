@@ -1,7 +1,7 @@
 package com.dan.datn.Controller;
 
 import com.dan.datn.Entity.User;
-import com.dan.datn.Service.ServiceImpl.UserService;
+import com.dan.datn.Service.ServiceImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DangKyController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @GetMapping("/dangky")
     public String showDangKyForm(Model model) {
@@ -29,7 +29,7 @@ public class DangKyController {
                                @RequestParam String diachi, // Thêm đây
                                @RequestParam String sdt,
                                @RequestParam String email) {
-        if (userService.isEmailExist(user.getEmail())) {
+        if (userServiceImpl.isEmailExist(user.getEmail())) {
             model.addAttribute("error", "Email này đã được đăng ký."); // thông báo nếu email đã tồn tại
             return "index/DangKy"; // trả về trang đăng ký với thông báo lỗi
         } else {
@@ -37,10 +37,10 @@ public class DangKyController {
             user.setTen(ten);
             user.setMat_khau(matKhau);
             user.setDia_chi(diachi); // Gán giá trị địa chỉ
-            user.setSDT(sdt);
+            user.setSDT(Integer.valueOf(sdt));
             user.setEmail(email);
             user.setRole(1);
-            userService.saveUser(user); // lưu admin mới vào cơ sở dữ liệu
+            userServiceImpl.saveUser(user); // lưu admin mới vào cơ sở dữ liệu
             return "index/dangNhap"; // chuyển hướng đến trang đăng nhập
         }
     }
