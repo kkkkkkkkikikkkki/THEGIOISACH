@@ -4,25 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="xoa trang chu nguoi ban.html">
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/ThongTinCaNhanApiController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/donHangCuaToi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/UserService.java" afterDir="false" />
+    <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="view thongtincanhan len form">
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/HoaDon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/HoaDonChiTiet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Repository/HoaDonChiTietRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Repository/HoaDonRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/HoaDonChiTietService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/HoaDonService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/ServiceImpl/HoaDonChiTietServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/ServiceImpl/HoaDonServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/DangKyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/DangKyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/trangCaNhanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/trangCaNhanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/ServiceImpl/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/ServiceImpl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/js/myApptrangCaNhan.js" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/js/myApptrangCaNhan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Donhangcuatoi.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Donhangcuatoi.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Thongtincanhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Thongtincanhan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Controller/trangCaNhanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Controller/trangCaNhanController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/js/myApptrangCaNhan.js" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/static/js/myApptrangCaNhan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Donhangcuatoi.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layout/Thongtincanhan.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangCaNhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangCaNhan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/donHangCuaToi.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/donHangCuaToi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/SanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/SanPham.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/TheLoai.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/TheLoai.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Donhangcuatoi.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Donhangcuatoi.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +184,8 @@
       <workItem from="1730658447635" duration="178000" />
       <workItem from="1730713044796" duration="2471000" />
       <workItem from="1730739411795" duration="4724000" />
-      <workItem from="1730804317664" duration="11000" />
+      <workItem from="1730804317664" duration="667000" />
+      <workItem from="1730816936604" duration="6725000" />
     </task>
     <task id="LOCAL-00001" summary="done cac trang giao dien">
       <option name="closed" value="true" />
@@ -223,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729592937361</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="view thongtincanhan len form">
+      <option name="closed" value="true" />
+      <created>1730804366129</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730804366129</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +237,7 @@
     <MESSAGE value="first commit" />
     <MESSAGE value="done cac trang giao dien" />
     <MESSAGE value="sua lai footer" />
-    <option name="LAST_COMMIT_MESSAGE" value="sua lai footer" />
+    <MESSAGE value="view thongtincanhan len form" />
+    <option name="LAST_COMMIT_MESSAGE" value="view thongtincanhan len form" />
   </component>
 </project>
