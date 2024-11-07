@@ -179,6 +179,80 @@
         .btn-logout:hover {
             background-color: #cc0000; /* Darker red on hover */
         }
+
+        /* Thông Báo Nổi */
+        .floating-notification {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1001;
+            width: 300px;
+        }
+
+        .floating-notification .notification-content p {
+            margin: 0 0 10px;
+            text-align: center;
+        }
+
+        .floating-notification .btn-secondary {
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Nút Đóng cho Form */
+        .floating-form .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .floating-form .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        /* Thêm hiệu ứng nổi lên */
+        .alert {
+            position: fixed; /* Đặt thông báo ở vị trí cố định trên màn hình */
+            top: 10px; /* Cách cạnh trên của màn hình 10px */
+            left: 50%; /* Đặt phần tử ở giữa theo chiều ngang */
+            transform: translateX(-50%); /* Đảm bảo phần tử nằm chính giữa */
+            z-index: 1050; /* Đảm bảo thông báo nằm trên các phần tử khác */
+            opacity: 0; /* Ban đầu ẩn đi */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Hiệu ứng mờ dần và nổi lên */
+        }
+
+        /* Thêm hiệu ứng khi hiển thị thông báo */
+        .alert.show {
+            opacity: 1; /* Hiển thị thông báo */
+            transform: translateY(10px); /* Di chuyển thông báo lên một chút khi hiện ra */
+        }
+
+        /* Thông báo thành công */
+        .alert-success {
+            background-color: #28a745; /* Màu nền cho thông báo thành công */
+            color: white;
+        }
+
+        /* Thông báo lỗi */
+        .alert-danger {
+            background-color: #dc3545; /* Màu nền cho thông báo lỗi */
+            color: white;
+        }
+
+        /* Thiết lập thêm độ bo góc cho các thông báo */
+        .alert {
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+
     </style>
 </head>
 <body>
@@ -241,25 +315,36 @@
                 </form>
             </div>
         </div>
+
         <div class="col-7 mt-3" style="margin: 0 auto;">
+            <div th:if="${success}" class="alert alert-success" role="alert" id="successMessage">
+                <span th:text="${success}"></span>
+            </div>
+
+
+            <!-- Thông báo lỗi -->
+            <div th:if="${error}" class="alert alert-danger" role="alert" id="errorMessage">
+                <span th:text="${error}"></span>
+            </div>
             <div class="container mt-5">
                 <h2>THÔNG TIN TÀI KHOẢN</h2>
+
                 <form id="accountForm">
                     <div class="mb-3">
                         <label for="amount" class="form-label">Tên</label>
-                        <input type="text" class="form-control" id="amount" name="amount" th:value="${user.ten}" placeholder="Nhập tên" readonly>
+                        <input type="text" class="form-control" id="amount" name="amount" th:value="${user.ten}" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Số điện thoại</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" th:value="${user.SDT}" placeholder="Nhập số điện thoại" readonly>
+                        <input type="tel" class="form-control" id="phone" name="phone" th:value="${user.SDT}" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" th:value="${user.email}" placeholder="Nhập email" readonly>
+                        <input type="email" class="form-control" id="email" name="email" th:value="${user.email}" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="diachi" class="form-label">Địa chỉ</label>
-                        <input type="text" class="form-control" id="diachi" name="diachi" th:value="${user.Dia_chi}" placeholder="Nhập địa chỉ" readonly>
+                        <input type="text" class="form-control" id="diachi" name="diachi" th:value="${user.Dia_chi}" readonly>
                     </div>
                     <button type="button" class="btn btn-primary" id="editButton">Sửa</button>
                 </form>
@@ -272,74 +357,76 @@
 
 <div class="floating-form" id="floatingForm">
     <h5>Chỉnh Sửa Thông Tin Tài Khoản</h5>
-    <form id="editAccountForm">
+    <form id="editAccountForm" action="/updateUser" method="POST">
         <div class="mb-3">
             <label for="editAmount" class="form-label">Tên</label>
-            <input type="text" class="form-control" id="editAmount" name="amount" placeholder="Nhập tên">
+            <input type="text" class="form-control" id="editAmount" name="ten" readonly placeholder="Nhập tên" th:value="${user.ten}">
         </div>
         <div class="mb-3">
             <label for="editPhone" class="form-label">Số điện thoại</label>
-            <input type="tel" class="form-control" id="editPhone" name="phone" placeholder="Nhập số điện thoại">
+            <input type="tel" class="form-control" id="editPhone" name="phone" placeholder="Nhập số điện thoại" th:value="${user.SDT}">
         </div>
         <div class="mb-3">
             <label for="editEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="editEmail" name="email" placeholder="Nhập email">
+            <input type="email" class="form-control" id="editEmail" name="email" placeholder="Nhập email" th:value="${user.email}">
         </div>
         <div class="mb-3">
             <label for="editDiachi" class="form-label">Địa chỉ</label>
-            <input type="text" class="form-control" id="editDiachi" name="diachi" placeholder="Nhập địa chỉ">
+            <input type="text" class="form-control" id="editDiachi" name="diachi" placeholder="Nhập địa chỉ" th:value="${user.Dia_chi}">
         </div>
-        <button type="button" class="btn btn-secondary" id="closeButton">Đóng</button>
-        <button type="button" class="btn btn-primary" id="updateBtn">Cập Nhật</button>
+        <!-- Sử dụng `formaction` để gửi form mà không cần AJAX -->
+        <button type="submit" class="btn btn-primary" formaction="/updateUser">Cập Nhật</button>
+        <button type="button" class="btn btn-secondary" id="closeButton">Đóng</button> <!-- Nút đóng -->
+
     </form>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>
     $(document).ready(function () {
+        // Show the floating edit form and prefill data
         $("#editButton").click(function () {
-            // Show the floating form and overlay
             $("#overlay").show();
             $("#floatingForm").show();
-
-            // Populate the floating form with current values
+            // Prefill edit fields with current values
             $("#editAmount").val($("#amount").val());
             $("#editPhone").val($("#phone").val());
             $("#editEmail").val($("#email").val());
             $("#editDiachi").val($("#diachi").val());
         });
 
+        // Hide floating form and overlay on close button click
         $("#closeButton").click(function () {
-            // Hide the floating form and overlay
             $("#overlay").hide();
             $("#floatingForm").hide();
         });
 
-        $("#updateBtn").click(function () {
-            // Get updated values from the floating form
-            const updatedData = {
-                ten: $("#editAmount").val(),
-                sdt: $("#editPhone").val(),
-                email: $("#editEmail").val(),
-                diachi: $("#editDiachi").val(),
-            };
+        function hideMessage(messageId) {
+            setTimeout(function() {
+                var message = document.getElementById(messageId);
+                if (message) {
+                    message.classList.remove('show');  // Ẩn thông báo
+                }
+            }, 5000);  // Sau 5 giây
+        }
 
-            // Here you would typically send the updated data to your server via AJAX.
-            // For this example, we just log it to the console.
-            console.log("Updated Data: ", updatedData);
+        // Kiểm tra và hiển thị thông báo khi trang tải xong
+        window.onload = function() {
+            if (document.getElementById("successMessage")) {
+                document.getElementById("successMessage").classList.add("show"); // Hiển thị thông báo thành công
+                hideMessage("successMessage"); // Sau 5 giây ẩn đi
+            }
+            if (document.getElementById("errorMessage")) {
+                document.getElementById("errorMessage").classList.add("show"); // Hiển thị thông báo lỗi
+                hideMessage("errorMessage"); // Sau 5 giây ẩn đi
+            }
+        }
 
-            // Hide the floating form and overlay
-            $("#overlay").hide();
-            $("#floatingForm").hide();
-
-            // Optional: Update the original form fields with the new values
-            $("#amount").val(updatedData.ten);
-            $("#phone").val(updatedData.sdt);
-            $("#email").val(updatedData.email);
-            $("#diachi").val(updatedData.diachi);
-        });
     });
+
+
 </script>
 </body>
 </html>
