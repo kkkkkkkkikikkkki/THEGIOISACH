@@ -8,6 +8,48 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        body {
+            background-color: #FFE4E1; /* Màu nền giống như trong ảnh */
+        }
+
+        .order-header {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .order-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* Đường kẻ dưới mỗi sản phẩm */
+        }
+
+        .order-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            background-color: #ccc; /* Placeholder cho hình ảnh */
+        }
+
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 2px solid #000; /* Đường kẻ giữa phần chi tiết đơn hàng và footer */
+        }
+
+        .btn-buy-again {
+            background-color: #0004ff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-buy-again:hover {
+            background-color: #8a76e2;
+        }
+
         h2 {
             text-align: center;
             margin-bottom: 20px;
@@ -179,81 +221,47 @@
         .btn-logout:hover {
             background-color: #cc0000; /* Darker red on hover */
         }
-
-        /* Thông Báo Nổi */
-        .floating-notification {
-            position: fixed;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            display: none;
-            z-index: 1001;
-            width: 300px;
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 2px solid #000; /* Đường kẻ giữa phần chi tiết đơn hàng và footer */
+            background-color: #f8f9fa; /* Nền sáng cho footer */
+            padding: 15px; /* Thêm padding cho phần footer */
         }
 
-        .floating-notification .notification-content p {
-            margin: 0 0 10px;
-            text-align: center;
+        .order-footer h5 {
+            margin: 0; /* Đảm bảo không có khoảng cách bên ngoài */
+            color: #333; /* Màu chữ cho trạng thái đơn hàng */
         }
 
-        .floating-notification .btn-secondary {
-            display: block;
-            margin: 0 auto;
-        }
-
-        /* Nút Đóng cho Form */
-        .floating-form .btn-secondary {
-            background-color: #6c757d;
+        .btn-buy-again {
+            background-color: #007bff; /* Màu xanh chính của Bootstrap */
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 10px 15px;
             cursor: pointer;
+            transition: background-color 0.3s;
+            color: white; /* Màu chữ trắng */
+            border-radius: 5px; /* Đường bo góc */
+            font-weight: bold; /* Chữ đậm */
+            margin-right: 20px;
         }
 
-        .floating-form .btn-secondary:hover {
-            background-color: #5a6268;
-        }
-        /* Thêm hiệu ứng nổi lên */
-        .alert {
-            position: fixed; /* Đặt thông báo ở vị trí cố định trên màn hình */
-            top: 10px; /* Cách cạnh trên của màn hình 10px */
-            left: 50%; /* Đặt phần tử ở giữa theo chiều ngang */
-            transform: translateX(-50%); /* Đảm bảo phần tử nằm chính giữa */
-            z-index: 1050; /* Đảm bảo thông báo nằm trên các phần tử khác */
-            opacity: 0; /* Ban đầu ẩn đi */
-            transition: opacity 0.5s ease, transform 0.5s ease; /* Hiệu ứng mờ dần và nổi lên */
+        .btn-buy-again:hover {
+            background-color: #0056b3; /* Màu nền khi hover */
         }
 
-        /* Thêm hiệu ứng khi hiển thị thông báo */
-        .alert.show {
-            opacity: 1; /* Hiển thị thông báo */
-            transform: translateY(10px); /* Di chuyển thông báo lên một chút khi hiện ra */
-        }
-
-        /* Thông báo thành công */
-        .alert-success {
-            background-color: #28a745; /* Màu nền cho thông báo thành công */
-            color: white;
-        }
-
-        /* Thông báo lỗi */
-        .alert-danger {
-            background-color: #dc3545; /* Màu nền cho thông báo lỗi */
-            color: white;
-        }
-
-        /* Thiết lập thêm độ bo góc cho các thông báo */
-        .alert {
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 1rem;
+        .total-amount {
+            font-weight: bold; /* Chữ đậm cho tổng tiền */
+            font-size: 1.2rem; /* Kích thước chữ lớn hơn */
+            color: #d9534f; /* Màu đỏ để nổi bật */
+            margin-top: 10px; /* Khoảng cách phía trên */
         }
 
     </style>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -297,6 +305,7 @@
     </div>
 </nav>
 
+
 <div class="content">
     <div class="row">
         <div class="col-2 mt-3" style="border-right: 1px solid black;  height: 100vh;">
@@ -315,118 +324,48 @@
                 </form>
             </div>
         </div>
-
         <div class="col-7 mt-3" style="margin: 0 auto;">
-            <div th:if="${success}" class="alert alert-success" role="alert" id="successMessage">
-                <span th:text="${success}"></span>
-            </div>
-
-
-            <!-- Thông báo lỗi -->
-            <div th:if="${error}" class="alert alert-danger" role="alert" id="errorMessage">
-                <span th:text="${error}"></span>
-            </div>
             <div class="container mt-5">
-                <h2>THÔNG TIN TÀI KHOẢN</h2>
+                <!-- Đầu trang đơn hàng -->
+                <div class="order-header row py-2 bg-light text-center">
+                    <div class="col-3">Hình</div>
+                    <div class="col-3">Tên sản phẩm</div>
+                    <div class="col-2">Thể loại</div>
+                    <div class="col-2">Số lượng</div>
+                    <div class="col-2">Giá</div>
 
-                <form id="accountForm">
-                    <div class="mb-3">
-                        <label for="amount" class="form-label">Tên</label>
-                        <input type="text" class="form-control" id="amount" name="amount" th:value="${user.ten}" readonly>
+                </div>
+
+                <!-- Chi tiết sản phẩm -->
+                <div th:each="item : ${orderDetails}" class="order-item row bg-light text-center">
+                    <div class="col-3 d-flex align-items-center justify-content-center">
+                        <img th:src="${item.sanPham.hinh}" alt="Product Image" style="width: 50px; height: 50px;">
                     </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Số điện thoại</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" th:value="${user.SDT}" readonly>
+                    <div class="col-3 d-flex align-items-center justify-content-center" th:text="${item.tenSach}"></div>
+                    <div class="col-2 d-flex align-items-center justify-content-center" th:text="${item.sanPham.theLoai}"></div>
+                    <div class="col-2 d-flex align-items-center justify-content-center" th:text="${item.soLuong}"></div>
+                    <div class="col-2 d-flex align-items-center justify-content-center" th:text="${item.gia}"></div>
+
+                    <div class="order-footer row text-center">
+                        <div class="col-6 d-flex align-items-center justify-content-center">
+                            <h5>Trạng thái đơn hàng: Đã Thanh Toán</h5>
+                        </div>
+                        <div class="col-6 d-flex align-items-center justify-content-center total-amount" th:text="'Tổng tiền: ' + ${item.hoaDon.tongTien}"></div>
+                        <div class="col-12 d-flex justify-content-end mt-2"> <!-- Thay đổi từ justify-content-center thành justify-content-end -->
+                            <button class="btn btn-buy-again">Mua lại</button>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" th:value="${user.email}" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="diachi" class="form-label">Địa chỉ</label>
-                        <input type="text" class="form-control" id="diachi" name="diachi" th:value="${user.Dia_chi}" readonly>
-                    </div>
-                    <button type="button" class="btn btn-primary" id="editButton">Sửa</button>
-                </form>
-            </div>
+
+                </div>
+
+                <!-- Phần cuối đơn hàng -->
+
+
         </div>
     </div>
 </div>
 
-<div class="overlay" id="overlay"></div>
 
-<div class="floating-form" id="floatingForm">
-    <h5>Chỉnh Sửa Thông Tin Tài Khoản</h5>
-    <form id="editAccountForm" action="/updateUser" method="POST">
-        <div class="mb-3">
-            <label for="editAmount" class="form-label">Tên</label>
-            <input type="text" class="form-control" id="editAmount" name="ten" readonly placeholder="Nhập tên" th:value="${user.ten}">
-        </div>
-        <div class="mb-3">
-            <label for="editPhone" class="form-label">Số điện thoại</label>
-            <input type="tel" class="form-control" id="editPhone" name="phone" placeholder="Nhập số điện thoại" th:value="${user.SDT}">
-        </div>
-        <div class="mb-3">
-            <label for="editEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="editEmail" name="email" placeholder="Nhập email" th:value="${user.email}">
-        </div>
-        <div class="mb-3">
-            <label for="editDiachi" class="form-label">Địa chỉ</label>
-            <input type="text" class="form-control" id="editDiachi" name="diachi" placeholder="Nhập địa chỉ" th:value="${user.Dia_chi}">
-        </div>
-        <!-- Sử dụng `formaction` để gửi form mà không cần AJAX -->
-        <button type="submit" class="btn btn-primary" formaction="/updateUser">Cập Nhật</button>
-        <button type="button" class="btn btn-secondary" id="closeButton">Đóng</button> <!-- Nút đóng -->
-
-    </form>
-
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // Show the floating edit form and prefill data
-        $("#editButton").click(function () {
-            $("#overlay").show();
-            $("#floatingForm").show();
-            // Prefill edit fields with current values
-            $("#editAmount").val($("#amount").val());
-            $("#editPhone").val($("#phone").val());
-            $("#editEmail").val($("#email").val());
-            $("#editDiachi").val($("#diachi").val());
-        });
-
-        // Hide floating form and overlay on close button click
-        $("#closeButton").click(function () {
-            $("#overlay").hide();
-            $("#floatingForm").hide();
-        });
-
-        function hideMessage(messageId) {
-            setTimeout(function() {
-                var message = document.getElementById(messageId);
-                if (message) {
-                    message.classList.remove('show');  // Ẩn thông báo
-                }
-            }, 5000);  // Sau 5 giây
-        }
-
-        // Kiểm tra và hiển thị thông báo khi trang tải xong
-        window.onload = function() {
-            if (document.getElementById("successMessage")) {
-                document.getElementById("successMessage").classList.add("show"); // Hiển thị thông báo thành công
-                hideMessage("successMessage"); // Sau 5 giây ẩn đi
-            }
-            if (document.getElementById("errorMessage")) {
-                document.getElementById("errorMessage").classList.add("show"); // Hiển thị thông báo lỗi
-                hideMessage("errorMessage"); // Sau 5 giây ẩn đi
-            }
-        }
-
-    });
-
-
-</script>
 </body>
 </html>
+

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -22,64 +24,92 @@ public class trangCaNhanController {
     public trangCaNhanController(UserServiceImpl userServiceImpl) {
         this.userServiceImpl = userServiceImpl;
     }
-//    @GetMapping("/trangcanhan")
-//    public String trangCaNhan(Model model) {
-//        return "index/trangCaNhan";
-//    }
-
 
     @GetMapping("/trangcanhan")
     public String trangCaNhan(HttpSession session, Model model) {
-        // Kiểm tra nếu username không tồn tại trong session
         String username = (String) session.getAttribute("username");
 
         if (username == null) {
-            // Nếu chưa đăng nhập, hiển thị thông báo và chuyển hướng đến trang đăng nhập
             model.addAttribute("error", "Bạn vui lòng đăng nhập trước khi truy cập trang cá nhân.");
-            return "index/dangNhap"; // Redirect to login page
+            return "index/dangNhap";
         }
 
-        // Nếu đã đăng nhập, hiển thị trang cá nhân
         model.addAttribute("username", username);
-        return "index/trangCaNhan"; // Return to personal page
+        return "index/trangCaNhan";
     }
+
     @GetMapping("/thongtintaikhoan")
     public String getThongTinCaNhan(HttpSession session, Model model) {
-        // Lấy username từ session
         String username = (String) session.getAttribute("username");
 
         if (username == null) {
-            // Nếu chưa đăng nhập, hiển thị thông báo và chuyển hướng đến trang đăng nhập
             model.addAttribute("error", "Bạn vui lòng đăng nhập trước khi truy cập thông tin cá nhân.");
-            return "index/dangNhap"; // Redirect to login page
+            return "index/dangNhap";
         }
 
-        // Tìm người dùng theo tên
         Optional<User> userOptional = userServiceImpl.getUserByTen(username);
 
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            model.addAttribute("user", user); // Truyền dữ liệu người dùng vào model
+            model.addAttribute("user", user);
         } else {
             model.addAttribute("error", "Người dùng không tồn tại.");
         }
 
-        return "layout/Thongtincanhan"; // Trả về view
+        return "layout/Thongtincanhan";
     }
 
     @PostMapping("/logout")
     public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-        session.invalidate(); // Xóa tất cả dữ liệu trong session
+        session.invalidate();
 
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                // Xóa cookie bằng cách thiết lập thời gian sống của nó về 0
                 cookie.setMaxAge(0);
-                cookie.setPath("/"); // Đặt path để cookie bị xóa trên toàn bộ ứng dụng
-                response.addCookie(cookie); // Gửi cookie đã được xóa về client
+                cookie.setPath("/");
+                response.addCookie(cookie);
             }
         }
-        return "redirect:/login"; // Chuyển hướng về trang đăng nhập
+        return "redirect:/login";
+    }
+
+    // New method for updating user information
+    @PostMapping("/updateUser")
+    public String updateUser(
+            @RequestParam("ten") String ten,
+            @RequestParam("phone") String phone,
+            @RequestParam("email") String email,
+            @RequestParam("diachi") String diachi,
+            HttpSession session,
+            RedirectAttributes redirectAttributes) {
+
+        String username = (String) session.getAttribute("username");
+
+        if (username == null) {
+            redirectAttributes.addFlashAttribute("error", "Bạn vui lòng đăng nhập trước khi cập nhật thông tin cá nhân.");
+            return "redirect:/login";
+        }
+
+        Optional<User> userOptional = userServiceImpl.getUserByTen(username);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setTen(ten);
+            user.setSDT(Integer.valueOf(phone));
+            user.setEmail(email);
+            user.setDia_chi(diachi);
+
+            try {
+                userServiceImpl.saveUser(user);
+                redirectAttributes.addFlashAttribute("success", "Cập nhật thông tin thành công!");
+            } catch (Exception e) {
+                redirectAttributes.addFlashAttribute("error", "Đã xảy ra lỗi khi cập nhật thông tin.");
+            }
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Người dùng không tồn tại.");
+        }
+
+        return "redirect:/thongtintaikhoan";
     }
 }

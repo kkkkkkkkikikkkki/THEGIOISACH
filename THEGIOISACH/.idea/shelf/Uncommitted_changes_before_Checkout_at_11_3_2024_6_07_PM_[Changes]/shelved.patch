@@ -1,21 +1,3 @@
-Index: .idea/vcs.xml
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"\" vcs=\"Git\" />\r\n  </component>\r\n</project>
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/.idea/vcs.xml b/.idea/vcs.xml
---- a/.idea/vcs.xml	(revision 93ce756644b88646541e20786821648adaf1b0c1)
-+++ b/.idea/vcs.xml	(date 1730360331429)
-@@ -2,5 +2,6 @@
- <project version="4">
-   <component name="VcsDirectoryMappings">
-     <mapping directory="" vcs="Git" />
-+    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
-   </component>
- </project>
-\ No newline at end of file
 Index: .idea/dataSources.local.xml
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
@@ -25,7 +7,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 ===================================================================
 diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
 --- a/.idea/dataSources.local.xml	(revision 93ce756644b88646541e20786821648adaf1b0c1)
-+++ b/.idea/dataSources.local.xml	(date 1730289310080)
++++ b/.idea/dataSources.local.xml	(date 1730632050498)
 @@ -1,6 +1,6 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <project version="4">
@@ -43,11 +25,12 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 ===================================================================
 diff --git a/.idea/workspace.xml b/.idea/workspace.xml
 --- a/.idea/workspace.xml	(revision 93ce756644b88646541e20786821648adaf1b0c1)
-+++ b/.idea/workspace.xml	(date 1730360331427)
-@@ -5,54 +5,8 @@
++++ b/.idea/workspace.xml	(date 1730632050491)
+@@ -4,56 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
    </component>
    <component name="ChangeListManager">
-     <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="sua lai footer">
+-    <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="sua lai footer">
 -      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/KhachHangController.java" afterDir="false" />
 -      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/NguoiBanController.java" afterDir="false" />
 -      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/TaiKhoanController.java" afterDir="false" />
@@ -96,12 +79,26 @@ diff --git a/.idea/workspace.xml b/.idea/workspace.xml
 -      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Thongtincanhan.html" beforeDir="false" />
 -      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Trothanhnguoiban.html" beforeDir="false" />
 -      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/test-classes/com/dan/datn/DatnApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/test-classes/com/dan/datn/DatnApplicationTests.class" afterDir="false" />
-+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-     </list>
+-    </list>
++    <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="sua lai trang ca nhan, them controller trang ca nhan" />
      <option name="SHOW_DIALOG" value="false" />
      <option name="HIGHLIGHT_CONFLICTS" value="true" />
-@@ -86,9 +40,21 @@
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -64,8 +15,8 @@
+       <list>
+         <option value="Interface" />
+         <option value="HTML File" />
++        <option value="JavaScript File" />
+         <option value="Class" />
+-        <option value="JavaScript File" />
+       </list>
+     </option>
+   </component>
+@@ -83,12 +34,25 @@
+     </option>
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
++        <entry key="$PROJECT_DIR$/.." value="kiet" />
          <entry key="$PROJECT_DIR$" value="main" />
        </map>
      </option>
@@ -109,31 +106,69 @@ diff --git a/.idea/workspace.xml b/.idea/workspace.xml
 +    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
      <option name="UPDATE_TYPE" value="REBASE" />
    </component>
-+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-+  "lastFilter": {
-+    "state": "OPEN",
-+    "assignee": "kkkkkkkkikikkkki"
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;kkkkkkkkikikkkki&quot;
 +  }
-+}]]></component>
-+  <component name="GithubPullRequestsUISettings"><![CDATA[{
-+  "selectedUrlAndAccountId": {
-+    "url": "https://github.com/kkkkkkkkikikkkki/THEGIOISACH.git",
-+    "accountId": "0263250b-68a8-4fbd-b550-5ebe0add2059"
++}</component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/kkkkkkkkikikkkki/THEGIOISACH.git&quot;,
++    &quot;accountId&quot;: &quot;0263250b-68a8-4fbd-b550-5ebe0add2059&quot;
 +  }
-+}]]></component>
++}</component>
    <component name="ProjectColorInfo">{
    &quot;associatedIndex&quot;: 3
  }</component>
-@@ -106,7 +72,7 @@
+@@ -106,10 +70,9 @@
      "RequestMappingsPanelWidth1": "75",
      "RunOnceActivity.ShowReadmeOnStart": "true",
      "Spring Boot.DatnApplication.executor": "Run",
 -    "git-widget-placeholder": "phong",
-+    "git-widget-placeholder": "khai",
      "ignore.virus.scanning.warn.message": "true",
      "kotlin-language-version-configured": "true",
-     "last_opened_file_path": "D:/DATN/THEGIOISACH",
-@@ -153,8 +119,8 @@
+-    "last_opened_file_path": "D:/DATN/THEGIOISACH",
++    "last_opened_file_path": "D:/du an/THEGIOISACH/DATN/DATN/src/main/resources/static",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
+@@ -121,18 +84,22 @@
+ }]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="D:\du an\THEGIOISACH\DATN\DATN\src\main\resources\static" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\templates\index" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\templates\layoutAdmin" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\templates" />
+-      <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static\layout" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="D:\du an\THEGIOISACH\DATN\DATN\src\main\resources\static\layoutAdmin" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static\layout" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static" />
+     </key>
+   </component>
+-  <component name="RunManager">
++  <component name="RunManager" selected="Spring Boot.DatnApplication">
++    <configuration name="trangCaNhan.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/THEGIOISACH/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" useBuiltInWebServerPort="true">
++      <method v="2" />
++    </configuration>
+     <configuration name="DatnApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+       <module name="DATN" />
+@@ -149,12 +116,18 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="JavaScript Debug.trangCaNhan.html" />
++        <item itemvalue="JavaScript Debug.trangCaNhan.html" />
++      </list>
++    </recent_temporary>
+   </component>
    <component name="SharedIndexes">
      <attachedChunks>
        <set>
@@ -144,11 +179,38 @@ diff --git a/.idea/workspace.xml b/.idea/workspace.xml
        </set>
      </attachedChunks>
    </component>
-@@ -175,6 +141,7 @@
+@@ -175,6 +148,7 @@
        <workItem from="1730117976933" duration="10861000" />
        <workItem from="1730164173173" duration="332000" />
        <workItem from="1730276041468" duration="5667000" />
-+      <workItem from="1730360312704" duration="19000" />
++      <workItem from="1730630283050" duration="992000" />
      </task>
      <task id="LOCAL-00001" summary="done cac trang giao dien">
        <option name="closed" value="true" />
+@@ -208,7 +182,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1729592937361</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="sua lai trang ca nhan, them controller trang ca nhan">
++      <option name="closed" value="true" />
++      <created>1730631295970</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1730631295970</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -218,6 +200,7 @@
+     <MESSAGE value="first commit" />
+     <MESSAGE value="done cac trang giao dien" />
+     <MESSAGE value="sua lai footer" />
+-    <option name="LAST_COMMIT_MESSAGE" value="sua lai footer" />
++    <MESSAGE value="sua lai trang ca nhan, them controller trang ca nhan" />
++    <option name="LAST_COMMIT_MESSAGE" value="sua lai trang ca nhan, them controller trang ca nhan" />
+   </component>
+ </project>
+\ No newline at end of file
