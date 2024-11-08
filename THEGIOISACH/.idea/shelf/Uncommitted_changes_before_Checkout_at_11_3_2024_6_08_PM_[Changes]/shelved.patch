@@ -1,0 +1,199 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"769f9173-8bc1-4116-b4a8-b55a72429376\" name=\"Changes\" comment=\"sua lai trang ca nhan, them controller trang ca nhan\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"HTML File\" />\r\n        <option value=\"JavaScript File\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\r\n      <list>\r\n        <option value=\"kkkkkkkkikikkkki &lt;kietnguyenhoang155@gmail.com&gt;\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"PUSH_TAGS\">\r\n      <GitPushTagMode>\r\n        <option name=\"argument\" value=\"--tags\" />\r\n        <option name=\"title\" value=\"All\" />\r\n      </GitPushTagMode>\r\n    </option>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$/..\" value=\"main\" />\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\r\n  \"lastFilter\": {\r\n    \"state\": \"OPEN\",\r\n    \"assignee\": \"kkkkkkkkikikkkki\"\r\n  }\r\n}]]></component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/kkkkkkkkikikkkki/THEGIOISACH.git&quot;,\r\n    &quot;accountId&quot;: &quot;0263250b-68a8-4fbd-b550-5ebe0add2059&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2nmwgrcNuRIj9ivFHdCagezwICi\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\r\n    \"RequestMappingsPanelOrder0\": \"0\",\r\n    \"RequestMappingsPanelOrder1\": \"1\",\r\n    \"RequestMappingsPanelWidth0\": \"75\",\r\n    \"RequestMappingsPanelWidth1\": \"75\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"Spring Boot.DatnApplication.executor\": \"Run\",\r\n    \"git-widget-placeholder\": \"kiet\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"D:/du an/THEGIOISACH/DATN/DATN/src/main/resources/static\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"settings.editor.selected.configurable\": \"preferences.lookFeel\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\du an\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\static\" />\r\n      <recent name=\"D:\\Du An Tot Nghiep\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\static\" />\r\n      <recent name=\"D:\\Du An Tot Nghiep\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\templates\\index\" />\r\n      <recent name=\"D:\\Du An Tot Nghiep\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\templates\\layoutAdmin\" />\r\n      <recent name=\"D:\\Du An Tot Nghiep\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\templates\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\du an\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\static\\layoutAdmin\" />\r\n      <recent name=\"D:\\Du An Tot Nghiep\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\static\\layout\" />\r\n      <recent name=\"D:\\Du An Tot Nghiep\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\static\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Spring Boot.DatnApplication\">\r\n    <configuration name=\"trangCaNhan.html\" type=\"JavascriptDebugType\" temporary=\"true\" nameIsGenerated=\"true\" uri=\"http://localhost:63342/THEGIOISACH/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html\" useBuiltInWebServerPort=\"true\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"DatnApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"DATN\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.dan.datn.DatnApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"DatnApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"DATN\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.dan.datn.DatnApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JavaScript Debug.trangCaNhan.html\" />\r\n        <item itemvalue=\"JavaScript Debug.trangCaNhan.html\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62\" />\r\n        <option value=\"bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"769f9173-8bc1-4116-b4a8-b55a72429376\" name=\"Changes\" comment=\"\" />\r\n      <created>1729591673073</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1729591673073</updated>\r\n      <workItem from=\"1729591674136\" duration=\"413000\" />\r\n      <workItem from=\"1729592107723\" duration=\"933000\" />\r\n      <workItem from=\"1729762317520\" duration=\"756000\" />\r\n      <workItem from=\"1730017577305\" duration=\"3203000\" />\r\n      <workItem from=\"1730020941325\" duration=\"554000\" />\r\n      <workItem from=\"1730102719972\" duration=\"11609000\" />\r\n      <workItem from=\"1730117976933\" duration=\"10861000\" />\r\n      <workItem from=\"1730164173173\" duration=\"332000\" />\r\n      <workItem from=\"1730276041468\" duration=\"5667000\" />\r\n      <workItem from=\"1730630283050\" duration=\"992000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"done cac trang giao dien\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1729591832730</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1729591832730</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"done cac trang giao dien\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1729592343944</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1729592343944</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"sua lai footer\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1729592898975</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1729592898975</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"sua lai footer\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1729592937361</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1729592937361</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"sua lai trang ca nhan, them controller trang ca nhan\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730631295970</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730631295970</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"first commit\" />\r\n    <MESSAGE value=\"done cac trang giao dien\" />\r\n    <MESSAGE value=\"sua lai footer\" />\r\n    <MESSAGE value=\"sua lai trang ca nhan, them controller trang ca nhan\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"sua lai trang ca nhan, them controller trang ca nhan\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision b892845fa5d7d941185fa82c2998108f2b215fc9)
++++ b/.idea/workspace.xml	(date 1730632078495)
+@@ -4,8 +4,55 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="sua lai trang ca nhan, them controller trang ca nhan">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++    <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="sua lai footer">
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/KhachHangController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/NguoiBanController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/TaiKhoanController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/homeAdminController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/KhachHang.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/NguoiBan.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Repository/KhachHangRepository.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Repository/NguoiBanRepository.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/KhachHangService.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/NguoiBanService.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/ServiceImpl/KhachHangServiceImpl.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/ServiceImpl/NguoiBanServiceImpl.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/js/quanLyNguoiDung.js" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutAdmin/QuanLyNguoiDung.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/application.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/HomeAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/HomeAdmin.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/js/myAppAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/js/myAppAdmin.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/js/myApptrangCaNhan.js" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/js/myApptrangCaNhan.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Donhangcuatoi.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Donhangcuatoi.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Quanlysanpham.html" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Thongtincanhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Thongtincanhan.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Trothanhnguoiban.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layout/Trothanhnguoiban.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layoutAdmin/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutAdmin/Home.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layoutAdmin/PhanQuyen.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutAdmin/PhanQuyen.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layoutAdmin/QuanLy.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutAdmin/QuanLy.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layoutAdmin/QuanLyNguoiDung.html" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layoutAdmin/Setting.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutAdmin/Setting.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layoutAdmin/TaoMoi.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutAdmin/TaoMoi.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layoutAdmin/ThongKe.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutAdmin/ThongKe.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/application.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/DatnApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/DatnApplication.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangKy.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangKy.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangNhap.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangNhap.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/js/myApptrangCaNhan.js" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/layout/Donhangcuatoi.html" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/layout/Quanlysanpham.html" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/layout/Thongtincanhan.html" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/layout/Trothanhnguoiban.html" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangCaNhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangCaNhan.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangChu.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangChu.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/js/myApptrangCaNhan.js" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Donhangcuatoi.html" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Quanlysanpham.html" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Thongtincanhan.html" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Trothanhnguoiban.html" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/test-classes/com/dan/datn/DatnApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/test-classes/com/dan/datn/DatnApplicationTests.class" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -17,8 +64,8 @@
+       <list>
+         <option value="Interface" />
+         <option value="HTML File" />
+-        <option value="JavaScript File" />
+         <option value="Class" />
++        <option value="JavaScript File" />
+       </list>
+     </option>
+   </component>
+@@ -36,25 +83,12 @@
+     </option>
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$/.." value="main" />
+         <entry key="$PROJECT_DIR$" value="main" />
+       </map>
+     </option>
+-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+     <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-  "lastFilter": {
+-    "state": "OPEN",
+-    "assignee": "kkkkkkkkikikkkki"
+-  }
+-}]]></component>
+-  <component name="GithubPullRequestsUISettings">{
+-  &quot;selectedUrlAndAccountId&quot;: {
+-    &quot;url&quot;: &quot;https://github.com/kkkkkkkkikikkkki/THEGIOISACH.git&quot;,
+-    &quot;accountId&quot;: &quot;0263250b-68a8-4fbd-b550-5ebe0add2059&quot;
+-  }
+-}</component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 3
+ }</component>
+@@ -72,10 +106,10 @@
+     "RequestMappingsPanelWidth1": "75",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "Spring Boot.DatnApplication.executor": "Run",
+-    "git-widget-placeholder": "kiet",
++    "git-widget-placeholder": "phong",
+     "ignore.virus.scanning.warn.message": "true",
+     "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "D:/du an/THEGIOISACH/DATN/DATN/src/main/resources/static",
++    "last_opened_file_path": "D:/DATN/THEGIOISACH",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
+@@ -87,22 +121,18 @@
+ }]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+-      <recent name="D:\du an\THEGIOISACH\DATN\DATN\src\main\resources\static" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\templates\index" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\templates\layoutAdmin" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\templates" />
++      <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static\layout" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
+-      <recent name="D:\du an\THEGIOISACH\DATN\DATN\src\main\resources\static\layoutAdmin" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static\layout" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Spring Boot.DatnApplication">
+-    <configuration name="trangCaNhan.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/THEGIOISACH/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" useBuiltInWebServerPort="true">
+-      <method v="2" />
+-    </configuration>
++  <component name="RunManager">
+     <configuration name="DatnApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+       <module name="DATN" />
+@@ -119,18 +149,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <recent_temporary>
+-      <list>
+-        <item itemvalue="JavaScript Debug.trangCaNhan.html" />
+-        <item itemvalue="JavaScript Debug.trangCaNhan.html" />
+-      </list>
+-    </recent_temporary>
+   </component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
++        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
++        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+       </set>
+     </attachedChunks>
+   </component>
+@@ -151,7 +175,6 @@
+       <workItem from="1730117976933" duration="10861000" />
+       <workItem from="1730164173173" duration="332000" />
+       <workItem from="1730276041468" duration="5667000" />
+-      <workItem from="1730630283050" duration="992000" />
+     </task>
+     <task id="LOCAL-00001" summary="done cac trang giao dien">
+       <option name="closed" value="true" />
+@@ -185,15 +208,7 @@
+       <option name="project" value="LOCAL" />
+       <updated>1729592937361</updated>
+     </task>
+-    <task id="LOCAL-00005" summary="sua lai trang ca nhan, them controller trang ca nhan">
+-      <option name="closed" value="true" />
+-      <created>1730631295970</created>
+-      <option name="number" value="00005" />
+-      <option name="presentableId" value="LOCAL-00005" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1730631295970</updated>
+-    </task>
+-    <option name="localTasksCounter" value="6" />
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -203,7 +218,6 @@
+     <MESSAGE value="first commit" />
+     <MESSAGE value="done cac trang giao dien" />
+     <MESSAGE value="sua lai footer" />
+-    <MESSAGE value="sua lai trang ca nhan, them controller trang ca nhan" />
+-    <option name="LAST_COMMIT_MESSAGE" value="sua lai trang ca nhan, them controller trang ca nhan" />
++    <option name="LAST_COMMIT_MESSAGE" value="sua lai footer" />
+   </component>
+ </project>
+\ No newline at end of file
