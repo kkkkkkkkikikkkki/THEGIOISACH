@@ -1,0 +1,58 @@
+<style>
+  .title {
+    color: #000000;
+    font-weight: bold;
+  }
+
+  /* Định dạng chung */
+  .management-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Căn chỉnh liên kết và nút */
+  .management-item a {
+    font-size: 1.2rem;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .management-item a:hover {
+    color: #007bff;
+  }
+
+  /* Nút "Xem chi tiết" */
+  .management-item button {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .management-item button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+</style>
+
+<div class="row text-center">
+  <h1 class="title">Thống kê</h1>
+</div>
+<hr>
+<div class="row">
+  <div class="d-flex justify-content-between align-items-center management-item">
+    <a href="#">Thống kê doanh thu</a>
+    <button class="btn btn-primary">Xem chi tiết</button>
+  </div>
+</div>
+<div class="row">
+  <div class="d-flex justify-content-between align-items-center management-item">
+    <a href="#">Thống kê sản phẩm cửa hàng</a>
+    <button class="btn btn-primary">Xem chi tiết</button>
+  </div>
+</div>
