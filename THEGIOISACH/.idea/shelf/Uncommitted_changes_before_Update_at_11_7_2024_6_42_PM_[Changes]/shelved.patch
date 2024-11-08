@@ -1,0 +1,186 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"769f9173-8bc1-4116-b4a8-b55a72429376\" name=\"Changes\" comment=\"sua lai footer\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_31_2024_2_39_PM__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_31_2024_2_39_PM__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"HTML File\" />\r\n        <option value=\"JavaScript File\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\r\n      <list>\r\n        <option value=\"kkkkkkkkikikkkki &lt;kietnguyenhoang155@gmail.com&gt;\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"PUSH_TAGS\">\r\n      <GitPushTagMode>\r\n        <option name=\"argument\" value=\"--tags\" />\r\n        <option name=\"title\" value=\"All\" />\r\n      </GitPushTagMode>\r\n    </option>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$/..\" value=\"main\" />\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;kkkkkkkkikikkkki&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/kkkkkkkkikikkkki/THEGIOISACH.git&quot;,\r\n    &quot;accountId&quot;: &quot;0263250b-68a8-4fbd-b550-5ebe0add2059&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2nmwgrcNuRIj9ivFHdCagezwICi\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,\r\n    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,\r\n    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,\r\n    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,\r\n    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;Spring Boot.DatnApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;kiet&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;D:/du an/THEGIOISACH/DATN/DATN/src/main/resources/static&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\du an\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\static\" />\r\n      <recent name=\"D:\\Du An Tot Nghiep\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\static\" />\r\n      <recent name=\"D:\\Du An Tot Nghiep\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\templates\\index\" />\r\n      <recent name=\"D:\\Du An Tot Nghiep\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\templates\\layoutAdmin\" />\r\n      <recent name=\"D:\\Du An Tot Nghiep\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\templates\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\du an\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\static\\layoutAdmin\" />\r\n      <recent name=\"D:\\Du An Tot Nghiep\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\static\\layout\" />\r\n      <recent name=\"D:\\Du An Tot Nghiep\\THEGIOISACH\\DATN\\DATN\\src\\main\\resources\\static\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Spring Boot.DatnApplication\">\r\n    <configuration name=\"trangCaNhan.html\" type=\"JavascriptDebugType\" temporary=\"true\" nameIsGenerated=\"true\" uri=\"http://localhost:63342/THEGIOISACH/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html\" useBuiltInWebServerPort=\"true\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"DatnApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"DATN\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.dan.datn.DatnApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"DatnApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"DATN\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.dan.datn.DatnApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JavaScript Debug.trangCaNhan.html\" />\r\n        <item itemvalue=\"JavaScript Debug.trangCaNhan.html\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62\" />\r\n        <option value=\"bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"769f9173-8bc1-4116-b4a8-b55a72429376\" name=\"Changes\" comment=\"\" />\r\n      <created>1729591673073</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1729591673073</updated>\r\n      <workItem from=\"1729591674136\" duration=\"413000\" />\r\n      <workItem from=\"1729592107723\" duration=\"933000\" />\r\n      <workItem from=\"1729762317520\" duration=\"756000\" />\r\n      <workItem from=\"1730017577305\" duration=\"3203000\" />\r\n      <workItem from=\"1730020941325\" duration=\"554000\" />\r\n      <workItem from=\"1730102719972\" duration=\"11609000\" />\r\n      <workItem from=\"1730117976933\" duration=\"10861000\" />\r\n      <workItem from=\"1730164173173\" duration=\"332000\" />\r\n      <workItem from=\"1730276041468\" duration=\"5667000\" />\r\n      <workItem from=\"1730630283050\" duration=\"702000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"done cac trang giao dien\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1729591832730</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1729591832730</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"done cac trang giao dien\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1729592343944</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1729592343944</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"sua lai footer\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1729592898975</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1729592898975</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"sua lai footer\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1729592937361</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1729592937361</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"first commit\" />\r\n    <MESSAGE value=\"done cac trang giao dien\" />\r\n    <MESSAGE value=\"sua lai footer\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"sua lai footer\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7194c6b93529b1a4e82b614223ae262c3ee4091d)
++++ b/.idea/workspace.xml	(date 1730979767814)
+@@ -4,8 +4,16 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="sua lai footer">
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_31_2024_2_39_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_31_2024_2_39_PM__Changes_.xml" afterDir="false" />
++    <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="done thong tin ca nhan">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_3_2024_6_06_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_3_2024_6_06_PM__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_3_2024_6_06_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_3_2024_6_06_PM__Changes_1.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_3_2024_6_07_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_3_2024_6_07_PM__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_3_2024_6_08_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_3_2024_6_08_PM__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_3_2024_6_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_3_2024_6_09_PM__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_3_2024_6_22_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_3_2024_6_22_PM__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_4_2024_1_01_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_4_2024_1_01_AM__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_4_2024_1_02_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_4_2024_1_02_AM__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -16,14 +24,27 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
+-        <option value="Interface" />
+         <option value="HTML File" />
+         <option value="JavaScript File" />
++        <option value="Interface" />
+         <option value="Class" />
+       </list>
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <favorite-branches>
++      <branch-storage>
++        <map>
++          <entry type="LOCAL">
++            <value>
++              <list>
++                <branch-info repo="$PROJECT_DIR$/.." source="kiet" />
++              </list>
++            </value>
++          </entry>
++        </map>
++      </branch-storage>
++    </favorite-branches>
+     <option name="PREVIOUS_COMMIT_AUTHORS">
+       <list>
+         <option value="kkkkkkkkikikkkki &lt;kietnguyenhoang155@gmail.com&gt;" />
+@@ -95,9 +116,11 @@
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\templates" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="D:\du an\THEGIOISACH\DATN\DATN\src\main\resources\templates" />
++      <recent name="D:\du an\THEGIOISACH\DATN\DATN\src\main\resources\templates\index" />
++      <recent name="D:\du an\THEGIOISACH\DATN\DATN\src\main\resources\static\layoutTrangChu" />
+       <recent name="D:\du an\THEGIOISACH\DATN\DATN\src\main\resources\static\layoutAdmin" />
+       <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static\layout" />
+-      <recent name="D:\Du An Tot Nghiep\THEGIOISACH\DATN\DATN\src\main\resources\static" />
+     </key>
+   </component>
+   <component name="RunManager" selected="Spring Boot.DatnApplication">
+@@ -122,6 +145,9 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="JavaScript Debug.trangCaNhan.html" />
++        <item itemvalue="JavaScript Debug.trangCaNhan.html" />
++        <item itemvalue="JavaScript Debug.trangCaNhan.html" />
+         <item itemvalue="JavaScript Debug.trangCaNhan.html" />
+         <item itemvalue="JavaScript Debug.trangCaNhan.html" />
+       </list>
+@@ -153,6 +179,14 @@
+       <workItem from="1730164173173" duration="332000" />
+       <workItem from="1730276041468" duration="5667000" />
+       <workItem from="1730630283050" duration="702000" />
++      <workItem from="1730658447635" duration="178000" />
++      <workItem from="1730713044796" duration="2471000" />
++      <workItem from="1730739411795" duration="4724000" />
++      <workItem from="1730804317664" duration="667000" />
++      <workItem from="1730816936604" duration="7042000" />
++      <workItem from="1730887344700" duration="4694000" />
++      <workItem from="1730911479257" duration="1084000" />
++      <workItem from="1730978857722" duration="673000" />
+     </task>
+     <task id="LOCAL-00001" summary="done cac trang giao dien">
+       <option name="closed" value="true" />
+@@ -186,16 +220,86 @@
+       <option name="project" value="LOCAL" />
+       <updated>1729592937361</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="view thongtincanhan len form">
++      <option name="closed" value="true" />
++      <created>1730804366129</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1730804366129</updated>
++    </task>
++    <task id="LOCAL-00006" summary="view form don hang cua toi">
++      <option name="closed" value="true" />
++      <created>1730828255983</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1730828255983</updated>
++    </task>
++    <task id="LOCAL-00007" summary="view form don hang cua toi">
++      <option name="closed" value="true" />
++      <created>1730828437668</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1730828437668</updated>
++    </task>
++    <task id="LOCAL-00008" summary="done thong tin ca nhan">
++      <option name="closed" value="true" />
++      <created>1730978906184</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1730978906184</updated>
++    </task>
++    <task id="LOCAL-00009" summary="done thong tin ca nhan">
++      <option name="closed" value="true" />
++      <created>1730979111218</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1730979111218</updated>
++    </task>
++    <task id="LOCAL-00010" summary="done thong tin ca nhan">
++      <option name="closed" value="true" />
++      <created>1730979125366</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1730979125366</updated>
++    </task>
++    <task id="LOCAL-00011" summary="done thong tin ca nhan">
++      <option name="closed" value="true" />
++      <created>1730979249921</created>
++      <option name="number" value="00011" />
++      <option name="presentableId" value="LOCAL-00011" />
++      <option name="project" value="LOCAL" />
++      <updated>1730979249921</updated>
++    </task>
++    <option name="localTasksCounter" value="12" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="first commit" />
+     <MESSAGE value="done cac trang giao dien" />
+     <MESSAGE value="sua lai footer" />
+-    <option name="LAST_COMMIT_MESSAGE" value="sua lai footer" />
++    <MESSAGE value="view thongtincanhan len form" />
++    <MESSAGE value="view form don hang cua toi" />
++    <MESSAGE value="done thong tin ca nhan" />
++    <option name="LAST_COMMIT_MESSAGE" value="done thong tin ca nhan" />
+   </component>
+ </project>
+\ No newline at end of file
