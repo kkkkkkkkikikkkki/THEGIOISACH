@@ -22,13 +22,18 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
 
     @Override
     public HoaDonChiTiet updateHoaDonChiTiet(Integer id, HoaDonChiTiet hoaDonChiTiet) {
-        Optional<HoaDonChiTiet> existingHoaDonChiTiet = hoaDonChiTietRepository.findById(id);
-        if (existingHoaDonChiTiet.isPresent()) {
-            hoaDonChiTiet.setId(id);
-            return hoaDonChiTietRepository.save(hoaDonChiTiet);
-        }
         return null;
     }
+
+//    @Override
+//    public HoaDonChiTiet updateHoaDonChiTiet(Integer id, HoaDonChiTiet hoaDonChiTiet) {
+//        Optional<HoaDonChiTiet> existingHoaDonChiTiet = hoaDonChiTietRepository.findById(id);
+//        if (existingHoaDonChiTiet.isPresent()) {
+//            hoaDonChiTiet.setId(id);
+//            return hoaDonChiTietRepository.save(hoaDonChiTiet);
+//        }
+//        return null;
+//    }
 
     @Override
     public void deleteHoaDonChiTiet(Integer id) {
