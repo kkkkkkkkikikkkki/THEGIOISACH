@@ -31,4 +31,7 @@ public class Hinh {
     // Relationships
     @OneToOne(mappedBy = "hinh")
     private SanPham sanPham;
+
+    @Transient
+    private String base64Image;
 }

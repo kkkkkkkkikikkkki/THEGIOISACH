@@ -8,23 +8,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
-@SessionAttributes("username") // Store username in session
 public class LoginController {
+
     @Autowired
     private UserServiceImpl userServiceImpl;
 
     @PostMapping("/login")
     public String login(@RequestParam("username") String ten,
-                        @RequestParam("password") String Mat_khau,
-                        Model model) {
-        if (userServiceImpl.validateUser(ten, Mat_khau)) {
-            model.addAttribute("username", ten); // Store username in session
-            model.addAttribute("isLoggedIn", true); // Track login status
-            return "index/trangChu"; // Redirect to home page
+                        @RequestParam("password") String matKhau,
+                        Model model,
+                        HttpSession session) {
+        if (userServiceImpl.validateUser(ten, matKhau)) {
+            session.setAttribute("username", ten);
+            return "redirect:/trangchu";
         } else {
             model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
-            return "index/dangNhap"; // Return to login page
+            return "index/dangNhap";
         }
     }
 }
+
