@@ -252,7 +252,17 @@
             padding: 10px 20px;
             font-size: 1rem;
         }
+        .borderless-input {
+            border: none; /* Remove the border */
+            background-color: #FFE4E1; /* Light background for visibility */
+            padding: 8px; /* Add padding for easier click area */
+            border-radius: 4px; /* Optional: Rounded corners for a clean look */
+        }
 
+        .borderless-input:focus {
+            outline: none; /* Remove outline on focus */
+            box-shadow: none; /* No shadow on focus */
+        }
     </style>
 </head>
 <body>
@@ -317,40 +327,48 @@
 
         </div>
 
-        <div class="col-7 mt-3" style="margin: 0 auto;">
-            <div th:if="${success}" class="alert alert-success" role="alert" id="successMessage">
+        <div class="col-lg-6 col-md-8 mt-4 mx-auto">
+            <!-- Success Notification -->
+            <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert" id="successMessage">
                 <span th:text="${success}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 
-
-            <!-- Thông báo lỗi -->
-            <div th:if="${error}" class="alert alert-danger" role="alert" id="errorMessage">
+            <!-- Error Notification -->
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert" id="errorMessage">
                 <span th:text="${error}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <div class="container mt-5">
-                <h2>THÔNG TIN TÀI KHOẢN</h2>
 
-                <form id="accountForm">
-                    <div class="mb-3">
-                        <label for="amount" class="form-label">Tên</label>
-                        <input type="text" class="form-control" id="amount" name="amount" th:value="${user.ten}" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Số điện thoại</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" th:value="${user.SDT}" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" th:value="${user.email}" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="diachi" class="form-label">Địa chỉ</label>
-                        <input type="text" class="form-control" id="diachi" name="diachi" th:value="${user.Dia_chi}" readonly>
-                    </div>
-                    <button type="button" class="btn btn-primary" id="editButton">Sửa</button>
-                </form>
-            </div>
+            <h2 class="text-center mb-4">Thông Tin Tài Khoản</h2>
+
+            <form id="accountForm" class="mx-auto" style="max-width: 500px;">
+                <div class="mb-3 text-start">
+                    <label for="amount" class="form-label fw-bold">Tên</label>
+                    <input type="text" class="form-control borderless-input" id="amount" name="amount" th:value="${user.ten}" readonly>
+                </div>
+                <div class="mb-3 text-start">
+                    <label for="phone" class="form-label fw-bold">Số điện thoại</label>
+                    <input type="tel" class="form-control borderless-input" id="phone" name="phone" th:value="${user.SDT}" readonly>
+                </div>
+                <div class="mb-3 text-start">
+                    <label for="email" class="form-label fw-bold">Email</label>
+                    <input type="email" class="form-control borderless-input" id="email" name="email" th:value="${user.email}" readonly>
+                </div>
+                <div class="mb-3 text-start">
+                    <label for="diachi" class="form-label fw-bold">Địa chỉ</label>
+                    <input type="text" class="form-control borderless-input" id="diachi" name="diachi" th:value="${user.Dia_chi}" readonly>
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary px-4" id="editButton">Sửa</button>
+                </div>
+            </form>
         </div>
+
+
+
+
+
     </div>
 </div>
 

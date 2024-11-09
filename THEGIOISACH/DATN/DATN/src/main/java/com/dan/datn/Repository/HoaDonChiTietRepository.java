@@ -13,7 +13,7 @@ public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTiet, In
 
     @Query("SELECT hdct FROM HoaDonChiTiet hdct " +
             "JOIN hdct.hoaDon hd " +
-            "JOIN hd.nguoiDung nd " +
+            "JOIN hd.admins nd " +
             "WHERE nd.ten = :username")
     List<HoaDonChiTiet> findChiTietHoaDonByUsername(@Param("username") String username);
 }
