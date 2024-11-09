@@ -1,5 +1,6 @@
 package com.dan.datn.Controller;
 
+import com.dan.datn.Entity.Hinh;
 import com.dan.datn.Entity.SanPham;
 import com.dan.datn.Service.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import java.nio.file.Files;
 import java.util.Base64;
 import java.util.List;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import static com.dan.datn.Service.SanPhamService.sanPhamRepository;
 
 @Controller
 public class TrangChuController {
