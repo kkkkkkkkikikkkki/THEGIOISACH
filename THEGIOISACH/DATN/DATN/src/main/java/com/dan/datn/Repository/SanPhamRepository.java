@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.dan.datn.Service.SanPhamService.sanPhamRepository;
 
@@ -17,5 +18,8 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Long> {
     public default List<SanPham> getSanPhamByIdRange() {
         return sanPhamRepository.findSanPhamByIdRange();
     }
+
+    // Phương thức tìm sản phẩm theo ID
+    Optional<SanPham> findById(Long id);
 
 }

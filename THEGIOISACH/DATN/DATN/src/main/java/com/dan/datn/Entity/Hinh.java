@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Base64;
+
 @Entity
 @Table(name = "Hinh")
 @Getter
@@ -34,4 +36,30 @@ public class Hinh {
 
     @Transient
     private String base64Image;
+
+    // Method to convert byte[] to base64 string
+    public String encodeBase64(byte[] image) {
+        return Base64.getEncoder().encodeToString(image);
+    }
+
+    // Get base64 representation for all images
+    public String getBase64MainImage() {
+        return encodeBase64(this.hinhMain);
+    }
+
+    public String getBase64Hinh1() {
+        return encodeBase64(this.hinh1);
+    }
+
+    public String getBase64Hinh2() {
+        return encodeBase64(this.hinh2);
+    }
+
+    public String getBase64Hinh3() {
+        return encodeBase64(this.hinh3);
+    }
+
+    public String getBase64Hinh4() {
+        return encodeBase64(this.hinh4);
+    }
 }
