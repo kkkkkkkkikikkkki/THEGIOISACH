@@ -13,6 +13,7 @@ import java.util.Base64;
 import java.util.List;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import static com.dan.datn.Service.SanPhamService.sanPhamRepository;
 
@@ -42,6 +43,7 @@ public class TrangChuController {
         model.addAttribute("username", username);
         return "index/trangChu";
     }
+
 
     @GetMapping ("/dangnhap")
     public String showDangNhap(){
