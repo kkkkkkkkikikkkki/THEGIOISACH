@@ -100,6 +100,7 @@
         border-radius: 10px;
         /* Bo góc cho hộp chi tiết sản phẩm */
         padding: 20px;
+        margin-left: 55px;
         /* Padding cho hộp chi tiết sản phẩm */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         /* Đổ bóng cho hộp chi tiết sản phẩm */
@@ -217,7 +218,7 @@
         /* Thêm đổ bóng cho khung */
         max-width: 45%;
         /* Đặt chiều rộng tối đa cho toàn bộ ô bọc */
-        margin: 0 auto;
+        margin-right: 10px;
         /* Căn giữa khung theo chiều ngang */
     }
 
@@ -418,7 +419,7 @@
     <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="#">
-            <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
+            <img src="/image/logo.png" alt="Logo" width="́81" height="40">
         </a>
 
         <!-- Toggle button for small screens -->
@@ -430,13 +431,13 @@
             <!-- Navbar items (left aligned) -->
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#!Trang chủ">Trang chủ</a>
+                    <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Thông báo</a>
+                    <a class="nav-link" href="#!Thông báo">Thông báo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Giỏ hàng</a>
+                    <a class="nav-link" href="#!Giỏ hàng">Giỏ hàng</a>
                 </li>
             </ul>
 
@@ -452,7 +453,7 @@
             <ul class="navbar-nav ms-auto">
                 <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
                 <li th:if="${username == null}" class="nav-item">
-                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/login}">Đăng nhập</a>
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/dangnhap}">Đăng nhập</a>
                 </li>
                 <li th:if="${username == null}" class="nav-item">
                     <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
@@ -467,51 +468,34 @@
                 </li>
 
             </ul>
-
         </div>
     </div>
 </nav>
 <body>
-<!-- <div class="container mt-2">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Sách nước ngoài</a></li>
-            <li class="breadcrumb-item"><a href="#">Sách Nhật Bản</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Sách Manga</li>
-        </ol>
-    </nav>
-</div> -->
 <div class="container mt-2">
     <!-- Bắt đầu sản phẩm chính -->
     <div class="row mt-4">
-        <div class="image-wrapper">
+        <div class="image-wrapper" th:each="sanpham : ${sanpham}">
             <!-- Hình ảnh chính -->
-            <img id="mainImage" src="images/hinh1.webp" alt="Main Image" class="main-image">
+            <img th:src="'data:image/png;base64,' + ${sanpham.hinh.base64Image}" id="mainImage" alt="Main Image" class="main-image">
 
             <!-- Container chứa các hình thu nhỏ -->
             <div class="thumbnail-container">
-                <img src="images/hinh1.webp" alt="Thumbnail 1" onclick="changeImage(this)">
-                <img src="images/hinh4.webp" alt="Thumbnail 2" onclick="changeImage(this)">
-                <img src="images/hinh5.webp" alt="Thumbnail 3" onclick="changeImage(this)">
-                <img src="images/hinh6.webp" alt="Thumbnail 4" onclick="changeImage(this)">
+                <img th:src="'data:image/png;base64,' + ${base64Image1}" alt="Thumbnail 1" onclick="changeImage(this)">
+                <img th:src="'data:image/png;base64,' + ${base64Image2}" alt="Thumbnail 2" onclick="changeImage(this)">
+                <img th:src="'data:image/png;base64,' + ${base64Image3}" alt="Thumbnail 3" onclick="changeImage(this)">
+                <img th:src="'data:image/png;base64,' + ${base64Image4}" alt="Thumbnail 4" onclick="changeImage(this)">
             </div>
         </div>
-        <div class="col-md-6 product-details">
-            <h2>Tên Sách - Tập - Quà tặng kèm</h2>
+        <div class="col-md-6 product-details" th:each="sanpham : ${sanpham}">
+            <h2 th:text="${sanpham.tenSach}">Tên Sách - Tập - Quà tặng kèm</h2>
             <p class="rating">⭐⭐⭐⭐⭐(5/5) | Đã bán (999)</p>
-            <p><strong>Giá:</strong> 221.500 VNĐ</p>
-            <p><strong>Nhà cung cấp:</strong> ABC</p>
-            <p><strong>Nhà xuất bản:</strong> ABCD</p>
-            <p><strong>Tác giả:</strong> ABCDE</p>
-            <p><strong>Hình thức bìa:</strong> Bìa mềm</p>
-            <p><strong>Số lượng:</strong> <input type="number" value="1" min="1" style="width: 60px;"
+            <p><strong>Giá: </strong><span th:attr="data-price=${sanpham.gia}"></span></p>
+            <p><strong>Nhà xuất bản: </strong><span th:text="${sanpham.nhaXuatBan}"></span></p>
+            <p><strong>Tác giả: </strong><span th:text="${sanpham.tacGia}"></span></p>
+            <p><strong>Số lượng: </strong><span th:text="${sanpham.soLuongTongSanPham}"></span> <input type="number" value="1" min="1" style="width: 60px;"
                                                  class="form-control d-inline-block"> </p>
-            <h3>Mô tả sản phẩm</h3>
-            <p class="description">
-                Đây là cuốn sách giúp bạn khám phá thế giới qua những câu chuyện hấp dẫn, thú vị.
-                Tặng kèm bút đánh dấu và bookmark độc quyền khi mua sách. Cuốn sách phù hợp cho mọi lứa tuổi, giúp
-                nâng cao kiến thức và phát triển kỹ năng tư duy.
-            </p>
+            <h3>Mô tả sản phẩm</h3><span th:text="${sanpham.moTa}"></span>
             <hr>
             <button class="btn btn-gray"><i class="bi bi-cart"></i> Thêm vào giỏ hàng</button>
             <button class="btn btn-pink">Mua Ngay</button>
@@ -646,10 +630,18 @@
     </div>
 </footer>
 <script>
-
+    // Hàm thay đổi hình ảnh chính khi click vào hình thu nhỏ
     function changeImage(thumbnail) {
         var mainImage = document.getElementById('mainImage');
         mainImage.src = thumbnail.src;
     }
+    //mã xử lý đổi đơn vị tiền tệ
+    function formatVND(price) {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+    }
+    document.querySelectorAll('.gia-san-pham').forEach(element => {
+        const price = element.getAttribute('data-price');
+        element.textContent = formatVND(price);
+    });
 </script>
 </html>
