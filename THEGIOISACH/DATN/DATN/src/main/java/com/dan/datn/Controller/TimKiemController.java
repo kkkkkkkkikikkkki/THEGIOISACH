@@ -2,6 +2,7 @@ package com.dan.datn.Controller;
 
 import com.dan.datn.Entity.SanPham;
 import com.dan.datn.Service.SanPhamService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +17,15 @@ public class TimKiemController {
 
     @Autowired
     private SanPhamService sanPhamService;
+    @Autowired
+    private HttpSession httpSession;
 
     @GetMapping("/search")
     public String searchSanPham(@RequestParam("keyword") String keyword, Model model) {
         List<SanPham> sanPhams = sanPhamService.searchAllFields(keyword);
         model.addAttribute("sanPhams", sanPhams);
+        String username = (String) httpSession.getAttribute("username");
+        model.addAttribute("username", username);
         return "index/sanPhamSauTimKiem"; // Trang hiển thị kết quả tìm kiếm
     }
 
