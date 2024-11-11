@@ -62,4 +62,6 @@ public class SanPham {
 
     @OneToMany(mappedBy = "sanPham")
     private List<ThongKe> thongKeList;
+
+
 }
