@@ -35,4 +35,22 @@ public class SanPhamService {
             throw new IllegalArgumentException("Sản phẩm không tồn tại với ID: " + id);
         }
     }
+
+    public List<SanPham> searchAllFields(String keyword) {
+        List<SanPham> sanPhams = sanPhamRepository.searchAllFields(keyword);
+
+        // Chuyển đổi hình ảnh sang Base64
+        for (SanPham sp : sanPhams) {
+            if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
+                sp.getHinh().setBase64Image(sp.getHinh().getBase64MainImage());
+            }
+        }
+
+        return sanPhams;
+    }
+
+    public List<String> findSuggestions(String keyword) {
+        return sanPhamRepository.findSuggestionsByKeyword(keyword);
+    }
+
 }
