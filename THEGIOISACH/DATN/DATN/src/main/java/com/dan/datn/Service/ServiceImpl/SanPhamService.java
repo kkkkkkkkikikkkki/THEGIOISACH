@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SanPhamService {
@@ -23,5 +24,15 @@ public class SanPhamService {
 
     public List<SanPham> getSanPhamByIdRange() {
         return sanPhamRepository.findSanPhamByIdRange();
+    }
+
+    // Phương thức lấy sản phẩm theo ID
+    public SanPham getSanPhamById(Long id) {
+        Optional<SanPham> sanPham = sanPhamRepository.findById(id);
+        if (sanPham.isPresent()) {
+            return sanPham.get();
+        } else {
+            throw new IllegalArgumentException("Sản phẩm không tồn tại với ID: " + id);
+        }
     }
 }
