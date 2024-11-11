@@ -54,6 +54,7 @@ public class SanPham {
     @JoinColumn(name = "ID_hinh", nullable = false)
     private Hinh hinh;
 
+
     @OneToMany(mappedBy = "sanPham")
     private List<DanhGia> danhGiaList;
 

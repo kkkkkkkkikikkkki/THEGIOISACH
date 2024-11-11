@@ -490,7 +490,7 @@
         <div class="col-md-6 product-details" th:each="sanpham : ${sanpham}">
             <h2 th:text="${sanpham.tenSach}">Tên Sách - Tập - Quà tặng kèm</h2>
             <p class="rating">⭐⭐⭐⭐⭐(5/5) | Đã bán (999)</p>
-            <p><strong>Giá: </strong><span th:attr="data-price=${sanpham.gia}"></span></p>
+            <p ><strong>Giá: </strong><span class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></span></p>
             <p><strong>Nhà xuất bản: </strong><span th:text="${sanpham.nhaXuatBan}"></span></p>
             <p><strong>Tác giả: </strong><span th:text="${sanpham.tacGia}"></span></p>
             <p><strong>Số lượng: </strong><span th:text="${sanpham.soLuongTongSanPham}"></span> <input type="number" value="1" min="1" style="width: 60px;"
