@@ -59,20 +59,20 @@ public class trangCaNhanController {
         return "layout/Thongtincanhan";
     }
 
-    @PostMapping("/logout")
-    public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-        session.invalidate();
-
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                cookie.setMaxAge(0);
-                cookie.setPath("/");
-                response.addCookie(cookie);
-            }
-        }
-        return "redirect:/login";
-    }
+//    @PostMapping("/logout")
+//    public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+//        session.invalidate();
+//
+//        Cookie[] cookies = request.getCookies();
+//        if (cookies != null) {
+//            for (Cookie cookie : cookies) {
+//                cookie.setMaxAge(0);
+//                cookie.setPath("/");
+//                response.addCookie(cookie);
+//            }
+//        }
+//        return "redirect:/login";
+//    }
 
     // New method for updating user information
     @PostMapping("/updateUser")

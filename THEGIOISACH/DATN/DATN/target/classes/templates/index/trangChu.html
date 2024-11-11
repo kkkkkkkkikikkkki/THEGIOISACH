@@ -84,7 +84,7 @@
             <!-- Navbar items (left aligned) -->
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#!Trang chủ">Trang chủ</a>
+                    <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#!Thông báo">Thông báo</a>
@@ -164,6 +164,7 @@
                     <h5 class="card-title"  th:text="${sanpham.tenSach}">Sản phẩm 1</h5>
                     <p class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></p>
                     <a href="#!Mua ngay" class="btn btn-primary">Mua ngay</a>
+                    <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="btn btn-primary">Xem chi tiết</a>
                 </div>
             </div>
         </div>
