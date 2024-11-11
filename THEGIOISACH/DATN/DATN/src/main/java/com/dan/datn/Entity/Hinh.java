@@ -44,8 +44,9 @@ public class Hinh {
 
     // Get base64 representation for all images
     public String getBase64MainImage() {
-        return encodeBase64(this.hinhMain);
+        return this.hinhMain != null ? encodeBase64(this.hinhMain) : null;
     }
+
 
     public String getBase64Hinh1() {
         return encodeBase64(this.hinh1);

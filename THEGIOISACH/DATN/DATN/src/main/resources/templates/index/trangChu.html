@@ -64,6 +64,34 @@
         padding: 1rem; /* Thêm khoảng cách bên trong để nội dung không chạm vào các góc */
     }
 
+    /* Hộp gợi ý tìm kiếm */
+    #suggestions-box {
+        position: absolute;
+        top: 100%;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden; /* Chặn thanh trượt ngang */
+        z-index: 1000;
+    }
+
+    /* Mỗi mục gợi ý */
+    .list-group-item {
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        font-size: 14px;
+    }
+
+    /* Hover effect cho các mục gợi ý */
+    .list-group-item:hover {
+        background-color: #f7f7f7;
+        transform: translateX(5px);
+    }
 
 </style>
 
@@ -95,12 +123,14 @@
             </ul>
 
             <!-- Search Form (centered) -->
-            <form class="d-flex mx-auto" role="search" style="width: 400px;">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
+                <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search" aria-label="Search" autocomplete="off">
                 <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
-                    <i class="fas fa-search"></i> <!-- Icon search -->
+                    <i class="fas fa-search"></i>
                 </button>
+                <div id="suggestions-box" class="list-group position-absolute" style="width: 357px; z-index: 1000; "></div>
             </form>
+
 
             <!-- Navbar items (right aligned) -->
             <ul class="navbar-nav ms-auto">
@@ -182,7 +212,7 @@
     <div class="row text-center" >
         <!-- Danh mục sản phẩm 1 -->
         <div class="col-6 col-md-2"  th:each="sanpham : ${sanphams}">
-            <a href="/halloween" class="text-decoration-none text-dark">
+            <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="text-decoration-none text-dark">
                 <img th:src="'data:image/png;base64,' + ${sanpham.hinh.base64Image}" class="card-img-top" alt="Hình sản phẩm">
                 <p th:text="${sanpham.theLoai.theLoai}">Halloween</p>
             </a>
@@ -437,10 +467,58 @@
     function formatVND(price) {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
     }
+
     document.querySelectorAll('.gia-san-pham').forEach(element => {
         const price = element.getAttribute('data-price');
         element.textContent = formatVND(price);
     });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById("search-input");
+        const suggestionsBox = document.getElementById("suggestions-box");
+
+        searchInput.addEventListener("input", () => {
+            const keyword = searchInput.value.trim();
+
+            if (keyword.length === 0) {
+                suggestionsBox.innerHTML = "";
+                return;
+            }
+
+            fetch(`/suggestions?keyword=${keyword}`)
+                .then(response => response.json())
+                .then(suggestions => {
+                    suggestionsBox.innerHTML = "";
+
+                    if (suggestions.length > 0) {
+                        suggestions.forEach(suggestion => {
+                            const item = document.createElement("a");
+                            item.classList.add("list-group-item", "list-group-item-action");
+                            item.textContent = suggestion;
+                            item.href = `/search?keyword=${suggestion}`;
+
+                            item.addEventListener("click", () => {
+                                searchInput.value = suggestion;
+                                suggestionsBox.innerHTML = "";
+                            });
+
+                            suggestionsBox.appendChild(item);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching suggestions:", error);
+                });
+        });
+
+        // Đóng gợi ý khi nhấp ra ngoài
+        document.addEventListener("click", (e) => {
+            if (!searchInput.contains(e.target)) {
+                suggestionsBox.innerHTML = "";
+            }
+        });
+    });
+
 </script>
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.dan.datn.Repository;
 import com.dan.datn.Entity.SanPham;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,5 +22,19 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Long> {
 
     // Phương thức tìm sản phẩm theo ID
     Optional<SanPham> findById(Long id);
+
+    @Query("SELECT s FROM SanPham s " +
+            "JOIN FETCH s.hinh h " +
+            "JOIN FETCH s.theLoai tl " +
+            "WHERE LOWER(s.tenSach) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
+            "OR LOWER(s.nhaXuatBan) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
+            "OR LOWER(s.tacGia) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
+            "OR LOWER(s.moTa) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
+            "OR LOWER(tl.theLoai) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    List<SanPham> searchAllFields(String keyword);
+
+    @Query("SELECT s.tenSach FROM SanPham s WHERE LOWER(s.tenSach) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    List<String> findSuggestionsByKeyword(@Param("keyword") String keyword);
+
 
 }
