@@ -9,8 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
+import java.util.Optional;
 
 import static com.dan.datn.Service.SanPhamService.sanPhamRepository;
 
@@ -24,7 +29,9 @@ public class ChiTietSanPhamController {
     public String viewProductDetails(@PathVariable("id") Long id, Model model) {
         SanPham sanpham = sanPhamRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Sản phẩm không tồn tại với ID: " + id));
+        session.setAttribute("sanpham", sanpham);  // Lưu sản phẩm vào session
         model.addAttribute("sanpham", sanpham);
+
         // Kiểm tra sản phẩm có hình ảnh không và chuyển các hình ảnh thành base64
         if (sanpham.getHinh() != null) {
             Hinh hinh = sanpham.getHinh();
@@ -49,4 +56,11 @@ public class ChiTietSanPhamController {
         model.addAttribute("username", username);
         return "index/chiTietSanPham";  // Chuyển hướng đến trang chi tiết sản phẩm
     }
+
+
+
+
+
+
+
 }
