@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="done gio hang, chua css lai, hoan thanh 70%">
+    <list default="true" id="769f9173-8bc1-4116-b4a8-b55a72429376" name="Changes" comment="done gio hang">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/GioHangController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/GioHangController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/gioHang.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/gioHang.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/chiTietSanPham.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/chiTietSanPham.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Donhangcuatoi.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Donhangcuatoi.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Thongtincanhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Thongtincanhan.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +72,6 @@
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;Spring Boot.DatnApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;kiet&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
@@ -166,7 +161,8 @@
       <workItem from="1731063411591" duration="49000" />
       <workItem from="1731311262709" duration="12080000" />
       <workItem from="1731331023645" duration="11205000" />
-      <workItem from="1731391848008" duration="2551000" />
+      <workItem from="1731391848008" duration="3001000" />
+      <workItem from="1731397123572" duration="275000" />
     </task>
     <task id="LOCAL-00001" summary="done cac trang giao dien">
       <option name="closed" value="true" />
@@ -208,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731342249993</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="done gio hang">
+      <option name="closed" value="true" />
+      <created>1731394528651</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731394528651</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,7 +223,8 @@
     <MESSAGE value="done cac trang giao dien" />
     <MESSAGE value="sua lai footer" />
     <MESSAGE value="done gio hang, chua css lai, hoan thanh 70%" />
-    <option name="LAST_COMMIT_MESSAGE" value="done gio hang, chua css lai, hoan thanh 70%" />
+    <MESSAGE value="done gio hang" />
+    <option name="LAST_COMMIT_MESSAGE" value="done gio hang" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
