@@ -16,4 +16,6 @@ public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTiet, In
             "JOIN hd.admins nd " +
             "WHERE nd.ten = :username")
     List<HoaDonChiTiet> findChiTietHoaDonByUsername(@Param("username") String username);
+
+
 }

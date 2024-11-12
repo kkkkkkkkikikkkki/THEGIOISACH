@@ -24,5 +24,10 @@ public class TheLoai {
     // Relationships
     @OneToMany(mappedBy = "theLoai")
     private List<SanPham> sanPhamList;
+
+    @Override
+    public String toString() {
+        return this.theLoai;  // Trả về tên thể loại khi đối tượng được in ra
+    }
 }
 
