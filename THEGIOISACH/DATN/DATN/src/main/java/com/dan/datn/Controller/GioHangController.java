@@ -35,6 +35,13 @@ public class GioHangController {
 
     @GetMapping("/giohang")
     public String giohang(Model model) {
+        String username = (String) session.getAttribute("username");
+        model.addAttribute("username", username);
+
+        if (username == null) {
+            model.addAttribute("error", "Bạn vui lòng đăng nhập trước khi truy cập giỏ hàng.");
+            return "index/dangNhap";
+        }
         // Lấy giỏ hàng từ session, nếu chưa có thì tạo mới
         List<SanPham> cart = (List<SanPham>) session.getAttribute("cart");
         if (cart == null) {
@@ -54,6 +61,13 @@ public class GioHangController {
     @PostMapping("/cart")
     public String addToCart(@RequestParam("productId") Long productId, Model model) {
         // Tìm sản phẩm trong cơ sở dữ liệu
+        String username = (String) session.getAttribute("username");
+        model.addAttribute("username", username);
+
+        if (username == null) {
+            model.addAttribute("error", "Bạn vui lòng đăng nhập trước khi truy cập giỏ hàng.");
+            return "index/dangNhap";
+        }
         SanPham sanpham = sanPhamRepository.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("Sản phẩm không tồn tại với ID: " + productId));
 
@@ -108,6 +122,13 @@ public class GioHangController {
     @PostMapping("/removeFromCart")
     public String removeFromCart(@RequestParam("productId") Long productId, Model model) {
         // Lấy giỏ hàng từ session
+        String username = (String) session.getAttribute("username");
+        model.addAttribute("username", username);
+
+        if (username == null) {
+            model.addAttribute("error", "Bạn vui lòng đăng nhập trước khi truy cập giỏ hàng.");
+            return "index/dangNhap";
+        }
         List<SanPham> cart = (List<SanPham>) session.getAttribute("cart");
         if (cart != null) {
             // Tìm sản phẩm trong giỏ hàng và xóa nó
