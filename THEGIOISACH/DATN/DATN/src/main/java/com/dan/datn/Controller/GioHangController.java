@@ -44,14 +44,8 @@ public class GioHangController {
         // Truyền giỏ hàng vào model để hiển thị
         model.addAttribute("cart", cart);
 
-        // Nếu giỏ hàng có sản phẩm, bạn có thể tính tổng giá trị giỏ hàng
-        if (!cart.isEmpty()) {
-            double totalPrice = 0;
-            for (SanPham product : cart) {
-                totalPrice += product.getGia();  // giả sử có phương thức getGia() trả về giá của sản phẩm
-            }
-            model.addAttribute("totalPrice", totalPrice);
-        }
+
+
 
         return "layout/gioHang";  // Trả về view giỏ hàng
     }
@@ -109,5 +103,28 @@ public class GioHangController {
         model.addAttribute("username", session.getAttribute("username"));
 
         return "index/chiTietSanPham";  // Ở lại trang chi tiết sản phẩm
+    }
+
+    @PostMapping("/removeFromCart")
+    public String removeFromCart(@RequestParam("productId") Long productId, Model model) {
+        // Lấy giỏ hàng từ session
+        List<SanPham> cart = (List<SanPham>) session.getAttribute("cart");
+        if (cart != null) {
+            // Tìm sản phẩm trong giỏ hàng và xóa nó
+            cart.removeIf(item -> item.getID_san_pham().equals(productId));
+
+            // Cập nhật lại giỏ hàng trong session
+            session.setAttribute("cart", cart);
+
+            model.addAttribute("success", "Sản phẩm đã được xóa khỏi giỏ hàng");
+        } else {
+            model.addAttribute("error", "Giỏ hàng trống");
+        }
+
+        // Truyền giỏ hàng vào model để hiển thị
+        model.addAttribute("cart", cart);
+        model.addAttribute("username", session.getAttribute("username"));
+
+        return "layout/gioHang";  // Trả về view giỏ hàng
     }
 }
