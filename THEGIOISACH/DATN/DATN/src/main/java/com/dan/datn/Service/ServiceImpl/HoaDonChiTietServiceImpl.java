@@ -15,6 +15,8 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
     @Autowired
     private HoaDonChiTietRepository hoaDonChiTietRepository;
 
+
+
     @Override
     public HoaDonChiTiet createHoaDonChiTiet(HoaDonChiTiet hoaDonChiTiet) {
         return hoaDonChiTietRepository.save(hoaDonChiTiet);
@@ -49,9 +51,6 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
     public List<HoaDonChiTiet> getAllHoaDonChiTiets() {
         return hoaDonChiTietRepository.findAll();
     }
-    @Override
-    public List<HoaDonChiTiet> getChiTietHoaDonByUsername(String username) {
-        return hoaDonChiTietRepository.findChiTietHoaDonByUsername(username);
-    }
+
 
 }

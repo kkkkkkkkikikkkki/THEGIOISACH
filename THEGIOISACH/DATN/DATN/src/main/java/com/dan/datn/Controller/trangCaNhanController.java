@@ -40,7 +40,9 @@ public class trangCaNhanController {
 
     @GetMapping("/thongtintaikhoan")
     public String getThongTinCaNhan(HttpSession session, Model model) {
+//        String username = (String) session.getAttribute("username");
         String username = (String) session.getAttribute("username");
+        model.addAttribute("username", username);
 
         if (username == null) {
             model.addAttribute("error", "Bạn vui lòng đăng nhập trước khi truy cập thông tin cá nhân.");
