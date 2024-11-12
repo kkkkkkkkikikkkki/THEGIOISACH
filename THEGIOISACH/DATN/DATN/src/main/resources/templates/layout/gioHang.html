@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thế giới sách - Giỏ Hàng</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="path/to/your/angularjs/script.js"></script>
+    <script th:src="@{/js/myAppTrangChu.js}"></script>
+</head>
+<!-- Navbar -->
+<style>
+    body{
+        background-color: #FFE4E1;
+    }
+    /* Hiệu ứng hover cho nút Đăng nhập */
+    .btn-outline-secondary:hover {
+        background-color: #FF9999;
+        border-color: #FF9999;
+        color: white;
+    }
+
+    /* Hiệu ứng hover cho nút Đăng ký */
+    .btn-dark:hover {
+        background-color: #FF9999;
+        border-color: #FF9999;
+        color: white;
+    }
+    h5 i {
+        margin-right: 8px;
+    }
+
+    p {
+        font-weight: 500;
+    }
+
+    img {
+        border-radius: 5px;
+    }
+
+    @media (max-width: 768px) {
+        .col-md-2 {
+            margin-bottom: 15px;
+        }
+    }
+
+
+    /* Hộp gợi ý tìm kiếm */
+    #suggestions-box {
+        position: absolute;
+        top: 100%;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden; /* Chặn thanh trượt ngang */
+        z-index: 1000;
+    }
+
+    /* Thiết lập chung */
+    body {
+        background-color: #f8d7da;
+        /* Màu nền nhẹ nhàng */
+    }
+
+    .container {
+        padding: 20px;
+        /* Padding cho container */
+    }
+
+    /* Navbar */
+    .navbar {
+        background-color: #fff;
+        /* Nền navbar trắng */
+        padding: 10px 20px;
+        /* Padding cho navbar */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Đổ bóng nhẹ cho navbar */
+    }
+
+    .navbar-brand img {
+        max-height: 40px;
+        /* Chiều cao tối đa cho logo */
+    }
+
+
+
+    /* Navbar icons */
+    .nav-icons a {
+        margin: 0 70px;
+        /* Khoảng cách giữa các biểu tượng */
+        color: black;
+        /* Màu sắc đen cho biểu tượng */
+        font-size: 24px;
+        /* Kích thước biểu tượng */
+        transition: color 0.3s;
+        /* Hiệu ứng chuyển màu */
+    }
+
+    .nav-icons a:hover {
+        color: #ff7f7f;
+        /* Đổi màu khi hover */
+    }
+
+
+    .dropdown-item img {
+        margin-right: 5px;
+        /* Khoảng cách giữa hình ảnh cờ và chữ */
+    }
+
+    /* Chỉnh sửa bảng giỏ hàng */
+    .table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    .table th,
+    .table td {
+        text-align: center;
+        vertical-align: middle; /* Căn giữa nội dung trong các cell */
+        padding: 12px;
+        border: 1px solid #e0e0e0;
+    }
+
+    /* Chỉnh sửa tiêu đề bảng */
+    .table th {
+        background-color: #f8d7da;
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #333;
+        text-transform: uppercase;
+    }
+
+    /* Sửa giao diện cho các ô trong bảng */
+    .table td {
+        font-size: 1em;
+        color: #555;
+    }
+
+    /* Cải thiện giao diện checkbox */
+    .table input[type="checkbox"] {
+        transform: scale(1.3);
+    }
+
+    /* Cải thiện giao diện hình ảnh sản phẩm */
+    .product-image {
+        width: 100px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-right: 15px;
+    }
+
+    /* Thêm hiệu ứng hover cho các hàng trong bảng */
+    /*.table tbody tr:hover {*/
+    /*    background-color: #f1f1f1;*/
+    /*    cursor: pointer;*/
+    /*}*/
+
+    /* Chỉnh sửa button xóa */
+    .remove-button {
+        background-color: #ff4d4f;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .remove-button:hover {
+        background-color: #e63946;
+    }
+
+    /* Cải thiện nút thanh toán */
+    .checkout-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-right: 60px;
+    }
+
+    .checkout-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Tóm tắt giỏ hàng */
+    .cart-summary {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-left: 60px;
+    }
+
+    /* Định dạng cho tổng tiền */
+    .total-price {
+        font-weight: bold;
+        font-size: 1.2em;
+
+    }
+
+    /* Cải thiện giao diện container của ô nhập số lượng */
+    .quantity-container {
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 40px;/* Căn giữa nội dung */
+    }
+
+    /* Định dạng ô nhập số lượng */
+    .quantity-input {
+        width: 70px; /* Độ rộng của ô nhập */
+        height: 40px; /* Chiều cao của ô nhập */
+        text-align: center; /* Căn giữa nội dung nhập vào */
+        font-size: 1.2em; /* Kích thước chữ trong ô */
+        padding: 8px;
+        border: 1px solid #ccc; /* Viền nhẹ */
+        border-radius: 8px; /* Bo góc mượt mà */
+        background-color: #f9f9f9; /* Màu nền sáng */
+        outline: none; /* Bỏ viền khi focus */
+        transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng chuyển màu viền */
+    }
+
+    /* Hiệu ứng khi focus vào ô nhập */
+    .quantity-input:focus {
+        border-color: #007bff; /* Màu viền khi focus */
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.3); /* Hiệu ứng đổ bóng nhẹ */
+    }
+
+    /* Ẩn các nút điều chỉnh số lượng mặc định của input[type="number"] */
+    .quantity-input::-webkit-outer-spin-button,
+    .quantity-input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Cải thiện hiển thị khi số lượng lớn hơn 1 hoặc 0 */
+    .quantity-input::-webkit-outer-spin-button {
+        display: none;
+    }
+
+    /* Tạo hiệu ứng cho các nút tăng/giảm nếu bạn sử dụng chúng trong tương lai */
+    .quantity-container button {
+        background-color: #e9e9e9;
+        border: 1px solid #ccc;
+        padding: 6px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 0 4px;
+        font-size: 1.2em;
+        transition: background-color 0.3s ease;
+    }
+
+    .quantity-container button:hover {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+    /* Chỉnh sửa checkbox */
+    input[type="checkbox"] {
+        transform: scale(1.2);
+        margin-right: 10px;
+    }
+
+
+    .alert {
+        text-align: center;
+        opacity: 0;
+        transform: translateY(30px); /* Bắt đầu từ dưới */
+        transition: opacity 0.5s, transform 0.5s;
+        width: 30%; /* Điều chỉnh chiều dài thành 80% của màn hình */
+        max-width: 400px; /* Chiều rộng tối đa */
+        position: fixed; /* Đặt thông báo cố định */
+        top: 20px; /* Đặt khoảng cách từ đầu trang */
+        left: 50%; /* Đặt thông báo ở giữa màn hình */
+        transform: translateX(-50%) translateY(30px); /* Đưa thông báo vào giữa màn hình */
+        z-index: 1050; /* Đảm bảo thông báo hiển thị trên các phần tử khác */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .alert.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0); /* Thông báo sẽ nổi lên giữa màn hình */
+    }
+
+    /* Đảm bảo thông báo không bị đè lên nhau */
+    .fixed-top {
+        z-index: 1050;
+    }
+
+    /* Tạo khoảng cách cho thông báo */
+    .m-2 {
+        margin: 20px;
+    }
+
+</style>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+            <img src="/image/logo.png" alt="Logo" width="́81" height="40">
+        </a>
+
+        <!-- Toggle button for small screens -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Navbar items (left aligned) -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#!Thông báo">Thông báo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#!Giỏ hàng">Giỏ hàng</a>
+                </li>
+            </ul>
+
+            <!-- Search Form (centered) -->
+            <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
+                <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search" aria-label="Search" autocomplete="off">
+                <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div id="suggestions-box" class="list-group position-absolute" style="width: 357px; z-index: 1000; "></div>
+            </form>
+
+
+            <!-- Navbar items (right aligned) -->
+            <ul class="navbar-nav ms-auto">
+                <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/dangnhap}">Đăng nhập</a>
+                </li>
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
+                </li>
+
+                <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
+                <li th:if="${username != null}" class="nav-item">
+                    <a href="/trangcanhan" class="nav-link">
+                        <i class="fas fa-user-circle"></i> <!-- Thay thế bằng icon thông tin -->
+                        <span th:text="${username}"></span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div th:if="${success}" class="alert alert-success alert-dismissible fade show fixed-top m-2" role="alert" id="success-alert">
+    <p th:text="${success}"></p>
+</div>
+
+<!-- Hiển thị thông báo lỗi -->
+<div th:if="${error}" class="alert alert-danger alert-dismissible fade show fixed-top m-2" role="alert" id="error-alert">
+    <p th:text="${error}"></p>
+</div>
+<div class="cart-container mt-4">
+    <h1 style="text-align: center">Giỏ Hàng Của Bạn</h1>
+
+    <!-- Checkbox chọn tất cả -->
+    <div class="form-check" style="margin-left: 40px">
+        <input class="form-check-input" type="checkbox" id="select-all">
+        <label class="form-check-label" for="select-all">
+            Chọn tất cả
+        </label>
+    </div>
+
+    <!-- Bảng giỏ hàng -->
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th> Chọn</th>
+            <th>Sản phẩm</th>
+            <th>Tác Giả</th>
+            <th>Thể loại</th>
+            <th>Giá</th>
+            <th>Số Lượng</th>
+            <th>Thao tác</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Lặp qua các sản phẩm trong giỏ hàng -->
+        <tr th:each="sanpham : ${cart}">
+            <td><input type="checkbox" class="product-checkbox"></td>
+            <td>
+                <img th:src="'data:image/png;base64,' + ${sanpham.hinh.base64Image}" alt="Tên sản phẩm" class="product-image">
+                <h5 class="product-name"
+                    style="margin-top: 20px"
+                    th:text="${sanpham.tenSach}">Tên Sản Phẩm</h5>
+            </td>
+            <td class="product-author" th:text="${sanpham.tacGia}">Tác Giả</td>
+            <td class="product-supplier" th:text="${sanpham.theLoai}">Thể Loại</td>
+            <td class="product-price">
+                <span class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></span>
+            </td>
+            <td>
+                <div class="quantity-container" >
+                    <input type="number" name="quantity" value="1" min="1" class="form-control">
+                </div>
+            </td>
+
+            <td>
+                <form action="/removeFromCart" method="post">
+                <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}"/>
+                <button class="remove-button">Xóa</button>
+                </form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <!-- Tóm tắt giỏ hàng -->
+    <div class="cart-summary d-flex justify-content-between align-items-center mt-3">
+        <p>Tổng cộng: <span class="total-price gia-san-pham"></span></p>
+        <button class="checkout-button">Thanh Toán</button>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="bg-light py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Company Info -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">THEGIOISACH</h5>
+                <p class="text-dark">© 2024 THEGIOISACH. Bản quyền thuộc về công ty THEGIOISACH.</p>
+            </div>
+
+            <!-- Services -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Dịch vụ</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Mua sách trực tuyến</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chính sách đổi trả</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Giao hàng tận nơi</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chăm sóc khách hàng</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Hỗ trợ</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Câu hỏi thường gặp</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Liên hệ hỗ trợ</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Liên hệ</h5>
+                <p class="text-dark">Email: support@thegioisach.com</p>
+                <p class="text-dark">Điện thoại: 1900 1234</p>
+                <div class="d-flex justify-content-start">
+                    <a href="#" class="me-3 text-dark" style="text-decoration: none;">
+                        <i class="bi bi-facebook" style="font-size: 24px;"></i>
+                    </a>
+                    <a href="#" class="me-3 text-dark" style="text-decoration: none;">
+                        <i class="bi bi-instagram" style="font-size: 24px;"></i>
+                    </a>
+                    <a href="#" class="me-3 text-dark" style="text-decoration: none;">
+                        <i class="bi bi-tiktok" style="font-size: 24px;"></i>
+                    </a>
+                    <a href="#" class="text-dark" style="text-decoration: none;">
+                        <i class="bi bi-twitter" style="font-size: 24px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectAllCheckbox = document.getElementById('select-all');
+        const productCheckboxes = document.querySelectorAll('.product-checkbox');
+        const totalPriceElement = document.querySelector('.total-price');
+
+        // Hàm định dạng tiền tệ
+        function formatVND(price) {
+            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+        }
+
+        // Hàm tính tổng tiền
+        function calculateTotal() {
+            let total = 0;
+            productCheckboxes.forEach((checkbox, index) => {
+                if (checkbox.checked) {
+                    const priceElement = document.querySelectorAll('.gia-san-pham')[index];
+                    const quantityInput = checkbox.closest('tr').querySelector('input[name="quantity"]');
+
+                    const price = parseFloat(priceElement.getAttribute('data-price'));
+                    const quantity = parseInt(quantityInput.value);
+
+                    total += price * quantity;
+                }
+            });
+            totalPriceElement.textContent = formatVND(total); // Cập nhật tổng tiền
+        }
+        window.onload = function() {
+            // Lấy tất cả các thông báo (cả thành công và lỗi)
+            const successAlert = document.getElementById('success-alert');
+            const errorAlert = document.getElementById('error-alert');
+
+            // Kiểm tra nếu có thông báo thành công hoặc lỗi
+            if (successAlert) {
+                // Hiển thị thông báo thành công
+                successAlert.classList.add('show');
+
+                // Ẩn thông báo sau 5 giây
+                setTimeout(function() {
+                    successAlert.classList.remove('show');
+                }, 5000); // 5000ms = 5s
+            }
+
+            if (errorAlert) {
+                // Hiển thị thông báo lỗi
+                errorAlert.classList.add('show');
+
+                // Ẩn thông báo sau 5 giây
+                setTimeout(function() {
+                    errorAlert.classList.remove('show');
+                }, 5000); // 5000ms = 5s
+            }
+        };
+
+
+        // Xử lý khi click vào checkbox "Chọn tất cả"
+        selectAllCheckbox.addEventListener('change', () => {
+            const isChecked = selectAllCheckbox.checked;
+            productCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+            calculateTotal(); // Cập nhật tổng tiền
+        });
+
+        // Lắng nghe sự kiện thay đổi cho các checkbox sản phẩm riêng lẻ
+        productCheckboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', () => {
+                calculateTotal(); // Cập nhật tổng tiền
+                const allChecked = Array.from(productCheckboxes).every(chk => chk.checked);
+                selectAllCheckbox.checked = allChecked;
+            });
+        });
+
+        // Lắng nghe sự kiện thay đổi cho ô nhập số lượng
+        document.querySelectorAll('input[name="quantity"]').forEach(input => {
+            input.addEventListener('change', calculateTotal); // Cập nhật tổng tiền khi thay đổi số lượng
+        });
+
+        // Tính toán tổng tiền ngay khi trang được tải
+        calculateTotal();
+    });
+
+    //mã xử lý đổi đơn vị tiền tệ
+    function formatVND(price) {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+    }
+
+    document.querySelectorAll('.gia-san-pham').forEach(element => {
+        const price = element.getAttribute('data-price');
+        element.textContent = formatVND(price);
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectAllCheckbox = document.getElementById('select-all');
+        const productCheckboxes = document.querySelectorAll('.product-checkbox');
+        const selectAllProductsCheckbox = document.getElementById('select-all-products');
+
+        // Xử lý khi click vào checkbox "Chọn tất cả"
+        selectAllCheckbox.addEventListener('change', () => {
+            const isChecked = selectAllCheckbox.checked;
+            productCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+        });
+
+        // Xử lý khi click vào checkbox "Chọn tất cả sản phẩm" trong bảng
+        selectAllProductsCheckbox.addEventListener('change', () => {
+            const isChecked = selectAllProductsCheckbox.checked;
+            productCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+        });
+
+        // Lắng nghe sự kiện thay đổi cho các checkbox sản phẩm riêng lẻ
+        productCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                // Kiểm tra nếu tất cả các checkbox đều được chọn, thì chọn "Chọn tất cả"
+                const allChecked = Array.from(productCheckboxes).every(chk => chk.checked);
+                selectAllCheckbox.checked = allChecked;
+            });
+        });
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectAllCheckbox = document.getElementById('select-all'); // Checkbox "Chọn tất cả" ở đầu trang
+        const productCheckboxes = document.querySelectorAll('.product-checkbox'); // Các checkbox sản phẩm trong bảng
+        const selectAllProductsCheckbox = document.getElementById('select-all-products'); // Checkbox "Chọn tất cả sản phẩm" trong bảng
+
+        // Xử lý khi click vào checkbox "Chọn tất cả"
+        selectAllCheckbox.addEventListener('change', () => {
+            const isChecked = selectAllCheckbox.checked;
+            productCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+        });
+
+        // Xử lý khi click vào checkbox "Chọn tất cả sản phẩm" trong bảng
+        selectAllProductsCheckbox.addEventListener('change', () => {
+            const isChecked = selectAllProductsCheckbox.checked;
+            productCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+        });
+
+        // Lắng nghe sự kiện thay đổi cho các checkbox sản phẩm riêng lẻ
+        productCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                // Kiểm tra nếu tất cả các checkbox đều được chọn, thì chọn "Chọn tất cả"
+                const allChecked = Array.from(productCheckboxes).every(chk => chk.checked);
+                selectAllCheckbox.checked = allChecked;
+            });
+        });
+    });
+
+        // Đóng gợi ý khi nhấp ra ngoài
+        document.addEventListener("click", (e) => {
+            if (!searchInput.contains(e.target)) {
+                suggestionsBox.innerHTML = "";
+            }
+        });
+
+</script>
+</body>
+</html>

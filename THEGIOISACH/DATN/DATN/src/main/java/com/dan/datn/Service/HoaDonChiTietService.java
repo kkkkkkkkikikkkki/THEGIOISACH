@@ -11,6 +11,5 @@ public interface HoaDonChiTietService {
     HoaDonChiTiet getHoaDonChiTietById(Integer id);
     List<HoaDonChiTiet> getAllHoaDonChiTiets();
     // In HoaDonChiTietService.java
-    List<HoaDonChiTiet> getChiTietHoaDonByUsername(String username);
 
 }
