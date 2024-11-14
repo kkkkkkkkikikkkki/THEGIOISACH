@@ -52,6 +52,34 @@
             text-overflow: ellipsis;  /* Adds ellipsis for overflow text */
             max-width: calc(100% - 20px); /* Adjust as necessary to fit within the card */
         }
+        /* Hộp gợi ý tìm kiếm */
+        #suggestions-box {
+            position: absolute;
+            top: 100%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            overflow-x: hidden; /* Chặn thanh trượt ngang */
+            z-index: 1000;
+        }
+
+        /* Mỗi mục gợi ý */
+        .list-group-item {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            font-size: 14px;
+        }
+
+        /* Hover effect cho các mục gợi ý */
+        .list-group-item:hover {
+            background-color: #f7f7f7;
+            transform: translateX(5px);
+        }
     </style>
 </head>
 <body>
@@ -59,21 +87,30 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
+        <!-- Logo -->
         <a class="navbar-brand" href="#">
-            <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
+            <img src="/image/logo.png" alt="Logo" width="́81" height="40">
         </a>
+
+        <!-- Toggle button for small screens -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Navbar items (left aligned) -->
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Thông báo</a>
+                    <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Giỏ hàng</a>
+                    <a class="nav-link" href="#!Thông báo">Thông báo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#!Giỏ hàng">Giỏ hàng</a>
                 </li>
             </ul>
+
             <!-- Search Form (centered) -->
             <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
                 <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search" aria-label="Search" autocomplete="off">
@@ -82,20 +119,33 @@
                 </button>
                 <div id="suggestions-box" class="list-group position-absolute" style="width: 357px; z-index: 1000; "></div>
             </form>
+
+
+            <!-- Navbar items (right aligned) -->
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link btn btn-outline-secondary me-2" href="#">Đăng nhập</a>
+                <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/dangnhap}">Đăng nhập</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-dark" href="#">Đăng ký</a>
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
                 </li>
+
+                <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
+                <li th:if="${username != null}" class="nav-item">
+                    <a href="/trangcanhan" class="nav-link">
+                        <i class="fas fa-user-circle"></i> <!-- Thay thế bằng icon thông tin -->
+                        <span th:text="${username}"></span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>
 </nav>
 
 <!-- Main Content -->
-<div class="container mt-6" style="margin-top: 50px;">
+<div class="container mt-6" style="margin-top: 50px; max-width: 1600px">
     <div class="outer-wrapper"> <!-- Outer wrapper for both forms -->
         <div class="row">
             <!-- Sidebar Form -->
@@ -163,18 +213,15 @@
                             <p>Không tìm thấy sản phẩm nào.</p>
                         </div>
 
-                            <div th:each="sanPham : ${sanPhams}"  class="col-md-4">
+                            <div th:each="sanPham : ${sanPhams}"  class="col-md-3" style="margin-bottom: 15px">
                                 <div class="card">
                                     <img th:if="${sanPham.hinh != null && sanPham.hinh.base64Image != null}"
                                          th:src="'data:image/png;base64,' + ${sanPham.hinh.base64Image}"
-                                         alt="Main Image" class="main-image">
+                                         alt="Main Image" class="main-image" style="aspect-ratio: 9 / 16;object-fit: cover;">
                                     <div class="card-body">
                                         <h6 class="card-title" th:text="${sanPham.tenSach}"></h6>
-                                        <p>Tác giả: <span th:text="${sanPham.tacGia}"></span></p>
-                                        <p>Nhà xuất bản: <span th:text="${sanPham.nhaXuatBan}"></span></p>
                                         <p>Thể loại: <span th:text="${sanPham.theLoai.theLoai}"></span></p>
                                         <p>Giá: <span class="gia-san-pham" th:attr="data-price=${sanPham.gia}"></span></p>
-                                        <p>Mô tả: <span th:text="${sanPham.moTa}"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -225,6 +272,51 @@
     document.querySelectorAll('.gia-san-pham').forEach(element => {
         const price = element.getAttribute('data-price');
         element.textContent = formatVND(price);
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById("search-input");
+        const suggestionsBox = document.getElementById("suggestions-box");
+
+        searchInput.addEventListener("input", () => {
+            const keyword = searchInput.value.trim();
+
+            if (keyword.length === 0) {
+                suggestionsBox.innerHTML = "";
+                return;
+            }
+
+            fetch(`/suggestions?keyword=${keyword}`)
+                .then(response => response.json())
+                .then(suggestions => {
+                    suggestionsBox.innerHTML = "";
+
+                    if (suggestions.length > 0) {
+                        suggestions.forEach(suggestion => {
+                            const item = document.createElement("a");
+                            item.classList.add("list-group-item", "list-group-item-action");
+                            item.textContent = suggestion;
+                            item.href = `/search?keyword=${suggestion}`;
+
+                            item.addEventListener("click", () => {
+                                searchInput.value = suggestion;
+                                suggestionsBox.innerHTML = "";
+                            });
+
+                            suggestionsBox.appendChild(item);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching suggestions:", error);
+                });
+        });
+
+        // Đóng gợi ý khi nhấp ra ngoài
+        document.addEventListener("click", (e) => {
+            if (!searchInput.contains(e.target)) {
+                suggestionsBox.innerHTML = "";
+            }
+        });
     });
 </script>
 </body>

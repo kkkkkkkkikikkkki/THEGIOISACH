@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -414,37 +414,6 @@
         border-radius: 10px; /* Bo tròn các góc với bán kính 10px */
         padding: 1rem; /* Thêm khoảng cách bên trong để nội dung không chạm vào các góc */
     }
-
-    .alert {
-        text-align: center;
-        opacity: 0;
-        transform: translateY(30px); /* Bắt đầu từ dưới */
-        transition: opacity 0.5s, transform 0.5s;
-        width: 30%; /* Điều chỉnh chiều dài thành 80% của màn hình */
-        max-width: 400px; /* Chiều rộng tối đa */
-        position: fixed; /* Đặt thông báo cố định */
-        top: 20px; /* Đặt khoảng cách từ đầu trang */
-        left: 50%; /* Đặt thông báo ở giữa màn hình */
-        transform: translateX(-50%) translateY(30px); /* Đưa thông báo vào giữa màn hình */
-        z-index: 1050; /* Đảm bảo thông báo hiển thị trên các phần tử khác */
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .alert.show {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0); /* Thông báo sẽ nổi lên giữa màn hình */
-    }
-
-    /* Đảm bảo thông báo không bị đè lên nhau */
-    .fixed-top {
-        z-index: 1050;
-    }
-
-    /* Tạo khoảng cách cho thông báo */
-    .m-2 {
-        margin: 20px;
-    }
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -468,7 +437,7 @@
                     <a class="nav-link" href="#!Thông báo">Thông báo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/giohang}">Giỏ hàng</a>
+                    <a class="nav-link" href="#!Giỏ hàng">Giỏ hàng</a>
                 </li>
             </ul>
 
@@ -503,20 +472,9 @@
     </div>
 </nav>
 <body>
-<!-- Hiển thị thông báo thành công -->
-<div th:if="${success}" class="alert alert-success alert-dismissible fade show fixed-top m-2" role="alert" id="success-alert">
-    <p th:text="${success}"></p>
-</div>
-
-<!-- Hiển thị thông báo lỗi -->
-<div th:if="${error}" class="alert alert-danger alert-dismissible fade show fixed-top m-2" role="alert" id="error-alert">
-    <p th:text="${error}"></p>
-</div>
-
-<section class="container mt-2">
+<div class="container mt-2">
     <!-- Bắt đầu sản phẩm chính -->
     <div class="row mt-4">
-
         <div class="image-wrapper" th:each="sanpham : ${sanpham}">
             <!-- Hình ảnh chính -->
             <img th:src="'data:image/png;base64,' + ${sanpham.hinh.base64Image}" id="mainImage" alt="Main Image" class="main-image">
@@ -532,31 +490,89 @@
         <div class="col-md-6 product-details" th:each="sanpham : ${sanpham}">
             <h2 th:text="${sanpham.tenSach}">Tên Sách - Tập - Quà tặng kèm</h2>
             <p class="rating">⭐⭐⭐⭐⭐(5/5) | Đã bán (999)</p>
-            <p><strong>Giá: </strong><span class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></span></p>
+            <p ><strong>Giá: </strong><span class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></span></p>
             <p><strong>Nhà xuất bản: </strong><span th:text="${sanpham.nhaXuatBan}"></span></p>
             <p><strong>Tác giả: </strong><span th:text="${sanpham.tacGia}"></span></p>
-            <p><strong>Số lượng: </strong><span th:text="${sanpham.soLuongTongSanPham}"></span>
-                <input type="number" name="quantity" value="1" min="1" style="width: 60px;" class="form-control d-inline-block">
-            </p>
+            <p><strong>Số lượng: </strong><span th:text="${sanpham.soLuongTongSanPham}"></span> <input type="number" value="1" min="1" style="width: 60px;"
+                                                 class="form-control d-inline-block"> </p>
             <h3>Mô tả sản phẩm</h3><span th:text="${sanpham.moTa}"></span>
             <hr>
-
-            <!-- Form để thêm vào giỏ hàng -->
-            <form>
-                <div>
-                    <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}"/>
-                    <button formaction="/cart" formmethod="POST" class="btn btn-gray" type="submit">
-                        <i class="bi bi-cart"></i> Thêm vào giỏ hàng
-                    </button>
-                    <button class="btn btn-pink">Mua Ngay</button>
-                </div>
-
-            </form>
-
-
+            <button class="btn btn-gray"><i class="bi bi-cart"></i> Thêm vào giỏ hàng</button>
+            <button class="btn btn-pink">Mua Ngay</button>
         </div>
+        <div class="related-products-wrapper mt-4">
+            <h4>Sản phẩm liên quan</h4>
+            <div class="related-products d-flex overflow-auto">
+                <div class="related-product me-3">
+                    <img src="images/hinh1.webp" alt="Sản phẩm liên quan 1" class="img-fluid">
+                    <p>Tên sản phẩm 1</p>
+                    <p>Giá: 150.000 VNĐ</p>
+                </div>
+                <div class="related-product me-3">
+                    <img src="images/hinh1.webp" alt="Sản phẩm liên quan 2" class="img-fluid">
+                    <p>Tên sản phẩm 2</p>
+                    <p>Giá: 200.000 VNĐ</p>
+                </div>
+                <div class="related-product me-3">
+                    <img src="images/hinh1.webp" alt="Sản phẩm liên quan 3" class="img-fluid">
+                    <p>Tên sản phẩm 3</p>
+                    <p>Giá: 180.000 VNĐ</p>
+                </div>
+                <div class="related-product me-3">
+                    <img src="images/hinh1.webp" alt="Sản phẩm liên quan 4" class="img-fluid">
+                    <p>Tên sản phẩm 4</p>
+                    <p>Giá: 180.000 VNĐ</p>
+                </div>
+                <div class="related-product me-3">
+                    <img src="images/hinh1.webp" alt="Sản phẩm liên quan 5" class="img-fluid">
+                    <p>Tên sản phẩm 5</p>
+                    <p>Giá: 180.000 VNĐ</p>
+                </div>
+                <div class="related-product me-3">
+                    <img src="images/hinh1.webp" alt="Sản phẩm liên quan 6" class="img-fluid">
+                    <p>Tên sản phẩm 6</p>
+                    <p>Giá: 180.000 VNĐ</p>
+                </div>
+            </div>
+        </div>
+        <div class="review-wrapper mt-4">
+            <h4>Đánh giá sản phẩm</h4>
+            <textarea class="form-control" rows="3" placeholder="Ghi nhận đánh giá của bạn..."></textarea>
+            <button class="btn btn-danger mt-2">Gửi đánh giá</button>
+
+            <h4>Đánh giá của người dùng</h4>
+            <!-- Đánh giá 1 -->
+            <div class="review">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="stars">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star"></i>
+                    </div>
+                    <span class="ms-2">Nguyễn Văn A</span>
+                </div>
+                <p>Cuốn sách rất hay, nội dung hấp dẫn và dễ hiểu!</p>
+            </div>
+            <!-- Đánh giá 2 -->
+            <div class="review">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="stars">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star"></i>
+                    </div>
+                    <span class="ms-2">Trần Thị B</span>
+                </div>
+                <p>Mô tả sản phẩm cần chi tiết hơn, nhưng nhìn chung là tốt!</p>
+            </div>
+        </div>
+
     </div>
-</section>
+</div>
 </body>
 <!-- Footer -->
 <footer class="bg-light py-5 mt-5">
@@ -627,33 +643,5 @@
         const price = element.getAttribute('data-price');
         element.textContent = formatVND(price);
     });
-    window.onload = function() {
-        // Lấy tất cả các thông báo (cả thành công và lỗi)
-        const successAlert = document.getElementById('success-alert');
-        const errorAlert = document.getElementById('error-alert');
-
-        // Kiểm tra nếu có thông báo thành công hoặc lỗi
-        if (successAlert) {
-            // Hiển thị thông báo thành công
-            successAlert.classList.add('show');
-
-            // Ẩn thông báo sau 5 giây
-            setTimeout(function() {
-                successAlert.classList.remove('show');
-            }, 5000); // 5000ms = 5s
-        }
-
-        if (errorAlert) {
-            // Hiển thị thông báo lỗi
-            errorAlert.classList.add('show');
-
-            // Ẩn thông báo sau 5 giây
-            setTimeout(function() {
-                errorAlert.classList.remove('show');
-            }, 5000); // 5000ms = 5s
-        }
-    };
-
-
 </script>
 </html>
