@@ -1,10 +1,11 @@
-package com.dan.datn.Service;
+package com.dan.datn.Service.ServiceImpl;
 
 import com.dan.datn.Entity.SanPham;
 import com.dan.datn.Repository.SanPhamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +25,17 @@ public class SanPhamService {
 
     public List<SanPham> getSanPhamByIdRange() {
         return sanPhamRepository.findSanPhamByIdRange();
+    }
+
+    // Lấy sản phẩm theo danh sách ID cụ thể
+    public List<SanPham> getSanPhamBySpecificIds() {
+        return sanPhamRepository.findSanPhamBySpecificIds();
+    }
+
+    public List<SanPham> getSanPhamSanPham(int limit) {
+        List<SanPham> allSanPhams = sanPhamRepository.findAll();
+        Collections.shuffle(allSanPhams);
+        return allSanPhams.subList(0, Math.min(limit, allSanPhams.size()));
     }
 
     // Phương thức lấy sản phẩm theo ID

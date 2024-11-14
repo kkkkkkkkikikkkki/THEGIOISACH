@@ -189,7 +189,6 @@
         </div>
     </div>
 </section>
-
 <!-- CSS để điều chỉnh chiều cao -->
 <style>
     .carousel, .carousel-inner, .carousel-item {
@@ -204,9 +203,19 @@
 
 <section class="container mt-5" style="height: auto">
     <h3 class="text-center">Sản phẩm nổi bật</h3>
-    <div class="row">
+<section class="container mt-5 " style="height: auto">
+  <div class="row">
+        <div class="col-12">
+            <div class="bg-danger text-white p-2 rounded">
+                <h5 class="fw-bold">
+                    <i class="fas fa-chart-line"></i> Xu Hướng Mua Sắm
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="row ">
         <!-- Card sản phẩm -->
-        <div class="col-md-3" th:each="sanpham : ${sanphams}">
+        <div class="col-md-3" th:each="sanpham : ${sanphamsNoiBat}" style="margin-bottom: 15px">
             <div class="card">
                 <img th:src="'data:image/png;base64,' + ${sanpham.hinh.base64Image}" class="card-img-top" alt="Hình sản phẩm">
                 <div class="card-body">
@@ -220,7 +229,7 @@
     </div>
 </section>
 <!-- Danh muc san pham -->
-<div class="container mt-4">
+<div class="container mt-4 trend-section">
     <div class="row">
         <div class="col-12">
             <h5 class="fw-bold">
@@ -230,9 +239,9 @@
     </div>
     <div class="row text-center" >
         <!-- Danh mục sản phẩm 1 -->
-        <div class="col-6 col-md-2"  th:each="sanpham : ${sanphams}">
+        <div class="col-6 col-md-2"  th:each="sanpham : ${sanphamsTheLoai}">
             <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="text-decoration-none text-dark">
-                <img th:src="'data:image/png;base64,' + ${sanpham.hinh.base64Image}" class="card-img-top" alt="Hình sản phẩm">
+                <img th:src="'data:image/png;base64,' + ${sanpham.hinh.base64Image}" class="card-img-top" alt="Hình sản phẩm" >
                 <p th:text="${sanpham.theLoai.theLoai}">Halloween</p>
             </a>
         </div>
@@ -241,180 +250,17 @@
 <!-- Xu huong mua sam -->
 <div class="container mt-4 trend-section">
     <div class="row">
-        <div class="col-12">
-            <div class="bg-danger text-white p-2 rounded">
-                <h5 class="fw-bold">
-                    <i class="fas fa-chart-line"></i> Xu Hướng Mua Sắm
-                </h5>
-            </div>
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active text-dark" href="#">Xu Hướng Theo Ngày</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Sách HOT - Giảm Sốc</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Bestseller Ngoại Văn</a>
-                </li>
-            </ul>
-        </div>
+        <h3 class="text-center">Sản phẩm</h3>
     </div>
-
-    <div class="row mt-3">
+    <div class="row mt-3" >
         <!-- Sản phẩm 1 -->
-        <div class="col-6 col-md-2 text-center">
-            <a href="link-to-product-1.html" class="text-decoration-none">
+        <div class="col-6 col-md-2 text-center" th:each="sanpham : ${SanPhamSanPhams}" style="margin-bottom: 15px">
+            <a href="link-to-product-1.html" class="text-decoration-none" th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}">
                 <div class="border p-2 rounded">
-                    <img src="https://via.placeholder.com/150x200" alt="Sản phẩm 1" class="img-fluid">
-                    <p class="mt-2 product-name text-dark">25 Độ Âm</p>
+                    <img th:src="'data:image/png;base64,' + ${sanpham.hinh.base64Image}" alt="Sản phẩm 1" class="img-fluid" style=" width: 500px;aspect-ratio: 9 / 16;object-fit: cover;">
+                    <p class="mt-2 product-name text-dark" th:text="${sanpham.tenSach}">25 Độ Âm</p>
                     <div class="d-flex justify-content-center align-items-center">
-                        <p class="fw-bold text-danger mb-0">126.400 đ</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Sản phẩm 2 -->
-        <div class="col-6 col-md-2 text-center">
-            <a href="link-to-product-2.html" class="text-decoration-none">
-                <div class="border p-2 rounded">
-                    <img src="https://via.placeholder.com/150x200" alt="Sản phẩm 2" class="img-fluid">
-                    <p class="mt-2 product-name text-dark">Nexus - Lược Sử Của Những Mạng Lưới</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p class="fw-bold text-danger mb-0">260.000 đ</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Sản phẩm 3 -->
-        <div class="col-6 col-md-2 text-center">
-            <a href="link-to-product-3.html" class="text-decoration-none">
-                <div class="border p-2 rounded">
-                    <img src="https://via.placeholder.com/150x200" alt="Sản phẩm 3" class="img-fluid">
-                    <p class="mt-2 product-name text-dark">Lịch Sử Việt Nam Bằng Hình</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p class="fw-bold text-danger mb-0">738.000 đ</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Sản phẩm 4 -->
-        <div class="col-6 col-md-2 text-center">
-            <a href="link-to-product-4.html" class="text-decoration-none">
-                <div class="border p-2 rounded">
-                    <img src="https://via.placeholder.com/150x200" alt="Sản phẩm 4" class="img-fluid">
-                    <p class="mt-2 product-name text-dark">Ngày Xưa Có Một Chuyện Tình</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p class="fw-bold text-danger mb-0">108.000 đ</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Sản phẩm 5 -->
-        <div class="col-6 col-md-2 text-center">
-            <a href="link-to-product-5.html" class="text-decoration-none">
-                <div class="border p-2 rounded">
-                    <img src="https://via.placeholder.com/150x200" alt="Sản phẩm 5" class="img-fluid">
-                    <p class="mt-2 product-name text-dark">Hoa Học Trò - Số 1442</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p class="fw-bold text-danger mb-0">20.000 đ</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Sản phẩm 6 -->
-        <div class="col-6 col-md-2 text-center">
-            <a href="link-to-product-6.html" class="text-decoration-none">
-                <div class="border p-2 rounded">
-                    <img src="https://via.placeholder.com/150x200" alt="Sản phẩm 6" class="img-fluid">
-                    <p class="mt-2 product-name text-dark">Thú Bông Capybara Bí Ngô</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p class="fw-bold text-danger mb-0">93.150 đ</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="row mt-3">
-        <!-- Sản phẩm 1 -->
-        <div class="col-6 col-md-2 text-center">
-            <a href="link-to-product-1.html" class="text-decoration-none">
-                <div class="border p-2 rounded">
-                    <img src="https://via.placeholder.com/150x200" alt="Sản phẩm 1" class="img-fluid">
-                    <p class="mt-2 product-name text-dark">25 Độ Âm</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p class="fw-bold text-danger mb-0">126.400 đ</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Sản phẩm 2 -->
-        <div class="col-6 col-md-2 text-center">
-            <a href="link-to-product-2.html" class="text-decoration-none">
-                <div class="border p-2 rounded">
-                    <img src="https://via.placeholder.com/150x200" alt="Sản phẩm 2" class="img-fluid">
-                    <p class="mt-2 product-name text-dark">Nexus - Lược Sử Của Những Mạng Lưới</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p class="fw-bold text-danger mb-0">260.000 đ</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Sản phẩm 3 -->
-        <div class="col-6 col-md-2 text-center">
-            <a href="link-to-product-3.html" class="text-decoration-none">
-                <div class="border p-2 rounded">
-                    <img src="https://via.placeholder.com/150x200" alt="Sản phẩm 3" class="img-fluid">
-                    <p class="mt-2 product-name text-dark">Lịch Sử Việt Nam Bằng Hình</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p class="fw-bold text-danger mb-0">738.000 đ</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Sản phẩm 4 -->
-        <div class="col-6 col-md-2 text-center">
-            <a href="link-to-product-4.html" class="text-decoration-none">
-                <div class="border p-2 rounded">
-                    <img src="https://via.placeholder.com/150x200" alt="Sản phẩm 4" class="img-fluid">
-                    <p class="mt-2 product-name text-dark">Ngày Xưa Có Một Chuyện Tình</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p class="fw-bold text-danger mb-0">108.000 đ</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Sản phẩm 5 -->
-        <div class="col-6 col-md-2 text-center">
-            <a href="link-to-product-5.html" class="text-decoration-none">
-                <div class="border p-2 rounded">
-                    <img src="https://via.placeholder.com/150x200" alt="Sản phẩm 5" class="img-fluid">
-                    <p class="mt-2 product-name text-dark">Hoa Học Trò - Số 1442</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p class="fw-bold text-danger mb-0">20.000 đ</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Sản phẩm 6 -->
-        <div class="col-6 col-md-2 text-center">
-            <a href="link-to-product-6.html" class="text-decoration-none">
-                <div class="border p-2 rounded">
-                    <img src="https://via.placeholder.com/150x200" alt="Sản phẩm 6" class="img-fluid">
-                    <p class="mt-2 product-name text-dark">Thú Bông Capybara Bí Ngô</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p class="fw-bold text-danger mb-0">93.150 đ</p>
+                        <p class="fw-bold text-danger mb-0" th:attr="data-price=${sanpham.gia}">126.400 đ</p>
                     </div>
                 </div>
             </a>
