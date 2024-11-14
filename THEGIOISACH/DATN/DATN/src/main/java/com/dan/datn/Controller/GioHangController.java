@@ -18,7 +18,8 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-import static com.dan.datn.Service.SanPhamService.sanPhamRepository;
+import static com.dan.datn.Service.ServiceImpl.SanPhamService.sanPhamRepository;
+
 
 @SessionAttributes("username")
 @Controller

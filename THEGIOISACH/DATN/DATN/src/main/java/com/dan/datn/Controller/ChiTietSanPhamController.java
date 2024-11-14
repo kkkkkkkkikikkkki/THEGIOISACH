@@ -2,7 +2,7 @@ package com.dan.datn.Controller;
 
 import com.dan.datn.Entity.Hinh;
 import com.dan.datn.Entity.SanPham;
-import com.dan.datn.Service.SanPhamService;
+import com.dan.datn.Service.ServiceImpl.SanPhamService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
-import static com.dan.datn.Service.SanPhamService.sanPhamRepository;
+import static com.dan.datn.Service.ServiceImpl.SanPhamService.sanPhamRepository;
 
 @Controller
 public class ChiTietSanPhamController {

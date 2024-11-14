@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>Admin Dashboard</title>
@@ -122,6 +122,17 @@
     hr {
         border-top: 3px solid;
     }
+
+    .user-image img {
+        border: none;
+        padding: 0;
+    }
+
+    .user-image, .user-image a {
+        margin: 0;
+        padding: 0;
+    }
+
 </style>
 
 <body ng-app="myAppAdmin">
@@ -131,12 +142,11 @@
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
-                <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
+                <img src="/image/logo.png" alt="Logo" width="́81" height="40">
             </a>
 
             <!-- Toggle button for small screens -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -144,29 +154,38 @@
                 <!-- Navbar items (left aligned) -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Thông báo</a>
+                        <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Giỏ hàng</a>
+                        <a class="nav-link" href="#!Thông báo">Thông báo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/giohang}">Giỏ hàng</a>
                     </li>
                 </ul>
 
                 <!-- Search Form (centered) -->
-                <form class="d-flex mx-auto" role="search" style="width: 400px;">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
+                    <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search" aria-label="Search" autocomplete="off">
                     <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
-                        <i class="fas fa-search"></i> <!-- Icon search -->
+                        <i class="fas fa-search"></i>
                     </button>
+                    <div id="suggestions-box" class="list-group position-absolute" style="width: 357px; z-index: 1000; "></div>
                 </form>
+
 
                 <!-- Navbar items (right aligned) -->
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-secondary me-2" href="#">Đăng nhập</a>
+                    <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
+                    <li th:if="${email == null}" class="nav-item">
+                        <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/dangnhapadmin}">Đăng nhập</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-dark" href="#">Đăng ký</a>
+                    <li th:if="${email == null}" class="nav-item">
+                        <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
                     </li>
+
+
+
                 </ul>
             </div>
         </div>
@@ -183,12 +202,18 @@
         <!-- Cột bên trái (col-sm-2) -->
         <div class="col-sm-3 box" style="margin-top: 20px; ">
             <!-- Căn giữa hình ảnh người dùng -->
+            <li th:if="${email != null}" class="nav-item">
             <div class="user-image">
                 <a class="user" href="#">
                     <img src="https://img.icons8.com/?size=100&id=15263&format=png&color=000000" alt="infor">
                 </a>
-                <h6>Tên quản lý</h6>
+                <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
+                    <a href="" class="nav-link">
+<!--                        <i class="fas fa-user-circle"></i> &lt;!&ndash; Thay thế bằng icon thông tin &ndash;&gt;-->
+                        <h6><span th:text="${email}"></span></h6>
+                    </a>
             </div>
+            </li>
             <a href="#!Home">
                 <h4 class="title">Home</h4>
             </a>
