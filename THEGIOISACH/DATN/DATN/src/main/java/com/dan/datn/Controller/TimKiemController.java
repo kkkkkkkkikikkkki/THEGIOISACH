@@ -1,7 +1,7 @@
 package com.dan.datn.Controller;
 
 import com.dan.datn.Entity.SanPham;
-import com.dan.datn.Service.SanPhamService;
+import com.dan.datn.Service.ServiceImpl.SanPhamService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

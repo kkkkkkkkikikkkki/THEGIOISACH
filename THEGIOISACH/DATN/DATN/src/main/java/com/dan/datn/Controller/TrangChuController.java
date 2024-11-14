@@ -2,7 +2,8 @@ package com.dan.datn.Controller;
 
 import com.dan.datn.Entity.Hinh;
 import com.dan.datn.Entity.SanPham;
-import com.dan.datn.Service.SanPhamService;
+
+import com.dan.datn.Service.ServiceImpl.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,6 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import static com.dan.datn.Service.SanPhamService.sanPhamRepository;
 
 @Controller
 public class TrangChuController {
@@ -27,16 +27,38 @@ public class TrangChuController {
 
     @GetMapping("/trangchu")
     public String showTrangChu(Model model){
-        List<SanPham> sanphams = sanPhamService.getSanPhamByIdRange();
-        model.addAttribute("sanphams", sanphams);
+        // Lấy sản phẩm theo khoảng danh sách ID
+        List<SanPham> sanphamsNoiBat = sanPhamService.getSanPhamByIdRange();
+
+        // Lấy sản phẩm theo danh sách ID cụ thể
+
         // Chuyển đổi hình ảnh sang Base64
-        for (SanPham sp : sanphams) {
+        for (SanPham sp : sanphamsNoiBat) {
             if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
                 String base64Image = Base64.getEncoder().encodeToString(sp.getHinh().getHinhMain());
                 sp.getHinh().setBase64Image(base64Image);
             }
         }
-        model.addAttribute("sanphams", sanphams);
+        model.addAttribute("sanphamsNoiBat", sanphamsNoiBat);
+
+        List<SanPham> sanphamsTheLoai = sanPhamService.getSanPhamBySpecificIds();
+        for (SanPham sp : sanphamsTheLoai) {
+            if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(sp.getHinh().getHinhMain());
+                sp.getHinh().setBase64Image(base64Image);
+            }
+        }
+        model.addAttribute("sanphamsTheLoai", sanphamsTheLoai);
+
+        // Lấy 6 sản phẩm ngẫu nhiên
+        List<SanPham> SanPhamSanPhams = sanPhamService.getSanPhamSanPham(18);
+        for (SanPham sp : SanPhamSanPhams) {
+            if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(sp.getHinh().getHinhMain());
+                sp.getHinh().setBase64Image(base64Image);
+            }
+        }
+        model.addAttribute("SanPhamSanPhams", SanPhamSanPhams);
 
         // Lấy username từ session
         String username = (String) session.getAttribute("username");
