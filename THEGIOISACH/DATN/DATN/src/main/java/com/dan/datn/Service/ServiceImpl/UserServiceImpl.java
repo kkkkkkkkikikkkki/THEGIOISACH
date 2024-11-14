@@ -14,6 +14,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository; // Khai báo UserRepository để thực hiện truy vấn
 
+    @Override
+    public boolean validateUser(String ten, String matKhau, String sdt) {
+        return false;
+    }
+
     // Xác thực người dùng bằng cách kiểm tra tên và mật khẩu
     @Override
     public boolean validateUser(String ten, String matKhau) {
