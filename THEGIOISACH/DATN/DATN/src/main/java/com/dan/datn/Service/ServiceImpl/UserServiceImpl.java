@@ -6,6 +6,7 @@ import com.dan.datn.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,7 +26,21 @@ public class UserServiceImpl implements UserService {
         Optional<User> userOptional = userRepository.findByTen(ten);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            return user.getMat_khau().equals(matKhau); // So sánh mật khẩu
+            if (user.getRole() == 1 && user.getMat_khau().equals(matKhau)) {
+                return true; // Chỉ trả về true nếu role là 1 và mật khẩu đúng
+            }
+        }
+        return false;
+    }
+    // Đăng nhập Admin
+    @Override
+    public boolean validateAdmin(String email, String matKhau) {
+        Optional<User> userOptional = userRepository.findByEmail(email);   // Tìm kiếm người dùng theo email
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            if (user.getRole() == 0 && user.getMat_khau().equals(matKhau)) {  // Kiểm tra role và mật khẩu
+                return true;
+            }
         }
         return false;
     }
@@ -40,12 +55,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         user.setRole(1); // Đặt giá trị role mặc định là 1
+        user.setRole(0); // Đặt giá trị role mặc định là 0
         userRepository.save(user);
     }
+
 
     // Lấy thông tin người dùng dựa vào tên
     @Override
     public Optional<User> getUserByTen(String ten) {
         return userRepository.findByTen(ten);
+    }
+
+
+    public List<User> getAllAdmins() {
+        return userRepository.findByRole(0); // Lấy tất cả tài khoản có role là 0 (admin)
     }
 }

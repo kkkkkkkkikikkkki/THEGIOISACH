@@ -10,7 +10,12 @@ public interface UserService {
     // Xác thực người dùng bằng cách kiểm tra tên và mật khẩu
     boolean validateUser(String ten, String matKhau);
 
+    boolean validateAdmin(String ten, String matKhau);
+
     boolean isEmailExist(String email); // Kiểm tra sự tồn tại của email
     void saveUser(User user); // Lưu thông tin người dùng mới
     Optional<User> getUserByTen(String ten); // Lấy người dùng dựa vào tên
+
+
+
 }

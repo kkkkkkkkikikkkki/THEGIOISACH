@@ -31,19 +31,5 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/loginadmin")
-    public String loginAD(@RequestParam("username") String ten,
-                        @RequestParam("password") String matKhau,
-                          @RequestParam("phonenumber") String sdt,
-                        Model model,
-                        HttpSession session) {
-        if (userServiceImpl.validateUser(ten, matKhau, sdt)) {
-            session.setAttribute("username", ten);
-            return "redirect:/HomeAdmin";
-        } else {
-            model.addAttribute("error", "Tên đăng nhập, số điện thoại hoặc mật khẩu không đúng");
-            return "index/LoginAdmin";
-        }
-    }
 }
 
