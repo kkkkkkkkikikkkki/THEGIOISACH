@@ -17,7 +17,8 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
-import static com.dan.datn.Service.SanPhamService.sanPhamRepository;
+import static com.dan.datn.Service.ServiceImpl.SanPhamService.sanPhamRepository;
+
 
 @SessionAttributes("username")
 @Controller
