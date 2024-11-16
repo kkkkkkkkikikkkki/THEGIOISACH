@@ -32,5 +32,8 @@ public class HoaDonChiTiet {
     @ManyToOne
     @JoinColumn(name = "ID_san_pham", nullable = false)
     private SanPham sanPham;
+    @ManyToOne
+    @JoinColumn(name = "thanh_toan_id")
+    private ThanhToan thanhToan;
 }
 
