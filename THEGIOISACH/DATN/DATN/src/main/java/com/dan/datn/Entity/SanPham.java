@@ -64,5 +64,7 @@ public class SanPham {
     @OneToMany(mappedBy = "sanPham")
     private List<ThongKe> thongKeList;
 
-
+    @ManyToOne
+    @JoinColumn(name = "thanh_toan_id")
+    private ThanhToan thanhToan;
 }
