@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -23,13 +22,13 @@ public class HoaDon {
     private Date ngayDatHang;
 
     @Column(name = "Tong_tien", nullable = false)
-    private Integer tongTien;
+    private Double tongTien;
 
     @Column(name = "Trang_thai_thanh_toan", nullable = false)
     private String trangThaiThanhToan;
 
     @Column(name = "SDT", nullable = false)
-    private Integer SDT;
+    private String SDT;
 
     @Column(name = "Ten", nullable = false)
     private String ten;
@@ -44,6 +43,9 @@ public class HoaDon {
 
     @OneToMany(mappedBy = "hoaDon")
     private List<HoaDonChiTiet> hoaDonChiTietList;
+    @ManyToOne
+    @JoinColumn(name = "thanh_toan_id", nullable = false)
+    private ThanhToan thanhToan;
 }
 
 
