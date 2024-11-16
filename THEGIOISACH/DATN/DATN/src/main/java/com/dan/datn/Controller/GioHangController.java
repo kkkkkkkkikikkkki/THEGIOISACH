@@ -7,16 +7,15 @@ import com.dan.datn.Service.ServiceImpl.HoaDonChiTietServiceImpl;
 import com.dan.datn.Service.ServiceImpl.UserServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 
 import static com.dan.datn.Service.ServiceImpl.SanPhamService.sanPhamRepository;
 
@@ -148,5 +147,14 @@ public class GioHangController {
         model.addAttribute("username", session.getAttribute("username"));
 
         return "layout/gioHang";  // Trả về view giỏ hàng
+    }
+    @PostMapping("/update-cart")
+    public ResponseEntity<Void> updateCart(@RequestBody Map<String, Integer> payload, HttpSession session) {
+        Integer quantity = payload.get("quantity");
+
+        // Cập nhật session với số lượng mới
+        session.setAttribute("cartQuantity", quantity);
+
+        return ResponseEntity.ok().build();
     }
 }
