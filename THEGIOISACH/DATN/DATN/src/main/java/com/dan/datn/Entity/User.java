@@ -39,6 +39,6 @@ public class User {
     private List<DanhGia> danhGiaList;
 
     @OneToMany(mappedBy = "admins")
-    private List<HoaDon> hoaDonList;
+    private List<ThanhToan> thanhToanList;
 
 }

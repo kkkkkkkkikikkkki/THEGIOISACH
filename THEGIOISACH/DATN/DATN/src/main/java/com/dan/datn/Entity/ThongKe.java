@@ -31,7 +31,7 @@ public class ThongKe {
     // Relationships
     @ManyToOne
     @JoinColumn(name = "ID_don_hang", nullable = false)
-    private HoaDon hoaDon;
+    private ThanhToan thanhToan;
 
     @ManyToOne
     @JoinColumn(name = "ID_san_pham", nullable = false)

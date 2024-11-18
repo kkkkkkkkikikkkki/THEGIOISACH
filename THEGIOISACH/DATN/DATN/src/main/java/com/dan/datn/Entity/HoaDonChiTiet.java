@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Entity
 @Table(name = "Hoa_Don_Chi_Tiet")
 @Getter
@@ -15,25 +14,13 @@ public class HoaDonChiTiet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID_HDCT;
 
-    @Column(name = "Ten_sach", nullable = false)
-    private String tenSach;
-
-    @Column(name = "So_luong", nullable = false)
-    private Integer soLuong;
-
-    @Column(name = "Gia", nullable = false)
-    private Integer gia;
-
-    // Relationships
+    // Quan hệ với bảng Thanh_Toan
     @ManyToOne
-    @JoinColumn(name = "ID_hoa_don", nullable = false)
-    private HoaDon hoaDon;
-
-    @ManyToOne
-    @JoinColumn(name = "ID_san_pham", nullable = false)
-    private SanPham sanPham;
-    @ManyToOne
-    @JoinColumn(name = "thanh_toan_id")
+    @JoinColumn(name = "ID_thanh_toan", nullable = false)
     private ThanhToan thanhToan;
-}
 
+    // Quan hệ với bảng Admins
+    @ManyToOne
+    @JoinColumn(name = "ID_nguoi_dung", nullable = false)
+    private User user;
+}
