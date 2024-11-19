@@ -29,6 +29,7 @@ public class ThanhToan {
     private Integer soLuong;
 
     // Relationships
+
     @ManyToOne
     @JoinColumn(name = "ID_nguoi_dung", nullable = false)
     private User user;
@@ -36,4 +37,5 @@ public class ThanhToan {
     @ManyToOne
     @JoinColumn(name = "ID_san_pham", nullable = false)
     private SanPham sanPham;
+
 }

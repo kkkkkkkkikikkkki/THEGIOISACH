@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Hoa_Don_Chi_Tiet")
 @Getter
@@ -12,7 +14,7 @@ public class HoaDonChiTiet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID_HDCT;
+    private Long ID_Hoa_Don_Chi_Tiet;
 
     // Quan hệ với bảng Thanh_Toan
     @ManyToOne
@@ -23,4 +25,13 @@ public class HoaDonChiTiet {
     @ManyToOne
     @JoinColumn(name = "ID_nguoi_dung", nullable = false)
     private User user;
+
+    // Quan hệ với bảng San_Pham
+    @ManyToOne
+    @JoinColumn(name = "ID_san_pham", nullable = false)
+    private SanPham sanPham;
+
+    // Quan hệ với bảng Thong_Ke (OneToMany side)
+    @OneToMany(mappedBy = "hoaDonChiTiet")
+    private List<ThongKe> thongKeList;
 }

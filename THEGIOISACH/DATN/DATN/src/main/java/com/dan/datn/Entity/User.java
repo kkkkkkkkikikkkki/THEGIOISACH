@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "Admins")
+@Table(name = "Nguoi_Dung")
 @Getter
 @Setter
 public class User {
@@ -35,10 +35,11 @@ public class User {
     private int role = 1; // Default role set to 1
 
     // Relationships
-    @OneToMany(mappedBy = "admins")
+    @OneToMany(mappedBy = "user")
     private List<DanhGia> danhGiaList;
 
-    @OneToMany(mappedBy = "admins")
+    @OneToMany(mappedBy = "user")  // Change 'admins' to 'user'
     private List<ThanhToan> thanhToanList;
+
 
 }
