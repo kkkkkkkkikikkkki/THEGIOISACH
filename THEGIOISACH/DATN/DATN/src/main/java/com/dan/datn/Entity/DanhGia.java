@@ -29,7 +29,7 @@ public class DanhGia {
     // Relationships
     @ManyToOne
     @JoinColumn(name = "ID_nguoi_dung", nullable = false)
-    private User admins;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "ID_san_pham", nullable = false)
