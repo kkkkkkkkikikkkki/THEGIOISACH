@@ -62,6 +62,15 @@ public class ChiTietSanPhamController {
         model.addAttribute("sanPhamLienQuan", sanPhamLienQuan);
         String successMessage = (String) session.getAttribute("success");
         String errorMessage = (String) session.getAttribute("error");
+        if (successMessage != null) {
+            model.addAttribute("success", successMessage);
+            session.removeAttribute("success"); // Xóa khỏi session
+        }
+
+        if (errorMessage != null) {
+            model.addAttribute("error", errorMessage);
+            session.removeAttribute("error"); // Xóa khỏi session
+        }
 
         if (successMessage != null) {
             model.addAttribute("success", successMessage);
