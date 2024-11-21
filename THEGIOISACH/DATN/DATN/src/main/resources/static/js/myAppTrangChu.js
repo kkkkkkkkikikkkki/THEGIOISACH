@@ -18,7 +18,7 @@ app.config(function($routeProvider){
             templateUrl: 'layoutTrangChu/gioHang.html'
         })
         .when('/Mua ngay', {
-            templateUrl: 'layoutTrangChu/chiTietSanPham.html'
+            templateUrl: 'layoutTrangChu/chiTietSanPham.html',
             templateUrl: 'layoutTrangChu/layoutTrangChu.html'
         })
         .when('/Giỏ hàng', {

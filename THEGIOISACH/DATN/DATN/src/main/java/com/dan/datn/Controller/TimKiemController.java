@@ -1,7 +1,7 @@
 package com.dan.datn.Controller;
 
 import com.dan.datn.Entity.SanPham;
-import com.dan.datn.Service.ServiceImpl.SanPhamService;
+import com.dan.datn.Service.ServiceImpl.SanPhamServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,13 +16,13 @@ import java.util.List;
 public class TimKiemController {
 
     @Autowired
-    private SanPhamService sanPhamService;
+    private SanPhamServiceImpl sanPhamServiceImpl;
     @Autowired
     private HttpSession httpSession;
 
     @GetMapping("/search")
     public String searchSanPham(@RequestParam("keyword") String keyword, Model model) {
-        List<SanPham> sanPhams = sanPhamService.searchAllFields(keyword);
+        List<SanPham> sanPhams = sanPhamServiceImpl.searchAllFields(keyword);
         model.addAttribute("sanPhams", sanPhams);
         String username = (String) httpSession.getAttribute("username");
         model.addAttribute("username", username);
@@ -32,7 +32,7 @@ public class TimKiemController {
     @GetMapping("/suggestions")
     @ResponseBody
     public List<String> getSuggestions(@RequestParam("keyword") String keyword) {
-        return sanPhamService.findSuggestions(keyword);
+        return sanPhamServiceImpl.findSuggestions(keyword);
     }
 
 }
