@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SanPhamService {
+public class SanPhamServiceImpl {
 
     public static SanPhamRepository sanPhamRepository;
 
     @Autowired
-    public SanPhamService(SanPhamRepository sanPhamRepository) {
+    public SanPhamServiceImpl(SanPhamRepository sanPhamRepository) {
         this.sanPhamRepository = sanPhamRepository;
     }
 

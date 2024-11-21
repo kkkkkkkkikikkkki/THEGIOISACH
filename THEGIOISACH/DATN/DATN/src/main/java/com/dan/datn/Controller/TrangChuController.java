@@ -1,34 +1,30 @@
 package com.dan.datn.Controller;
 
-import com.dan.datn.Entity.Hinh;
 import com.dan.datn.Entity.SanPham;
 
-import com.dan.datn.Service.ServiceImpl.SanPhamService;
+import com.dan.datn.Service.ServiceImpl.SanPhamServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.nio.file.Files;
 import java.util.Base64;
 import java.util.List;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
 public class TrangChuController {
 
     @Autowired
-    private SanPhamService sanPhamService;
+    private SanPhamServiceImpl sanPhamServiceImpl;
     @Autowired
     private HttpSession session;
 
     @GetMapping("/trangchu")
     public String showTrangChu(Model model){
         // Lấy sản phẩm theo khoảng danh sách ID
-        List<SanPham> sanphamsNoiBat = sanPhamService.getSanPhamByIdRange();
+        List<SanPham> sanphamsNoiBat = sanPhamServiceImpl.getSanPhamByIdRange();
 
         // Lấy sản phẩm theo danh sách ID cụ thể
 
@@ -41,7 +37,7 @@ public class TrangChuController {
         }
         model.addAttribute("sanphamsNoiBat", sanphamsNoiBat);
 
-        List<SanPham> sanphamsTheLoai = sanPhamService.getSanPhamBySpecificIds();
+        List<SanPham> sanphamsTheLoai = sanPhamServiceImpl.getSanPhamBySpecificIds();
         for (SanPham sp : sanphamsTheLoai) {
             if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
                 String base64Image = Base64.getEncoder().encodeToString(sp.getHinh().getHinhMain());
@@ -51,7 +47,7 @@ public class TrangChuController {
         model.addAttribute("sanphamsTheLoai", sanphamsTheLoai);
 
         // Lấy 6 sản phẩm ngẫu nhiên
-        List<SanPham> SanPhamSanPhams = sanPhamService.getSanPhamSanPham(18);
+        List<SanPham> SanPhamSanPhams = sanPhamServiceImpl.getSanPhamSanPham(18);
         for (SanPham sp : SanPhamSanPhams) {
             if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
                 String base64Image = Base64.getEncoder().encodeToString(sp.getHinh().getHinhMain());

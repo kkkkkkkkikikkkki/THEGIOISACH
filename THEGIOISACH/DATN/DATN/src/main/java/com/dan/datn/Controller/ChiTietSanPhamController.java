@@ -2,28 +2,23 @@ package com.dan.datn.Controller;
 
 import com.dan.datn.Entity.Hinh;
 import com.dan.datn.Entity.SanPham;
-import com.dan.datn.Service.ServiceImpl.SanPhamService;
+import com.dan.datn.Service.ServiceImpl.SanPhamServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import java.util.Optional;
 
-import static com.dan.datn.Service.ServiceImpl.SanPhamService.sanPhamRepository;
+import static com.dan.datn.Service.ServiceImpl.SanPhamServiceImpl.sanPhamRepository;
 
 @Controller
 public class ChiTietSanPhamController {
     @Autowired
-    private SanPhamService sanPhamService;
+    private SanPhamServiceImpl sanPhamServiceImpl;
     @Autowired
     private HttpSession session;
     @GetMapping("/sanpham/{id}")
@@ -57,7 +52,7 @@ public class ChiTietSanPhamController {
         model.addAttribute("username", username);
 
         // Lấy danh sách các sản phẩm liên quan có cùng thể loại (trừ sản phẩm hiện tại)
-        List<SanPham> sanPhamLienQuan = sanPhamService.getRandomProducts();
+        List<SanPham> sanPhamLienQuan = sanPhamServiceImpl.getRandomProducts();
         for (SanPham sp : sanPhamLienQuan) {
             if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
                 String base64Image = Base64.getEncoder().encodeToString(sp.getHinh().getHinhMain());
@@ -67,7 +62,6 @@ public class ChiTietSanPhamController {
         model.addAttribute("sanPhamLienQuan", sanPhamLienQuan);
         String successMessage = (String) session.getAttribute("success");
         String errorMessage = (String) session.getAttribute("error");
-
         if (successMessage != null) {
             model.addAttribute("success", successMessage);
             session.removeAttribute("success"); // Xóa khỏi session
@@ -78,6 +72,15 @@ public class ChiTietSanPhamController {
             session.removeAttribute("error"); // Xóa khỏi session
         }
 
+        if (successMessage != null) {
+            model.addAttribute("success", successMessage);
+            session.removeAttribute("success"); // Xóa khỏi session
+        }
+
+        if (errorMessage != null) {
+            model.addAttribute("error", errorMessage);
+            session.removeAttribute("error"); // Xóa khỏi session
+        }
         return "index/chiTietSanPham";  // Chuyển hướng đến trang chi tiết sản phẩm
     }
 }

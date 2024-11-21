@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-import static com.dan.datn.Service.ServiceImpl.SanPhamService.sanPhamRepository;
+import static com.dan.datn.Service.ServiceImpl.SanPhamServiceImpl.sanPhamRepository;
 
 
 @Repository

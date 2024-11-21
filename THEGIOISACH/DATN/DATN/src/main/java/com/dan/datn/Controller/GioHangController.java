@@ -15,7 +15,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
-import static com.dan.datn.Service.ServiceImpl.SanPhamService.sanPhamRepository;
+import static com.dan.datn.Service.ServiceImpl.SanPhamServiceImpl.sanPhamRepository;
 
 
 @SessionAttributes("username")
@@ -46,10 +46,6 @@ public class GioHangController {
 
         // Truyền giỏ hàng vào model để hiển thị
         model.addAttribute("cart", cart);
-
-
-
-
         return "layout/gioHang";  // Trả về view giỏ hàng
     }
 
@@ -98,7 +94,6 @@ public class GioHangController {
                 break;
             }
         }
-
         // Nếu sản phẩm chưa có trong giỏ hàng, thêm vào giỏ hàng
         if (!found) {
             cart.add(sanpham);
@@ -107,7 +102,6 @@ public class GioHangController {
         } else {
             session.setAttribute("error", "Sản phẩm này đã có trong giỏ hàng");
         }
-
         // Truyền giỏ hàng vào model
         model.addAttribute("sanpham", sanpham);
         model.addAttribute("username", session.getAttribute("username"));
@@ -151,7 +145,6 @@ public class GioHangController {
 
         // Cập nhật session với số lượng mới
         session.setAttribute("cartQuantity", quantity);
-
         return ResponseEntity.ok().build();
     }
 }
