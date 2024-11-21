@@ -2,9 +2,6 @@ package com.dan.datn.Controller;
 
 import com.dan.datn.Entity.User;
 import com.dan.datn.Service.ServiceImpl.UserServiceImpl;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +15,10 @@ import java.util.Optional;
 
 @SessionAttributes("username")
 @Controller
-public class trangCaNhanController {
+public class TrangCaNhanController {
     private final UserServiceImpl userServiceImpl;
 
-    public trangCaNhanController(UserServiceImpl userServiceImpl) {
+    public TrangCaNhanController(UserServiceImpl userServiceImpl) {
         this.userServiceImpl = userServiceImpl;
     }
 
