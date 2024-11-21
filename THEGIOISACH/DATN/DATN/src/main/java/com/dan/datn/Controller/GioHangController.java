@@ -1,9 +1,7 @@
 package com.dan.datn.Controller;
 
 import com.dan.datn.Entity.Hinh;
-import com.dan.datn.Entity.HoaDonChiTiet;
 import com.dan.datn.Entity.SanPham;
-import com.dan.datn.Service.ServiceImpl.HoaDonChiTietServiceImpl;
 import com.dan.datn.Service.ServiceImpl.UserServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +22,11 @@ import static com.dan.datn.Service.ServiceImpl.SanPhamService.sanPhamRepository;
 @Controller
 public class GioHangController {
     private final UserServiceImpl userServiceImpl;
-    private final HoaDonChiTietServiceImpl hoaDonChiTietServiceImpl;
     @Autowired
     private HttpSession session;
 
-    public GioHangController(UserServiceImpl userServiceImpl, HoaDonChiTietServiceImpl hoaDonChiTietServiceImpl) {
+    public GioHangController(UserServiceImpl userServiceImpl) {
         this.userServiceImpl = userServiceImpl;
-        this.hoaDonChiTietServiceImpl = hoaDonChiTietServiceImpl;
     }
 
     @GetMapping("/giohang")
@@ -116,7 +112,8 @@ public class GioHangController {
         model.addAttribute("sanpham", sanpham);
         model.addAttribute("username", session.getAttribute("username"));
 
-        return "index/chiTietSanPham";  // Ở lại trang chi tiết sản phẩm
+        // Chuyển hướng về trang chi tiết sản phẩm với thông báo thành công
+        return "redirect:/sanpham/" + productId;
     }
 
     @PostMapping("/removeFromCart")
