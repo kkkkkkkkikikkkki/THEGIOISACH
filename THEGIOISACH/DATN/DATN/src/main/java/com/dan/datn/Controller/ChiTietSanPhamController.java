@@ -5,6 +5,7 @@ import com.dan.datn.Entity.SanPham;
 import com.dan.datn.Service.ServiceImpl.SanPhamService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,13 +55,17 @@ public class ChiTietSanPhamController {
         // Lấy username từ session
         String username = (String) session.getAttribute("username");
         model.addAttribute("username", username);
+
+        // Lấy danh sách các sản phẩm liên quan có cùng thể loại (trừ sản phẩm hiện tại)
+        List<SanPham> sanPhamLienQuan = sanPhamService.getRandomProducts();
+        for (SanPham sp : sanPhamLienQuan) {
+            if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(sp.getHinh().getHinhMain());
+                sp.getHinh().setBase64Image(base64Image);
+            }
+        }
+        model.addAttribute("sanPhamLienQuan", sanPhamLienQuan);
+
         return "index/chiTietSanPham";  // Chuyển hướng đến trang chi tiết sản phẩm
     }
-
-
-
-
-
-
-
 }

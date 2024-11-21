@@ -45,7 +45,7 @@ public class LoginController {
                 response.addCookie(cookie);
             }
         }
-        return "index/trangChu";
+        return "redirect:/trangchu";
     }
 }
 

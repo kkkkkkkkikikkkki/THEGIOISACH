@@ -29,12 +29,13 @@ public class ThongKe {
     private Integer gia;
 
     // Relationships
+
     @ManyToOne
-    @JoinColumn(name = "ID_don_hang", nullable = false)
-    private HoaDon hoaDon;
+    @JoinColumn(name = "ID_Hoa_Don_Chi_Tiet", nullable = false)
+    private HoaDonChiTiet hoaDonChiTiet;
 
     @ManyToOne
     @JoinColumn(name = "ID_san_pham", nullable = false)
     private SanPham sanPham;
-}
 
+}
