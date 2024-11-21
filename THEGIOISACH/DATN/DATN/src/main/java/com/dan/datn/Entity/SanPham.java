@@ -1,6 +1,5 @@
 package com.dan.datn.Entity;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -54,17 +53,10 @@ public class SanPham {
     @JoinColumn(name = "ID_hinh", nullable = false)
     private Hinh hinh;
 
-
     @OneToMany(mappedBy = "sanPham")
     private List<DanhGia> danhGiaList;
 
     @OneToMany(mappedBy = "sanPham")
     private List<HoaDonChiTiet> hoaDonChiTietList;
 
-    @OneToMany(mappedBy = "sanPham")
-    private List<ThongKe> thongKeList;
-
-    @ManyToOne
-    @JoinColumn(name = "thanh_toan_id")
-    private ThanhToan thanhToan;
 }

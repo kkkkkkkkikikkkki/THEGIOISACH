@@ -65,4 +65,12 @@ public class SanPhamService {
         return sanPhamRepository.findSuggestionsByKeyword(keyword);
     }
 
+    public List<SanPham> findByTheLoai(Long theLoaiId, Long excludeId) {
+        return sanPhamRepository.findByTheLoaiId(theLoaiId, excludeId);
+    }
+
+    public List<SanPham> getRandomProducts() {
+        return sanPhamRepository.findRandomProducts();
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.dan.datn.Repository;
 
 import com.dan.datn.Entity.SanPham;
-import com.dan.datn.Entity.TheLoai;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -30,6 +29,11 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Long> {
         return sanPhamRepository.findSanPhamByIdRange();
     }
 
+    @Query("SELECT sp FROM SanPham sp WHERE sp.theLoai.ID_the_loai = :theLoaiId AND sp.ID_san_pham <> :excludeId")
+    List<SanPham> findByTheLoaiId(@Param("theLoaiId") Long theLoaiId, @Param("excludeId") Long excludeId);
+
+    @Query(value = "SELECT TOP 12 * FROM San_Pham ORDER BY NEWID()", nativeQuery = true)
+    List<SanPham> findRandomProducts();
 
     // Phương thức tìm sản phẩm theo ID
     Optional<SanPham> findById(Long id);
