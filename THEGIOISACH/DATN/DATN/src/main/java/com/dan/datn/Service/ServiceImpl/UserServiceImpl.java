@@ -70,4 +70,12 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllAdmins() {
         return userRepository.findByRole(0); // Lấy tất cả tài khoản có role là 0 (admin)
     }
+
+    @Autowired
+    private UserRepository nguoiDungRepository;
+
+    @Override
+    public List<User> getAllNguoiDung() {
+        return nguoiDungRepository.findAll();
+    }
 }
