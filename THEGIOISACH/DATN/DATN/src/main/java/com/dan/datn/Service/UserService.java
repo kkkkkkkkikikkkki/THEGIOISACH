@@ -2,6 +2,7 @@ package com.dan.datn.Service;
 
 import com.dan.datn.Entity.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
@@ -18,7 +19,7 @@ public interface UserService {
     void saveAdmin(User user);
 
     Optional<User> getUserByTen(String ten); // Lấy người dùng dựa vào tên
-
+    List<User> getAllNguoiDung();
 
 
 }

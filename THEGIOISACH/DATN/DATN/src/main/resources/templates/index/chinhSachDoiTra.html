@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Fahasa - Đăng Nhập</title>
+    <title>Điều Khoản Sử Dụng</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -13,68 +13,16 @@
             background-color: #FFE4E1;
         }
 
-        /* Hiệu ứng hover cho nút Đăng nhập */
-        .btn-outline-secondary:hover {
-            background-color: #FF9999;
-            border-color: #FF9999;
-            color: white;
-        }
-
-        /* Hiệu ứng hover cho nút Đăng ký */
-        .btn-dark:hover {
-            background-color: #FF9999;
-            border-color: #FF9999;
-            color: white;
-        }
-
-        /* Form styling */
         .form-container {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            margin-top: 50px;
-        }
-
-        /* Button styling */
-        .btn-primary {
-            background-color: #FF6666;
-            border-color: #FF6666;
-        }
-
-        .btn-primary:hover {
-            background-color: #FF9999;
-            border-color: #FF9999;
-        }
-
-        .btn-secondary {
-            background-color: #999;
-            border-color: #999;
-        }
-
-        .btn-secondary:hover {
-            background-color: #666;
-            border-color: #666;
-        }
-
-        /* Input field styling */
-        input[type="text"], input[type="password"] {
-            border-radius: 10px;
-        }
-
-        /* Style for cancel button */
-        .cancelbtn {
-            background-color: #ccc;
-            border-radius: 10px;
-        }
-
-        .signupbtn {
-            border-radius: 10px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-<!-- Navbar -->
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -122,51 +70,67 @@
         </div>
     </div>
 </nav>
+<div class="form-container">
+    <h1>Chính Sách Đổi Trả và Hoàn Tiền</h1>
+    <p>
+        Chúng tôi tại <strong>THEGIOISACH</strong> cam kết mang đến cho khách hàng những trải nghiệm mua sắm tốt nhất. Chính sách đổi trả và hoàn tiền của chúng tôi được xây dựng nhằm bảo vệ quyền lợi khách hàng và đảm bảo sự hài lòng khi sử dụng dịch vụ.
+    </p>
 
-<!-- Form Đăng Nhập -->
-<!-- Form Đăng Nhập -->
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="form-container">
-                <form th:action="@{/login}" method="post">
-                    <h1 class="text-center">Đăng Nhập</h1>
-                    <p class="text-center">Vui lòng điền thông tin để đăng nhập.</p>
-                    <hr>
+    <h2>1. Điều kiện đổi trả sản phẩm</h2>
+    <p>Quý khách có thể đổi trả sản phẩm trong các trường hợp sau:</p>
+    <ul>
+        <li><strong>Sản phẩm bị lỗi do nhà sản xuất:</strong> Bao gồm lỗi về nội dung in ấn, chất lượng giấy, đóng gáy không đúng chuẩn hoặc bị thiếu trang.</li>
+        <li><strong>Sản phẩm bị hư hỏng trong quá trình vận chuyển:</strong> Sách bị rách, cong vênh, gãy gáy, hoặc các hư hại khác khi nhận hàng.</li>
+        <li><strong>Sản phẩm giao sai so với đơn đặt hàng:</strong> Sai tựa sách, số lượng, hoặc thể loại.</li>
+    </ul>
+    <p><strong>Lưu ý:</strong></p>
+    <ul>
+        <li>Sản phẩm phải còn nguyên vẹn, không có dấu hiệu sử dụng (không ghi chép, gạch chân, hoặc làm hỏng).</li>
+        <li>Thời gian yêu cầu đổi trả trong vòng <strong>7 ngày</strong> kể từ ngày nhận hàng.</li>
+    </ul>
 
-                    <div class="mb-3">
-                        <label class="form-label"><b>Tên đăng nhập</b></label>
-                        <input type="text" placeholder="Nhập Tên đăng nhập" class="form-control" name="username" required>
-                    </div>
+    <h2>2. Quy trình đổi trả sản phẩm</h2>
+    <ol>
+        <li>Liên hệ với bộ phận chăm sóc khách hàng qua hotline <strong>1900696969</strong> hoặc email <strong>thegioisach2024@gmail.com</strong>.</li>
+        <li>Cung cấp thông tin chi tiết về đơn hàng và lý do đổi trả kèm hình ảnh sản phẩm (nếu có).</li>
+        <li>Gửi sản phẩm cần đổi trả về địa chỉ: <strong>Công ty Cổ phần Phát hành Sách TP.HCM – THEGIOISACH</strong></li>
+        <li>Sau khi nhận được sản phẩm, chúng tôi sẽ kiểm tra và xử lý yêu cầu đổi trả trong vòng <strong>3-5 ngày làm việc</strong>.</li>
+    </ol>
 
-                    <div class="mb-3">
-                        <label class="form-label"><b>Mật khẩu</b></label>
-                        <input type="password" placeholder="Nhập Mật khẩu" class="form-control" name="password" required>
-                    </div>
+    <h2>3. Chính sách hoàn tiền</h2>
+    <p>
+        Hoàn tiền sẽ được áp dụng trong các trường hợp sau:
+    </p>
+    <ul>
+        <li>Sản phẩm không có sẵn để thay thế.</li>
+        <li>Khách hàng không muốn đổi sản phẩm mới.</li>
+    </ul>
+    <p><strong>Phương thức hoàn tiền:</strong></p>
+    <ul>
+        <li>Hoàn tiền trực tiếp vào tài khoản ngân hàng của quý khách.</li>
+        <li>Đối với các đơn hàng thanh toán qua thẻ tín dụng hoặc ví điện tử, số tiền sẽ được hoàn vào tài khoản đã sử dụng.</li>
+    </ul>
+    <p><strong>Thời gian hoàn tiền:</strong> Tối đa <strong>7-10 ngày làm việc</strong> kể từ khi xác nhận yêu cầu hoàn tiền.</p>
 
-                    <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" name="remember" checked>
-                        <label class="form-check-label">Ghi nhớ tôi</label>
-                    </div>
+    <h2>4. Chi phí đổi trả</h2>
+    <ul>
+        <li>Nếu lỗi do <strong>THEGIOISACH</strong>, chúng tôi sẽ chịu toàn bộ chi phí vận chuyển.</li>
+        <li>Nếu lý do đổi trả không phải lỗi từ phía <strong>THEGIOISACH</strong>, quý khách vui lòng thanh toán chi phí vận chuyển.</li>
+    </ul>
 
-                    <div class="clearfix">
-                        <button type="button" class="btn btn-secondary me-2 cancelbtn">Hủy</button>
-                        <button type="submit" class="btn btn-primary signupbtn">Đăng Nhập</button>
-                    </div>
-                    <div class="clearfix" style="margin-top: 30px;">
-                        <a th:href="@{/dangky}">Bạn chưa có tài khoản?</a>
-                    </div>
+    <h2>5. Các trường hợp không áp dụng đổi trả</h2>
+    <ul>
+        <li>Sách khuyến mãi, giảm giá sâu, hoặc các sản phẩm thuộc chương trình "Không áp dụng đổi trả" (được thông báo rõ ràng trên website).</li>
+        <li>Sản phẩm đã qua sử dụng, bị hỏng do lỗi người dùng.</li>
+        <li>Quá thời hạn đổi trả được quy định.</li>
+    </ul>
 
-                    <div th:if="${error}" class="alert alert-danger mt-3" role="alert">
-                        <p th:text="${error}"></p>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
+    <p class="contact-info">
+        Nếu bạn cần thêm thông tin hoặc hỗ trợ, vui lòng liên hệ qua:<br>
+        <strong>Hotline:</strong> 1900696969<br>
+        <strong>Email:</strong> thegioisach2024@gmail.com
+    </p>
 </div>
-
 <!-- Footer -->
 <footer class="bg-light py-5 mt-5">
     <div class="container">
@@ -210,10 +174,7 @@
         </div>
     </div>
 </footer>
-
 <!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
