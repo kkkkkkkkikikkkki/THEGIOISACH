@@ -29,8 +29,8 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Long> {
         return sanPhamRepository.findSanPhamByIdRange();
     }
 
-    @Query("SELECT sp FROM SanPham sp WHERE sp.theLoai.ID_the_loai = :theLoaiId AND sp.ID_san_pham <> :excludeId")
-    List<SanPham> findByTheLoaiId(@Param("theLoaiId") Long theLoaiId, @Param("excludeId") Long excludeId);
+    @Query("SELECT sp FROM SanPham sp JOIN sp.theLoai tl WHERE tl.theLoai = :theLoai")
+    List<SanPham> findByTheLoai(@Param("theLoai") String theLoai);
 
     @Query(value = "SELECT TOP 12 * FROM San_Pham ORDER BY NEWID()", nativeQuery = true)
     List<SanPham> findRandomProducts();

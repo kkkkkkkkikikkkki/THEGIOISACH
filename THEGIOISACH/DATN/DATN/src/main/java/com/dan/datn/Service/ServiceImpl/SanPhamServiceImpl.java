@@ -19,6 +19,11 @@ public class SanPhamServiceImpl {
         this.sanPhamRepository = sanPhamRepository;
     }
 
+    public List<SanPham> getSanPhamsByTheLoai(String theLoai) {
+        return sanPhamRepository.findByTheLoai(theLoai);
+    }
+
+
     public static List<SanPham> getAllSanPham() {
         return sanPhamRepository.findAll();
     }
@@ -65,12 +70,10 @@ public class SanPhamServiceImpl {
         return sanPhamRepository.findSuggestionsByKeyword(keyword);
     }
 
-    public List<SanPham> findByTheLoai(Long theLoaiId, Long excludeId) {
-        return sanPhamRepository.findByTheLoaiId(theLoaiId, excludeId);
-    }
 
     public List<SanPham> getRandomProducts() {
         return sanPhamRepository.findRandomProducts();
     }
+
 
 }

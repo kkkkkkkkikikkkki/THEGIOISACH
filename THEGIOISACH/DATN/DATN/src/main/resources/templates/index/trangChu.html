@@ -265,7 +265,7 @@
         <div class="row mt-3">
             <!-- Sản phẩm 1 -->
             <div class="col-6 col-md-2 text-center" th:each="sanpham : ${SanPhamSanPhams}" style="margin-bottom: 15px">
-                <a href="link-to-product-1.html" class="text-decoration-none"
+                <a href="" class="text-decoration-none"
                    th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}">
                     <div class="border p-2 rounded">
                         <img th:src="'data:image/png;base64,' + ${sanpham.hinh.base64Image}" alt="Sản phẩm 1"

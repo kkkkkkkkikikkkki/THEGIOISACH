@@ -55,6 +55,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         user.setRole(1); // Đặt giá trị role mặc định là 1
+        userRepository.save(user);
+    }
+
+    @Override
+    public void saveAdmin(User user) {
         user.setRole(0); // Đặt giá trị role mặc định là 0
         userRepository.save(user);
     }

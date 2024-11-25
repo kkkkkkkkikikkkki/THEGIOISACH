@@ -14,6 +14,9 @@ public interface UserService {
 
     boolean isEmailExist(String email); // Kiểm tra sự tồn tại của email
     void saveUser(User user); // Lưu thông tin người dùng mới
+
+    void saveAdmin(User user);
+
     Optional<User> getUserByTen(String ten); // Lấy người dùng dựa vào tên
 
 

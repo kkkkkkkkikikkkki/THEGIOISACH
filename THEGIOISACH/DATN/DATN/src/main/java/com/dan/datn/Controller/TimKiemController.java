@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -21,12 +22,25 @@ public class TimKiemController {
     private HttpSession httpSession;
 
     @GetMapping("/search")
-    public String searchSanPham(@RequestParam("keyword") String keyword, Model model) {
-        List<SanPham> sanPhams = sanPhamServiceImpl.searchAllFields(keyword);
+    public String searchSanPham(
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "theLoai", required = false) String theLoai,
+            Model model) {
+
+        List<SanPham> sanPhams;
+        if (theLoai != null && !theLoai.isEmpty()) {
+            sanPhams = sanPhamServiceImpl.getSanPhamsByTheLoai(theLoai);
+        } else if (keyword != null && !keyword.isEmpty()) {
+            sanPhams = sanPhamServiceImpl.searchAllFields(keyword);
+        } else {
+            sanPhams = sanPhamServiceImpl.getAllSanPham();
+        }
+
         model.addAttribute("sanPhams", sanPhams);
         String username = (String) httpSession.getAttribute("username");
         model.addAttribute("username", username);
-        return "index/sanPhamSauTimKiem"; // Trang hiển thị kết quả tìm kiếm
+
+        return "index/sanPhamSauTimKiem"; // Trang hiển thị kết quả
     }
 
     @GetMapping("/suggestions")
@@ -34,5 +48,29 @@ public class TimKiemController {
     public List<String> getSuggestions(@RequestParam("keyword") String keyword) {
         return sanPhamServiceImpl.findSuggestions(keyword);
     }
+
+    @GetMapping("/filter")
+    public String locSanPham(@RequestParam("theLoai") String theLoai, Model model) {
+        List<SanPham> sanPhams = sanPhamServiceImpl.getSanPhamsByTheLoai(theLoai);
+
+        // Kiểm tra xem sanPhams có dữ liệu không
+        if (sanPhams.isEmpty()) {
+            model.addAttribute("message", "Không có sản phẩm trong thể loại này.");
+        }
+
+        for (SanPham sp : sanPhams) {
+            if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(sp.getHinh().getHinhMain());
+                sp.getHinh().setBase64Image(base64Image);
+            }
+        }
+
+        model.addAttribute("sanPhams", sanPhams);
+        String username = (String) httpSession.getAttribute("username");
+        model.addAttribute("username", username);
+
+        return "index/sanPhamSauTimKiem"; // Trả về trang hiển thị kết quả
+    }
+
 
 }
