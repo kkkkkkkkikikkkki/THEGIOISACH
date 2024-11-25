@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/supercart.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Xác nhận thanh toán</title>
 </head>
 <style>
@@ -149,54 +149,104 @@
         font-weight: 500;
     }
 
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none; /* Hidden by default */
+        z-index: 900; /* Ensure it's above other content */
+    }
+
+    .floating-form {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000; /* Make sure it's above the overlay */
+        width: 300px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Nút Đóng cho Form */
+    .floating-form .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .floating-form .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
 </style>
 <body>
 <!--header-->
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- Logo -->
         <a class="navbar-brand" href="#">
-            <img src="image/logo.jpg" alt="logo">
+            <img src="/image/logo.png" alt="Logo" width="́81" height="40">
         </a>
+
+        <!-- Toggle button for small screens -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="dropdown me-3">
-                <button class="btn dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                    <i class="bi bi-ui-checks-grid"></i> Danh mục
+            <!-- Navbar items (left aligned) -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#!Thông báo">Thông báo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/giohang}">Giỏ hàng</a>
+                </li>
+            </ul>
+
+            <!-- Search Form (centered) -->
+            <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
+                <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search"
+                       aria-label="Search" autocomplete="off">
+                <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
+                    <i class="fas fa-search"></i>
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                    <li><a class="dropdown-item" href="#">Sách trong nước</a></li>
-                    <li><a class="dropdown-item" href="#">Sách nước ngoài</a></li>
-                    <li><a class="dropdown-item" href="#">Đồ chơi</a></li>
-                    <li><a class="dropdown-item" href="#">Quà tặng</a></li>
-                </ul>
-            </div>
-            <form class="d-flex me-3">
-                <input class="form-control search-input" type="search" placeholder="Nhập từ khóa tìm kiếm"
-                       aria-label="Search">
-                <button class="btn search-button" type="submit"><i class="bi bi-search"></i></button>
+                <div id="suggestions-box" class="list-group position-absolute"
+                     style="width: 357px; z-index: 1000; "></div>
             </form>
 
-            <div class="nav-icons d-flex align-items-center">
-                <a href="#" class="me-3"><i class="bi bi-person"></i></a>
-                <a href="#" class="me-3"><i class="bi bi-bell"></i></a>
-                <a href="#"><i class="bi bi-cart"></i></a>
-            </div>
-        </div>
 
-        <div class="dropdown me-3">
-            <button class="btn dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                <img src="images/covietnam.webp" alt="VN" style="width: 20px; height: 15px;">
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-                <li><a class="dropdown-item" href="#"><img src="images/coanh.webp" style="width: 20px; height: 15px;">
-                    EN</a></li>
-                <li><a class="dropdown-item" href="#"><img src="images/covietnam.webp"
-                                                           style="width: 20px; height: 15px;"> VN</a></li>
+            <!-- Navbar items (right aligned) -->
+            <ul class="navbar-nav ms-auto">
+                <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/dangnhap}">Đăng nhập</a>
+                </li>
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
+                </li>
+
+                <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
+                <li th:if="${username != null}" class="nav-item">
+                    <a href="/trangcanhan" class="nav-link">
+                        <i class="fas fa-user-circle"></i> <!-- Thay thế bằng icon thông tin -->
+                        <span th:text="${username}"></span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -204,12 +254,44 @@
 <!--thanh toán-->
 <div class="container mt-4">
     <h2 class="text-center py-3">Xác nhận đặt hàng</h2>
-
-    <!-- Thông báo lỗi nếu giỏ hàng trống -->
-    <div th:if="${error}" class="alert alert-warning">
-        <p th:text="${error}"></p>
+    <!-- Hiển thị thông báo thành công -->
+    <div th:if="${success}" class="alert alert-success">
+        <span th:text="${success}"></span>
     </div>
 
+    <!-- Hiển thị thông báo lỗi -->
+    <div th:if="${error}" class="alert alert-danger">
+        <span th:text="${error}"></span>
+    </div>
+    <div class="overlay" id="overlay1"></div>
+    <div class="floating-form" id="floatingForm1">
+        <h5>Chỉnh Sửa Thông Tin Tài Khoản</h5>
+        <form id="editAccountForm" action="/api/updateThongTin" method="POST">
+        <div class="mb-3">
+                <label for="editAmount" class="form-label">Tên</label>
+                <input type="text" class="form-control" id="editAmount" name="ten" readonly placeholder="Nhập tên"
+                       th:value="${user.ten}">
+            </div>
+            <div class="mb-3">
+                <label for="editPhone" class="form-label">Số điện thoại</label>
+                <input type="tel" class="form-control" id="editPhone" name="phone" placeholder="Nhập số điện thoại"
+                       th:value="${user.SDT}">
+            </div>
+            <div class="mb-3">
+                <label for="editEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="editEmail" name="email" placeholder="Nhập email"
+                       th:value="${user.email}">
+            </div>
+            <div class="mb-3">
+                <label for="editDiachi" class="form-label">Địa chỉ</label>
+                <input type="text" class="form-control" id="editDiachi" name="diachi" placeholder="Nhập địa chỉ"
+                       th:value="${user.Dia_chi}">
+            </div>
+            <!-- Sử dụng `formaction` để gửi form mà không cần AJAX -->
+            <button type="submit" class="btn btn-primary">Cập Nhật</button>
+            <button type="button" class="btn btn-secondary" id="closeButton">Đóng</button> <!-- Nút đóng -->
+        </form>
+    </div>
     <form id="checkoutForm" method="POST">
         <!-- Địa chỉ nhận hàng -->
         <div class="card mb-4 shadow-sm">
@@ -219,7 +301,8 @@
             <div class="card-body">
                 <!-- Số điện thoại -->
                 <div class="mb-3">
-                    <p><strong>Tên người nhận: </strong><span id="username" th:text="${user.getTen()}">147852369</span></p>
+                    <p><strong>Tên người nhận: </strong><span id="username" th:text="${user.getTen()}">147852369</span>
+                    </p>
                 </div>
 
                 <!-- Số điện thoại -->
@@ -234,12 +317,14 @@
 
                 <!-- Địa chỉ -->
                 <div class="mb-3">
-                    <p><strong>Địa chỉ nhận hàng: </strong><span id="dia_chi" th:text="${user.getDia_chi()}">147852369</span></p>
+                    <p><strong>Địa chỉ nhận hàng: </strong><span id="dia_chi"
+                                                                 th:text="${user.getDia_chi()}">147852369</span></p>
                 </div>
 
                 <!-- Thay đổi địa chỉ button -->
                 <div class="d-grid">
-                    <a class="btn btn-outline-primary mt-3" href="/trangcanhan" role="button">Thay đổi địa chỉ</a>
+                    <!--                    <a class="btn btn-outline-primary mt-3" href="" role="button">Thay đổi địa chỉ</a>-->
+                    <button type="button" class="btn btn-primary px-4" id="editButton1">Sửa</button>
                 </div>
             </div>
         </div>
@@ -267,8 +352,12 @@
                             Giá: <span th:text="${sanpham.gia}">Giá</span> VND
                         </p>
                         <p>Số lượng: <span th:text="${sanpham.soLuongTongSanPham}"></span></p>
-                        <p>Đơn giá: <span th:text="${#numbers.formatDecimal(sanpham.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">Thể loại</span></p>
-                        <p>Thành tiền: <span th:text="${#numbers.formatDecimal(sanpham.gia * sanpham.soLuongTongSanPham, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">Thể loại</span></p>
+                        <p>Đơn giá: <span
+                                th:text="${#numbers.formatDecimal(sanpham.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">Thể loại</span>
+                        </p>
+                        <p>Thành tiền: <span
+                                th:text="${#numbers.formatDecimal(sanpham.gia * sanpham.soLuongTongSanPham, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">Thể loại</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -318,6 +407,24 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script>
+    $(document).ready(function () {
+        // Show the floating edit form and prefill data
+        $("#editButton1").click(function () {
+            $("#overlay1").show();  // Show overlay
+            $("#floatingForm1").show();  // Show floating form
+            // Prefill edit fields with current values
+            $("#editAmount").val($("#username").text());
+            $("#editPhone").val($("#sdt").text());
+            $("#editEmail").val($("#email").text());
+            $("#editDiachi").val($("#dia_chi").text());
+        });
+
+        // Hide floating form and overlay on close button click
+        $("#closeButton").click(function () {
+            $("#overlay1").hide();  // Hide overlay
+            $("#floatingForm1").hide();  // Hide floating form
+        });
+    });
 
 
     function calculateTotal() {
@@ -386,9 +493,13 @@
     // Cập nhật hiển thị tổng tiền khi trang load
     document.addEventListener('DOMContentLoaded', function () {
         const totalPrice = calculateTotal();
-        document.querySelector('.total-price').textContent = totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        document.querySelector('.total-price').textContent = totalPrice.toLocaleString('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        });
     });
     document.addEventListener('DOMContentLoaded', updateTotal);
+
 </script>
 <script src="/js/checkout-handler.js"></script>
 </body>

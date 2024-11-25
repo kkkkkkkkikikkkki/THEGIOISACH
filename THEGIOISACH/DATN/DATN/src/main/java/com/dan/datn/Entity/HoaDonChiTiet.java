@@ -14,6 +14,7 @@ public class HoaDonChiTiet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ID_hoa_don_chi_tiet")
     private Long ID_Hoa_Don_Chi_Tiet;
 
     // Quan hệ với bảng Thanh_Toan

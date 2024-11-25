@@ -3,6 +3,7 @@ package com.dan.datn.Controller;
 import com.dan.datn.Entity.SanPham;
 import com.dan.datn.Entity.User;
 import com.dan.datn.Repository.SanPhamRepository;
+import com.dan.datn.Service.ServiceImpl.UserServiceImpl;
 import com.dan.datn.Service.ThanhToanService;
 import com.dan.datn.Service.UserService;
 import com.dan.datn.dto.ProductDTO;
@@ -13,11 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @SessionAttributes("username")
@@ -28,6 +27,7 @@ public class ThanhToanController {
     private final ThanhToanService thanhToanService;
     private final UserService userService;
     private final SanPhamRepository spRepository;
+    private final UserServiceImpl userServiceImpl;
 
     @GetMapping("/checkout")
     public String showCheckoutPage(@RequestParam String productIds,
@@ -41,6 +41,12 @@ public class ThanhToanController {
         if (username == null) {
             model.addAttribute("error", "Bạn vui lòng đăng nhập trước khi truy cập giỏ hàng.");
             return "index/dangNhap";
+        }
+
+        // Cập nhật lại thông tin người dùng
+        Optional<User> userOptional = userServiceImpl.getUserByTen(username);
+        if (userOptional.isPresent()) {
+            model.addAttribute("user", userOptional.get());
         }
 
         // Chuyển đổi chuỗi thành mảng
@@ -132,4 +138,46 @@ public class ThanhToanController {
 
         return "layout/checkoutSuccess";
     }
+
+    // New method for updating user information
+    @PostMapping("/updateThongTin")
+    public String updateThongTin(
+            @RequestParam("ten") String ten,
+            @RequestParam("phone") String phone,
+            @RequestParam("email") String email,
+            @RequestParam("diachi") String diachi,
+            HttpSession session,
+            RedirectAttributes redirectAttributes) {
+
+        String username = (String) session.getAttribute("username");
+
+        if (username == null) {
+            redirectAttributes.addFlashAttribute("error", "Bạn vui lòng đăng nhập trước khi cập nhật thông tin cá nhân.");
+            return "redirect:/login";
+        }
+
+        Optional<User> userOptional = userServiceImpl.getUserByTen(username);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setTen(ten);
+            user.setSDT(Integer.valueOf(phone));
+            user.setEmail(email);
+            user.setDia_chi(diachi);
+
+            try {
+                userServiceImpl.saveUser(user);
+                redirectAttributes.addFlashAttribute("success", "Cập nhật thông tin thành công!");
+            } catch (Exception e) {
+                redirectAttributes.addFlashAttribute("error", "Đã xảy ra lỗi khi cập nhật thông tin.");
+            }
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Người dùng không tồn tại.");
+        }
+
+        // Chuyển hướng đến trang checkout
+        return "redirect:/api/checkout";
+    }
+
+
 }
