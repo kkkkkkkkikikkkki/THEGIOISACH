@@ -1,8 +1,7 @@
 package com.dan.datn.Entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
@@ -10,6 +9,9 @@ import java.util.Date;
 @Table(name = "Thanh_Toan")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class ThanhToan {
 
     @Id

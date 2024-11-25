@@ -47,7 +47,7 @@ public class TrangChuController {
         model.addAttribute("sanphamsTheLoai", sanphamsTheLoai);
 
         // Lấy 6 sản phẩm ngẫu nhiên
-        List<SanPham> SanPhamSanPhams = sanPhamServiceImpl.getSanPhamSanPham(18);
+        List<SanPham> SanPhamSanPhams = sanPhamServiceImpl.getSanPhamSanPham(36);
         for (SanPham sp : SanPhamSanPhams) {
             if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
                 String base64Image = Base64.getEncoder().encodeToString(sp.getHinh().getHinhMain());

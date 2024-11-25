@@ -11,13 +11,11 @@ import java.util.List;
 @Getter
 @Setter
 public class ThanhToanDTO {
-    Long ID_thanh_toan;
+    Long idSanPham;
+    String userName;
     String phuong_thuc_thanh_toan;
-    String tinh_tp;
-    String Quan_huyen;
-    String Phuong_xa;
-    String soDienThoai;
-    String diaChiChiTiet;
+    int soLuong;
+    String diaChi;
     double tongTien;
     List<ProductDTO> products;
 }

@@ -47,11 +47,12 @@
         }
 
         .card-title {
-            white-space: nowrap;      /* Prevents text from wrapping */
-            overflow: hidden;         /* Hides overflow text */
-            text-overflow: ellipsis;  /* Adds ellipsis for overflow text */
+            white-space: nowrap; /* Prevents text from wrapping */
+            overflow: hidden; /* Hides overflow text */
+            text-overflow: ellipsis; /* Adds ellipsis for overflow text */
             max-width: calc(100% - 20px); /* Adjust as necessary to fit within the card */
         }
+
         /* Hộp gợi ý tìm kiếm */
         #suggestions-box {
             position: absolute;
@@ -93,7 +94,8 @@
         </a>
 
         <!-- Toggle button for small screens -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -113,11 +115,13 @@
 
             <!-- Search Form (centered) -->
             <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
-                <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search" aria-label="Search" autocomplete="off">
+                <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search"
+                       aria-label="Search" autocomplete="off">
                 <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
                     <i class="fas fa-search"></i>
                 </button>
-                <div id="suggestions-box" class="list-group position-absolute" style="width: 357px; z-index: 1000; "></div>
+                <div id="suggestions-box" class="list-group position-absolute"
+                     style="width: 357px; z-index: 1000; "></div>
             </form>
 
 
@@ -151,47 +155,59 @@
             <!-- Sidebar Form -->
             <div class="col-md-3 sidebar">
                 <form class="form-container">
-                    <h5>Nhóm Sản Phẩm</h5>
+                    <h5>Thể loại</h5>
                     <ul class="list-group mb-4">
-                        <li class="list-group-item">Tất cả nhóm sản phẩm</li>
-                        <li class="list-group-item">Sách tiếng Việt</li>
-                        <li class="list-group-item">Văn học</li>
-                        <li class="list-group-item">Tiểu thuyết</li>
-                        <li class="list-group-item">Truyện ngắn - Tản văn</li>
-                        <li class="list-group-item">Light Novel</li>
-                        <li class="list-group-item">Truyện Trinh Thám</li>
+                        <a class="text-decoration-none" href="/filter?theLoai=Văn học">
+                            <li class="list-group-item">
+                                Văn học
+                            </li>
+                        </a>
+                        <a class="text-decoration-none" href="/filter?theLoai=Tiểu thuyết">
+                            <li class="list-group-item">
+                                Tiểu thuyết
+                            </li>
+                        </a>
+                        <a class="text-decoration-none" href="/filter?theLoai=Lịch sử">
+                            <li class="list-group-item">
+                                Lịch sử
+                            </li>
+                        </a>
+                        <a class="text-decoration-none" href="/filter?theLoai=Khoa học">
+                            <li class="list-group-item">
+                                Khoa học
+                            </li>
+                        </a>
+                        <a class="text-decoration-none" href="/filter?theLoai=Cổ tích">
+                            <li class="list-group-item">
+                                Cổ tích
+                            </li>
+                        </a>
+                        <a class="text-decoration-none" href="/filter?theLoai=Địa lý">
+                            <li class="list-group-item">
+                                Địa lý
+                            </li>
+                        </a>
                     </ul>
-
                     <h5>Giá</h5>
                     <ul class="list-group mb-4">
-                        <li class="list-group-item">
-                            <input type="checkbox"> 0đ - 150.000đ
-                        </li>
-                        <li class="list-group-item">
-                            <input type="checkbox"> 150.000đ - 300.000đ
-                        </li>
-                    </ul>
-
-                    <h5>Nhà Cung Cấp</h5>
-                    <ul class="list-group mb-4">
-                        <li class="list-group-item">
-                            <input type="checkbox"> Nhà Nam
-                        </li>
-                        <li class="list-group-item">
-                            <input type="checkbox"> Kim Đồng
-                        </li>
-                        <li class="list-group-item">
-                            <input type="checkbox"> Nhã Nam
-                        </li>
-                        <li class="list-group-item">
-                            <input type="checkbox"> Đinh Tị
-                        </li>
-                        <li class="list-group-item">
-                            <input type="checkbox"> Alpha Books
-                        </li>
-                        <li class="list-group-item">
-                            <input type="checkbox"> First News
-                        </li>
+                        <a href="/filterByPrice?minPrice=0&maxPrice=100000" class="text-decoration-none">
+                            <li class="list-group-item">0đ - 100.000đ</li>
+                        </a>
+                        <a href="/filterByPrice?minPrice=100000&maxPrice=150000" class="text-decoration-none">
+                            <li class="list-group-item">100.000đ - 150.000đ</li>
+                        </a>
+                        <a href="/filterByPrice?minPrice=150000&maxPrice=200000" class="text-decoration-none">
+                            <li class="list-group-item">150.000đ - 200.000đ</li>
+                        </a>
+                        <a href="/filterByPrice?minPrice=200000&maxPrice=250000" class="text-decoration-none">
+                            <li class="list-group-item">200.000đ - 250.000đ</li>
+                        </a>
+                        <a href="/filterByPrice?minPrice=250000&maxPrice=350000" class="text-decoration-none">
+                            <li class="list-group-item">250.000đ - 350.000đ</li>
+                        </a>
+                        <a href="/filterByPrice?minPrice=350000&maxPrice=400000" class="text-decoration-none">
+                            <li class="list-group-item">350.000đ - 400.000đ</li>
+                        </a>
                     </ul>
                 </form>
             </div>
@@ -199,33 +215,26 @@
             <!-- Product Listing Form -->
             <div class="col-md-8">
                 <form class="form-container">
-                    <div class="d-flex justify-content-between mb-3">
-                        <h5>Sắp xếp theo:</h5>
-                        <select class="form-select" style="width: auto;">
-                            <option>Bán chạy tuần</option>
-                            <option>Mới nhất</option>
-                            <option>Giá giảm dần</option>
-                        </select>
-                    </div>
-
                     <div class="row">
                         <div th:if="${sanPhams.isEmpty()}" class="col-12">
                             <p>Không tìm thấy sản phẩm nào.</p>
                         </div>
-
-                            <div th:each="sanPham : ${sanPhams}"  class="col-md-3" style="margin-bottom: 15px">
+                        <div th:each="sanPham : ${sanPhams}" class="col-md-3" style="margin-bottom: 15px">
+                            <a class="text-decoration-none" th:href="@{/sanpham/{id}(id=${sanPham.ID_san_pham})}">
                                 <div class="card">
                                     <img th:if="${sanPham.hinh != null && sanPham.hinh.base64Image != null}"
                                          th:src="'data:image/png;base64,' + ${sanPham.hinh.base64Image}"
-                                         alt="Main Image" class="main-image" style="aspect-ratio: 9 / 16;object-fit: cover;">
+                                         alt="Main Image" class="main-image"
+                                         style="aspect-ratio: 9 / 16;object-fit: cover;">
                                     <div class="card-body">
                                         <h6 class="card-title" th:text="${sanPham.tenSach}"></h6>
                                         <p>Thể loại: <span th:text="${sanPham.theLoai.theLoai}"></span></p>
-                                        <p>Giá: <span class="gia-san-pham" th:attr="data-price=${sanPham.gia}"></span></p>
+                                        <p>Giá: <span class="gia-san-pham" th:attr="data-price=${sanPham.gia}"></span>
+                                        </p>
                                     </div>
                                 </div>
-                            </div>
-
+                            </a>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -267,8 +276,9 @@
 <script>
     //mã xử lý đổi đơn vị tiền tệ
     function formatVND(price) {
-        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+        return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(price);
     }
+
     document.querySelectorAll('.gia-san-pham').forEach(element => {
         const price = element.getAttribute('data-price');
         element.textContent = formatVND(price);
