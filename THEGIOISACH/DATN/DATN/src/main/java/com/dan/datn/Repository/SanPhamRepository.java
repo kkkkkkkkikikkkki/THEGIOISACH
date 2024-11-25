@@ -38,6 +38,10 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Long> {
     // Phương thức tìm sản phẩm theo ID
     Optional<SanPham> findById(Long id);
 
+    //Truy vấn sản phẩm theo giá thấp nhất đến cao nhất
+    @Query("SELECT sp FROM SanPham sp WHERE sp.gia BETWEEN :minPrice AND :maxPrice")
+    List<SanPham> findSanPhamsByPriceRange(@Param("minPrice") Integer minPrice, @Param("maxPrice") Integer maxPrice);
+
     @Query("SELECT s FROM SanPham s " +
             "JOIN FETCH s.hinh h " +
             "JOIN FETCH s.theLoai tl " +

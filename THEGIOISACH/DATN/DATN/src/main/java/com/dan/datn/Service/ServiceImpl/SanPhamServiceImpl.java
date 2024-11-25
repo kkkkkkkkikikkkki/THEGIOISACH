@@ -66,6 +66,11 @@ public class SanPhamServiceImpl {
         return sanPhams;
     }
 
+    //Lấy sản phẩm có gía thấp nhất và cao nhất
+    public List<SanPham> getSanPhamsByPriceRange(Integer minPrice, Integer maxPrice) {
+        return sanPhamRepository.findSanPhamsByPriceRange(minPrice, maxPrice);
+    }
+
     public List<String> findSuggestions(String keyword) {
         return sanPhamRepository.findSuggestionsByKeyword(keyword);
     }

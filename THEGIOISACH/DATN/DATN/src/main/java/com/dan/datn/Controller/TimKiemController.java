@@ -21,6 +21,7 @@ public class TimKiemController {
     @Autowired
     private HttpSession httpSession;
 
+    //Chức năng tìm kiếm
     @GetMapping("/search")
     public String searchSanPham(
             @RequestParam(value = "keyword", required = false) String keyword,
@@ -49,6 +50,7 @@ public class TimKiemController {
         return sanPhamServiceImpl.findSuggestions(keyword);
     }
 
+    //Lọc theo thể loại
     @GetMapping("/filter")
     public String locSanPham(@RequestParam("theLoai") String theLoai, Model model) {
         List<SanPham> sanPhams = sanPhamServiceImpl.getSanPhamsByTheLoai(theLoai);
@@ -71,6 +73,34 @@ public class TimKiemController {
 
         return "index/sanPhamSauTimKiem"; // Trả về trang hiển thị kết quả
     }
+
+    //Lọc theo giá
+    @GetMapping("/filterByPrice")
+    public String filterSanPhamByPrice(
+            @RequestParam("minPrice") Integer minPrice,
+            @RequestParam("maxPrice") Integer maxPrice,
+            Model model) {
+
+        List<SanPham> sanPhams = sanPhamServiceImpl.getSanPhamsByPriceRange(minPrice, maxPrice);
+
+        if (sanPhams.isEmpty()) {
+            model.addAttribute("message", "Không tìm thấy sản phẩm trong khoảng giá này.");
+        }
+
+        for (SanPham sp : sanPhams) {
+            if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(sp.getHinh().getHinhMain());
+                sp.getHinh().setBase64Image(base64Image);
+            }
+        }
+
+        model.addAttribute("sanPhams", sanPhams);
+        String username = (String) httpSession.getAttribute("username");
+        model.addAttribute("username", username);
+
+        return "index/sanPhamSauTimKiem"; // Trả về trang hiển thị kết quả
+    }
+
 
 
 }
