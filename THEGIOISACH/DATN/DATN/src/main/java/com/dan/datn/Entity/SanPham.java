@@ -44,6 +44,7 @@ public class SanPham {
     @Column(name = "Mo_ta", nullable = false)
     private String moTa;
 
+
     // Relationships
     @ManyToOne
     @JoinColumn(name = "ID_the_loai", nullable = false)
