@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            background-color: #FFE4E1; /* Màu nền giống như trong ảnh */
+            background-color: #FFE4E1;
+
+            overflow-x: hidden;
+
+            /* Màu nền giống như trong ảnh */
         }
 
         .order-header {
@@ -260,6 +264,78 @@
             margin-top: 10px; /* Khoảng cách phía trên */
         }
 
+        .container {
+            margin-top: 50px; /* Khoảng cách từ trên xuống */
+            background-color: #ffffff; /* Màu nền trắng sáng để nổi bật */
+            border-radius: 10px; /* Bo góc cho container */
+            padding: 30px; /* Thêm khoảng cách xung quanh */
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Thêm bóng mờ cho container */
+        }
+
+        .order-header {
+            font-weight: bold;
+            text-align: center;
+            background-color: #f8f9fa; /* Màu nền sáng cho header */
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .order-item {
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px; /* Khoảng cách giữa các sản phẩm */
+            background-color: #f9f9f9; /* Màu nền nhạt cho từng sản phẩm */
+            border-radius: 5px; /* Bo góc cho mỗi item */
+        }
+
+        .order-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            background-color: #ccc; /* Placeholder cho hình ảnh */
+            border-radius: 5px;
+        }
+
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 2px solid #ddd;
+            background-color: #f8f9fa; /* Nền sáng cho footer */
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .total-amount {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #d9534f;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .btn-buy-again {
+            background-color: #007bff; /* Màu xanh chính của Bootstrap */
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .btn-buy-again:hover {
+            background-color: #0056b3; /* Màu nền khi hover */
+        }
+
+        .order-footer h5 {
+            margin: 0;}
+
+
     </style>
 
 </head>
@@ -308,7 +384,7 @@
 
 <div class="content">
     <div class="row">
-        <div class="col-2 mt-3" style="border-right: 1px solid black;  height: 100vh;">
+        <div class="col-2 mt-3" style="border-right: 1px solid black">
             <h4 style="text-align: center;">
                 <a href="/trangcanhan">Tài khoản</a>
             </h4>
@@ -324,45 +400,61 @@
                 </form>
             </div>
         </div>
+
         <div class="col-7 mt-3" style="margin: 0 auto;">
             <div class="container mt-5">
                 <!-- Đầu trang đơn hàng -->
                 <div class="order-header row py-2 bg-light text-center">
                     <div class="col-3">Hình</div>
                     <div class="col-3">Tên sản phẩm</div>
-<!--                    <div class="col-2">Thể loại</div>-->
-                    <div class="col-2">Số lượng</div>
+                    <div class="col-3">Số lượng</div>
                     <div class="col-2">Giá</div>
-
                 </div>
 
-                <div th:each="item : ${orderDetails}" class="order-item row bg-light text-center">
+                <div th:each="item : ${donhangcuatoi}" class="order-item row bg-light text-center">
+                    <!-- Hình ảnh sản phẩm -->
                     <div class="col-3 d-flex align-items-center justify-content-center">
-                        <img th:src="${item.hoaDonChiTietList[0].sanPham.hinh.hinhMain}" alt="Product Image" style="width: 50px; height: 50px;">
+                        <img th:src="'data:image/png;base64,' + ${item.sanPham.hinh.base64MainImage}" alt="Product Image" style="width: 100%; height: 100%;">
                     </div>
-                    <div class="col-3 d-flex align-items-center justify-content-center" th:text="${item.hoaDonChiTietList[0].sanPham.tenSach}"></div>
-<!--                    <div class="col-2 d-flex align-items-center justify-content-center" th:text="${item.hoaDonChiTietList[0].sanPham.theLoai}"></div>-->
-                    <div class="col-2 d-flex align-items-center justify-content-center" th:text="${item.hoaDonChiTietList[0].soLuong}"></div>
-                    <div class="col-2 d-flex align-items-center justify-content-center" th:text="${item.hoaDonChiTietList[0].gia}"></div>
-
+                    <!-- Tên sản phẩm -->
+                    <div class="col-3 d-flex align-items-center justify-content-center" th:text="${item.sanPham.tenSach}"></div>
+                    <!-- Số lượng -->
+                    <div class="col-3 d-flex align-items-center justify-content-center" th:text="${item.soLuong}"></div>
+                    <!-- Giá -->
+                    <div class="col-2 d-flex align-items-center justify-content-center">
+                        <span class="gia-san-pham" th:text="${item.sanPham.gia}"></span>
+                    </div>
                     <div class="order-footer row text-center">
-                        <div class="col-6 d-flex align-items-center justify-content-center">
-                            <h5>Trạng thái đơn hàng: Đã Thanh Toán</h5>
+                        <div class="col-4 d-flex align-items-center justify-content-center">
+                            <h5 >Trạng thái đơn hàng: </h5>
+                            <h5><div style="margin-left: 10px" th:text="${item.phuongThucThanhToan}"></div></h5>
+
                         </div>
-                        <div class="col-6 d-flex align-items-center justify-content-center total-amount" th:text="'Tổng tiền: ' + ${item.tongTien}"></div>
+                        <div class="col-4 d-flex align-items-center justify-content-center total-amount">
+                            <span style="margin-right: 5px">Tổng tiền: </span>
+                            <span class="gia-san-pham" th:text="${item.tongTien}"></span>
+                        </div>
+
                         <div class="col-12 d-flex justify-content-end mt-2">
                             <button class="btn btn-buy-again">Mua lại</button>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
-    </div>
-</div>
-</div>
 
+        </div>
+</div>
+</div>
+<script>
+    document.querySelectorAll('.gia-san-pham').forEach(element => {
+        const price = parseInt(element.textContent);
+        const formattedPrice = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        }).format(price);
+        element.textContent = formattedPrice;
+    });
+</script>
 </body>
 </html>
 

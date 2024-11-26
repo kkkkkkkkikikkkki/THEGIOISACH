@@ -62,6 +62,9 @@ public class ThanhToanServiceImpl implements ThanhToanService {
                         " trong kho. Chỉ còn " + sanPham.getSoLuongTongSanPham() + " sản phẩm.");
             }
 
+
+            // số lượng da ban
+            sanPham.setSoLuongDaBan(sanPham.getSoLuongDaBan() + productDTO.getSoLuong());
             // Trừ số lượng tồn kho
             sanPham.setSoLuongTonKho(sanPham.getSoLuongTonKho() - productDTO.getSoLuong());
             // Trừ số lượng tổng sản phẩm
