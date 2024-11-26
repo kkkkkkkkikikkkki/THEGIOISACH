@@ -19,6 +19,35 @@
     body {
         background-color: #FFE4E1;
     }
+    .quantity-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .quantity-btn {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        font-size: 18px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .quantity-input {
+        width: 50px;
+        text-align: center;
+        margin: 0 5px;
+        padding: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .quantity-btn:hover {
+        background-color: #e0e0e0;
+    }
+
+    .quantity-btn:focus {
+        outline: none;
+    }
 
     /* Hiệu ứng hover cho nút Đăng nhập */
     .btn-outline-secondary:hover {
@@ -424,7 +453,15 @@
         <!-- Lặp qua các sản phẩm trong giỏ hàng -->
         <tbody th:each="sanpham : ${cart}">
         <tr class="product-card">
-            <td><input type="checkbox" class="product-checkbox"></td>
+
+            <td>
+                <label>
+                    <input type="checkbox"
+                           class="product-checkbox"
+                           th:data-product-id="${sanpham.ID_san_pham}"
+                           th:data-quantity="1">
+                </label> <!-- Giá trị mặc định -->
+            </td>
             <td>
                 <img th:src="'data:image/png;base64,' + ${sanpham.hinh.base64Image}" alt="Tên sản phẩm"
                      class="product-image">
@@ -436,11 +473,22 @@
                 <span class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></span>
             </td>
             <td>
-                <div class="quantity-container">
+                <div class="quantity-container" >
+
                     <label>
-                        <input type="number" name="quantity" value="1" min="1" class="form-control"
-                               onchange="updateQuantity(this.value)">
+                        <div class="quantity-wrapper">
+                            <button type="button" class="quantity-btn decrease" onclick="changeQuantity(this)">-</button>
+                            <input type="number"
+                                   name="quantity"
+                                   value="1"
+                                   min="1"
+                                   class="form-control quantity-input"
+                                   th:data-product-id="${sanpham.ID_san_pham}"
+                                   onchange="updateQuantity(this)">
+                            <button type="button" class="quantity-btn increase" onclick="changeQuantity(this)">+</button>
+                        </div>
                     </label>
+
                 </div>
             </td>
             <td>
@@ -452,6 +500,7 @@
         </tr>
         </tbody>
     </table>
+
     <!-- Tóm tắt giỏ hàng -->
     <div class="cart-summary d-flex justify-content-between align-items-center mt-3">
         <p>Tổng cộng: <span class="total-price gia-san-pham"></span></p>
@@ -519,7 +568,16 @@
 <!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-
+    function changeQuantity(button) {
+        var input = button.parentElement.querySelector('input');
+        var currentValue = parseInt(input.value);
+        if (button.classList.contains('increase')) {
+            input.value = currentValue + 1;
+        } else if (button.classList.contains('decrease') && currentValue > 1) {
+            input.value = currentValue - 1;
+        }
+        updateQuantity(input); // Cập nhật giá trị sau khi thay đổi
+    }
     document.addEventListener('DOMContentLoaded', () => {
         const selectAllCheckbox = document.getElementById('select-all');
         const productCheckboxes = document.querySelectorAll('.product-checkbox');
@@ -680,22 +738,6 @@
         }
     });
 
-    function updateQuantity(quantity) {
-        fetch('/update-cart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({quantity: quantity})
-        }).then(response => {
-            if (response.ok) {
-                console.log("Cart updated successfully");
-            } else {
-                console.error("Failed to update cart");
-            }
-        });
-    }
-
     // Chọn tất cả
     document.getElementById('select-all').addEventListener('change', function () {
         const checkboxes = document.querySelectorAll('.product-checkbox');
@@ -721,45 +763,135 @@
     document.querySelectorAll('.product-checkbox').forEach(checkbox => {
         checkbox.addEventListener('change', updateTotalPrice);
     });
+    // Hàm cập nhật số lượng khi người dùng thay đổi
 
-    // Chuyển hướng đến trang thanh toán
+    function updateQuantity(input) {
+
+        const productId = input.getAttribute('data-product-id');
+
+        const quantity = input.value;
+
+        // Cập nhật data-quantity trong checkbox tương ứng
+
+        const checkbox = document.querySelector(`.product-checkbox[data-product-id="${productId}"]`);
+
+        if (checkbox) {
+
+            checkbox.setAttribute('data-quantity', quantity);
+
+        }
+
+    }
+
+    // Xử lý sự kiện click vào nút checkout
+
     document.querySelector('.checkout-button').addEventListener('click', function () {
+
         const selectedProducts = document.querySelectorAll('.product-checkbox:checked');
+
         if (selectedProducts.length === 0) {
+
             alert('Vui lòng chọn ít nhất một sản phẩm để thanh toán!');
+
             return;
+
         }
 
         const productIds = [];
+
         const quantities = [];
 
-        selectedProducts.forEach(product => {
-            productIds.push(product.getAttribute('data-product-id'));
-            quantities.push(product.getAttribute('data-quantity'));  // Lấy số lượng sản phẩm
+        selectedProducts.forEach(checkbox => {
+
+            const productId = checkbox.getAttribute('data-product-id');
+
+            const quantity = checkbox.getAttribute('data-quantity');
+
+
+
+            productIds.push(productId);
+
+            quantities.push(quantity);
+
         });
 
-        // Chuyển hướng tới trang thanh toán và gửi dữ liệu sản phẩm đã chọn
-        const url = "/api/checkout";  // Trang thanh toán
+        // Tạo form và submit
+
+        const url = "/api/checkout";
+
         const form = document.createElement('form');
+
         form.method = 'GET';
+
         form.action = url;
 
-        // Thêm danh sách các sản phẩm đã chọn và số lượng vào form
+        // Thêm product IDs
+
         const productIdsInput = document.createElement('input');
+
         productIdsInput.type = 'hidden';
+
         productIdsInput.name = 'productIds';
+
         productIdsInput.value = productIds.join(',');
+
         form.appendChild(productIdsInput);
 
+        // Thêm quantities
+
         const quantitiesInput = document.createElement('input');
+
         quantitiesInput.type = 'hidden';
+
         quantitiesInput.name = 'quantities';
+
         quantitiesInput.value = quantities.join(',');
+
         form.appendChild(quantitiesInput);
 
         document.body.appendChild(form);
+
         form.submit();
+
     });
+    // // Chuyển hướng đến trang thanh toán
+    // document.querySelector('.checkout-button').addEventListener('click', function () {
+    //     const selectedProducts = document.querySelectorAll('.product-checkbox:checked');
+    //     if (selectedProducts.length === 0) {
+    //         alert('Vui lòng chọn ít nhất một sản phẩm để thanh toán!');
+    //         return;
+    //     }
+    //
+    //     const productIds = [];
+    //     const quantities = [];
+    //
+    //     selectedProducts.forEach(product => {
+    //         productIds.push(product.getAttribute('data-product-id'));
+    //         quantities.push(product.getAttribute('data-quantity'));  // Lấy số lượng sản phẩm
+    //     });
+    //
+    //     // Chuyển hướng tới trang thanh toán và gửi dữ liệu sản phẩm đã chọn
+    //     const url = "/api/checkout";  // Trang thanh toán
+    //     const form = document.createElement('form');
+    //     form.method = 'GET';
+    //     form.action = url;
+    //
+    //     // Thêm danh sách các sản phẩm đã chọn và số lượng vào form
+    //     const productIdsInput = document.createElement('input');
+    //     productIdsInput.type = 'hidden';
+    //     productIdsInput.name = 'productIds';
+    //     productIdsInput.value = productIds.join(',');
+    //     form.appendChild(productIdsInput);
+    //
+    //     const quantitiesInput = document.createElement('input');
+    //     quantitiesInput.type = 'hidden';
+    //     quantitiesInput.name = 'quantities';
+    //     quantitiesInput.value = quantities.join(',');
+    //     form.appendChild(quantitiesInput);
+    //
+    //     document.body.appendChild(form);
+    //     form.submit();
+    // });
 
     // Tự động cập nhật tổng tiền khi tải lại trang hoặc thay đổi số lượng
     document.addEventListener('DOMContentLoaded', updateTotalPrice);
