@@ -43,7 +43,7 @@ public class DangKyADController {
             user.setSDT(Integer.parseInt(sdt));
             user.setEmail(email);
             user.setRole(0); // Đặt role là 0 cho admin
-            userServiceImpl.saveUser(user);
+            userServiceImpl.saveAdmin(user);
             return "redirect:/dangnhapadmin";
         }
     }

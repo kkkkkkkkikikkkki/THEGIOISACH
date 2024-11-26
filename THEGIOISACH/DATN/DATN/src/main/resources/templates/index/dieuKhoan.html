@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Điều Khoản Sử Dụng</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #FFE4E1;
+        }
+
+        .terms-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .terms-title {
+            color: #FF6666;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .terms-content {
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .btn-primary {
+            background-color: #FF6666;
+            border-color: #FF6666;
+        }
+
+        .btn-primary:hover {
+            background-color: #FF9999;
+            border-color: #FF9999;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+            <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
+        </a>
+
+        <!-- Toggle button for small screens -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Navbar items (left aligned) -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{trangchu}">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Thông báo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Giỏ hàng</a>
+                </li>
+            </ul>
+
+            <!-- Search Form (centered) -->
+            <form class="d-flex mx-auto" role="search" style="width: 400px;">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
+                    <i class="fas fa-search"></i> <!-- Icon search -->
+                </button>
+            </form>
+
+            <!-- Navbar items (right aligned) -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{dangnhap}">Đăng nhập</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-dark" th:href="@{dangky}">Đăng ký</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <!-- Form container -->
+    <form class="terms-container">
+        <h1>Điều khoản sử dụng</h1>
+        <p>
+            Chào mừng quý khách đến mua sắm tại <strong>THEGIOISACH</strong>. Sau khi truy cập vào website
+            <strong>THEGIOISACH</strong> để tham khảo hoặc mua sắm, quý khách đã đồng ý tuân thủ và ràng buộc với
+            những quy định của <strong>THEGIOISACH</strong>. Vui lòng xem kỹ các quy định và hợp tác với chúng tôi
+            để xây dựng một website <strong>THEGIOISACH</strong> ngày càng thân thiện và phục vụ tốt những yêu cầu
+            của chính quý khách. Ngoài ra, nếu có bất cứ câu hỏi nào về những thỏa thuận dưới đây, vui lòng liên
+            hệ với <strong>THEGIOISACH</strong> qua số điện thoại <strong>hotline 1900696969</strong> hoặc email
+            <strong>thegioisach2024@gmail.com</strong>.
+        </p>
+
+        <h2>Tài khoản của khách hàng</h2>
+        <p>
+            Một số dịch vụ, tính năng tại đây yêu cầu quý khách cần phải đăng ký <strong>Tài khoản THEGIOISACH</strong> thì mới có thể sử dụng.
+            Do đó, để tận hưởng đầy đủ các dịch vụ và tính năng này, quý khách vui lòng cho phép
+            <strong>THEGIOISACH</strong> tiến hành xử lý các dữ liệu cá nhân cơ bản sau:
+        </p>
+        <ul>
+            <li>
+                <strong>Dữ liệu cá nhân cơ bản bắt buộc phải cung cấp:</strong> Là các thông tin giúp xác định danh tính đối với từng tài khoản
+                <strong>THEGIOISACH</strong>, bao gồm họ tên, địa chỉ email, số điện thoại,... của quý khách.
+            </li>
+            <li>
+                Trường hợp quý khách đăng ký tài khoản <strong>THEGIOISACH</strong> thông qua tài khoản Facebook hoặc Google,
+                các dữ liệu cá nhân cơ bản của quý khách cung cấp cho các nền tảng này như họ tên, địa chỉ email,
+                số điện thoại, ảnh đại diện,... sẽ được gửi đến <strong>THEGIOISACH</strong> ngay khi quý khách cho
+                phép <strong>THEGIOISACH</strong> truy cập vào thông tin của quý khách trên các nền tảng này theo từng chính sách của nền tảng.
+            </li>
+            <li>
+                <strong>Dữ liệu cá nhân cơ bản được cung cấp để phục vụ giao dịch:</strong> Là các thông tin cần thiết để thực hiện
+                một giao dịch tại website <strong>thegioisach.com</strong>, bao gồm địa chỉ giao hàng, địa chỉ thanh toán,
+                phương thức thanh toán,... của quý khách.
+            </li>
+            <li>
+                <strong>Dữ liệu cá nhân cơ bản tự nguyện cung cấp:</strong> Là các thông tin mà quý khách có thể chia sẻ
+                (hoặc không) để cá nhân hóa trải nghiệm sử dụng dịch vụ tại <strong>THEGIOISACH</strong>, bao gồm ngày tháng năm sinh,
+                giới tính, sở thích, nghề nghiệp,... của quý khách.
+            </li>
+        </ul>
+        <p>
+            Việc sử dụng và bảo mật thông tin Tài khoản <strong>THEGIOISACH</strong> là trách nhiệm và quyền lợi của quý khách khi sử dụng dịch vụ tại <strong>THEGIOISACH</strong>.
+            Quý khách phải giữ kín mật khẩu và tài khoản, hoàn toàn chịu trách nhiệm đối với tất cả các hoạt động diễn ra thông qua việc sử dụng mật khẩu hoặc tài khoản của mình.
+        </p>
+
+        <h2>Quyền lợi bảo mật dữ liệu cá nhân của khách hàng</h2>
+        <p>
+            Khi sử dụng dịch vụ tại website <strong>THEGIOISACH</strong>, quý khách được đảm bảo rằng những thông tin cung cấp cho chúng tôi sẽ chỉ được dùng để nâng cao
+            chất lượng dịch vụ dành cho khách hàng của <strong>THEGIOISACH</strong> và sẽ không được chuyển giao cho một bên thứ ba nào khác vì mục đích thương mại.
+        </p>
+
+        <h2>Trách nhiệm và quyền lợi của THEGIOISACH</h2>
+        <p>
+            Chúng tôi chịu trách nhiệm tuân thủ các nguyên tắc về xử lý dữ liệu cá nhân theo đúng quy định pháp luật và các điều khoản được nêu ra tại Chính sách bảo mật dữ liệu cá nhân của khách hàng.
+        </p>
+
+        <h2>Hiệu lực</h2>
+        <p>
+            Điều Khoản Sử Dụng Dịch Vụ này được cập nhật và có hiệu lực từ ngày 02/11/2024.
+            THEGIOISACH có thể điều chỉnh Điều Khoản Sử Dụng Dịch Vụ này vào bất kỳ thời điểm nào, và đăng tải công khai Điều Khoản Sử Dụng đã được điều chỉnh trên website thegoisach.com.
+        </p>
+
+        <p><strong>ĐẠI DIỆN CÔNG TY CỔ PHẦN PHÁT HÀNH SÁCH TP HCM – THEGIOISACH</strong></p>
+        <p><strong>[Đã ký và đóng dấu]</strong></p>
+        <p><strong>HUỲNH THẾ PHONG</strong></p>
+        <p>Quyền Tổng Giám Đốc</p>
+    </form>
+
+</div>
+<!-- Footer -->
+<footer class="bg-light py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Company Info -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">THEGIOISACH</h5>
+                <p class="text-dark">© 2024 THEGIOISACH. Bản quyền thuộc về công ty THEGIOISACH.</p>
+            </div>
+
+            <!-- Services -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Dịch vụ</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Điều khoản hệ thống</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chính sách đổi trả</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chính sách vận chuyển</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chăm sóc khách hàng</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Hỗ trợ</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Câu hỏi thường gặp</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Liên hệ hỗ trợ</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Bảo mật và thanh toán</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Liên hệ</h5>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-phone"></i> 1900696969</li>
+                    <li><i class="fas fa-envelope"></i> thegioisach2024@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
