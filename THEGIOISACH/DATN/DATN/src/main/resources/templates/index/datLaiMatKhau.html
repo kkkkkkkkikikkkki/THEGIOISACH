@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-        <html xmlns:th="http://www.thymeleaf.org">
-        <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Fahasa - Đăng Ký</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Đặt lại mật khẩu</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -62,7 +58,7 @@
         }
 
         /* Input field styling */
-        input[type="text"], input[type="password"], input[type="tel"], input[type="number"] {
+        input[type="text"], input[type="password"] {
             border-radius: 10px;
         }
 
@@ -117,7 +113,7 @@
             <!-- Navbar items (right aligned) -->
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/login}">Đăng nhập</a>
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{dangnhap}">Đăng nhập</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link btn btn-dark" th:href="@{dangky}">Đăng ký</a>
@@ -127,60 +123,38 @@
     </div>
 </nav>
 
-<!-- Form Đăng Ký -->
-<!-- Form Đăng Ký -->
+<!-- Form Đăng Nhập -->
+<!-- Form Đăng Nhập -->
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="form-container">
-                <form action="/dangky" method="post">
-                    <h1 class="text-center">Đăng Ký</h1>
-                    <p class="text-center">Vui lòng điền thông tin để tạo tài khoản.</p>
+                <form th:action="@{/login}" method="post">
+                    <h1 class="text-center">Đặt lại mật khẩu</h1>
+                    <p class="text-center">Vui lòng điền thông tin để đặt lại mật khẩu.</p>
                     <hr>
 
                     <div class="mb-3">
-                        <label class="form-label"><b>Tên đăng nhập</b></label>
-                        <input type="text" placeholder="Nhập Tên đăng nhập" class="form-control" name="ten" required>
+                        <label class="form-label"><b>Mã xác nhận</b></label>
+                        <input type="text" placeholder="Nhập mã xác nhận " class="form-control" name="code" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label"><b>Số điện thoại</b></label>
-                        <input type="tel" placeholder="Nhập Số điện thoại" class="form-control" name="sdt" required>
+                        <label class="form-label"><b>Mật khẩu mới</b></label>
+                        <input type="password" placeholder="Nhập mật khẩu mới" class="form-control" name="password" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label"><b>Email</b></label>
-                        <input type="email" placeholder="Nhập Email" class="form-control" name="email" required>
+                        <label class="form-label"><b>Nhập lại mật khẩu </b></label>
+                        <input type="password" placeholder="Nhập lại mật khẩu" class="form-control" name="password" required>
                     </div>
-
-                    <div class="mb-3">
-                        <label class="form-label"><b>Mật khẩu</b></label>
-                        <input type="password" placeholder="Nhập Mật khẩu" class="form-control" name="matKhau" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label"><b>Nhập lại Mật khẩu</b></label>
-                        <input type="password" placeholder="Nhập lại Mật khẩu" class="form-control" name="confirm-password" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="diachi">Địa chỉ:</label>
-                        <input class="form-control" placeholder="Nhập địa chỉ" type="text" id="diachi" name="diachi" required>
-                    </div>
-
-                    <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" name="remember" checked>
-                        <label class="form-check-label">Ghi nhớ tôi</label>
-                    </div>
-
-                    <p class="text-center">Bằng cách tạo tài khoản, bạn đồng ý với <a href="#" style="color:dodgerblue">Điều khoản & Quyền riêng tư</a>.</p>
 
                     <div class="clearfix">
-                        <button type="submit" class="btn btn-primary signupbtn">Đăng Ký</button>
+                        <button type="submit" class="btn btn-primary signupbtn">Xác nhận mật khẩu</button>
                     </div>
 
-                    <div class="text-danger text-center">
-                        <p th:if="${error}" th:text="${error}"></p>
+                    <div th:if="${error}" class="alert alert-danger mt-3" role="alert">
+                        <p th:text="${error}"></p>
                     </div>
                 </form>
 
@@ -237,3 +211,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
