@@ -55,6 +55,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         user.setRole(1); // Đặt giá trị role mặc định là 1
+        userRepository.save(user);
+    }
+
+    @Override
+    public void saveAdmin(User user) {
         user.setRole(0); // Đặt giá trị role mặc định là 0
         userRepository.save(user);
     }
@@ -69,5 +74,13 @@ public class UserServiceImpl implements UserService {
 
     public List<User> getAllAdmins() {
         return userRepository.findByRole(0); // Lấy tất cả tài khoản có role là 0 (admin)
+    }
+
+    @Autowired
+    private UserRepository nguoiDungRepository;
+
+    @Override
+    public List<User> getAllNguoiDung() {
+        return nguoiDungRepository.findAll();
     }
 }
