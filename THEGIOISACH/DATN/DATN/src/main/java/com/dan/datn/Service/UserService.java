@@ -22,4 +22,5 @@ public interface UserService {
     List<User> getAllNguoiDung();
 
 
+    boolean updatePassword(String username, String oldPassword, String newPassword, String confirmPassword);
 }

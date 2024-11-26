@@ -100,19 +100,46 @@
         }
 
         /* Styles for the Logout button */
-        .btn-logout {
-            background-color: #ff4d4d; /* Red background */
-            color: white; /* White text */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            padding: 10px 20px; /* Padding */
-            margin-left: 55px;
-            font-weight: bold; /* Bold text */
-            transition: background-color 0.3s ease; /* Smooth transition */
+        /*.btn-logout {*/
+        /*    background-color: #ff4d4d; !* Red background *!*/
+        /*    color: white; !* White text *!*/
+        /*    border: none; !* No border *!*/
+        /*    border-radius: 5px; !* Rounded corners *!*/
+        /*    padding: 10px 20px; !* Padding *!*/
+        /*    margin-left: 55px;*/
+        /*    font-weight: bold; !* Bold text *!*/
+        /*    transition: background-color 0.3s ease; !* Smooth transition *!*/
+        /*}*/
+
+        /*.btn-logout:hover {*/
+        /*    background-color: #cc0000; !* Darker red on hover *!*/
+        /*}
+        */
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            align-items: center;     /* Căn giữa theo chiều dọc */
+            /* Chiều cao bằng 100% chiều cao cửa sổ */
         }
 
-        .btn-logout:hover {
-            background-color: #cc0000; /* Darker red on hover */
+        .btn {
+            padding: 10px 20px;      /* Tùy chỉnh kích thước nút */
+            font-size: 16px;         /* Kích thước chữ */
+            cursor: pointer;        /* Con trỏ chuột khi di chuột qua nút */
+            border: none;            /* Xóa đường viền mặc định của nút */
+            background-color: #007bff; /* Màu nền nút */
+            color: white;            /* Màu chữ */
+            border-radius: 5px;
+            font-weight: bold;/* Bo góc nút */
+        }
+
+        .btn-logout {
+            /* Có thể tùy chỉnh màu sắc và các thuộc tính khác cho nút Đăng xuất */
+            background-color: #f44336; /* Màu đỏ */
         }
     </style>
 </head>

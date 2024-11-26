@@ -1,12 +1,15 @@
 package com.dan.datn.Controller;
 
+import com.dan.datn.Entity.SanPham;
 import com.dan.datn.Entity.ThanhToan;
 import com.dan.datn.Service.DonHangCuaToiService;
+import com.dan.datn.Service.ServiceImpl.SanPhamServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
@@ -19,6 +22,8 @@ public class DonHangCuaToiController {
 
     @Autowired
     private HttpSession session;
+    @Autowired
+    private SanPhamServiceImpl sanPhamServiceImpl;
 
     public DonHangCuaToiController(DonHangCuaToiService donHangCuaToiService) {
         this.donHangCuaToiService = donHangCuaToiService;
@@ -49,5 +54,18 @@ public class DonHangCuaToiController {
 
         // Trả về view danh sách đơn hàng
         return "layout/Donhangcuatoi";
+    }
+
+
+    @GetMapping("/{productId}")
+    public String xemSanPham(@PathVariable("productId") Long productId, Model model) {
+        // Thực hiện logic để lấy thông tin sản phẩm từ cơ sở dữ liệu
+        SanPham sanPham = sanPhamServiceImpl.getSanPhamById(productId);
+
+        // Thêm sản phẩm vào Model để hiển thị trên trang
+        model.addAttribute("sanPham", sanPham);
+
+        // Trả về view chi tiết sản phẩm
+        return "redirect:/sanpham/" + productId; // Tên tệp HTML của bạn
     }
 }
