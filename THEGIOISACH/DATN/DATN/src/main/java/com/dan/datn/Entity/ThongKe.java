@@ -11,31 +11,13 @@ import java.util.Date;
 @Getter
 @Setter
 public class ThongKe {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID_thong_ke;
-
-    @Column(name = "So_luong", nullable = false)
-    private Integer soLuong;
-
-    @Column(name = "Thoi_gian", nullable = false)
-    private Date thoiGian;
-
-    @Column(name = "Doanh_thu", nullable = false)
-    private Integer doanhThu;
-
-    @Column(name = "Gia", nullable = false)
-    private Integer gia;
-
+    @Column(name = "tong_doanh_thu")
+    private Long tongDoanhThu;
     // Relationships
-
     @ManyToOne
-    @JoinColumn(name = "ID_Hoa_Don_Chi_Tiet", nullable = false)
-    private HoaDonChiTiet hoaDonChiTiet;
-
-    @ManyToOne
-    @JoinColumn(name = "ID_san_pham", nullable = false)
-    private SanPham sanPham;
-
+    @JoinColumn(name = "ID_thanh_toan", nullable = false) // Foreign key referencing Thanh_Toan
+    private ThanhToan thanhToan; // This is mapped to the Thanh_Toan table
 }
