@@ -73,5 +73,10 @@ public class TrangChuController {
         return "index/dangKy";
     }
 
+
+    @GetMapping("/quenmatkhau")
+    public String getQuenMatKhau() {
+        return "index/datLaiMatKhau";
+    }
 }
 
