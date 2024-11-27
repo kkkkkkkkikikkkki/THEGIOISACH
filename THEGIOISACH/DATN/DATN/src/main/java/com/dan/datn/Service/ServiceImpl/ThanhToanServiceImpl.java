@@ -1,6 +1,5 @@
 package com.dan.datn.Service.ServiceImpl;
 
-import com.dan.datn.Entity.SanPham;
 import com.dan.datn.Entity.ThanhToan;
 import com.dan.datn.Repository.SanPhamRepository;
 import com.dan.datn.Repository.ThanhToanRepository;
@@ -96,5 +95,10 @@ public class ThanhToanServiceImpl implements ThanhToanService {
             // Nếu có lỗi, throw exception để rollback transaction
             throw new RuntimeException("Lỗi khi xử lý thanh toán", e);
         }
+    }
+
+    @Override
+    public List<ThanhToan> getAllThanhToan() {
+        return thanhToanRepository.findAll();
     }
 }

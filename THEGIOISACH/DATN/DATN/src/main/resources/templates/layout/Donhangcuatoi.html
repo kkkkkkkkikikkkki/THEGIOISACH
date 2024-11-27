@@ -107,16 +107,7 @@
         }
 
         /* Additional styles for buttons, links, etc. */
-        .btn-logout {
-            background-color: #ff4d4d; /* Red background */
-            color: white; /* White text */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            padding: 10px 20px; /* Padding */
-            margin-left: 55px;
-            font-weight: bold; /* Bold text */
-            transition: background-color 0.3s ease; /* Smooth transition */
-        }
+
 
         .btn-logout:hover {
             background-color: #cc0000; /* Darker red on hover */
@@ -210,20 +201,31 @@
             text-decoration: none;
         }
 
-        /* Styles for the Logout button */
-        .btn-logout {
-            background-color: #ff4d4d; /* Red background */
-            color: white; /* White text */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            padding: 10px 20px; /* Padding */
-            margin-left: 55px;
-            font-weight: bold; /* Bold text */
-            transition: background-color 0.3s ease; /* Smooth transition */
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            align-items: center;     /* Căn giữa theo chiều dọc */
+            /* Chiều cao bằng 100% chiều cao cửa sổ */
         }
 
-        .btn-logout:hover {
-            background-color: #cc0000; /* Darker red on hover */
+        .btn {
+            padding: 10px 20px;      /* Tùy chỉnh kích thước nút */
+            font-size: 16px;         /* Kích thước chữ */
+            cursor: pointer;        /* Con trỏ chuột khi di chuột qua nút */
+            border: none;            /* Xóa đường viền mặc định của nút */
+            background-color: #007bff; /* Màu nền nút */
+            color: white;            /* Màu chữ */
+            border-radius: 5px;
+            font-weight: bold; /* Bo góc nút */
+        }
+
+        .btn-logout {
+            /* Có thể tùy chỉnh màu sắc và các thuộc tính khác cho nút Đăng xuất */
+            background-color: #f44336; /* Màu đỏ */
         }
         .order-footer {
             display: flex;
@@ -395,7 +397,7 @@
                 <h4 class="title">Đơn hàng của tôi</h4>
             </a>
             <div class="btn-container">
-                <form action="/logouts" method="post" style="display: inline;">
+                <form action="/logout" method="post" style="display: inline;">
                     <button type="submit" class="btn btn-logout">Đăng xuất</button>
                 </form>
             </div>
@@ -403,45 +405,58 @@
 
         <div class="col-7 mt-3" style="margin: 0 auto;">
             <div class="container mt-5">
-                <!-- Đầu trang đơn hàng -->
-                <div class="order-header row py-2 bg-light text-center">
-                    <div class="col-3">Hình</div>
-                    <div class="col-3">Tên sản phẩm</div>
-                    <div class="col-3">Số lượng</div>
-                    <div class="col-2">Giá</div>
+                <!-- Kiểm tra nếu có đơn hàng -->
+                <div th:if="${#lists.isEmpty(donhangcuatoi)}">
+                    <p class="text-center">Bạn chưa có đơn hàng nào.</p>
                 </div>
 
-                <div th:each="item : ${donhangcuatoi}" class="order-item row bg-light text-center">
-                    <!-- Hình ảnh sản phẩm -->
-                    <div class="col-3 d-flex align-items-center justify-content-center">
-                        <img th:src="'data:image/png;base64,' + ${item.sanPham.hinh.base64MainImage}" alt="Product Image" style="width: 100%; height: 100%;">
+                <!-- Nếu có đơn hàng, hiển thị phần tiêu đề và danh sách đơn hàng -->
+                <div th:unless="${#lists.isEmpty(donhangcuatoi)}">
+                    <!-- Đầu trang đơn hàng -->
+                    <div class="order-header row py-2 bg-light text-center">
+                        <div class="col-3">Hình</div>
+                        <div class="col-3">Tên sản phẩm</div>
+                        <div class="col-3">Số lượng</div>
+                        <div class="col-2">Giá</div>
                     </div>
-                    <!-- Tên sản phẩm -->
-                    <div class="col-3 d-flex align-items-center justify-content-center" th:text="${item.sanPham.tenSach}"></div>
-                    <!-- Số lượng -->
-                    <div class="col-3 d-flex align-items-center justify-content-center" th:text="${item.soLuong}"></div>
-                    <!-- Giá -->
-                    <div class="col-2 d-flex align-items-center justify-content-center">
-                        <span class="gia-san-pham" th:text="${item.sanPham.gia}"></span>
-                    </div>
-                    <div class="order-footer row text-center">
-                        <div class="col-4 d-flex align-items-center justify-content-center">
-                            <h5 >Trạng thái đơn hàng: </h5>
-                            <h5><div style="margin-left: 10px" th:text="${item.phuongThucThanhToan}"></div></h5>
 
-                        </div>
-                        <div class="col-4 d-flex align-items-center justify-content-center total-amount">
-                            <span style="margin-right: 5px">Tổng tiền: </span>
-                            <span class="gia-san-pham" th:text="${item.tongTien}"></span>
+                    <!-- Hiển thị danh sách đơn hàng -->
+                    <div th:each="item : ${donhangcuatoi}" class="order-item row bg-light text-center">
+                        <!-- Hình ảnh sản phẩm -->
+                        <div class="col-3 d-flex align-items-center justify-content-center">
+                            <img th:src="'data:image/png;base64,' + ${item.sanPham.hinh.base64MainImage}" alt="Product Image" style="width: 100%; height: 100%;">
                         </div>
 
-                        <div class="col-12 d-flex justify-content-end mt-2">
-                            <button class="btn btn-buy-again">Mua lại</button>
+                        <input type="hidden" name="productId" th:value="${item.sanPham.ID_san_pham}"/>
+
+                        <!-- Tên sản phẩm -->
+                        <div class="col-3 d-flex align-items-center justify-content-center" th:text="${item.sanPham.tenSach}"></div>
+                        <!-- Số lượng -->
+                        <div class="col-3 d-flex align-items-center justify-content-center" th:text="${item.soLuong}"></div>
+                        <!-- Giá -->
+                        <div class="col-2 d-flex align-items-center justify-content-center">
+                            <span class="gia-san-pham" th:text="${item.sanPham.gia}"></span>
+                        </div>
+                        <div class="order-footer row text-center">
+                            <div class="col-4 d-flex align-items-center justify-content-center">
+                                <h5>Trạng thái đơn hàng: </h5>
+                                <h5><div style="margin-left: 10px" th:text="${item.phuongThucThanhToan}"></div></h5>
+                            </div>
+                            <div class="col-4 d-flex align-items-center justify-content-center total-amount">
+                                <span style="margin-right: 5px">Tổng tiền: </span>
+                                <span class="gia-san-pham" th:text="${item.tongTien}"></span>
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-end mt-2">
+                                <!-- Form gửi yêu cầu với phương thức GET -->
+                                <form th:action="@{'/sanpham/' + ${item.sanPham.ID_san_pham}}" method="get">
+                                    <button type="submit" class="btn btn-buy-again">Mua lại</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 </div>
 </div>
