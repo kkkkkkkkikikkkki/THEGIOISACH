@@ -61,15 +61,31 @@
         }
 
         /* Additional styles for buttons, links, etc. */
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            align-items: center;     /* Căn giữa theo chiều dọc */
+            /* Chiều cao bằng 100% chiều cao cửa sổ */
+        }
+
+        .btn {
+            padding: 10px 20px;      /* Tùy chỉnh kích thước nút */
+            font-size: 16px;         /* Kích thước chữ */
+            cursor: pointer;        /* Con trỏ chuột khi di chuột qua nút */
+            border: none;            /* Xóa đường viền mặc định của nút */
+            background-color: #007bff; /* Màu nền nút */
+            color: white;            /* Màu chữ */
+            border-radius: 5px;
+            font-weight: bold;/* Bo góc nút */
+        }
+
         .btn-logout {
-            background-color: #ff4d4d; /* Red background */
-            color: white; /* White text */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            padding: 10px 20px; /* Padding */
-            margin-left: 55px;
-            font-weight: bold; /* Bold text */
-            transition: background-color 0.3s ease; /* Smooth transition */
+            /* Có thể tùy chỉnh màu sắc và các thuộc tính khác cho nút Đăng xuất */
+            background-color: #f44336; /* Màu đỏ */
         }
 
         .btn-logout:hover {
@@ -165,20 +181,9 @@
         }
 
         /* Styles for the Logout button */
-        .btn-logout {
-            background-color: #ff4d4d; /* Red background */
-            color: white; /* White text */
-            border: none; /* No border */
-            border-radius: 5px; /* Rounded corners */
-            padding: 10px 20px; /* Padding */
-            margin-left: 55px;
-            font-weight: bold; /* Bold text */
-            transition: background-color 0.3s ease; /* Smooth transition */
-        }
 
-        .btn-logout:hover {
-            background-color: #cc0000; /* Darker red on hover */
-        }
+
+
 
         /* Thông Báo Nổi */
         .floating-notification {
@@ -331,13 +336,13 @@
             <!-- Success Notification -->
             <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert" id="successMessage">
                 <span th:text="${success}"></span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<!--                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
             </div>
 
             <!-- Error Notification -->
             <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert" id="errorMessage">
                 <span th:text="${error}"></span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<!--                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
             </div>
 
             <h2 class="text-center mb-4">Thông Tin Tài Khoản</h2>
@@ -369,6 +374,7 @@
 </div>
 
 <div class="overlay" id="overlay"></div>
+<div class="overlay" id="overlay1"></div>
 
 <div class="floating-form" id="floatingForm">
     <h5>Chỉnh Sửa Thông Tin Tài Khoản</h5>
@@ -397,6 +403,27 @@
 
 </div>
 
+
+<div class="floating-form" id="floatingForm1">
+    <h5>Chỉnh Sửa Mật Khẩu</h5>
+    <form id="editPasswordForm" action="/updatePassword" method="POST">
+        <div class="mb-3">
+            <label for="oldPassword" class="form-label">Nhập mật khẩu cũ</label>
+            <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Nhập mật khẩu cũ">
+        </div>
+        <div class="mb-3">
+            <label for="newPassword" class="form-label">Nhập mật khẩu mới</label>
+            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Nhập mật khẩu mới">
+        </div>
+        <div class="mb-3">
+            <label for="newPassword1" class="form-label">Nhập lại mật khẩu mới</label>
+            <input type="password" class="form-control" id="newPassword1" name="confirmPassword" placeholder="Nhập lại mật khẩu mới">
+        </div>
+        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+        <button type="button" class="btn btn-secondary" id="closeButton1">Đóng</button>
+    </form>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -411,7 +438,16 @@
             $("#editEmail").val($("#email").val());
             $("#editDiachi").val($("#diachi").val());
         });
-
+        // Hiển thị form chỉnh sửa mật khẩu
+        $("#updateButton").click(function () {
+            $("#overlay1").show();
+            $("#floatingForm1").show();
+        });
+        // Đóng form chỉnh sửa mật khẩu
+        $("#closeButton1").click(function () {
+            $("#overlay1").hide();
+            $("#floatingForm1").hide();
+        });
         // Hide floating form and overlay on close button click
         $("#closeButton").click(function () {
             $("#overlay").hide();
@@ -424,7 +460,7 @@
                 if (message) {
                     message.classList.remove('show');  // Ẩn thông báo
                 }
-            }, 5000);  // Sau 5 giây
+            }, 3500);  // Sau 5 giây
         }
 
         // Kiểm tra và hiển thị thông báo khi trang tải xong

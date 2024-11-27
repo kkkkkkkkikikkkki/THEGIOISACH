@@ -98,4 +98,62 @@ public class TrangCaNhanController {
 
         return "redirect:/thongtintaikhoan";
     }
+
+
+
+    @PostMapping("/updatePassword")
+    public String updatePassword(
+            @RequestParam("oldPassword") String oldPassword,
+            @RequestParam("newPassword") String newPassword,
+            @RequestParam("confirmPassword") String confirmPassword,
+            HttpSession session,
+            RedirectAttributes redirectAttributes) {
+
+        // Lấy thông tin username từ session
+        String username = (String) session.getAttribute("username");
+
+        // Kiểm tra xem username có tồn tại trong session không
+        if (username == null) {
+            redirectAttributes.addFlashAttribute("error", "Bạn vui lòng đăng nhập trước khi cập nhật mật khẩu.");
+            return "redirect:/login";
+        }
+
+        // Kiểm tra xem có trường nhập liệu nào bị bỏ trống không
+        if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Vui longf nhập thông tin cần thiết.");
+            return "redirect:/thongtintaikhoan";
+        }
+
+        if (oldPassword.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Mật khẩu cũ không được để trống.");
+            return "redirect:/thongtintaikhoan";
+        }
+        if ( confirmPassword.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Không được để trống bất kỳ trường nào.");
+            return "redirect:/thongtintaikhoan";
+        }
+        if (newPassword.isEmpty() ) {
+            redirectAttributes.addFlashAttribute("error", "Mật khẩu mới không được để trống");
+            return "redirect:/thongtintaikhoan";
+        }
+
+        // Gọi phương thức trong service để xử lý việc cập nhật mật khẩu
+        boolean success = userServiceImpl.updatePassword(username, oldPassword, newPassword, confirmPassword);
+
+        if (!success) {
+            // Kiểm tra điều kiện thất bại về mật khẩu cũ hoặc mật khẩu mới không trùng khớp
+            Optional<User> userOptional = userServiceImpl.getUserByTen(username);
+            if (userOptional.isPresent() && !userOptional.get().getMat_khau().equals(oldPassword)) {
+                redirectAttributes.addFlashAttribute("error", "Mật khẩu cũ không chính xác.");
+            } else {
+                redirectAttributes.addFlashAttribute("error", "Mật khẩu mới và xác nhận mật khẩu không trùng nhau.");
+            }
+            return "redirect:/thongtintaikhoan";
+        }
+
+        redirectAttributes.addFlashAttribute("success", "Cập nhật mật khẩu thành công!");
+        return "redirect:/thongtintaikhoan";
+    }
+
+
 }

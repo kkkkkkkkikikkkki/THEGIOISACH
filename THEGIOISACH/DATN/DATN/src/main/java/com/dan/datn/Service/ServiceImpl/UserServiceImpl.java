@@ -83,4 +83,32 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllNguoiDung() {
         return nguoiDungRepository.findAll();
     }
+
+
+    @Override
+    public boolean updatePassword(String username, String oldPassword, String newPassword, String confirmPassword) {
+        Optional<User> userOptional = userRepository.findByTen(username);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            // Kiểm tra mật khẩu cũ có đúng không
+            if (!user.getMat_khau().equals(oldPassword)) {
+                return false; // Mật khẩu cũ không đúng
+            }
+
+            // Kiểm tra mật khẩu mới và xác nhận mật khẩu có trùng khớp không
+            if (!newPassword.equals(confirmPassword)) {
+                return false; // Mật khẩu mới và xác nhận mật khẩu không trùng nhau
+            }
+
+            // Cập nhật mật khẩu mới
+            user.setMat_khau(newPassword);
+            userRepository.save(user); // Lưu thông tin người dùng sau khi cập nhật
+            return true; // Cập nhật thành công
+        }
+
+        return false; // Người dùng không tồn tại
+    }
+
 }
