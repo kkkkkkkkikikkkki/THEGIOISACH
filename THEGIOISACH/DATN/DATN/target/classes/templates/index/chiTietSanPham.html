@@ -617,7 +617,10 @@
                     <button formaction="/cart" formmethod="POST" class="btn btn-gray" type="submit">
                         <i class="bi bi-cart"></i> Thêm vào giỏ hàng
                     </button>
-                    <button class="btn btn-pink">Mua Ngay</button>
+                    <!-- Nút Mua Ngay -->
+                    <button type="button" class="btn btn-pink">
+                        Mua Ngay
+                    </button>
                 </div>
             </form>
         </div>
@@ -762,6 +765,18 @@
         }
     };
 
+
+    //Xử lý nút mua ngay
+    document.querySelector('.btn-pink').addEventListener('click', function () {
+        // Lấy giá trị productId từ input ẩn trong form
+        const productId = document.querySelector('input[name="productId"]').value;
+        if (!productId) {
+            alert('Không tìm thấy sản phẩm để mua!');
+            return;
+        }
+        // Điều hướng tới trang checkout với productId và quantities mặc định là 1
+        window.location.href = `/api/checkout?productIds=${productId}&quantities=1`;
+    });
 
     function scrollLeft() {
         const container = document.querySelector('.related-products');
