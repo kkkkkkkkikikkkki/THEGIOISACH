@@ -1,17 +1,26 @@
 package com.dan.datn.Controller;
 
+import com.dan.datn.Entity.DanhGia;
 import com.dan.datn.Entity.Hinh;
 import com.dan.datn.Entity.SanPham;
+import com.dan.datn.Entity.User;
+import com.dan.datn.Service.DanhGiaService;
+import com.dan.datn.Service.ServiceImpl.DanhGiaServiceImpl;
 import com.dan.datn.Service.ServiceImpl.SanPhamServiceImpl;
+import com.dan.datn.Service.ServiceImpl.UserServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static com.dan.datn.Service.ServiceImpl.SanPhamServiceImpl.sanPhamRepository;
 
@@ -21,6 +30,12 @@ public class ChiTietSanPhamController {
     private SanPhamServiceImpl sanPhamServiceImpl;
     @Autowired
     private HttpSession session;
+    @Autowired
+    private UserServiceImpl userServiceImpl;
+    @Autowired
+    private DanhGiaServiceImpl danhGiaServiceImpl;
+    @Autowired
+    private DanhGiaService danhGiaService;
     @GetMapping("/sanpham/{id}")
     public String viewProductDetails(@PathVariable("id") Long id, Model model) {
         SanPham sanpham = sanPhamRepository.findById(id)
@@ -60,6 +75,10 @@ public class ChiTietSanPhamController {
             }
         }
         model.addAttribute("sanPhamLienQuan", sanPhamLienQuan);
+
+        // Lấy danh sách đánh giá của sản phẩm
+        List<DanhGia> danhGiaList = danhGiaServiceImpl.getDanhGiaBySanPham(sanpham);
+        model.addAttribute("danhGiaList", danhGiaList);
         String successMessage = (String) session.getAttribute("success");
         String errorMessage = (String) session.getAttribute("error");
         if (successMessage != null) {
@@ -83,4 +102,49 @@ public class ChiTietSanPhamController {
         }
         return "index/chiTietSanPham";  // Chuyển hướng đến trang chi tiết sản phẩm
     }
+
+    @PostMapping("/sanpham/{id}/danhgia")
+    public String submitReview(@PathVariable("id") Long sanPhamId,
+                               @RequestParam("danhGia") Integer danhGia,
+                               @RequestParam("binhLuan") String binhLuan,
+                               HttpSession session,
+                               Model model) {
+        String ten = (String) session.getAttribute("username");
+        if (ten == null) {
+            model.addAttribute("error", "Bạn cần đăng nhập để đánh giá.");
+            return "redirect:/dangnhap"; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+        }
+
+        try {
+            // Lấy thông tin người dùng
+            Optional<User> optionalUser = userServiceImpl.getUserByTen(ten);
+            if (!optionalUser.isPresent()) {
+                model.addAttribute("error", "Không tìm thấy người dùng.");
+                return "redirect:/dangnhap";
+            }
+            User user = optionalUser.get();
+
+            // Lấy thông tin sản phẩm
+            SanPham sanPham = sanPhamServiceImpl.getSanPhamById(sanPhamId);
+
+            // Tạo đối tượng đánh giá mới
+            DanhGia danhGiaMoi = new DanhGia();
+            danhGiaMoi.setUser(user);
+            danhGiaMoi.setSanPham(sanPham);
+            danhGiaMoi.setDanhGia(danhGia);
+            danhGiaMoi.setBinhLuan(binhLuan);
+            danhGiaMoi.setNgayDanhGia(new Date());
+
+            // Lưu đánh giá
+            danhGiaService.save(danhGiaMoi);
+
+
+            model.addAttribute("success", "Đánh giá của bạn đã được gửi thành công!");
+        } catch (Exception e) {
+            model.addAttribute("error", "Đã xảy ra lỗi khi gửi đánh giá: " + e.getMessage());
+        }
+
+        return "redirect:/sanpham/" + sanPhamId; // Quay lại trang chi tiết sản phẩm
+    }
+
 }

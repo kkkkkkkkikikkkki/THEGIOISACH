@@ -518,6 +518,10 @@
 
     }
 
+    .stars {
+        margin-bottom: 5px; /* Khoảng cách giữa sao và tên người dùng */
+    }
+
     .review {
         margin-bottom: 20px; /* Khoảng cách giữa các review */
     }
@@ -538,6 +542,7 @@
         border-bottom: 1px solid #e0e0e0; /* Đường viền nhẹ giữa các đánh giá */
         padding-bottom: 10px; /* Khoảng cách dưới mỗi review */
     }
+
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -603,6 +608,9 @@
 <div id="error-alert" th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
     <p th:text="${error}"></p>
 </div>
+
+
+
 <body>
 <div class="container mt-2">
     <!-- Bắt đầu sản phẩm chính -->
@@ -658,6 +666,9 @@
                 </div>
                 <button class="scroll-right" onclick="scrollRight()">&#9654;</button>
             </div>
+
+
+
         </div>
         <div class="review-wrapper mt-4">
             <h4>Đánh giá sản phẩm</h4>
@@ -685,19 +696,20 @@
             <div th:if="${success}" class="alert alert-success mt-3" th:text="${success}"></div>
             <div th:if="${error}" class="alert alert-danger mt-3" th:text="${error}"></div>
 
+            <!-- Hiển thị đánh giá của người dùng -->
             <h4 class="mt-4">Đánh giá của người dùng</h4>
             <div class="reviews">
                 <div class="review" th:each="danhGia : ${danhGiaList}">
+                    <!-- Hiển thị sao bên trên tên người dùng -->
+                    <div class="stars mb-2">
+                        <i th:each="i : ${#numbers.sequence(1, 5)}"
+                           th:classappend="${i <= danhGia.danhGia ? 'bi bi-star-fill text-warning' : 'bi bi-star'}"></i>
+                    </div>
                     <div class="d-flex align-items-center mb-2">
-                        <!-- Hiển thị sao -->
-                        <div class="stars">
-                            <i th:each="i : ${#numbers.sequence(1, 5)}"
-                               th:classappend="${i <= danhGia.danhGia ? 'bi bi-star-fill text-warning' : 'bi bi-star'}"></i>
-                        </div>
+                        <!-- Tên người dùng nằm dưới các sao -->
                         <span class="ms-2 fw-bold" th:text="${danhGia.user.ten}">Tên người dùng</span>
                         <span class="ms-auto text-muted" th:text="${#dates.format(danhGia.ngayDanhGia, 'dd/MM/yyyy')}"></span>
                     </div>
-
                     <!-- Khung bọc nội dung bình luận -->
                     <div class="review-comment">
                         <p th:text="${danhGia.binhLuan}">Nội dung bình luận...</p>
