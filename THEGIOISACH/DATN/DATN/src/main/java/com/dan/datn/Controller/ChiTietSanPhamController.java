@@ -12,10 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Base64;
 import java.util.Date;
@@ -25,6 +22,7 @@ import java.util.Optional;
 import static com.dan.datn.Service.ServiceImpl.SanPhamServiceImpl.sanPhamRepository;
 
 @Controller
+@RequestMapping("/sanpham")
 public class ChiTietSanPhamController {
     @Autowired
     private SanPhamServiceImpl sanPhamServiceImpl;
@@ -36,7 +34,7 @@ public class ChiTietSanPhamController {
     private DanhGiaServiceImpl danhGiaServiceImpl;
     @Autowired
     private DanhGiaService danhGiaService;
-    @GetMapping("/sanpham/{id}")
+    @GetMapping("/{id}")
     public String viewProductDetails(@PathVariable("id") Long id, Model model) {
         SanPham sanpham = sanPhamRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Sản phẩm không tồn tại với ID: " + id));
@@ -65,6 +63,9 @@ public class ChiTietSanPhamController {
         // Lấy username từ session
         String username = (String) session.getAttribute("username");
         model.addAttribute("username", username);
+        if (username != null){
+            System.out.println("Tên người dùng: " + username);
+        }
 
         // Lấy danh sách các sản phẩm liên quan có cùng thể loại (trừ sản phẩm hiện tại)
         List<SanPham> sanPhamLienQuan = sanPhamServiceImpl.getRandomProducts();
@@ -103,7 +104,7 @@ public class ChiTietSanPhamController {
         return "index/chiTietSanPham";  // Chuyển hướng đến trang chi tiết sản phẩm
     }
 
-    @PostMapping("/sanpham/{id}/danhgia")
+    @PostMapping("/{id}/danhgia")
     public String submitReview(@PathVariable("id") Long sanPhamId,
                                @RequestParam("danhGia") Integer danhGia,
                                @RequestParam("binhLuan") String binhLuan,
@@ -112,7 +113,7 @@ public class ChiTietSanPhamController {
         String ten = (String) session.getAttribute("username");
         if (ten == null) {
             model.addAttribute("error", "Bạn cần đăng nhập để đánh giá.");
-            return "redirect:/dangnhap"; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+            return "index/dangNhap"; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
         }
 
         try {
@@ -120,9 +121,10 @@ public class ChiTietSanPhamController {
             Optional<User> optionalUser = userServiceImpl.getUserByTen(ten);
             if (!optionalUser.isPresent()) {
                 model.addAttribute("error", "Không tìm thấy người dùng.");
-                return "redirect:/dangnhap";
+                return "index/dangNhap";
             }
             User user = optionalUser.get();
+
 
             // Lấy thông tin sản phẩm
             SanPham sanPham = sanPhamServiceImpl.getSanPhamById(sanPhamId);
@@ -137,6 +139,11 @@ public class ChiTietSanPhamController {
 
             // Lưu đánh giá
             danhGiaService.save(danhGiaMoi);
+            if(danhGiaMoi == null){
+                System.out.println("Đánh giá thất bại");
+            }else {
+                System.out.println("Đánh giá thành công: " + danhGiaMoi);
+            }
 
 
             model.addAttribute("success", "Đánh giá của bạn đã được gửi thành công!");
