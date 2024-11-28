@@ -123,12 +123,33 @@
                     <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#!Thông báo">Thông báo</a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">Thông báo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/giohang}">Giỏ hàng</a>
                 </li>
             </ul>
+
+            <!-- Modal -->
+            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="notificationModalLabel">Thông báo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Nội dung của thông báo -->
+                            <p>Đây là nội dung thông báo của bạn. Bạn có thể tùy chỉnh nội dung tại đây.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary">Xác nhận</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Search Form (centered) -->
             <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
