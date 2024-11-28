@@ -77,15 +77,58 @@ public class TrangCaNhanController {
             return "redirect:/login";
         }
 
+        if (phone.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Bạn vui lòng nhập số điện thoại.");
+            return "redirect:/thongtintaikhoan";
+        }
+
+        if (email.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Bạn vui lòng nhập email.");
+            return "redirect:/thongtintaikhoan";
+        }
+
+        if (diachi.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Bạn vui lòng nhập địa chỉ.");
+            return "redirect:/thongtintaikhoan";
+        }
+
+        if (ten.isEmpty() || phone.isEmpty() || email.isEmpty() || diachi.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Bạn vui lòng không để trống thông tin");
+            return "redirect:/thongtintaikhoan";
+        }
+
         Optional<User> userOptional = userServiceImpl.getUserByTen(username);
 
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            user.setTen(ten);
-            user.setSDT(Integer.valueOf(phone));
-            user.setEmail(email);
-            user.setDia_chi(diachi);
 
+            // Kiểm tra xem thông tin có thay đổi hay không
+            boolean isChanged = false;
+
+            if (!user.getTen().equals(ten)) {
+                user.setTen(ten);
+                isChanged = true;
+            }
+            if (!user.getSDT().equals(Integer.valueOf(phone))) {
+                user.setSDT(Integer.valueOf(phone));
+                isChanged = true;
+            }
+            if (!user.getEmail().equals(email)) {
+                user.setEmail(email);
+                isChanged = true;
+            }
+            if (!user.getDia_chi().equals(diachi)) {
+                user.setDia_chi(diachi);
+                isChanged = true;
+            }
+
+            // Nếu không có thay đổi gì
+            if (!isChanged) {
+                redirectAttributes.addFlashAttribute("error", "Chưa phát hiện thay đổi nào.");
+                return "redirect:/thongtintaikhoan";
+            }
+
+            // Lưu thông tin mới nếu có thay đổi
             try {
                 userServiceImpl.saveUser(user);
                 redirectAttributes.addFlashAttribute("success", "Cập nhật thông tin thành công!");
@@ -98,6 +141,7 @@ public class TrangCaNhanController {
 
         return "redirect:/thongtintaikhoan";
     }
+
 
 
 
@@ -119,41 +163,57 @@ public class TrangCaNhanController {
         }
 
         // Kiểm tra xem có trường nhập liệu nào bị bỏ trống không
-        if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-            redirectAttributes.addFlashAttribute("error", "Vui longf nhập thông tin cần thiết.");
-            return "redirect:/thongtintaikhoan";
-        }
-
         if (oldPassword.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Mật khẩu cũ không được để trống.");
             return "redirect:/thongtintaikhoan";
         }
-        if ( confirmPassword.isEmpty()) {
+
+        if (confirmPassword.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Không được để trống bất kỳ trường nào.");
             return "redirect:/thongtintaikhoan";
         }
-        if (newPassword.isEmpty() ) {
+
+        if (newPassword.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Mật khẩu mới không được để trống");
             return "redirect:/thongtintaikhoan";
+        }
+
+        // Kiểm tra nếu mật khẩu mới và mật khẩu cũ giống nhau
+        if (oldPassword.equals(newPassword)) {
+            redirectAttributes.addFlashAttribute("error", "Mật khẩu mới không thể giống mật khẩu cũ.");
+            return "redirect:/thongtintaikhoan";
+        }
+
+        // Kiểm tra nếu mật khẩu mới và xác nhận mật khẩu không trùng khớp
+        if (!newPassword.equals(confirmPassword)) {
+            redirectAttributes.addFlashAttribute("error", "Mật khẩu mới và xác nhận mật khẩu không trùng nhau.");
+            return "redirect:/thongtintaikhoan";
+        }
+
+        // Kiểm tra mật khẩu cũ có chính xác không
+        Optional<User> userOptional = userServiceImpl.getUserByTen(username);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            // Kiểm tra mật khẩu cũ có đúng không
+            if (!user.getMat_khau().equals(oldPassword)) {
+                redirectAttributes.addFlashAttribute("error", "Mật khẩu cũ không chính xác.");
+                return "redirect:/thongtintaikhoan";
+            }
         }
 
         // Gọi phương thức trong service để xử lý việc cập nhật mật khẩu
         boolean success = userServiceImpl.updatePassword(username, oldPassword, newPassword, confirmPassword);
 
         if (!success) {
-            // Kiểm tra điều kiện thất bại về mật khẩu cũ hoặc mật khẩu mới không trùng khớp
-            Optional<User> userOptional = userServiceImpl.getUserByTen(username);
-            if (userOptional.isPresent() && !userOptional.get().getMat_khau().equals(oldPassword)) {
-                redirectAttributes.addFlashAttribute("error", "Mật khẩu cũ không chính xác.");
-            } else {
-                redirectAttributes.addFlashAttribute("error", "Mật khẩu mới và xác nhận mật khẩu không trùng nhau.");
-            }
+            redirectAttributes.addFlashAttribute("error", "Không thể cập nhật mật khẩu. Vui lòng thử lại.");
             return "redirect:/thongtintaikhoan";
         }
 
         redirectAttributes.addFlashAttribute("success", "Cập nhật mật khẩu thành công!");
         return "redirect:/thongtintaikhoan";
     }
+
 
 
 }
