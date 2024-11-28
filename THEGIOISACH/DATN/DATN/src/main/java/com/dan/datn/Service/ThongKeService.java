@@ -31,11 +31,11 @@ public class ThongKeService {
 
         // Duyệt qua tất cả các thống kê và tính tổng doanh thu
         for (ThongKe thongKe : thongKes) {
-            long totalRevenue = 0;
+            double totalRevenue = 0; // Sử dụng double cho việc tính toán tổng doanh thu
 
             // Kiểm tra nếu tongDoanhThu là null hoặc 0, sẽ gán giá trị mặc định là 0
             if (thongKe.getTongDoanhThu() == null || thongKe.getTongDoanhThu() == 0) {
-                thongKe.setTongDoanhThu(0L); // Gán giá trị mặc định là 0
+                thongKe.setTongDoanhThu(0); // Gán giá trị mặc định là 0
             }
 
             // Lấy tất cả các thanh toán trong thống kê này
@@ -43,16 +43,22 @@ public class ThongKeService {
 
             // Duyệt qua các thanh toán và cộng tổng doanh thu
             for (ThanhToan thanhToan : thanhToans) {
-                totalRevenue += thanhToan.getTongTien(); // Tổng tiền của sản phẩm trong thanh toán
+                totalRevenue += thanhToan.getTongTien(); // Giữ kiểu Double
             }
 
+            // Chuyển đổi tổng doanh thu từ Double sang Integer (hoặc Long nếu cần)
+            // Làm tròn để tránh giá trị thập phân khi lưu vào cơ sở dữ liệu
+            int totalRevenueInt = (int) Math.round(totalRevenue);
+
             // Cập nhật tổng doanh thu vào ThongKe
-            thongKe.setTongDoanhThu(totalRevenue);
+            thongKe.setTongDoanhThu(totalRevenueInt);
 
             // Lưu lại thống kê đã cập nhật tổng doanh thu
             thongKeRepository.save(thongKe);
         }
     }
+
+
 
     // Phương thức lấy tất cả thống kê
     public List<ThongKe> getAllThongKe() {
