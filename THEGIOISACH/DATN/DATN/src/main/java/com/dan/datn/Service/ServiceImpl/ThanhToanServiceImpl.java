@@ -1,8 +1,10 @@
 package com.dan.datn.Service.ServiceImpl;
 
 import com.dan.datn.Entity.ThanhToan;
+import com.dan.datn.Entity.ThongKe;
 import com.dan.datn.Repository.SanPhamRepository;
 import com.dan.datn.Repository.ThanhToanRepository;
+import com.dan.datn.Repository.ThongKeRepository;
 import com.dan.datn.Repository.UserRepository;
 import com.dan.datn.Service.ThanhToanService;
 import com.dan.datn.dto.ProductDTO;
@@ -25,6 +27,7 @@ public class ThanhToanServiceImpl implements ThanhToanService {
     private final ThanhToanRepository thanhToanRepository;
     private final SanPhamRepository sanPhamRepository;
     private final UserRepository userRepository;
+    private final ThongKeRepository thongKeRepository;
     private final Random random = new Random();
     private final ApplicationEventPublisher eventPublisher;
     private Long generationId() {
@@ -85,6 +88,14 @@ public class ThanhToanServiceImpl implements ThanhToanService {
                     .ngayDatHang(new Date())
                     .build();
             thanhToans.add(thanhToan);
+        }
+
+        // Tạo đối tượng ThongKe và lưu vào bảng Thong_Ke
+        for (ThanhToan thanhToan : thanhToans) {
+            ThongKe thongKe = new ThongKe();
+            thongKe.setThanhToan(thanhToan); // Thiết lập đối tượng ThanhToan liên quan
+            thongKe.setTongDoanhThu(Math.round(thanhToan.getTongTien()));
+            thongKeRepository.save(thongKe); // Lưu vào repository
         }
 
         try {
