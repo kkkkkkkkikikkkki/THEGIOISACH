@@ -28,19 +28,13 @@ public class ThanhToanServiceImpl implements ThanhToanService {
     private final SanPhamRepository sanPhamRepository;
     private final UserRepository userRepository;
     private final ThongKeRepository thongKeRepository;
-    private final Random random = new Random();
     private final ApplicationEventPublisher eventPublisher;
-    private Long generationId() {
-        return random.nextLong(1000);
-    }
 
     @Transactional
     public void thanhToan(ThanhToanDTO request) {
-        // Kiểm tra user
         var user = userRepository.findByTen(request.getUserName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Kiểm tra danh sách sản phẩm
         if (request.getProducts() == null || request.getProducts().isEmpty()) {
             throw new IllegalArgumentException("No products in checkout request");
         }
@@ -49,40 +43,26 @@ public class ThanhToanServiceImpl implements ThanhToanService {
         List<ThanhToan> thanhToans = new ArrayList<>();
 
         for (ProductDTO productDTO : request.getProducts()) {
-            // Kiểm tra và lấy thông tin sản phẩm
             var sanPham = sanPhamRepository.findById(productDTO.getId())
                     .orElseThrow(() -> new RuntimeException("Product not found with id: " + productDTO.getId()));
 
-            // Kiểm tra số lượng tồn kho
             if (sanPham.getSoLuongTonKho() < productDTO.getSoLuong()) {
                 throw new RuntimeException("Không đủ số lượng sản phẩm " + sanPham.getTenSach() +
                         " trong kho. Chỉ còn " + sanPham.getSoLuongTonKho() + " sản phẩm.");
             }
-            // Kiểm tra số lượng tổng sản phẩm
-            if (sanPham.getSoLuongTongSanPham() < productDTO.getSoLuong()) {
-                throw new RuntimeException("Không đủ số lượng sản phẩm " + sanPham.getTenSach() +
-                        " trong kho. Chỉ còn " + sanPham.getSoLuongTongSanPham() + " sản phẩm.");
-            }
 
-
-            // số lượng da ban
             sanPham.setSoLuongDaBan(sanPham.getSoLuongDaBan() + productDTO.getSoLuong());
-            // Trừ số lượng tồn kho
             sanPham.setSoLuongTonKho(sanPham.getSoLuongTonKho() - productDTO.getSoLuong());
-            // Trừ số lượng tổng sản phẩm
-            sanPham.setSoLuongTonKho(sanPham.getSoLuongTongSanPham() - productDTO.getSoLuong());
-            // Lưu cập nhật số lượng tồn kho
+            sanPham.setSoLuongTongSanPham(sanPham.getSoLuongTongSanPham() - productDTO.getSoLuong());
             sanPhamRepository.save(sanPham);
-            // Tính tổng tiền cho sản phẩm này
+
             double tongTienSanPham = productDTO.getGia() * productDTO.getSoLuong();
             tongTienDonHang += tongTienSanPham;
 
-            // Tạo đối tượng thanh toán cho từng sản phẩm
             ThanhToan thanhToan = ThanhToan.builder()
-                    .ID_thanh_toan(generationId())
                     .phuongThucThanhToan(request.getPhuong_thuc_thanh_toan())
                     .soLuong(productDTO.getSoLuong())
-                    .tongTien(tongTienSanPham) // Tổng tiền cho từng sản phẩm
+                    .tongTien((int) tongTienSanPham)
                     .user(user)
                     .sanPham(sanPham)
                     .ngayDatHang(new Date())
@@ -90,21 +70,38 @@ public class ThanhToanServiceImpl implements ThanhToanService {
             thanhToans.add(thanhToan);
         }
 
-        // Tạo đối tượng ThongKe và lưu vào bảng Thong_Ke
-        for (ThanhToan thanhToan : thanhToans) {
-            ThongKe thongKe = new ThongKe();
-            thongKe.setThanhToan(thanhToan); // Thiết lập đối tượng ThanhToan liên quan
-            thongKe.setTongDoanhThu(Math.round(thanhToan.getTongTien()));
-            thongKeRepository.save(thongKe); // Lưu vào repository
-        }
-
         try {
-            // Lưu tất cả các đơn thanh toán
             thanhToanRepository.saveAll(thanhToans);
+
+            List<ThongKe> thongKeList = new ArrayList<>();
+            for (ThanhToan thanhToan : thanhToans) {
+                // Kiểm tra nếu ID_thanh_toan là null
+                if (thanhToan.getID_thanh_toan() == null) {
+                    throw new RuntimeException("Lưu ThanhToan thất bại: ID chưa được tạo.");
+                }
+
+                // Tạo đối tượng ThongKe mới
+                ThongKe thongKe = new ThongKe();
+
+                // Gán đối tượng ThanhToan vào ThongKe
+                thongKe.setThanhToan(thanhToan);
+
+                // Làm tròn tongTien và chuyển về Integer
+                int tongDoanhThu = (int) Math.round(thanhToan.getTongTien()); // Làm tròn giá trị
+
+                // Gán giá trị doanh thu vào ThongKe
+                thongKe.setTongDoanhThu(tongDoanhThu);
+
+                // Thêm ThongKe vào danh sách thongKeList
+                thongKeList.add(thongKe);
+            }
+
+
+            thongKeRepository.saveAll(thongKeList);
+
             eventPublisher.publishEvent(new OnRegistrationCompleteEvent(user));
         } catch (Exception e) {
-            // Nếu có lỗi, throw exception để rollback transaction
-            throw new RuntimeException("Lỗi khi xử lý thanh toán", e);
+//            throw new PaymentProcessingException("Lỗi khi xử lý thanh toán và thống kê", e);
         }
     }
 

@@ -109,7 +109,7 @@ public class ThanhToanController {
                 productDTO.setId(sanPham.getID_san_pham());
                 productDTO.setTenSach(sanPham.getTenSach());
                 productDTO.setGia(sanPham.getGia());
-                productDTO.setSoLuong(sanPham.getSoLuongTongSanPham()); // Sử dụng số lượng từ giỏ hàng
+                productDTO.setSoLuong(sanPham.getSoLuongTongSanPham());// Sử dụng số lượng từ giỏ hàng
                 productDTOs.add(productDTO);
             }
         }
