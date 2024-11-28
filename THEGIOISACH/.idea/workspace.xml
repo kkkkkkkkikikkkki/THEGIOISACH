@@ -4,25 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8ebf850-c5f4-452f-938b-02b982f4be7b" name="Changes" comment="done giao dien quen mat khau">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="e8ebf850-c5f4-452f-938b-02b982f4be7b" name="Changes" comment="done form thongbao">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    <list default="true" id="e8ebf850-c5f4-452f-938b-02b982f4be7b" name="Changes" comment="done thong ke, sua lai entity thong ke, xoa entity hoadonchitiet">
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/QuanLySanPhamController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Quanlysanpham.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/ThongKeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/ThongKeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/TrangCaNhanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/TrangCaNhanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/ServiceImpl/ThongKeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Service/ServiceImpl/ThongKeServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutAdmin/Quanlysanpham.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutAdmin/ThongKe.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/layoutAdmin/ThongKe.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/HomeAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/HomeAdmin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/LoginAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/LoginAdmin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/ThongKeDoanhThu.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/ThongKeDoanhThu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/chiTietSanPham.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/chiTietSanPham.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dangKy.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dangKy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dangNhap.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dangNhap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/datLaiMatKhau.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/datLaiMatKhau.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dieuKhoan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dieuKhoan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/huongDanMuaHang.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/huongDanMuaHang.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/quenMatKhau.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/quenMatKhau.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/sanPhamSauTimKiem.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/sanPhamSauTimKiem.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangChu.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangChu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Donhangcuatoi.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Donhangcuatoi.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Quanlysanpham.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Quanlysanpham.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Thongtincanhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Thongtincanhan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/checkout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/gioHang.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/gioHang.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layoutAdmin/Quanlysanpham.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layoutAdmin/ThongKe.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/static/layoutAdmin/ThongKe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/HomeAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/HomeAdmin.html" afterDir="false" />    </list>
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Controller/TrangCaNhanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Controller/TrangCaNhanController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangChu.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangChu.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,17 +40,10 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="PUSH_TAGS">
-      <GitPushTagMode>
-        <option name="argument" value="--tags" />
-        <option name="title" value="All" />
-      </GitPushTagMode>
-    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$/.." value="main" />
@@ -71,25 +71,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.DatnApplication.executor": "Run",
-    "git-widget-placeholder": "thu",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/DATN/THEGIOISACH/THEGIOISACH",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.DatnApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;kiet&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/123123/THEGIOISACH/THEGIOISACH&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -113,8 +111,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -135,26 +133,6 @@
       <option name="presentableId" value="Default" />
       <updated>1732185548764</updated>
       <workItem from="1732185550709" duration="506000" />
-      <workItem from="1732610615808" duration="5960000" />
-      <workItem from="1732696941563" duration="4357000" />
-    </task>
-    <task id="LOCAL-00002" summary="done quen mat khau">
-      <option name="closed" value="true" />
-      <created>1732611563205</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1732611563205</updated>
-    </task>
-    <task id="LOCAL-00003" summary="done giao dien quen mat khau">
-      <option name="closed" value="true" />
-      <created>1732619400602</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1732619400602</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
       <workItem from="1732611259573" duration="10060000" />
       <workItem from="1732624880445" duration="94000" />
       <workItem from="1732633672842" duration="1077000" />
@@ -162,6 +140,10 @@
       <workItem from="1732650831365" duration="3977000" />
       <workItem from="1732690236273" duration="18133000" />
       <workItem from="1732712932908" duration="5362000" />
+      <workItem from="1732783222448" duration="1329000" />
+      <workItem from="1732784681277" duration="2743000" />
+      <workItem from="1732787510207" duration="6998000" />
+      <workItem from="1732801448722" duration="2596000" />
     </task>
     <task id="LOCAL-00002" summary="done thong ke, sua lai entity thong ke, xoa entity hoadonchitiet">
       <option name="closed" value="true" />
@@ -171,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732654811927</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="done form thongbao">
+      <option name="closed" value="true" />
+      <created>1732790192550</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732790192550</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,11 +169,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="done" />
-    <MESSAGE value="done quen mat khau" />
-    <MESSAGE value="done giao dien quen mat khau" />
-    <option name="LAST_COMMIT_MESSAGE" value="done giao dien quen mat khau" />
     <MESSAGE value="done thong ke, sua lai entity thong ke, xoa entity hoadonchitiet" />
-    <option name="LAST_COMMIT_MESSAGE" value="done thong ke, sua lai entity thong ke, xoa entity hoadonchitiet" />
+    <MESSAGE value="done form thongbao" />
+    <option name="LAST_COMMIT_MESSAGE" value="done form thongbao" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
