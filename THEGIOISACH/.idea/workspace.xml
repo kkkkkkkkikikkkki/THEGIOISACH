@@ -4,31 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8ebf850-c5f4-452f-938b-02b982f4be7b" name="Changes" comment="done form thongbao">
+    <list default="true" id="e8ebf850-c5f4-452f-938b-02b982f4be7b" name="Changes" comment="done thongbao">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/ThongKeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/ThongKeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/TrangCaNhanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/TrangCaNhanController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/HomeAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/HomeAdmin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/LoginAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/LoginAdmin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/ThongKeDoanhThu.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/ThongKeDoanhThu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/chiTietSanPham.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/chiTietSanPham.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dangKy.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dangKy.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dangNhap.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dangNhap.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/datLaiMatKhau.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/datLaiMatKhau.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dieuKhoan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dieuKhoan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/huongDanMuaHang.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/huongDanMuaHang.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/quenMatKhau.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/quenMatKhau.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/sanPhamSauTimKiem.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/sanPhamSauTimKiem.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangCaNhan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangChu.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangChu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Donhangcuatoi.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Donhangcuatoi.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Quanlysanpham.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Quanlysanpham.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Thongtincanhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Thongtincanhan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/gioHang.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/gioHang.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Controller/TrangCaNhanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Controller/TrangCaNhanController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangChu.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangChu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Entity/ThanhToan.class" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Entity/ThanhToan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Entity/ThongKe.class" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Entity/ThongKe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/HomeAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/HomeAdmin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/LoginAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/LoginAdmin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/ThongKeDoanhThu.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/ThongKeDoanhThu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/chiTietSanPham.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/chiTietSanPham.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangKy.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangKy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangNhap.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangNhap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/sanPhamSauTimKiem.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/sanPhamSauTimKiem.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangCaNhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangCaNhan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Donhangcuatoi.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Donhangcuatoi.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Thongtincanhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Thongtincanhan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/checkout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/gioHang.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/gioHang.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +45,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -143,7 +139,8 @@
       <workItem from="1732783222448" duration="1329000" />
       <workItem from="1732784681277" duration="2743000" />
       <workItem from="1732787510207" duration="6998000" />
-      <workItem from="1732801448722" duration="2596000" />
+      <workItem from="1732801448722" duration="3217000" />
+      <workItem from="1732805178907" duration="4225000" />
     </task>
     <task id="LOCAL-00002" summary="done thong ke, sua lai entity thong ke, xoa entity hoadonchitiet">
       <option name="closed" value="true" />
@@ -161,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732790192550</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="done thongbao">
+      <option name="closed" value="true" />
+      <created>1732804133286</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732804133286</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +176,8 @@
     <MESSAGE value="done" />
     <MESSAGE value="done thong ke, sua lai entity thong ke, xoa entity hoadonchitiet" />
     <MESSAGE value="done form thongbao" />
-    <option name="LAST_COMMIT_MESSAGE" value="done form thongbao" />
+    <MESSAGE value="done thongbao" />
+    <option name="LAST_COMMIT_MESSAGE" value="done thongbao" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
