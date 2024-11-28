@@ -22,7 +22,7 @@ public class ThanhToan {
     private Date ngayDatHang;
 
     @Column(name = "Tong_tien", nullable = false)
-    private Double tongTien;
+    private Integer tongTien;
 
     @Column(name = "Phuong_thuc_thanh_toan", nullable = false)
     private String phuongThucThanhToan;

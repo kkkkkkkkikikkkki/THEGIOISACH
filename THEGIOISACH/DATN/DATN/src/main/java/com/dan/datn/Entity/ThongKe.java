@@ -15,7 +15,7 @@ public class ThongKe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID_thong_ke;
     @Column(name = "tong_doanh_thu")
-    private Long tongDoanhThu;
+    private Integer tongDoanhThu;
     // Relationships
     @ManyToOne
     @JoinColumn(name = "ID_thanh_toan", nullable = false) // Foreign key referencing Thanh_Toan

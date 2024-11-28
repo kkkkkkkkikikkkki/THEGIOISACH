@@ -263,18 +263,10 @@
                         <p class="text-danger">
                             Giá: <span th:text="${sanpham.gia}">Giá</span> VND
                         </p>
-                        <div class="d-flex align-items-center">
-
-                            <td th:text="${sanpham.soLuongTongSanPham}">Số lượng</td>
-                            <td th:text="${#numbers.formatDecimal(sanpham.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">
-                                Đơn giá
-                            </td>
-                            <td th:text="${#numbers.formatDecimal(sanpham.gia * sanpham.soLuongTongSanPham, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">
-                                Thành tiền
-                            </td>
-
-
-                        </div>
+<!--                        <div class="d-flex align-items-center">-->
+                            <p>Số lượng: <span th:text="${sanpham.soLuongTongSanPham}">Số lượng</span></p>
+                            <p>Thành tiền: <span th:text="${#numbers.formatDecimal(sanpham.gia * sanpham.soLuongTongSanPham, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">Thành tiền</span></p>
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
@@ -394,6 +386,14 @@
 </script>
 <script>
 
+    //mã xử lý đổi đơn vị tiền tệ
+    function formatVND(price) {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+    }
+    document.querySelectorAll('.gia-san-pham').forEach(element => {
+        const price = element.getAttribute('data-price');
+        element.textContent = formatVND(price);
+    });
 
     function calculateTotal() {
         const productQuantities = document.querySelectorAll('.quantity-display');
