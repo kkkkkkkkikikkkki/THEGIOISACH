@@ -336,13 +336,11 @@
             <!-- Success Notification -->
             <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert" id="successMessage">
                 <span th:text="${success}"></span>
-<!--                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
             </div>
 
             <!-- Error Notification -->
             <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert" id="errorMessage">
                 <span th:text="${error}"></span>
-<!--                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
             </div>
 
             <h2 class="text-center mb-4">Thông Tin Tài Khoản</h2>
@@ -365,8 +363,8 @@
                     <input type="text" class="form-control borderless-input" id="diachi" name="diachi" th:value="${user.Dia_chi}" readonly>
                 </div>
                 <div class="text-center">
-                    <button type="button" class="btn btn-primary px-4" id="editButton">Sửa</button>
-                    <button type="button" class="btn btn-primary px-4" id="updateButton">Đổi mật khẩu</button>
+                    <button type="button" class="btn btn-primary px-4" id="editButton">Cập nhật tài khoản</button>
+                    <button type="button" class="btn btn-primary px-4" id="updateButton">Cập nhật mật khẩu</button>
                 </div>
             </form>
         </div>
@@ -395,14 +393,10 @@
             <label for="editDiachi" class="form-label">Địa chỉ</label>
             <input type="text" class="form-control" id="editDiachi" name="diachi" placeholder="Nhập địa chỉ" th:value="${user.Dia_chi}">
         </div>
-        <!-- Sử dụng `formaction` để gửi form mà không cần AJAX -->
-        <button type="submit" class="btn btn-primary" formaction="/updateUser">Cập Nhật</button>
-        <button type="button" class="btn btn-secondary" id="closeButton">Đóng</button> <!-- Nút đóng -->
-
+        <button style="margin-left: 40px" type="submit" class="btn btn-primary" formaction="/updateUser">Cập Nhật</button>
+        <button  type="button" class="btn btn-secondary" id="closeButton">Đóng</button> <!-- Nút đóng -->
     </form>
-
 </div>
-
 
 <div class="floating-form" id="floatingForm1">
     <h5>Chỉnh Sửa Mật Khẩu</h5>
@@ -428,31 +422,44 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>
     $(document).ready(function () {
-        // Show the floating edit form and prefill data
+        // Kiểm tra trạng thái khi tải lại trang
+        if (localStorage.getItem("isFormOpen") === "true") {
+            $("#overlay").show();
+            $("#floatingForm").show();
+        }
+        if (localStorage.getItem("isPasswordFormOpen") === "true") {
+            $("#overlay1").show();
+            $("#floatingForm1").show();
+        }
+
+        // Hiển thị form chỉnh sửa tài khoản
         $("#editButton").click(function () {
             $("#overlay").show();
             $("#floatingForm").show();
-            // Prefill edit fields with current values
-            $("#editAmount").val($("#amount").val());
-            $("#editPhone").val($("#phone").val());
-            $("#editEmail").val($("#email").val());
-            $("#editDiachi").val($("#diachi").val());
+            localStorage.setItem("isFormOpen", "true"); // Lưu trạng thái form mở
         });
+
         // Hiển thị form chỉnh sửa mật khẩu
         $("#updateButton").click(function () {
             $("#overlay1").show();
             $("#floatingForm1").show();
+            localStorage.setItem("isPasswordFormOpen", "true"); // Lưu trạng thái form mật khẩu mở
         });
+
+        // Đóng form chỉnh sửa tài khoản
+        $("#closeButton").click(function () {
+            $("#overlay").hide();
+            $("#floatingForm").hide();
+            localStorage.setItem("isFormOpen", "false"); // Lưu trạng thái form đóng
+        });
+
         // Đóng form chỉnh sửa mật khẩu
         $("#closeButton1").click(function () {
             $("#overlay1").hide();
             $("#floatingForm1").hide();
+            localStorage.setItem("isPasswordFormOpen", "false"); // Lưu trạng thái form mật khẩu đóng
         });
-        // Hide floating form and overlay on close button click
-        $("#closeButton").click(function () {
-            $("#overlay").hide();
-            $("#floatingForm").hide();
-        });
+    });
 
         function hideMessage(messageId) {
             setTimeout(function() {
@@ -475,7 +482,7 @@
             }
         }
 
-    });
+
 
 
 </script>

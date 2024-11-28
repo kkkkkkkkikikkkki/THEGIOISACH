@@ -18,5 +18,4 @@ public class ThongKeServiceImpl extends ThongKeService {
     public List<ThongKe> getAllThongKe() {
         return thongKeRepository.findAll();
     }
-
 }
