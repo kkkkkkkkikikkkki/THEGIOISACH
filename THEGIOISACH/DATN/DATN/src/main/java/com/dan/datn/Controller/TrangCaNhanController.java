@@ -209,7 +209,6 @@ public class TrangCaNhanController {
             redirectAttributes.addFlashAttribute("error", "Không thể cập nhật mật khẩu. Vui lòng thử lại.");
             return "redirect:/thongtintaikhoan";
         }
-
         redirectAttributes.addFlashAttribute("success", "Cập nhật mật khẩu thành công!");
         return "redirect:/thongtintaikhoan";
     }
