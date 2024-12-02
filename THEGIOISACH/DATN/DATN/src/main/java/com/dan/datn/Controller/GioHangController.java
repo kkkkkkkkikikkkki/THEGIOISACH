@@ -60,32 +60,22 @@ public class GioHangController {
             model.addAttribute("error", "Bạn vui lòng đăng nhập trước khi truy cập giỏ hàng.");
             return "index/dangNhap";
         }
+
         SanPham sanpham = sanPhamRepository.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("Sản phẩm không tồn tại với ID: " + productId));
+
+        // Kiểm tra số lượng tồn kho
+        if (sanpham.getSoLuongTonKho() == null || sanpham.getSoLuongTonKho() <= 0) {
+            session.setAttribute("error", "Sản phẩm này đã hết hàng, không thể thêm vào giỏ.");
+            return "redirect:/sanpham/" + productId;
+        }
 
         // Lấy giỏ hàng từ session, nếu chưa có thì tạo mới
         List<SanPham> cart = (List<SanPham>) session.getAttribute("cart");
         if (cart == null) {
             cart = new ArrayList<>();
         }
-        if (sanpham.getHinh() != null) {
-            Hinh hinh = sanpham.getHinh();
 
-            // Chuyển đổi hình ảnh sang Base64
-            String base64MainImage = Base64.getEncoder().encodeToString(hinh.getHinhMain());
-            sanpham.getHinh().setBase64Image(base64MainImage);
-
-            // Chuyển đổi các hình thu nhỏ sang base64
-            String base64Image1 = Base64.getEncoder().encodeToString(hinh.getHinh1());
-            String base64Image2 = Base64.getEncoder().encodeToString(hinh.getHinh2());
-            String base64Image3 = Base64.getEncoder().encodeToString(hinh.getHinh3());
-            String base64Image4 = Base64.getEncoder().encodeToString(hinh.getHinh4());
-
-            model.addAttribute("base64Image1", base64Image1);
-            model.addAttribute("base64Image2", base64Image2);
-            model.addAttribute("base64Image3", base64Image3);
-            model.addAttribute("base64Image4", base64Image4);
-        }
         // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
         boolean found = false;
         for (SanPham item : cart) {
@@ -94,6 +84,7 @@ public class GioHangController {
                 break;
             }
         }
+
         // Nếu sản phẩm chưa có trong giỏ hàng, thêm vào giỏ hàng
         if (!found) {
             cart.add(sanpham);
@@ -102,6 +93,7 @@ public class GioHangController {
         } else {
             session.setAttribute("error", "Sản phẩm này đã có trong giỏ hàng");
         }
+
         // Truyền giỏ hàng vào model
         model.addAttribute("sanpham", sanpham);
         model.addAttribute("username", session.getAttribute("username"));
@@ -109,6 +101,7 @@ public class GioHangController {
         // Chuyển hướng về trang chi tiết sản phẩm với thông báo thành công
         return "redirect:/sanpham/" + productId;
     }
+
 
     @PostMapping("/removeFromCart")
     public String removeFromCart(@RequestParam("productId") Long productId, Model model) {
