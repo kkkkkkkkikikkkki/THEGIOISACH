@@ -80,5 +80,8 @@ public class SanPhamServiceImpl {
         return sanPhamRepository.findRandomProducts();
     }
 
-
+    // Phương thức mới để lưu sản phẩm
+    public SanPham saveSanPham(SanPham sanPham) {
+        return sanPhamRepository.save(sanPham);
+    }
 }

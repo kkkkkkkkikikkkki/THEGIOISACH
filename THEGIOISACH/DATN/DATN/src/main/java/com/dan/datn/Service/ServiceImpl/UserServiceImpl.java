@@ -13,78 +13,80 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository; // Khai báo UserRepository để thực hiện truy vấn
+    private UserRepository userRepository;
 
-    @Override
-    public boolean validateUser(String ten, String matKhau, String sdt) {
-        return false;
-    }
-
-    // Xác thực người dùng bằng cách kiểm tra tên và mật khẩu
     @Override
     public boolean validateUser(String ten, String matKhau) {
         Optional<User> userOptional = userRepository.findByTen(ten);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             if (user.getRole() == 1 && user.getMat_khau().equals(matKhau)) {
-                return true; // Chỉ trả về true nếu role là 1 và mật khẩu đúng
-            }
-        }
-        return false;
-    }
-    // Đăng nhập Admin
-    @Override
-    public boolean validateAdmin(String email, String matKhau) {
-        Optional<User> userOptional = userRepository.findByEmail(email);   // Tìm kiếm người dùng theo email
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            if (user.getRole() == 0 && user.getMat_khau().equals(matKhau)) {  // Kiểm tra role và mật khẩu
                 return true;
             }
         }
         return false;
     }
 
-    // Kiểm tra xem email đã tồn tại trong hệ thống chưa
     @Override
-    public boolean isEmailExist(String email) {
-        return userRepository.existsByEmail(email); // Sử dụng phương thức existsByEmail để kiểm tra
+    public boolean validateAdmin(String email, String matKhau) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            if (user.getRole() == 0 && user.getMat_khau().equals(matKhau)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    // Lưu người dùng mới vào cơ sở dữ liệu
+    @Override
+    public boolean isEmailExist(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
     @Override
     public void saveUser(User user) {
-        user.setRole(1); // Đặt giá trị role mặc định là 1
+        user.setRole(1); // Đặt role mặc định là 1
         userRepository.save(user);
     }
 
     @Override
     public void saveAdmin(User user) {
-        user.setRole(0); // Đặt giá trị role mặc định là 0
+        user.setRole(0); // Đặt role mặc định là 0
         userRepository.save(user);
     }
 
-
-    // Lấy thông tin người dùng dựa vào tên
     @Override
     public Optional<User> getUserByTen(String ten) {
         return userRepository.findByTen(ten);
     }
 
-
-    public List<User> getAllAdmins() {
-        return userRepository.findByRole(0); // Lấy tất cả tài khoản có role là 0 (admin)
-    }
-
-    @Autowired
-    private UserRepository nguoiDungRepository;
-
     @Override
     public List<User> getAllNguoiDung() {
-        return nguoiDungRepository.findAll();
+        return userRepository.findAll();
     }
 
+    // Phương thức lấy người dùng theo ID
+    @Override
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
+    }
 
+    // Phương thức xóa người dùng
+    @Override
+    public boolean deleteNguoiDung(Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    // Thêm lại phương thức getAllAdmins để lấy tất cả người dùng có role = 0 (admin)
+    @Override
+    public List<User> getAllAdmins() {
+        return userRepository.findByRole(0); // Lấy tất cả tài khoản có role = 0 (admin)
+    }
     @Override
     public boolean updatePassword(String username, String oldPassword, String newPassword, String confirmPassword) {
         Optional<User> userOptional = userRepository.findByTen(username);
@@ -110,5 +112,4 @@ public class UserServiceImpl implements UserService {
 
         return false; // Người dùng không tồn tại
     }
-
 }
