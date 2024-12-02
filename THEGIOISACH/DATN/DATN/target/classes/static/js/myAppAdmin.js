@@ -43,14 +43,10 @@ app.controller('NguoiDungController', function($scope, $http) {
     // Hàm xóa người dùng
     $scope.xoaNguoiDung = async function(userId) {
         try {
-            // Gọi API xóa người dùng
-            await $http.delete('/api/nguoidung/' + userId); // Thay đổi endpoint xóa người dùng của bạn ở đây
-
-            // Cập nhật lại danh sách người dùng sau khi xóa
+            await $http.delete('/api/nguoidung/' + userId);
             $scope.users = $scope.users.filter(function(user) {
-                return user.id_nguoi_dung !== userId;
+                return user.ID_nguoi_dung !== userId;
             });
-
             alert('Người dùng đã được xóa thành công!');
             $scope.loadUsers();
         } catch (error) {
@@ -58,6 +54,7 @@ app.controller('NguoiDungController', function($scope, $http) {
             alert('Có lỗi xảy ra khi xóa người dùng!');
         }
     };
+
 
     // Gọi hàm loadUsers khi controller được khởi tạo
     $scope.loadUsers();
