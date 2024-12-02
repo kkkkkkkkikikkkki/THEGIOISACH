@@ -636,19 +636,24 @@
                                             <label for="addProductProductionDate" class="form-label">Ngày Sản Xuất</label>
                                             <input type="date" class="form-control" id="addProductProductionDate" name="productionDate" required>
                                         </div>
-
-                                        <!-- Product Price -->
-                                        <div class="mb-3">
-                                            <label for="addProductPrice" class="form-label">Giá</label>
-                                            <input type="number" class="form-control" id="addProductPrice" name="price" required>
-                                        </div>
-
                                         <!-- Total Quantity -->
                                         <div class="mb-3">
                                             <label for="addProductStockQuantity" class="form-label">Tổng Số Lượng</label>
                                             <input type="number" class="form-control" id="addProductStockQuantity" name="stockQuantity" required>
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="soluongtonkho" class="form-label">Số lượng tồn kho</label>
+                                            <input type="number" class="form-control" id="soluongtonkho" name="soluongtonkho" required>
+                                        </div>
 
+                                        <div class="mb-3">
+                                            <input type="number" class="form-control" id="soluongdaban" name="soluongdaban" hidden="hidden" value="0">
+                                        </div>
+                                        <!-- Product Price -->
+                                        <div class="mb-3">
+                                            <label for="addProductPrice" class="form-label">Giá</label>
+                                            <input type="number" class="form-control" id="addProductPrice" name="price" required>
+                                        </div>
                                         <!-- Product Description -->
                                         <div class="mb-3">
                                             <label for="addProductDescription" class="form-label">Mô Tả</label>
@@ -745,6 +750,13 @@
     /*]]>*/
 </script>
 <script>
+    const totalQuantityInput = document.getElementById('addProductStockQuantity');
+    const stockQuantityInput = document.getElementById('soluongtonkho');
+
+    // Lắng nghe sự kiện 'input' trên trường Tổng Số Lượng
+    totalQuantityInput.addEventListener('input', function () {
+        stockQuantityInput.value = this.value; // Cập nhật giá trị của Số lượng tồn kho
+    });
 
     function hideMessage(messageId) {
         setTimeout(function() {
