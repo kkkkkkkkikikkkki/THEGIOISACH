@@ -35,7 +35,7 @@ public class SanPham {
     @Column(name = "So_luong_da_ban")
     private Integer soLuongDaBan;
 
-    @Column(name = "So_luong_ton_kho")
+    @Column(name = "So_luong_ton_kho", nullable = false)
     private Integer soLuongTonKho;
 
     @Column(name = "So_luong_tong_san_pham", nullable = false)
