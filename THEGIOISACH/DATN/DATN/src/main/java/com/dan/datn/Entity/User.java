@@ -1,5 +1,6 @@
 package com.dan.datn.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,11 +36,11 @@ public class User {
     private int role = 1; // Default role set to 1
 
     // Relationships
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore // Không đưa danh sách đánh giá vào JSON trả về
     private List<DanhGia> danhGiaList;
 
-    @OneToMany(mappedBy = "user")  // Change 'admins' to 'user'
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore // Không đưa danh sách thanh toán vào JSON trả về
     private List<ThanhToan> thanhToanList;
-
-
 }
