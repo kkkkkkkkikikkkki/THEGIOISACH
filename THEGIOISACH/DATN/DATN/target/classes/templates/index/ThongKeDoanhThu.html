@@ -144,12 +144,28 @@
                 <!-- Navbar items (left aligned) -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Thông báo</a>
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">Thông báo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Giỏ hàng</a>
                     </li>
                 </ul>
+                <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="notificationModalLabel">Thông báo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Success message -->
+                                <p>con</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button></div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Search Form (centered) -->
                 <form class="d-flex mx-auto" role="search" style="width: 400px;">
@@ -206,7 +222,9 @@
                 <!-- Số lượng -->
                 <td th:text="${thongKe.thanhToan.soLuong}"></td>
                 <!-- Tổng tiền -->
+                <!-- Hiển thị giá trị tongTien (Double) từ ThanhToan -->
                 <td class="gia-san-pham" th:text="${thongKe.thanhToan.tongTien}"></td>
+
             </tr>
             </tbody>
             <tfoot>
@@ -304,12 +322,6 @@
             }).format(price);
             element.textContent = formattedPrice;
         });
-
-
-
-
-
-
         // Hiển thị tổng doanh thu
         const totalRevenueElement = document.getElementById('total-revenue');
         totalRevenueElement.textContent = new Intl.NumberFormat('vi-VN', {
@@ -319,6 +331,21 @@
     });
 
 
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    /*<![CDATA[*/
+    var successMessage = /*[[${session.success}]]*/ '';
+    var errorMessage = /*[[${session.error}]]*/ '';
+
+    if (successMessage || errorMessage) {
+        // Show the modal if there's a success or error message
+        var myModal = new bootstrap.Modal(document.getElementById('notificationModal'), {
+            keyboard: false
+        });
+        myModal.show();
+    }
+    /*]]>*/
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

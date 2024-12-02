@@ -209,6 +209,71 @@
         display: inline-block;
         margin-top: 15px;
     }
+    /* Modal Content Layout */
+    /* Đặt chiều rộng modal là 80% */
+    .modal-dialog {
+        width: 80% !important;
+    }
+
+    /* Căn lề cho nội dung modal */
+    .modal-content {
+        display: flex;
+        justify-content: flex-start; /* Căn lề trái */
+    }
+
+    /* Căn lề cho phần hình ảnh (bên trái) */
+    .flex-shrink-0 {
+        width: 30%; /* Điều chỉnh chiều rộng của cột hình ảnh */
+        margin-right: 20px; /* Khoảng cách giữa cột hình ảnh và cột thông tin */
+    }
+
+    /* Căn lề cho phần thông tin sản phẩm (bên phải) */
+    .flex-grow-1 {
+        width: 70%; /* Điều chỉnh chiều rộng của cột thông tin sản phẩm */
+    }
+
+    /* Căn lề các trường nhập liệu */
+    .form-control {
+        text-align: left; /* Đảm bảo trường nhập liệu căn lề trái */
+    }
+
+
+    .alert {
+        text-align: center;
+        opacity: 0;
+        transform: translateY(30px); /* Bắt đầu từ dưới */
+        transition: opacity 0.5s, transform 0.5s;
+        width: 30%; /* Điều chỉnh chiều dài thành 80% của màn hình */
+        max-width: 400px; /* Chiều rộng tối đa */
+        position: fixed; /* Đặt thông báo cố định */
+        top: 20px; /* Đặt khoảng cách từ đầu trang */
+        left: 50%; /* Đặt thông báo ở giữa màn hình */
+        transform: translateX(-50%) translateY(30px); /* Đưa thông báo vào giữa màn hình */
+        z-index: 1050; /* Đảm bảo thông báo hiển thị trên các phần tử khác */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .alert.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0); /* Thông báo sẽ nổi lên giữa màn hình */
+    }
+
+    /* Đảm bảo thông báo không bị đè lên nhau */
+    .fixed-top {
+        z-index: 1050;
+    }
+
+    /* Tạo khoảng cách cho thông báo */
+    .m-2 {
+        margin: 20px;
+    }
+
+
+    .table th, .table td {
+        border-left: none;
+        border-right: none;
+    }
 
 </style>
 
@@ -473,126 +538,128 @@
                 </div>
 
             </div>
+            <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert" id="successMessage">
+                <span th:text="${success}"></span>
+            </div>
 
-
+            <!-- Error Notification -->
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert" id="errorMessage">
+                <span th:text="${error}"></span>
+            </div>
+            <!-- Modal Add Product -->
             <!-- Modal Add Product -->
             <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg" style="width: 80%">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addProductModalLabel">Thêm Sản Phẩm Mới</h5>
+                            <h5 class="modal-title" id="addProductModalLabel" style="text-align: center">Thêm Sản Phẩm Mới</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <!-- Add Product Form -->
-                            <form th:action="@{/seller/product/add}" method="post" enctype="multipart/form-data">
-                                <!-- Product Image -->
-                                <div class="mb-3">
-                                    <label for="addProductImage" class="form-label">Hình Ảnh Sản Phẩm</label>
-                                    <input type="file" class="form-control" id="addProductImage" name="image" required>
-                                    <img id="addProductImagePreview" class="img-thumbnail mt-2" style="width: 100px; height: auto;">
+                            <form th:action="@{/addProduct}" method="post" enctype="multipart/form-data">
+                                <div class="d-flex">
+                                    <!-- Left Side: Product Images -->
+                                    <div class="flex-shrink-0 me-4">
+                                        <!-- Product Image -->
+                                        <div class="mb-3">
+                                            <label for="addProductImage" class="form-label">Hình Ảnh Sản Phẩm Chính</label>
+                                            <input type="file" class="form-control" id="addProductImage" name="imageMain" required onchange="previewImage(event, 'addProductImagePreview')">
+                                            <div id="addProductImagePreview" class="d-flex mt-2"></div>
+                                        </div>
+
+                                        <!-- Product Image 1 -->
+                                        <div class="mb-3">
+                                            <label for="addProductImage1" class="form-label">Hình Ảnh Sản Phẩm Phụ 1</label>
+                                            <input type="file" class="form-control" id="addProductImage1" name="image1" onchange="previewImage(event, 'addProductImagePreview1')">
+                                            <div id="addProductImagePreview1" class="d-flex mt-2"></div>
+                                        </div>
+
+                                        <!-- Product Image 2 -->
+                                        <div class="mb-3">
+                                            <label for="addProductImage2" class="form-label">Hình Ảnh Sản Phẩm Phụ 2</label>
+                                            <input type="file" class="form-control" id="addProductImage2" name="image2" onchange="previewImage(event, 'addProductImagePreview2')">
+                                            <div id="addProductImagePreview2" class="d-flex mt-2"></div>
+                                        </div>
+
+                                        <!-- Product Image 3 -->
+                                        <div class="mb-3">
+                                            <label for="addProductImage3" class="form-label">Hình Ảnh Sản Phẩm Phụ 3</label>
+                                            <input type="file" class="form-control" id="addProductImage3" name="image3" onchange="previewImage(event, 'addProductImagePreview3')">
+                                            <div id="addProductImagePreview3" class="d-flex mt-2"></div>
+                                        </div>
+
+                                        <!-- Product Image 4 -->
+                                        <div class="mb-3">
+                                            <label for="addProductImage4" class="form-label">Hình Ảnh Sản Phẩm Phụ 4</label>
+                                            <input type="file" class="form-control" id="addProductImage4" name="image4" onchange="previewImage(event, 'addProductImagePreview4')">
+                                            <div id="addProductImagePreview4" class="d-flex mt-2"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right Side: Product Info -->
+                                    <div class="flex-grow-1">
+                                        <!-- Product Name -->
+                                        <div class="mb-3">
+                                            <label for="addProductName" class="form-label">Tên Sản Phẩm</label>
+                                            <input type="text" class="form-control" id="addProductName" name="name" required>
+                                        </div>
+
+                                        <!-- Product Category -->
+                                        <div class="mb-3">
+                                            <label for="addProductCategory" class="form-label">Thể Loại</label>
+                                            <select class="form-select" id="addProductCategory" name="category" required>
+                                                <option value="Văn học">Sách Văn Học</option>
+                                                <option value="Cổ tích">Cổ Tích</option>
+                                                <option value="Tiểu thuyết">Sách Tiểu thuyết</option>
+                                                <option value="Khoa học">Sách Khoa học</option>
+                                                <option value="Lịch sử">Sách Lịch sử</option>
+                                                <option value="Địa lý">Sách Địa Lý</option>
+                                                <!-- Thêm các danh mục khác nếu cần -->
+                                            </select>
+                                        </div>
+
+                                        <!-- Product Author -->
+                                        <div class="mb-3">
+                                            <label for="addProductAuthor" class="form-label">Tác Giả</label>
+                                            <input type="text" class="form-control" id="addProductAuthor" name="author" required>
+                                        </div>
+
+                                        <!-- Product Publisher -->
+                                        <div class="mb-3">
+                                            <label for="addProductPublisher" class="form-label">Nhà Xuất Bản</label>
+                                            <input type="text" class="form-control" id="addProductPublisher" name="publisher" required>
+                                        </div>
+
+                                        <!-- Production Date -->
+                                        <div class="mb-3">
+                                            <label for="addProductProductionDate" class="form-label">Ngày Sản Xuất</label>
+                                            <input type="date" class="form-control" id="addProductProductionDate" name="productionDate" required>
+                                        </div>
+
+                                        <!-- Product Price -->
+                                        <div class="mb-3">
+                                            <label for="addProductPrice" class="form-label">Giá</label>
+                                            <input type="number" class="form-control" id="addProductPrice" name="price" required>
+                                        </div>
+
+                                        <!-- Total Quantity -->
+                                        <div class="mb-3">
+                                            <label for="addProductStockQuantity" class="form-label">Tổng Số Lượng</label>
+                                            <input type="number" class="form-control" id="addProductStockQuantity" name="stockQuantity" required>
+                                        </div>
+
+                                        <!-- Product Description -->
+                                        <div class="mb-3">
+                                            <label for="addProductDescription" class="form-label">Mô Tả</label>
+                                            <textarea class="form-control" id="addProductDescription" name="description" rows="4" required></textarea>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- Product Name -->
-                                <div class="mb-3">
-                                    <label for="addProductName" class="form-label">Tên Sản Phẩm</label>
-                                    <input type="text" class="form-control" id="addProductName" name="name" required>
-                                </div>
-                                <!-- Product Category -->
-                                <div class="mb-3">
-                                    <label for="addProductCategory" class="form-label">Thể Loại</label>
-                                    <select class="form-select" id="addProductCategory" name="category" required>
-                                        <option value="Sách Kinh Tế">Sách Kinh Tế</option>
-                                        <option value="Sách Văn Học">Sách Văn Học</option>
-                                        <option value="Sách Giáo Khoa">Sách Giáo Khoa</option>
-                                        <!-- Thêm các danh mục khác -->
-                                    </select>
-                                </div>
-                                <!-- Product Author -->
-                                <div class="mb-3">
-                                    <label for="addProductAuthor" class="form-label">Tác Giả</label>
-                                    <input type="text" class="form-control" id="addProductAuthor" name="author" required>
-                                </div>
-                                <!-- Product Publisher -->
-                                <div class="mb-3">
-                                    <label for="addProductPublisher" class="form-label">Nhà Xuất Bản</label>
-                                    <input type="text" class="form-control" id="addProductPublisher" name="publisher" required>
-                                </div>
-                                <!-- Production Date -->
-                                <div class="mb-3">
-                                    <label for="addProductProductionDate" class="form-label">Ngày Sản Xuất</label>
-                                    <input type="date" class="form-control" id="addProductProductionDate" name="productionDate" required>
-                                </div>
-                                <!-- Product Price -->
-                                <div class="mb-3">
-                                    <label for="addProductPrice" class="form-label">Giá</label>
-                                    <input type="number" class="form-control" id="addProductPrice" name="price" required>
-                                </div>
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                     <button type="submit" class="btn btn-primary">Thêm Sản Phẩm</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal Edit Product -->
-            <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editProductModalLabel">Chỉnh sửa Sản Phẩm</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Edit Product Form -->
-                            <form th:action="@{/seller/product/update}" method="post" enctype="multipart/form-data">
-                                <input type="hidden" id="editProductId" name="id">
-
-                                <!-- Product Image -->
-                                <div class="mb-3">
-                                    <label for="editProductImage" class="form-label">Hình Ảnh Sản Phẩm</label>
-                                    <input type="file" class="form-control" id="editProductImage" name="image">
-                                    <img id="editProductImagePreview" class="img-thumbnail mt-2" style="width: 100px; height: auto;">
-                                </div>
-                                <!-- Product Name -->
-                                <div class="mb-3">
-                                    <label for="editProductName" class="form-label">Tên Sản Phẩm</label>
-                                    <input type="text" class="form-control" id="editProductName" name="name" required>
-                                </div>
-                                <!-- Product Category -->
-                                <div class="mb-3">
-                                    <label for="editProductCategory" class="form-label">Thể Loại</label>
-                                    <select class="form-select" id="editProductCategory" name="category" required>
-                                        <option value="Sách Kinh Tế">Sách Kinh Tế</option>
-                                        <option value="Sách Văn Học">Sách Văn Học</option>
-                                        <option value="Sách Giáo Khoa">Sách Giáo Khoa</option>
-                                        <!-- Thêm các danh mục khác -->
-                                    </select>
-                                </div>
-                                <!-- Product Author -->
-                                <div class="mb-3">
-                                    <label for="editProductAuthor" class="form-label">Tác Giả</label>
-                                    <input type="text" class="form-control" id="editProductAuthor" name="author" required>
-                                </div>
-                                <!-- Product Publisher -->
-                                <div class="mb-3">
-                                    <label for="editProductPublisher" class="form-label">Nhà Xuất Bản</label>
-                                    <input type="text" class="form-control" id="editProductPublisher" name="publisher" required>
-                                </div>
-                                <!-- Production Date -->
-                                <div class="mb-3">
-                                    <label for="editProductProductionDate" class="form-label">Ngày Sản Xuất</label>
-                                    <input type="date" class="form-control" id="editProductProductionDate" name="productionDate" required>
-                                </div>
-                                <!-- Product Price -->
-                                <div class="mb-3">
-                                    <label for="editProductPrice" class="form-label">Giá</label>
-                                    <input type="number" class="form-control" id="editProductPrice" name="price" required>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <button type="submit" class="btn btn-primary">Cập Nhật Sản Phẩm</button>
                                 </div>
                             </form>
                         </div>
@@ -678,6 +745,28 @@
     /*]]>*/
 </script>
 <script>
+
+    function hideMessage(messageId) {
+        setTimeout(function() {
+            var message = document.getElementById(messageId);
+            if (message) {
+                message.classList.remove('show');  // Ẩn thông báo
+            }
+        }, 3500);  // Sau 5 giây
+    }
+
+    // Kiểm tra và hiển thị thông báo khi trang tải xong
+    window.onload = function() {
+        if (document.getElementById("successMessage")) {
+            document.getElementById("successMessage").classList.add("show"); // Hiển thị thông báo thành công
+            hideMessage("successMessage"); // Sau 5 giây ẩn đi
+        }
+        if (document.getElementById("errorMessage")) {
+            document.getElementById("errorMessage").classList.add("show"); // Hiển thị thông báo lỗi
+            hideMessage("errorMessage"); // Sau 5 giây ẩn đi
+        }
+    }
+
     // Lắng nghe sự kiện khi modal được mở
     var myModal = document.getElementById('productModal');
     myModal.addEventListener('show.bs.modal', function (event) {
@@ -706,6 +795,9 @@
         document.getElementById('modalProductStockQty').value = productStockQty;
         document.getElementById('modalProductTotalQty').value = productTotalQty;
         document.getElementById('modalProductManufactureDate').value = productManufactureDate;
+        document.getElementById('modalProductImage').src = productImage ? productImage : 'placeholder.png';
+
+        // Cập nhật giá sản phẩm dưới dạng tiền tệ
         document.querySelectorAll('.gia-san-pham').forEach(element => {
             const price = parseInt(element.value);
             if (!isNaN(price)) {
@@ -716,10 +808,13 @@
                 element.value = formattedPrice;
             }
         });
+
         // Cập nhật ảnh Base64 vào thẻ <img>
-        var productImage = button.getAttribute('data-hinh');
-        document.getElementById('modalProductImage').src = productImage ? productImage : 'placeholder.png';
-        // Ảnh mặc định nếu không có ản
+        if (productImage) {
+            document.getElementById('modalProductImage').src = productImage;
+        } else {
+            document.getElementById('modalProductImage').src = 'placeholder.png';  // Ảnh mặc định nếu không có ảnh
+        }
     });
 
     document.getElementById('chooseImageButton').addEventListener('click', function () {
@@ -727,23 +822,103 @@
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = 'image/*';
+        input.multiple = true; // Cho phép chọn nhiều hình ảnh
 
         input.onchange = function (event) {
-            const file = event.target.files[0];
-            if (file) {
+            const files = event.target.files; // Lấy tất cả các tệp đã chọn
+            const imageContainer = document.getElementById('modalProductImage');
+
+            // Xóa các hình ảnh hiện tại (nếu có) trong imageContainer
+            imageContainer.innerHTML = '';
+
+            // Hiển thị tất cả các hình ảnh được chọn
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
                 const reader = new FileReader();
 
                 reader.onload = function (e) {
-                    // Hiển thị hình ảnh được chọn trong thẻ <img>
-                    document.getElementById('modalProductImage').src = e.target.result;
+                    // Tạo một thẻ <img> mới cho mỗi hình ảnh
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('img-fluid');
+                    img.style.maxWidth = '100%';
+                    img.style.maxHeight = '300px';
+                    img.style.marginBottom = '10px';
+                    img.style.border = '1px solid #ccc';
+                    img.style.padding = '5px';
+
+                    // Thêm hình ảnh vào container
+                    imageContainer.appendChild(img);
                 };
 
-                reader.readAsDataURL(file);
+                reader.readAsDataURL(file); // Đọc tệp hình ảnh
             }
         };
 
         input.click(); // Kích hoạt mở file picker
     });
+    function handleImagePreview(inputId, previewContainerId, maxImages = 4) {
+        const inputElement = document.getElementById(inputId);
+        const previewContainer = document.getElementById(previewContainerId);
+
+        inputElement.addEventListener('change', function (event) {
+            const files = event.target.files; // Lấy tất cả các tệp đã chọn
+            previewContainer.innerHTML = ''; // Xóa các hình ảnh hiện tại trong preview container
+
+            // Hiển thị tối đa 4 hình ảnh
+            const maxImagesToShow = Math.min(files.length, maxImages);
+
+            for (let i = 0; i < maxImagesToShow; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('img-fluid');
+                    img.style.width = '100px';  // Kích thước chiều rộng cố định
+                    img.style.height = 'auto';  // Kích thước chiều cao tự động
+                    img.style.border = '1px solid #ccc';
+                    img.style.padding = '5px';
+
+                    previewContainer.appendChild(img); // Thêm hình ảnh vào container
+                };
+
+                reader.readAsDataURL(file); // Đọc tệp hình ảnh và chuyển thành Data URL
+            }
+        });
+    }
+    function previewImage(event, previewId) {
+        var files = event.target.files;
+        var previewContainer = document.getElementById(previewId);
+        previewContainer.innerHTML = ''; // Clear previous previews
+
+        // Loop through the selected files
+        Array.from(files).forEach(file => {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var imgDiv = document.createElement('div');
+                imgDiv.classList.add('image-preview-item');
+                imgDiv.innerHTML = `
+                <img src="${e.target.result}" alt="Image Preview" class="img-thumbnail" style="width: auto; height: auto;">
+                <button type="button" class="btn btn-danger btn-sm mt-2" onclick="removeImage(this)">Xóa</button>
+            `;
+                previewContainer.appendChild(imgDiv);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+    function removeImage(button) {
+        button.parentElement.remove();
+    }
+
+    // // Đối với editProductImage
+    // handleImagePreview('editProductImage', 'editProductImagePreview');
+    // handleImagePreview('editProductImage1', 'editProductImagePreview1');
+    // handleImagePreview('editProductImage2', 'editProductImagePreview2');
+    // handleImagePreview('editProductImage3', 'editProductImagePreview3');
+    // handleImagePreview('editProductImage4', 'editProductImagePreview4');
 
     document.querySelectorAll('.gia-san-pham1').forEach(element => {
         const price = parseInt(element.textContent);
