@@ -123,30 +123,12 @@
                     <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">Thông báo</a>
+                    <a class="nav-link" href="#!Thông báo">Thông báo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/giohang}">Giỏ hàng</a>
                 </li>
             </ul>
-
-            <!-- Modal -->
-            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="notificationModalLabel">Thông báo</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Success message -->
-                           <p>con</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button></div>
-                    </div>
-                </div>
-            </div>
 
             <!-- Search Form (centered) -->
             <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
@@ -190,13 +172,13 @@
             <div id="bannerCarousel" class="carousel slide h-100" data-bs-ride="carousel">
                 <div class="carousel-inner h-100">
                     <div class="carousel-item active">
-                        <img src="/image/banner%20sach%201.png" class="d-block w-100 h-100" alt="Banner 1">
+                        <img src="/static/image/banner%20sach%201.png" class="d-block w-100 h-100" alt="Banner 1">
                     </div>
                     <div class="carousel-item">
-                        <img src="/image/banner%20sach%202.png" class="d-block w-100 h-100" alt="Banner 2">
+                        <img src="/static/image/banner%20sach%202.png" class="d-block w-100 h-100" alt="Banner 2">
                     </div>
                     <div class="carousel-item">
-                        <img src="/image/banner%20sach%203.png" class="d-block w-100 h-100" alt="Banner 3">
+                        <img src="/static/image/banner%20sach%203.png" class="d-block w-100 h-100" alt="Banner 3">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel"
@@ -214,24 +196,66 @@
 
         <!-- Phần bên phải là hai hình ảnh tĩnh xếp chồng nhau -->
         <div class="col-md-4 d-flex flex-column">
-            <img src="/image/banner%20sach%204.png" class="img-fluid mb-2 half-height" alt="Banner Tĩnh 1">
-            <img src="/image/banner%20sach%205.png" class="img-fluid half-height" alt="Banner Tĩnh 2">
+            <img src="/static/image/banner%20sach%204.png" class="img-fluid mb-2 half-height" alt="Banner Tĩnh 1">
+            <img src="/static/image/banner%20sach%205.png" class="img-fluid half-height" alt="Banner Tĩnh 2">
         </div>
     </div>
 </section>
 <!-- CSS để điều chỉnh chiều cao -->
 <style>
     .carousel, .carousel-inner, .carousel-item {
-        height: 100%; /* Đảm bảo chiều cao của carousel bằng chiều cao của cột */
+        height: 350px; /* Tăng chiều cao */
+        object-fit: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ khu vực */
     }
 
     .half-height {
-        height: 50%; /* Mỗi hình ảnh chiếm một nửa chiều cao của cột */
+        height: 175px; /* Tăng chiều cao mỗi hình lên một nửa tổng chiều cao mới */
+        object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
     }
 </style>
+<style>
+    /* Hiệu ứng zoom cho thẻ sản phẩm */
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Căn nút trên cùng một hàng */
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-body .btn-group {
+        display: flex;
+        gap: 10px; /* Khoảng cách giữa các nút */
+        margin-top: 10px;
+    }
+
+    /* Hiệu ứng cho button */
+    .card-body .btn {
+        background-color: white;
+        border: 1px solid #FF9999;
+        color: #FF9999;
+        transition: all 0.3s ease;
+    }
+
+    .card-body .btn:hover {
+        background-color: #FF9999;
+        color: white;
+        border-color: #FF9999;
+    }
+</style>
+
 <section class="container mt-5" style="height: auto">
     <h3 class="text-center">Sản phẩm nổi bật</h3>
-    <section class="container mt-5 " style="height: auto">
+    <section class="container mt-5" style="height: auto">
         <div class="row">
             <div class="col-12">
                 <div class="bg-danger text-white p-2 rounded">
@@ -241,23 +265,22 @@
                 </div>
             </div>
         </div>
-        <div class="row ">
+        <div class="row">
             <!-- Card sản phẩm -->
             <div class="col-md-3" th:each="sanpham : ${sanphamsNoiBat}" style="margin-bottom: 15px">
                 <div class="card">
                     <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="text-decoration-none text-dark">
-                    <img th:src="'data:image/png;base64,' + ${sanpham.hinh.base64Image}" class="card-img-top"
-                         alt="Hình sản phẩm">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${sanpham.tenSach}">Sản phẩm 1</h5>
-                        <p class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></p>
-                        <!-- Nút Mua Ngay -->
-                        <button type="button" class="btn btn-primary">
-                            Mua Ngay
-                        </button>
-                        <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="btn btn-primary">Xem chi
-                            tiết</a>
-                    </div>
+                        <img th:src="'data:image/png;base64,' + ${sanpham.hinh.base64Image}" class="card-img-top"
+                             alt="Hình sản phẩm">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${sanpham.tenSach}">Sản phẩm 1</h5>
+                            <p class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></p>
+                            <!-- Nút nằm trên cùng hàng -->
+                            <div class="btn-group">
+                                <a href="#!Mua ngay" class="btn">Mua ngay</a>
+                                <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="btn">Xem chi tiết</a>
+                            </div>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -307,7 +330,7 @@
     </div>
 </section>
 
-    <!-- Footer -->
+<!-- Footer -->
 <footer class="bg-light py-5 mt-5">
     <div class="container">
         <div class="row">
@@ -351,91 +374,65 @@
     </div>
 </footer>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    /*<![CDATA[*/
-    var successMessage = /*[[${session.success}]]*/ '';
-    var errorMessage = /*[[${session.error}]]*/ '';
-
-    if (successMessage || errorMessage) {
-        // Show the modal if there's a success or error message
-        var myModal = new bootstrap.Modal(document.getElementById('notificationModal'), {
-            keyboard: false
-        });
-        myModal.show();
+    //mã xử lý đổi đơn vị tiền tệ
+    function formatVND(price) {
+        return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(price);
     }
-    /*]]>*/
-</script>
-    <script>
-        //mã xử lý đổi đơn vị tiền tệ
-        function formatVND(price) {
-            return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(price);
-        }
 
-        document.querySelectorAll('.gia-san-pham').forEach(element => {
-            const price = element.getAttribute('data-price');
-            element.textContent = formatVND(price);
-        });
+    document.querySelectorAll('.gia-san-pham').forEach(element => {
+        const price = element.getAttribute('data-price');
+        element.textContent = formatVND(price);
+    });
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const searchInput = document.getElementById("search-input");
-            const suggestionsBox = document.getElementById("suggestions-box");
+    document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById("search-input");
+        const suggestionsBox = document.getElementById("suggestions-box");
 
-            searchInput.addEventListener("input", () => {
-                const keyword = searchInput.value.trim();
+        searchInput.addEventListener("input", () => {
+            const keyword = searchInput.value.trim();
 
-                if (keyword.length === 0) {
+            if (keyword.length === 0) {
+                suggestionsBox.innerHTML = "";
+                return;
+            }
+
+            fetch(`/suggestions?keyword=${keyword}`)
+                .then(response => response.json())
+                .then(suggestions => {
                     suggestionsBox.innerHTML = "";
-                    return;
-                }
 
-                fetch(`/suggestions?keyword=${keyword}`)
-                    .then(response => response.json())
-                    .then(suggestions => {
-                        suggestionsBox.innerHTML = "";
+                    if (suggestions.length > 0) {
+                        suggestions.forEach(suggestion => {
+                            const item = document.createElement("a");
+                            item.classList.add("list-group-item", "list-group-item-action");
+                            item.textContent = suggestion;
+                            item.href = `/search?keyword=${suggestion}`;
 
-                        if (suggestions.length > 0) {
-                            suggestions.forEach(suggestion => {
-                                const item = document.createElement("a");
-                                item.classList.add("list-group-item", "list-group-item-action");
-                                item.textContent = suggestion;
-                                item.href = `/search?keyword=${suggestion}`;
-
-                                item.addEventListener("click", () => {
-                                    searchInput.value = suggestion;
-                                    suggestionsBox.innerHTML = "";
-                                });
-
-                                suggestionsBox.appendChild(item);
+                            item.addEventListener("click", () => {
+                                searchInput.value = suggestion;
+                                suggestionsBox.innerHTML = "";
                             });
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error fetching suggestions:", error);
-                    });
-            });
 
-            //Xử lý nút mua ngay
-            document.querySelector('.btn-pink').addEventListener('click', function () {
-                // Lấy giá trị productId từ input ẩn trong form
-                const productId = document.querySelector('input[name="productId"]').value;
-                if (!productId) {
-                    alert('Không tìm thấy sản phẩm để mua!');
-                    return;
-                }
-                // Điều hướng tới trang checkout với productId và quantities mặc định là 1
-                window.location.href = `/api/checkout?productIds=${productId}&quantities=1`;
-            });
-
-            // Đóng gợi ý khi nhấp ra ngoài
-            document.addEventListener("click", (e) => {
-                if (!searchInput.contains(e.target)) {
-                    suggestionsBox.innerHTML = "";
-                }
-            });
+                            suggestionsBox.appendChild(item);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching suggestions:", error);
+                });
         });
 
-    </script>
-    </body>
+        // Đóng gợi ý khi nhấp ra ngoài
+        document.addEventListener("click", (e) => {
+            if (!searchInput.contains(e.target)) {
+                suggestionsBox.innerHTML = "";
+            }
+        });
+    });
+
+</script>
+</body>
 </html>

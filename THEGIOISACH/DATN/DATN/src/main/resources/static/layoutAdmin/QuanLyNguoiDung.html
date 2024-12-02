@@ -15,19 +15,21 @@
         </tr>
         </thead>
         <tbody>
-        <!-- Sử dụng ng-repeat để lặp qua danh sách người dùng -->
+        <tr ng-if="!users.length">
+            <td colspan="7" class="text-center">Không có người dùng</td>
+        </tr>
         <tr ng-repeat="user in users">
             <td class="text-center">{{ user.id_nguoi_dung }}</td>
             <td>{{ user.ten }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.sdt }}</td>
             <td>{{ user.dia_chi }}</td>
-            <td class="text-center">{{ user.role ? 'Người dùng' : 'Admin' }}</td>
+            <td class="text-center">{{ user.role === 0 ? 'Admin' : 'Người dùng' }}</td>
             <td class="text-center">
-                <!-- Nút xóa người dùng -->
-                <button class="btn btn-danger" ng-click="xoaNguoiDung(user.id_nguoi_dung)">Xóa</button>
+                <button class="btn btn-danger" ng-click="xoaNguoiDung(user.ID_nguoi_dung)">Xóa</button>
             </td>
         </tr>
         </tbody>
+
     </table>
 </div>
