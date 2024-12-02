@@ -74,6 +74,8 @@ public class QuanLySanPhamController {
                              @RequestParam("price") Integer price,
                              @RequestParam("description") String description,
                              @RequestParam("stockQuantity") Integer stockQuantity,
+                             @RequestParam("soluongtonkho") Integer soluongtonkho,
+                             @RequestParam("soluongdaban") Integer soluongdaban,
                              Model model, RedirectAttributes redirectAttributes) {
         try {
             // 1. Thêm hình ảnh vào bảng Hinh
@@ -99,7 +101,9 @@ public class QuanLySanPhamController {
             sanPham.setMoTa(description);
             sanPham.setSoLuongTongSanPham(stockQuantity); // Đảm bảo thông tin tổng số lượng sản phẩm được lưu
             sanPham.setTheLoai(theLoai);
-            sanPham.setHinh(newHinh);  // Gán hình ảnh đã lưu vào sản phẩm
+            sanPham.setHinh(newHinh);  // Gán hình ảnh đã lưu vào sản phẩms
+            sanPham.setSoLuongTonKho(soluongtonkho);
+            sanPham.setSoLuongDaBan(soluongdaban);
 
             // 4. Lưu sản phẩm vào DB
             sanPhamService.saveSanPham(sanPham);
