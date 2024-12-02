@@ -13,6 +13,7 @@ import java.util.Base64;
 public class Hinh {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Đây là cách tự động tăng (auto-increment)
     private Long ID_hinh;
 
     @Column(name = "Hinh_main", nullable = false)
@@ -30,9 +31,6 @@ public class Hinh {
     @Column(name = "Hinh_4", nullable = false)
     private byte[] hinh4;
 
-    // Relationships
-    @OneToOne(mappedBy = "hinh")
-    private SanPham sanPham;
 
     @Transient
     private String base64Image;

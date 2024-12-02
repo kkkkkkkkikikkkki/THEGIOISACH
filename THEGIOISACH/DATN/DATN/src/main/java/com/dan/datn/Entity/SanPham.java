@@ -32,10 +32,10 @@ public class SanPham {
     @Column(name = "Gia", nullable = false)
     private Integer gia;
 
-    @Column(name = "So_luong_da_ban", nullable = false)
+    @Column(name = "So_luong_da_ban")
     private Integer soLuongDaBan;
 
-    @Column(name = "So_luong_ton_kho", nullable = false)
+    @Column(name = "So_luong_ton_kho")
     private Integer soLuongTonKho;
 
     @Column(name = "So_luong_tong_san_pham", nullable = false)
