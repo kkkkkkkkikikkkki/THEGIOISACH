@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Base64;
 import java.util.Date;
@@ -106,28 +107,54 @@ public class ChiTietSanPhamController {
 
     @PostMapping("/{id}/danhgia")
     public String submitReview(@PathVariable("id") Long sanPhamId,
-                               @RequestParam("danhGia") Integer danhGia,
-                               @RequestParam("binhLuan") String binhLuan,
+                               @RequestParam(value = "danhGia", required = false) Integer danhGia,
+                               @RequestParam(value = "binhLuan", required = false) String binhLuan,
                                HttpSession session,
-                               Model model) {
+                               Model model,
+                               RedirectAttributes redirectAttributes) { // Sử dụng RedirectAttributes
+        // Kiểm tra người dùng đã đăng nhập hay chưa
         String ten = (String) session.getAttribute("username");
         if (ten == null) {
-            model.addAttribute("error", "Bạn cần đăng nhập để đánh giá.");
-            return "index/dangNhap"; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+            redirectAttributes.addFlashAttribute("error", "Bạn cần đăng nhập để đánh giá.");
+            return "redirect:/index/dangNhap"; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+        }
+
+        // Kiểm tra các tham số đầu vào
+        if (danhGia == null && (binhLuan == null || binhLuan.isEmpty())) {
+            redirectAttributes.addFlashAttribute("error", "Bạn cần cung cấp đánh giá và bình luận.");
+            return "redirect:/sanpham/" + sanPhamId; // Quay lại trang chi tiết sản phẩm
+        }
+        if (danhGia == null) {
+            redirectAttributes.addFlashAttribute("error", "Bạn cần cung cấp đánh giá.");
+            return "redirect:/sanpham/" + sanPhamId; // Quay lại trang chi tiết sản phẩm
+        }
+        if (binhLuan == null || binhLuan.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Bạn cần cung cấp bình luận.");
+            return "redirect:/sanpham/" + sanPhamId; // Quay lại trang chi tiết sản phẩm
         }
 
         try {
             // Lấy thông tin người dùng
             Optional<User> optionalUser = userServiceImpl.getUserByTen(ten);
             if (!optionalUser.isPresent()) {
-                model.addAttribute("error", "Không tìm thấy người dùng.");
-                return "index/dangNhap";
+                redirectAttributes.addFlashAttribute("error", "Không tìm thấy người dùng.");
+                return "redirect:/index/dangNhap";
             }
             User user = optionalUser.get();
 
-
             // Lấy thông tin sản phẩm
-            SanPham sanPham = sanPhamServiceImpl.getSanPhamById(sanPhamId);
+            SanPham sanPham = null;
+            try {
+                sanPham = sanPhamServiceImpl.getSanPhamById(sanPhamId);
+            } catch (Exception e) {
+                redirectAttributes.addFlashAttribute("error", "Không tìm thấy sản phẩm có ID: " + sanPhamId);
+                return "redirect:/error";
+            }
+
+            if (sanPham == null) {
+                redirectAttributes.addFlashAttribute("error", "Sản phẩm không tồn tại.");
+                return "redirect:/error";
+            }
 
             // Tạo đối tượng đánh giá mới
             DanhGia danhGiaMoi = new DanhGia();
@@ -137,21 +164,25 @@ public class ChiTietSanPhamController {
             danhGiaMoi.setBinhLuan(binhLuan);
             danhGiaMoi.setNgayDanhGia(new Date());
 
-            // Lưu đánh giá
-            danhGiaService.save(danhGiaMoi);
-            if(danhGiaMoi == null){
-                System.out.println("Đánh giá thất bại");
-            }else {
-                System.out.println("Đánh giá thành công: " + danhGiaMoi);
+            try {
+                // Lưu đánh giá
+                danhGiaService.save(danhGiaMoi);
+                if (danhGiaMoi == null) {
+                    throw new Exception("Đánh giá thất bại.");
+                }
+            } catch (Exception e) {
+                redirectAttributes.addFlashAttribute("error", "Đã xảy ra lỗi khi lưu đánh giá: " + e.getMessage());
+                return "redirect:/sanpham/" + sanPhamId;
             }
 
-
-            model.addAttribute("success", "Đánh giá của bạn đã được gửi thành công!");
+            redirectAttributes.addFlashAttribute("success", "Đánh giá của bạn đã được gửi thành công!");
         } catch (Exception e) {
-            model.addAttribute("error", "Đã xảy ra lỗi khi gửi đánh giá: " + e.getMessage());
+            // Xử lý các lỗi chung
+            redirectAttributes.addFlashAttribute("error", "Đã xảy ra lỗi khi gửi đánh giá: " + e.getMessage());
         }
 
         return "redirect:/sanpham/" + sanPhamId; // Quay lại trang chi tiết sản phẩm
     }
+
 
 }
