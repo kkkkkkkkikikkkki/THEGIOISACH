@@ -632,14 +632,15 @@
             <h2 th:text="${sanpham.tenSach}">Tên Sách - Tập - Quà tặng kèm</h2>
             <p class="rating">⭐⭐⭐⭐⭐(5/5) | Đã bán (999)</p>
             <p ><strong>Giá: </strong><span class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></span></p>
+            <p><strong>Số lượng sản phẩm: </strong><span th:text="${sanpham.soLuongTonKho}"></span></p>
             <p><strong>Nhà xuất bản: </strong><span th:text="${sanpham.nhaXuatBan}"></span></p>
             <p><strong>Tác giả: </strong><span th:text="${sanpham.tacGia}"></span></p>
             <p><strong>Thể loại: </strong><span th:text="${sanpham.theLoai.theLoai}"></span></p>
             <h3>Mô tả sản phẩm</h3><span th:text="${sanpham.moTa}"></span>
             <hr>
-            <form>
+            <form th:if="${sanpham.soLuongTonKho != null and sanpham.soLuongTonKho > 0}">
                 <div>
-                    <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}"/>
+                    <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}" />
                     <button formaction="/cart" formmethod="POST" class="btn btn-gray" type="submit">
                         <i class="bi bi-cart"></i> Thêm vào giỏ hàng
                     </button>
@@ -649,6 +650,11 @@
                     </button>
                 </div>
             </form>
+            <!-- Hiển thị thông báo nếu hết hàng -->
+            <p th:if="${sanpham.soLuongTonKho == null or sanpham.soLuongTonKho <= 0}" class="text-danger fw-bold">
+                Sản phẩm này đã hết hàng!
+            </p>
+
         </div>
         <div class="related-products-wrapper mt-4">
             <h4>Sản phẩm liên quan</h4>
