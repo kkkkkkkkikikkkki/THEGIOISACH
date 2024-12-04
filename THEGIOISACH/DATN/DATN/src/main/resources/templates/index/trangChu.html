@@ -100,6 +100,54 @@
     html {
         scroll-behavior: smooth;
     }
+
+    .carousel, .carousel-inner, .carousel-item {
+        height: 350px; /* Tăng chiều cao */
+        object-fit: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ khu vực */
+    }
+
+    .half-height {
+        height: 175px; /* Tăng chiều cao mỗi hình lên một nửa tổng chiều cao mới */
+        object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+    }
+
+    /* Hiệu ứng zoom cho thẻ sản phẩm */
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Căn nút trên cùng một hàng */
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-body .btn-group {
+        display: flex;
+        gap: 10px; /* Khoảng cách giữa các nút */
+        margin-top: 10px;
+    }
+
+    /* Hiệu ứng cho button */
+    .card-body .btn {
+        background-color: white;
+        border: 1px solid #FF9999;
+        color: #FF9999;
+        transition: all 0.3s ease;
+    }
+
+    .card-body .btn:hover {
+        background-color: #FF9999;
+        color: white;
+        border-color: #FF9999;
+    }
 </style>
 
 
@@ -172,13 +220,13 @@
             <div id="bannerCarousel" class="carousel slide h-100" data-bs-ride="carousel">
                 <div class="carousel-inner h-100">
                     <div class="carousel-item active">
-                        <img src="/static/image/banner%20sach%201.png" class="d-block w-100 h-100" alt="Banner 1">
+                        <img src="/image/banner%20sach%201.png" class="d-block w-100 h-100" alt="Banner 1">
                     </div>
                     <div class="carousel-item">
-                        <img src="/static/image/banner%20sach%202.png" class="d-block w-100 h-100" alt="Banner 2">
+                        <img src="/image/banner%20sach%202.png" class="d-block w-100 h-100" alt="Banner 2">
                     </div>
                     <div class="carousel-item">
-                        <img src="/static/image/banner%20sach%203.png" class="d-block w-100 h-100" alt="Banner 3">
+                        <img src="/image/banner%20sach%203.png" class="d-block w-100 h-100" alt="Banner 3">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel"
@@ -196,62 +244,11 @@
 
         <!-- Phần bên phải là hai hình ảnh tĩnh xếp chồng nhau -->
         <div class="col-md-4 d-flex flex-column">
-            <img src="/static/image/banner%20sach%204.png" class="img-fluid mb-2 half-height" alt="Banner Tĩnh 1">
-            <img src="/static/image/banner%20sach%205.png" class="img-fluid half-height" alt="Banner Tĩnh 2">
+            <img src="/image/banner%20sach%204.png" class="img-fluid mb-2 half-height" alt="Banner Tĩnh 1">
+            <img src="/image/banner%20sach%205.png" class="img-fluid half-height" alt="Banner Tĩnh 2">
         </div>
     </div>
 </section>
-<!-- CSS để điều chỉnh chiều cao -->
-<style>
-    .carousel, .carousel-inner, .carousel-item {
-        height: 350px; /* Tăng chiều cao */
-        object-fit: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ khu vực */
-    }
-
-    .half-height {
-        height: 175px; /* Tăng chiều cao mỗi hình lên một nửa tổng chiều cao mới */
-        object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
-    }
-</style>
-<style>
-    /* Hiệu ứng zoom cho thẻ sản phẩm */
-    .card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Căn nút trên cùng một hàng */
-    .card-body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .card-body .btn-group {
-        display: flex;
-        gap: 10px; /* Khoảng cách giữa các nút */
-        margin-top: 10px;
-    }
-
-    /* Hiệu ứng cho button */
-    .card-body .btn {
-        background-color: white;
-        border: 1px solid #FF9999;
-        color: #FF9999;
-        transition: all 0.3s ease;
-    }
-
-    .card-body .btn:hover {
-        background-color: #FF9999;
-        color: white;
-        border-color: #FF9999;
-    }
-</style>
 
 <section class="container mt-5" style="height: auto">
     <h3 class="text-center">Sản phẩm nổi bật</h3>
@@ -344,10 +341,10 @@
             <div class="col-md-3">
                 <h5 class="mb-4 text-dark">Dịch vụ</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-dark" style="text-decoration: none;">Điều khoản hệ thống</a></li>
-                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chính sách đổi trả</a></li>
-                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chính sách vận chuyển</a></li>
-                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chăm sóc khách hàng</a></li>
+                    <li><a th:href="@{/dieukhoan}" class="text-dark" style="text-decoration: none;">Điều khoản hệ thống</a></li>
+                    <li><a th:href="@{/chinhsachdoitra}" class="text-dark" style="text-decoration: none;">Chính sách đổi trả</a></li>
+                    <li><a th:href="@{/chinhsachvanchuyen}" class="text-dark" style="text-decoration: none;">Chính sách vận chuyển</a></li>
+                    <li><a th:href="@{/chamsockhachhang}" class="text-dark" style="text-decoration: none;">Chăm sóc khách hàng</a></li>
                 </ul>
             </div>
 
@@ -355,9 +352,9 @@
             <div class="col-md-3">
                 <h5 class="mb-4 text-dark">Hỗ trợ</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-dark" style="text-decoration: none;">Câu hỏi thường gặp</a></li>
+                    <li><a th:href="@{/cauhoithuonggap}" class="text-dark" style="text-decoration: none;">Câu hỏi thường gặp</a></li>
                     <li><a href="#" class="text-dark" style="text-decoration: none;">Liên hệ hỗ trợ</a></li>
-                    <li><a href="#" class="text-dark" style="text-decoration: none;">Hướng dẫn mua hàng</a></li>
+                    <li><a th:href="@{/huongdanmuahang}" class="text-dark" style="text-decoration: none;">Hướng dẫn mua hàng</a></li>
                     <li><a href="#" class="text-dark" style="text-decoration: none;">Bảo mật và thanh toán</a></li>
                 </ul>
             </div>
