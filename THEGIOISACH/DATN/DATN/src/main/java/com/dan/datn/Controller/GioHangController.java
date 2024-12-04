@@ -43,7 +43,12 @@ public class GioHangController {
         if (cart == null) {
             cart = new ArrayList<>();
         }
-
+        for (SanPham sp : cart) {
+            if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(sp.getHinh().getHinhMain());
+                sp.getHinh().setBase64Image(base64Image);
+            }
+        }
         // Truyền giỏ hàng vào model để hiển thị
         model.addAttribute("cart", cart);
         return "layout/gioHang";  // Trả về view giỏ hàng
