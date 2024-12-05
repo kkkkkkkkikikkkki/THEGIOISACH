@@ -78,5 +78,40 @@ public class TrangChuController {
     public String getQuenMatKhau() {
         return "index/datLaiMatKhau";
     }
+
+    @GetMapping("/cauhoithuonggap")
+    public String showCauHoiThuongGap(){
+        return "index/cauHoiThuongGap";
+    }
+
+    @GetMapping("/chamsockhachhang")
+    public String showChamSocKhachHang(){
+        return "index/chamSocKhachHang";
+    }
+
+    @GetMapping("/chinhsachbaomat")
+    public String showChinhSachBaoMat(){
+        return "index/chinhSacBaoMat";
+    }
+
+    @GetMapping("/dieukhoan")
+    public String showDieuKhoan(){
+        return "index/dieuKhoan";
+    }
+
+    @GetMapping("/chinhsachdoitra")
+    public String showChinhSachDoiTra(){
+        return "index/chinhSachDoiTra";
+    }
+
+    @GetMapping("/chinhsachvanchuyen")
+    public String showChinhSachVanChuyen(){
+        return "index/chinhSachVanChuyen";
+    }
+
+    @GetMapping("/huongdanmuahang")
+    public String showHuongDanMuaHang(){
+        return "index/huongDanMuaHang";
+    }
 }
 
