@@ -686,7 +686,7 @@
             <form th:action="@{/sanpham/{id}/danhgia(id=${sanpham.ID_san_pham})}" method="POST">
                 <div class="mb-3">
                     <label for="danhGia" class="form-label">Chọn số sao:</label>
-                    <select class="form-select" id="danhGia" name="danhGia" required>
+                    <select class="form-select" id="danhGia" name="danhGia">
                         <option value="" disabled selected>Chọn đánh giá sao</option>
                         <option value="1">1 Sao</option>
                         <option value="2">2 Sao</option>
@@ -697,7 +697,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="binhLuan" class="form-label">Bình luận:</label>
-                    <textarea class="form-control" id="binhLuan" name="binhLuan" rows="3" placeholder="Ghi nhận đánh giá của bạn..." required></textarea>
+                    <textarea class="form-control" id="binhLuan" name="binhLuan" rows="3" placeholder="Ghi nhận đánh giá của bạn..." ></textarea>
                 </div>
                 <button type="submit" class="btn btn-danger">Gửi đánh giá</button>
             </form>
