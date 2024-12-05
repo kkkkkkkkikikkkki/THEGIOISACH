@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8ebf850-c5f4-452f-938b-02b982f4be7b" name="Changes" comment="done them san pham">
+    <list default="true" id="e8ebf850-c5f4-452f-938b-02b982f4be7b" name="Changes" comment="done view du lieu len don hang cua toi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/GioHangController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/GioHangController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/ChiTietSanPhamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/ChiTietSanPhamController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/QuanLySanPhamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/QuanLySanPhamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/SanPham.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/SanPham.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/chiTietSanPham.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/chiTietSanPham.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Quanlysanpham.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Quanlysanpham.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="dan" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -134,7 +132,12 @@
       <workItem from="1733135514111" duration="3820000" />
       <workItem from="1733139460883" duration="1545000" />
       <workItem from="1733141759120" duration="254000" />
-      <workItem from="1733147063677" duration="1801000" />
+      <workItem from="1733147063677" duration="2059000" />
+      <workItem from="1733212121129" duration="610000" />
+      <workItem from="1733214048935" duration="8889000" />
+      <workItem from="1733223074128" duration="2671000" />
+      <workItem from="1733319898158" duration="53000" />
+      <workItem from="1733323363245" duration="736000" />
     </task>
     <task id="LOCAL-00002" summary="done thong ke, sua lai entity thong ke, xoa entity hoadonchitiet">
       <option name="closed" value="true" />
@@ -176,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733140979347</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="done fix lai them san pham moi, dieu chinh them vao gio hang">
+      <option name="closed" value="true" />
+      <created>1733149125333</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733149125334</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +200,8 @@
     <MESSAGE value="done thongbao" />
     <MESSAGE value="done css thongtincanhan" />
     <MESSAGE value="done them san pham" />
-    <option name="LAST_COMMIT_MESSAGE" value="done them san pham" />
+    <MESSAGE value="done fix lai them san pham moi, dieu chinh them vao gio hang" />
+    <option name="LAST_COMMIT_MESSAGE" value="done fix lai them san pham moi, dieu chinh them vao gio hang" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

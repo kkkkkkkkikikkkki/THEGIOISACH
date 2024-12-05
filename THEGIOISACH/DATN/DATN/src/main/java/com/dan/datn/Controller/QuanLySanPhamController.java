@@ -47,7 +47,7 @@ public class QuanLySanPhamController {
         return "layout/Quanlysanpham";  // Trả về view
     }
 
-    @GetMapping("/image/{id}")
+    @GetMapping("/api/image/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
         SanPham sanPham = sanPhamService.getSanPhamById(id);
         if (sanPham == null || sanPham.getHinh() == null) {
@@ -118,10 +118,8 @@ public class QuanLySanPhamController {
 
             // Gửi lỗi cụ thể đến giao diện người dùng
             String errorMessage = "Sản phẩm đã được thêm không thành công! Lỗi hệ thống: " + e.getMessage();
-            redirectAttributes.addFlashAttribute("error", errorMessage);            return "redirect:/quanlysanpham";  // Quay lại trang thêm sản phẩm hoặc trang quản lý sản phẩm với thông báo lỗi
+            redirectAttributes.addFlashAttribute("error", errorMessage);
+            return "redirect:/quanlysanpham";  // Quay lại trang thêm sản phẩm hoặc trang quản lý sản phẩm với thông báo lỗi
         }
     }
-
-
-
 }

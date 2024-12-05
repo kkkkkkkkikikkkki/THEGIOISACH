@@ -425,7 +425,7 @@
                         <td>
                             <!-- Mở Modal với id sản phẩm -->
                             <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"
-                                    th:data-hinh="@{'/image/' + ${product.ID_san_pham}}"
+                                    th:data-hinh="@{'/api/image/' + ${product.ID_san_pham}}"
                                     th:data-ten="${product.tenSach}"
                                     th:data-theloai="${product.theLoai.theLoai}"
                                     th:data-tacgia="${product.tacGia}"
@@ -643,7 +643,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="soluongtonkho" class="form-label">Số lượng tồn kho</label>
-                                            <input type="number" class="form-control" id="soluongtonkho" name="soluongtonkho" required>
+                                            <input type="text" class="form-control" id="soluongtonkho" name="soluongtonkho" required readonly>
                                         </div>
 
                                         <div class="mb-3">
