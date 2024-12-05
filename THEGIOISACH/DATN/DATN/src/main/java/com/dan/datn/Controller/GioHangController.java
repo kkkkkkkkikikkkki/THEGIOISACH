@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.Base64;
@@ -109,7 +110,7 @@ public class GioHangController {
 
 
     @PostMapping("/removeFromCart")
-    public String removeFromCart(@RequestParam("productId") Long productId, Model model) {
+    public String removeFromCart(@RequestParam("productId") Long productId, Model model, RedirectAttributes redirectAttributes) {
         // Lấy giỏ hàng từ session
         String username = (String) session.getAttribute("username");
         model.addAttribute("username", username);
@@ -126,16 +127,16 @@ public class GioHangController {
             // Cập nhật lại giỏ hàng trong session
             session.setAttribute("cart", cart);
 
-            model.addAttribute("success", "Sản phẩm đã được xóa khỏi giỏ hàng");
+            redirectAttributes.addFlashAttribute("success", "Sản phẩm đã được xóa khỏi giỏ hàng");
         } else {
-            model.addAttribute("error", "Giỏ hàng trống");
+            redirectAttributes.addFlashAttribute("error", "Giỏ hàng trống");
         }
 
         // Truyền giỏ hàng vào model để hiển thị
-        model.addAttribute("cart", cart);
-        model.addAttribute("username", session.getAttribute("username"));
+        redirectAttributes.addFlashAttribute("cart", cart);
+        redirectAttributes.addFlashAttribute("username", session.getAttribute("username"));
 
-        return "layout/gioHang";  // Trả về view giỏ hàng
+        return "redirect:/giohang";  // Trả về view giỏ hàng
     }
     @PostMapping("/update-cart")
     public ResponseEntity<Void> updateCart(@RequestBody Map<String, Integer> payload, HttpSession session) {
