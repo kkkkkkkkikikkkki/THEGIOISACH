@@ -24,6 +24,7 @@ public class DangKyController {
 
     @PostMapping("/dangky")
     public String registerUser(@ModelAttribute("user") User user, Model model,
+                               @RequestParam String hovaten,
                                @RequestParam String ten,
                                @RequestParam String matKhau,
                                @RequestParam String diachi, // Thêm đây
@@ -34,6 +35,7 @@ public class DangKyController {
             return "index/DangKy"; // trả về trang đăng ký với thông báo lỗi
         } else {
             user = new User();
+            user.setHo_va_ten(hovaten);
             user.setTen(ten);
             user.setMat_khau(matKhau);
             user.setDia_chi(diachi); // Gán giá trị địa chỉ

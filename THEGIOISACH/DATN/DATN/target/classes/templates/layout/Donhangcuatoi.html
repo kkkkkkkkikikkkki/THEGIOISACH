@@ -205,20 +205,21 @@
             height: 100%;
             margin: 0;
         }
+
         .btn-container {
             display: flex;
             justify-content: center; /* Căn giữa theo chiều ngang */
-            align-items: center;     /* Căn giữa theo chiều dọc */
+            align-items: center; /* Căn giữa theo chiều dọc */
             /* Chiều cao bằng 100% chiều cao cửa sổ */
         }
 
         .btn {
-            padding: 10px 20px;      /* Tùy chỉnh kích thước nút */
-            font-size: 16px;         /* Kích thước chữ */
-            cursor: pointer;        /* Con trỏ chuột khi di chuột qua nút */
-            border: none;            /* Xóa đường viền mặc định của nút */
+            padding: 10px 20px; /* Tùy chỉnh kích thước nút */
+            font-size: 16px; /* Kích thước chữ */
+            cursor: pointer; /* Con trỏ chuột khi di chuột qua nút */
+            border: none; /* Xóa đường viền mặc định của nút */
             background-color: #007bff; /* Màu nền nút */
-            color: white;            /* Màu chữ */
+            color: white; /* Màu chữ */
             border-radius: 5px;
             font-weight: bold; /* Bo góc nút */
         }
@@ -227,6 +228,7 @@
             /* Có thể tùy chỉnh màu sắc và các thuộc tính khác cho nút Đăng xuất */
             background-color: #f44336; /* Màu đỏ */
         }
+
         .order-footer {
             display: flex;
             justify-content: space-between;
@@ -335,9 +337,21 @@
         }
 
         .order-footer h5 {
-            margin: 0;}
+            margin: 0;
+        }
 
+        hr {
+            border-top: 3px solid;
+        }
 
+        a h4 {
+            color: #343a40;
+            font-size: 1.2rem;
+            /*padding: 10px;*/
+            margin-top: 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
     </style>
 
 </head>
@@ -348,7 +362,8 @@
             <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -358,13 +373,15 @@
                     <a class="nav-link" href="/trangchu">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">Thông báo</a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">Thông
+                        báo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/giohang}">Giỏ hàng</a>
                 </li>
             </ul>
-            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -376,7 +393,8 @@
                             <p>con</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button></div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -390,9 +408,8 @@
                     <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
                 </li>
                 <li th:if="${username != null}" class="nav-item">
-                    <a href="/trangcanhan" class="nav-link">
+                    <a href="/thongtintaikhoan" class="nav-link">
                         <i class="fas fa-user-circle"></i>
-                        <span th:text="${username}"></span>
                     </a>
                 </li>
             </ul>
@@ -400,82 +417,83 @@
     </div>
 </nav>
 
-
-<div class="content">
-    <div class="row">
-        <div class="col-2 mt-3" style="border-right: 1px solid black">
-            <h4 style="text-align: center;">
-                <a href="/trangcanhan">Tài khoản</a>
-            </h4>
-            <a href="/thongtintaikhoan">
-                <h4 class="title">Thông tin cá nhân</h4>
-            </a>
-            <a href="/donhangcuatoi">
-                <h4 class="title">Đơn hàng của tôi</h4>
-            </a>
-            <div class="btn-container">
-                <form action="/logout" method="post" style="display: inline;">
-                    <button type="submit" class="btn btn-logout">Đăng xuất</button>
-                </form>
-            </div>
+<div class="row mt-3" style="margin-left: 100px">
+    <div class="col-sm-3 trend-section">
+        <h4 style="text-align: center; margin-top: 15px">
+            <a href="/trangcanhan">Tài khoản</a>
+        </h4>
+        <a href="/thongtintaikhoan"  style="margin-bottom: 50px">
+            <h4 class="title">Thông tin cá nhân</h4>
+        </a>
+        <hr>
+        <a href="/donhangcuatoi">
+            <h4 class="title">Đơn hàng của tôi</h4>
+        </a>
+        <hr>
+        <div class="btn-container">
+            <form action="/logout" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-logout">Đăng xuất</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-8 trend-section" style="margin-right: 5px; margin-left: 20px">
+        <!-- Kiểm tra nếu có đơn hàng -->
+        <div th:if="${#lists.isEmpty(donhangcuatoi)}">
+            <p class="text-center">Bạn chưa có đơn hàng nào.</p>
         </div>
 
-        <div class="col-7 mt-3" style="margin: 0 auto;">
-            <div class="container mt-5">
-                <!-- Kiểm tra nếu có đơn hàng -->
-                <div th:if="${#lists.isEmpty(donhangcuatoi)}">
-                    <p class="text-center">Bạn chưa có đơn hàng nào.</p>
+        <!-- Nếu có đơn hàng, hiển thị phần tiêu đề và danh sách đơn hàng -->
+        <div th:unless="${#lists.isEmpty(donhangcuatoi)}">
+            <!-- Đầu trang đơn hàng -->
+            <div class="order-header row py-2 bg-light text-center">
+                <div class="col-3">Hình</div>
+                <div class="col-3">Tên sản phẩm</div>
+                <div class="col-3">Số lượng</div>
+                <div class="col-2">Giá</div>
+            </div>
+
+            <!-- Hiển thị danh sách đơn hàng -->
+            <div th:each="item : ${donhangcuatoi}" class="order-item row bg-light text-center">
+                <!-- Hình ảnh sản phẩm -->
+                <div class="col-3 d-flex align-items-center justify-content-center">
+                    <img th:src="'data:image/png;base64,' + ${item.sanPham.hinh.base64MainImage}"
+                         alt="Product Image" style="width: 100%; height: 100%;">
                 </div>
 
-                <!-- Nếu có đơn hàng, hiển thị phần tiêu đề và danh sách đơn hàng -->
-                <div th:unless="${#lists.isEmpty(donhangcuatoi)}">
-                    <!-- Đầu trang đơn hàng -->
-                    <div class="order-header row py-2 bg-light text-center">
-                        <div class="col-3">Hình</div>
-                        <div class="col-3">Tên sản phẩm</div>
-                        <div class="col-3">Số lượng</div>
-                        <div class="col-2">Giá</div>
+                <input type="hidden" name="productId" th:value="${item.sanPham.ID_san_pham}"/>
+
+                <!-- Tên sản phẩm -->
+                <div class="col-3 d-flex align-items-center justify-content-center"
+                     th:text="${item.sanPham.tenSach}"></div>
+                <!-- Số lượng -->
+                <div class="col-3 d-flex align-items-center justify-content-center"
+                     th:text="${item.soLuong}"></div>
+                <!-- Giá -->
+                <div class="col-2 d-flex align-items-center justify-content-center">
+                    <span class="gia-san-pham" th:text="${item.sanPham.gia}"></span>
+                </div>
+                <div class="order-footer row text-center">
+                    <div class="col-4 d-flex align-items-center justify-content-center">
+                        <h5>Trạng thái đơn hàng: </h5>
+                        <h5>
+                            <div style="margin-left: 10px" th:text="${item.phuongThucThanhToan}"></div>
+                        </h5>
+                    </div>
+                    <div class="col-4 d-flex align-items-center justify-content-center total-amount">
+                        <span style="margin-right: 5px">Tổng tiền: </span>
+                        <span class="gia-san-pham" th:text="${item.tongTien}"></span>
                     </div>
 
-                    <!-- Hiển thị danh sách đơn hàng -->
-                    <div th:each="item : ${donhangcuatoi}" class="order-item row bg-light text-center">
-                        <!-- Hình ảnh sản phẩm -->
-                        <div class="col-3 d-flex align-items-center justify-content-center">
-                            <img th:src="'data:image/png;base64,' + ${item.sanPham.hinh.base64MainImage}" alt="Product Image" style="width: 100%; height: 100%;">
-                        </div>
-
-                        <input type="hidden" name="productId" th:value="${item.sanPham.ID_san_pham}"/>
-
-                        <!-- Tên sản phẩm -->
-                        <div class="col-3 d-flex align-items-center justify-content-center" th:text="${item.sanPham.tenSach}"></div>
-                        <!-- Số lượng -->
-                        <div class="col-3 d-flex align-items-center justify-content-center" th:text="${item.soLuong}"></div>
-                        <!-- Giá -->
-                        <div class="col-2 d-flex align-items-center justify-content-center">
-                            <span class="gia-san-pham" th:text="${item.sanPham.gia}"></span>
-                        </div>
-                        <div class="order-footer row text-center">
-                            <div class="col-4 d-flex align-items-center justify-content-center">
-                                <h5>Trạng thái đơn hàng: </h5>
-                                <h5><div style="margin-left: 10px" th:text="${item.phuongThucThanhToan}"></div></h5>
-                            </div>
-                            <div class="col-4 d-flex align-items-center justify-content-center total-amount">
-                                <span style="margin-right: 5px">Tổng tiền: </span>
-                                <span class="gia-san-pham" th:text="${item.tongTien}"></span>
-                            </div>
-
-                            <div class="col-12 d-flex justify-content-end mt-2">
-                                <!-- Form gửi yêu cầu với phương thức GET -->
-                                <form th:action="@{'/sanpham/' + ${item.sanPham.ID_san_pham}}" method="get">
-                                    <button type="submit" class="btn btn-buy-again">Mua lại</button>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="col-12 d-flex justify-content-end mt-2">
+                        <!-- Form gửi yêu cầu với phương thức GET -->
+                        <form th:action="@{'/sanpham/' + ${item.sanPham.ID_san_pham}}" method="get">
+                            <button type="submit" class="btn btn-buy-again">Mua lại</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-</div>
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script>

@@ -20,13 +20,16 @@ import java.util.*;
 
 @Controller
 public class ThongKeController {
+
     @Autowired
     private ThongKeService thongKeService;
+
     @Autowired
     private UserServiceImpl userServiceImpl;
 
+    private final String exportPath = "D:/Excel";  // Đường dẫn mặc định là D:/Excel
 
-
+    // Lấy thống kê doanh thu
     @GetMapping("/thongke")
     public String getThongKe(HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         String email = (String) session.getAttribute("email");
@@ -38,26 +41,11 @@ public class ThongKeController {
         // Nếu đã đăng nhập
         model.addAttribute("email", email);
 
+        // Lấy dữ liệu thống kê
         List<ThongKe> thongKes = thongKeService.getAllThongKe();
 
-        // Lọc các sản phẩm trùng lặp
-        Map<Long, ThongKe> uniqueProductsMap = new HashMap<>();
-        for (ThongKe thongKe : thongKes) {
-            Long productId = thongKe.getThanhToan().getSanPham().getID_san_pham();
-            if (uniqueProductsMap.containsKey(productId)) {
-                ThongKe existingThongKe = uniqueProductsMap.get(productId);
-                existingThongKe.getThanhToan().setSoLuong(
-                        existingThongKe.getThanhToan().getSoLuong() + thongKe.getThanhToan().getSoLuong()
-                );
-                existingThongKe.getThanhToan().setTongTien(
-                        existingThongKe.getThanhToan().getTongTien() + thongKe.getThanhToan().getTongTien()
-                );
-            } else {
-                uniqueProductsMap.put(productId, thongKe);
-            }
-        }
-
-        List<ThongKe> uniqueThongKes = new ArrayList<>(uniqueProductsMap.values());
+        // Lọc các sản phẩm trùng lặp và tính tổng
+        List<ThongKe> uniqueThongKes = getUniqueThongKes(thongKes);
         double totalRevenue = uniqueThongKes.stream()
                 .mapToDouble(tk -> tk.getThanhToan().getTongTien())
                 .sum();
@@ -68,22 +56,8 @@ public class ThongKeController {
         return "index/ThongKeDoanhThu";
     }
 
-
-    private final String exportPath = "D:/Excel";  // Đường dẫn mặc định là D:/Excel
-    @GetMapping("/export/excel-to-path")
-    public String exportToExcel(HttpSession session, Model model, RedirectAttributes redirectAttributes) throws IOException {
-        String email = (String) session.getAttribute("email");
-        if (email == null) {
-            redirectAttributes.addFlashAttribute("error", "Vui lòng đăng nhập với vai trò admin để xem thống kê.");
-            return "redirect:/dangnhapadmin";
-        }
-
-        // Nếu đã đăng nhập
-        model.addAttribute("email", email);
-        // Lấy dữ liệu từ cơ sở dữ liệu
-        List<ThongKe> thongKes = thongKeService.getAllThongKe();
-
-        // Lọc các sản phẩm trùng lặp
+    // Phương thức để lọc và gộp các sản phẩm trùng lặp
+    private List<ThongKe> getUniqueThongKes(List<ThongKe> thongKes) {
         Map<Long, ThongKe> uniqueProductsMap = new HashMap<>();
         for (ThongKe thongKe : thongKes) {
             Long productId = thongKe.getThanhToan().getSanPham().getID_san_pham();
@@ -99,8 +73,24 @@ public class ThongKeController {
                 uniqueProductsMap.put(productId, thongKe);
             }
         }
+        return new ArrayList<>(uniqueProductsMap.values());
+    }
 
-        List<ThongKe> uniqueThongKes = new ArrayList<>(uniqueProductsMap.values());
+    // Xuất Excel
+    @GetMapping("/export/excel-to-path")
+    public String exportToExcel(HttpSession session, Model model, RedirectAttributes redirectAttributes) throws IOException {
+        String email = (String) session.getAttribute("email");
+        if (email == null) {
+            redirectAttributes.addFlashAttribute("error", "Vui lòng đăng nhập với vai trò admin để xem thống kê.");
+            return "redirect:/dangnhapadmin";
+        }
+
+        // Nếu đã đăng nhập
+        model.addAttribute("email", email);
+
+        // Lấy dữ liệu thống kê
+        List<ThongKe> thongKes = thongKeService.getAllThongKe();
+        List<ThongKe> uniqueThongKes = getUniqueThongKes(thongKes);
 
         // Tạo workbook
         Workbook workbook = new XSSFWorkbook();
@@ -144,13 +134,11 @@ public class ThongKeController {
             totalCell.setCellValue(thongKe.getThanhToan().getTongTien());
             totalCell.setCellStyle(currencyStyle);
 
-            totalRevenue += thongKe.getTongDoanhThu();
+            totalRevenue += thongKe.getThanhToan().getTongTien();
         }
 
         // Tạo dòng "Tổng doanh thu" ở một hàng riêng dưới các sản phẩm
         Row totalRow = sheet.createRow(rowIndex);
-
-        // Các cột khác để trống
         totalRow.createCell(0).setCellValue("");  // Cột "ID Sản phẩm"
         totalRow.createCell(1).setCellValue("");  // Cột "Tên sản phẩm"
         totalRow.createCell(2).setCellValue("");  // Cột "Giá"
@@ -161,8 +149,6 @@ public class ThongKeController {
         Font boldFont = workbook.createFont();
         boldFont.setBold(true);  // Đặt font chữ in đậm
         boldStyle.setFont(boldFont);
-
-        // Áp dụng style cho ô chứa "Tổng doanh thu"
         totalRow.getCell(3).setCellStyle(boldStyle);
 
         // Định dạng tổng doanh thu
@@ -181,19 +167,16 @@ public class ThongKeController {
             directory.mkdirs();
         }
 
-        // Đường dẫn file
         // Lấy ngày giờ hiện tại và tạo tên file
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         String formattedDate = dateFormat.format(new Date());
         String fileName = "ThongKe_" + formattedDate + ".xlsx";
         String filePath = exportPath + File.separator + fileName;
 
-        try {
-            // Ghi file Excel vào đường dẫn
-            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
-                workbook.write(fileOut);
-                workbook.close();
-            }
+        // Ghi file Excel vào đường dẫn
+        try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+            workbook.write(fileOut);
+            workbook.close();
             redirectAttributes.addFlashAttribute("success", "File Excel đã được lưu tại: " + filePath);
         } catch (IOException e) {
             redirectAttributes.addFlashAttribute("error", "Lỗi khi xuất file Excel: " + e.getMessage());
@@ -204,7 +187,3 @@ public class ThongKeController {
         return "redirect:/thongke";
     }
 }
-
-
-
-
