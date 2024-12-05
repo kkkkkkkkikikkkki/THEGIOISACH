@@ -20,6 +20,9 @@ public class User {
     @Column(name = "Ten")
     private String ten;
 
+    @Column(name = "Ho_va_Ten")
+    private String Ho_va_ten;
+
     @Column(name = "SDT")
     private Integer SDT;
 

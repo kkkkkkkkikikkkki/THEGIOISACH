@@ -594,7 +594,7 @@
                 <li th:if="${username != null}" class="nav-item">
                     <a href="/trangcanhan" class="nav-link">
                         <i class="fas fa-user-circle"></i>
-                        <span th:text="${username}"></span>
+<!--                        <span th:text="${username}"></span>-->
                     </a>
                 </li>
             </ul>
@@ -630,7 +630,7 @@
         </div>
         <div class="col-md-6 product-details" th:each="sanpham : ${sanpham}">
             <h2 th:text="${sanpham.tenSach}">Tên Sách - Tập - Quà tặng kèm</h2>
-            <p class="rating">⭐⭐⭐⭐⭐(5/5) | Đã bán (999)</p>
+            <p class="rating">⭐⭐⭐⭐⭐(5/5) | Đã bán (<span th:text="${sanpham.soLuongDaBan}"></span>)</p>
             <p ><strong>Giá: </strong><span class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></span></p>
             <p><strong>Số lượng sản phẩm: </strong><span th:text="${sanpham.soLuongTonKho}"></span></p>
             <p><strong>Nhà xuất bản: </strong><span th:text="${sanpham.nhaXuatBan}"></span></p>

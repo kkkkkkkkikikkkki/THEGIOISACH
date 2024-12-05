@@ -34,9 +34,7 @@
             /*min-height: 100vh; !* Ensure body takes full height of the page *!*/
         }
 
-        .content {
-            flex: 1; /* Ensure main content takes remaining space, pushing footer down */
-        }
+
 
         /* Floating form styles */
         /* Floating Form Styling */
@@ -167,22 +165,23 @@
             height: 100%;
             margin: 0;
         }
+
         .btn-container {
             display: flex;
             justify-content: center; /* Căn giữa theo chiều ngang */
-            align-items: center;     /* Căn giữa theo chiều dọc */
+            align-items: center; /* Căn giữa theo chiều dọc */
             /* Chiều cao bằng 100% chiều cao cửa sổ */
         }
 
         .btn {
-            padding: 10px 20px;      /* Tùy chỉnh kích thước nút */
-            font-size: 16px;         /* Kích thước chữ */
-            cursor: pointer;        /* Con trỏ chuột khi di chuột qua nút */
-            border: none;            /* Xóa đường viền mặc định của nút */
+            padding: 10px 20px; /* Tùy chỉnh kích thước nút */
+            font-size: 16px; /* Kích thước chữ */
+            cursor: pointer; /* Con trỏ chuột khi di chuột qua nút */
+            border: none; /* Xóa đường viền mặc định của nút */
             background-color: #007bff; /* Màu nền nút */
-            color: white;            /* Màu chữ */
+            color: white; /* Màu chữ */
             border-radius: 5px;
-            font-weight: bold;/* Bo góc nút */
+            font-weight: bold; /* Bo góc nút */
         }
 
         .btn-logout {
@@ -201,9 +200,6 @@
             min-height: 100vh; /* Ensure body takes full height of the page */
         }
 
-        .content {
-            flex: 1; /* Ensure main content takes remaining space, pushing footer down */
-        }
 
         /* Hover effects for buttons */
         .btn-outline-secondary:hover,
@@ -232,36 +228,10 @@
             }
         }
 
-        .product-name {
-            min-height: 60px;
-            max-height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-            white-space: normal;
-            word-wrap: break-word;
-        }
-
         .trend-section {
             background-color: white;
             border-radius: 10px;
             padding: 1rem;
-        }
-
-        .menu {
-            background-color: #ffc0cb;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .menu a {
-            display: block;
-            color: #000;
-            text-decoration: none;
-            margin-bottom: 10px;
-            font-weight: bold;
         }
 
         a h4 {
@@ -283,8 +253,6 @@
         }
 
         /* Styles for the Logout button */
-
-
 
 
         /* Thông Báo Nổi */
@@ -324,41 +292,54 @@
         .floating-form .btn-secondary:hover {
             background-color: #5a6268;
         }
-        /* Thêm hiệu ứng nổi lên */
+
+        /* Adjusting the notification style for better centering and width control */
         .alert {
-            position: fixed; /* Đặt thông báo ở vị trí cố định trên màn hình */
-            top: 10px; /* Cách cạnh trên của màn hình 10px */
-            left: 50%; /* Đặt phần tử ở giữa theo chiều ngang */
-            transform: translateX(-50%); /* Đảm bảo phần tử nằm chính giữa */
-            z-index: 1050; /* Đảm bảo thông báo nằm trên các phần tử khác */
-            opacity: 0; /* Ban đầu ẩn đi */
-            transition: opacity 0.5s ease, transform 0.5s ease; /* Hiệu ứng mờ dần và nổi lên */
+            position: fixed; /* Fix position to the top */
+            top: 10px; /* Keep it near the top */
+            right: 30%; /* Horizontally center */
+            transform: translateX(-50%); /* Properly center the alert */
+            width: 90%; /* Make it take 90% of the width of the screen */
+            max-width: 500px; /* Limit maximum width */
+            padding: 15px 20px; /* Add padding for better readability */
+            border-radius: 8px; /* Round the corners */
+            font-size: 1rem; /* Readable font size */
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Fade-in animation */
+            z-index: 1050; /* Ensure it is on top */
+            margin: 0 auto; /* Center it horizontally */
+            text-align: center; /* Center the text */
         }
 
-        /* Thêm hiệu ứng khi hiển thị thông báo */
+        /* When showing the alert */
         .alert.show {
-            opacity: 1; /* Hiển thị thông báo */
-            transform: translateY(10px); /* Di chuyển thông báo lên một chút khi hiện ra */
+            opacity: 1; /* Show the alert */
+            transform: translateY(10px); /* Slightly move the alert down when it shows */
         }
 
-        /* Thông báo thành công */
+        /* Success notification */
         .alert-success {
-            background-color: #28a745; /* Màu nền cho thông báo thành công */
-            color: white;
+            background-color: #28a745; /* Green background for success */
+            color: white; /* White text */
+            border: 1px solid #c3e6cb; /* Border to match the background color */
         }
 
-        /* Thông báo lỗi */
+        /* Error notification */
         .alert-danger {
-            background-color: #dc3545; /* Màu nền cho thông báo lỗi */
-            color: white;
+            background-color: #dc3545; /* Red background for errors */
+            color: white; /* White text */
+            border: 1px solid #f5c6cb; /* Border to match the background color */
         }
 
-        /* Thiết lập thêm độ bo góc cho các thông báo */
-        .alert {
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 1rem;
+        /* Responsive adjustments for small screens */
+        @media (max-width: 768px) {
+            .alert {
+                width: 90%; /* Full width on smaller screens */
+                padding: 10px 15px; /* Adjust padding for smaller screens */
+            }
         }
+
+
         .borderless-input {
             border: none; /* Remove the border */
             background-color: #FFE4E1; /* Light background for visibility */
@@ -372,13 +353,7 @@
         }
 
         /* Container styling */
-        .col-lg-6.col-md-8.mt-4.mx-auto {
-            background-color: #fff; /* White background for contrast */
-            border-radius: 10px; /* Rounded corners */
-            padding: 20px 30px; /* Padding around content */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
-            height: 700px;
-        }
+
 
         /* Title styling */
         .col-lg-6.col-md-8.mt-4.mx-auto h2 {
@@ -391,26 +366,6 @@
             text-align: center;
         }
 
-        /* Notification styling */
-        .alert {
-            border-radius: 8px; /* Rounded corners */
-            font-size: 1rem; /* Readable font size */
-            padding: 15px; /* Spacious padding */
-            margin-bottom: 20px; /* Space below the alert */
-            animation: fade-in 0.5s ease-in-out; /* Add fade-in animation */
-        }
-
-        .alert-success {
-            background-color: #d4edda; /* Soft green */
-            color: #155724; /* Dark green text */
-            border: 1px solid #c3e6cb;
-        }
-
-        .alert-danger {
-            background-color: #f8d7da; /* Soft red */
-            color: #721c24; /* Dark red text */
-            border: 1px solid #f5c6cb;
-        }
 
         /* Keyframe animation for alert fade-in */
         @keyframes fade-in {
@@ -465,7 +420,7 @@
         }
 
         form .text-center {
-            margin-top: 20px; /* Space above buttons */
+            margin-top: 50px; /* Space above buttons */
         }
 
         /* Responsive adjustments */
@@ -473,9 +428,11 @@
             .col-lg-6.col-md-8.mt-4.mx-auto {
                 padding: 15px 20px; /* Reduce padding on smaller screens */
             }
+
             .col-lg-6.col-md-8.mt-4.mx-auto h2 {
                 font-size: 1.5rem; /* Smaller title size */
             }
+
             form .btn-primary {
                 font-size: 0.9rem; /* Slightly smaller buttons */
                 padding: 8px 16px;
@@ -515,7 +472,24 @@
             padding-right: 2.5rem;
         }
 
+        .trend-section {
+            background-color: white; /* Màu nền trắng cho phần Xu Hướng Mua Sắm */
+            border-radius: 10px; /* Bo tròn các góc với bán kính 10px */
+            padding: 2rem; /* Thêm khoảng cách bên trong để nội dung không chạm vào các góc */
+        }
 
+        hr {
+            border-top: 3px solid;
+        }
+
+        a h4 {
+            color: #343a40;
+            font-size: 1.2rem;
+            /*padding: 10px;*/
+            margin-top: 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -525,7 +499,8 @@
             <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -535,13 +510,15 @@
                     <a class="nav-link" href="/trangchu">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">Thông báo</a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">Thông
+                        báo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/giohang}">Giỏ hàng</a>
                 </li>
             </ul>
-            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -553,7 +530,8 @@
                             <p>con</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button></div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -567,9 +545,8 @@
                     <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
                 </li>
                 <li th:if="${username != null}" class="nav-item">
-                    <a href="/trangcanhan" class="nav-link">
+                    <a href="/thongtintaikhoan" class="nav-link">
                         <i class="fas fa-user-circle"></i>
-                        <span th:text="${username}"></span>
                     </a>
                 </li>
             </ul>
@@ -577,62 +554,71 @@
     </div>
 </nav>
 
-<div class="content">
-    <div class="row">
-        <div class="col-2 mt-3" style="border-right: 1px solid black;  height: 100vh;">
-            <h4 style="text-align: center;">
-                <a href="/trangcanhan">Tài khoản</a>
-            </h4>
-            <a href="/thongtintaikhoan">
-                <h4 class="title">Thông tin cá nhân</h4>
-            </a>
-            <a href="/donhangcuatoi">
-                <h4 class="title">Đơn hàng của tôi</h4>
-            </a>
-            <div class="btn-container">
-                <form action="/logouts" method="post" style="display: inline;">
-                    <button type="submit" class="btn btn-logout">Đăng xuất</button>
-                </form>
-            </div>
-
-        </div>
-
-        <div class="col-lg-6 col-md-8 mt-4 mx-auto">
-            <!-- Success Notification -->
-            <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert" id="successMessage">
-                <span th:text="${success}"></span>
-            </div>
-
-            <!-- Error Notification -->
-            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert" id="errorMessage">
-                <span th:text="${error}"></span>
-            </div>
-
-            <h2 class="text-center mb-4">Thông Tin Tài Khoản</h2>
-
-            <form id="accountForm" class="mx-auto" style="max-width: 500px;">
-                <div class="mb-3 text-start">
-                    <label for="amount" class="form-label fw-bold">Tên</label>
-                    <input type="text" class="form-control borderless-input" id="amount" name="amount" th:value="${user.ten}" readonly>
-                </div>
-                <div class="mb-3 text-start">
-                    <label for="phone" class="form-label fw-bold">Số điện thoại</label>
-                    <input type="tel" class="form-control borderless-input" id="phone" name="phone" th:value="${user.SDT}" readonly>
-                </div>
-                <div class="mb-3 text-start">
-                    <label for="email" class="form-label fw-bold">Email</label>
-                    <input type="email" class="form-control borderless-input" id="email" name="email" th:value="${user.email}" readonly>
-                </div>
-                <div class="mb-3 text-start">
-                    <label for="diachi" class="form-label fw-bold">Địa chỉ</label>
-                    <input type="text" class="form-control borderless-input" id="diachi" name="diachi" th:value="${user.Dia_chi}" readonly>
-                </div>
-                <div class="text-center">
-                    <button type="button" class="btn btn-primary px-4" id="editButton">Cập nhật tài khoản</button>
-                    <button type="button" class="btn btn-primary px-4" id="updateButton">Cập nhật mật khẩu</button>
-                </div>
+<div class="row mt-3" style="margin-left: 100px">
+    <div class="col-sm-3 trend-section">
+        <h4 style="text-align: center;">
+            <a href="/trangcanhan">Tài khoản</a>
+        </h4>
+        <a href="/thongtintaikhoan" style="margin-bottom: 50px">
+            <h4 class="title">Thông tin cá nhân</h4>
+        </a>
+        <hr>
+        <a href="/donhangcuatoi" style="margin-top: 20px">
+            <h4 class="title">Đơn hàng của tôi</h4>
+        </a>
+        <hr>
+        <div class="btn-container">
+            <form action="/logouts" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-logout">Đăng xuất</button>
             </form>
         </div>
+    </div>
+    <!-- Success Notification -->
+    <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert"
+         id="successMessage">
+        <span th:text="${success}"></span>
+    </div>
+
+    <!-- Error Notification -->
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert" id="errorMessage">
+        <span th:text="${error}"></span>
+    </div>
+    <div class="col-md-8 trend-section" style="margin-right: 5px; margin-left: 20px">
+        <h2 class="text-center mb-4">Thông Tin Tài Khoản</h2>
+
+        <form id="accountForm" class="mx-auto" style="max-width: 500px;">
+            <div class="mb-3 text-start">
+                <label for="amount" class="form-label fw-bold">Tên Đăng Nhập</label>
+                <input type="text" class="form-control borderless-input" id="amount" name="amount"
+                       th:value="${user.ten}" readonly>
+            </div>
+            <div class="mb-3 text-start">
+                <label for="amount" class="form-label fw-bold">Tên</label>
+                <input type="text" class="form-control borderless-input" id="name" name="amount"
+                       th:value="${user.Ho_va_ten}" readonly>
+            </div>
+            <div class="mb-3 text-start">
+                <label for="phone" class="form-label fw-bold">Số điện thoại</label>
+                <input type="tel" class="form-control borderless-input" id="phone" name="phone"
+                       th:value="${user.SDT}" readonly>
+            </div>
+            <div class="mb-3 text-start">
+                <label for="email" class="form-label fw-bold">Email</label>
+                <input type="email" class="form-control borderless-input" id="email" name="email"
+                       th:value="${user.email}" readonly>
+            </div>
+            <div class="mb-3 text-start">
+                <label for="diachi" class="form-label fw-bold">Địa chỉ</label>
+                <input type="text" class="form-control borderless-input" id="diachi" name="diachi"
+                       th:value="${user.Dia_chi}" readonly>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-primary px-4" id="editButton">Cập nhật tài khoản
+                </button>
+                <button type="button" class="btn btn-primary px-4" id="updateButton">Cập nhật mật khẩu
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -644,19 +630,23 @@
     <form id="editAccountForm" action="/updateUser" method="POST">
         <div class="mb-3">
             <label for="editAmount" class="form-label">Tên</label>
-            <input type="text" class="form-control" id="editAmount" name="ten" readonly placeholder="Nhập tên" th:value="${user.ten}">
+            <input type="text" class="form-control" id="editAmount" name="ten" readonly placeholder="Nhập tên"
+                   th:value="${user.ten}">
         </div>
         <div class="mb-3">
             <label for="editPhone" class="form-label">Số điện thoại</label>
-            <input type="tel" class="form-control" id="editPhone" name="phone" placeholder="Nhập số điện thoại" th:value="${user.SDT}">
+            <input type="tel" class="form-control" id="editPhone" name="phone" placeholder="Nhập số điện thoại"
+                   th:value="${user.SDT}">
         </div>
         <div class="mb-3">
             <label for="editEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="editEmail" name="email" placeholder="Nhập email" th:value="${user.email}">
+            <input type="email" class="form-control" id="editEmail" name="email" placeholder="Nhập email"
+                   th:value="${user.email}">
         </div>
         <div class="mb-3">
             <label for="editDiachi" class="form-label">Địa chỉ</label>
-            <input type="text" class="form-control" id="editDiachi" name="diachi" placeholder="Nhập địa chỉ" th:value="${user.Dia_chi}">
+            <input type="text" class="form-control" id="editDiachi" name="diachi" placeholder="Nhập địa chỉ"
+                   th:value="${user.Dia_chi}">
         </div>
         <button type="submit" class="btn btn-primary" formaction="/updateUser">Cập Nhật</button>
         <button type="button" class="btn btn-secondary" id="closeButton">Đóng</button> <!-- Nút đóng -->
@@ -669,7 +659,8 @@
         <div class="mb-3">
             <label for="oldPassword" class="form-label">Nhập mật khẩu cũ</label>
             <div class="input-group">
-                <input style="border-right: none" type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Nhập mật khẩu cũ">
+                <input style="border-right: none" type="password" class="form-control" id="oldPassword"
+                       name="oldPassword" placeholder="Nhập mật khẩu cũ">
                 <span class="input-group-text" id="toggleOldPassword" style="cursor: pointer;">
                     <i class="bi bi-eye-slash"></i> <!-- Biểu tượng mắt ẩn -->
                 </span>
@@ -678,7 +669,8 @@
         <div class="mb-3">
             <label for="newPassword" class="form-label">Nhập mật khẩu mới</label>
             <div class="input-group">
-                <input style="border-right: none" type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Nhập mật khẩu mới">
+                <input style="border-right: none" type="password" class="form-control" id="newPassword"
+                       name="newPassword" placeholder="Nhập mật khẩu mới">
                 <span class="input-group-text" id="toggleNewPassword" style="cursor: pointer;">
                     <i class="bi bi-eye-slash"></i> <!-- Biểu tượng mắt ẩn -->
                 </span>
@@ -687,7 +679,8 @@
         <div class="mb-3">
             <label for="newPassword1" class="form-label">Nhập lại mật khẩu mới</label>
             <div class="input-group">
-                <input type="password" style="border-right: none" class="form-control" id="newPassword1" name="confirmPassword" placeholder="Nhập lại mật khẩu mới">
+                <input type="password" style="border-right: none" class="form-control" id="newPassword1"
+                       name="confirmPassword" placeholder="Nhập lại mật khẩu mới">
                 <span class="input-group-text" id="toggleNewPassword1" style="cursor: pointer;">
                     <i class="bi bi-eye-slash"></i> <!-- Biểu tượng mắt ẩn -->
                 </span>
@@ -756,26 +749,26 @@
         });
     });
 
-        function hideMessage(messageId) {
-            setTimeout(function() {
-                var message = document.getElementById(messageId);
-                if (message) {
-                    message.classList.remove('show');  // Ẩn thông báo
-                }
-            }, 3500);  // Sau 5 giây
-        }
+    function hideMessage(messageId) {
+        setTimeout(function () {
+            var message = document.getElementById(messageId);
+            if (message) {
+                message.classList.remove('show');  // Ẩn thông báo
+            }
+        }, 3500);  // Sau 5 giây
+    }
 
-        // Kiểm tra và hiển thị thông báo khi trang tải xong
-        window.onload = function() {
-            if (document.getElementById("successMessage")) {
-                document.getElementById("successMessage").classList.add("show"); // Hiển thị thông báo thành công
-                hideMessage("successMessage"); // Sau 5 giây ẩn đi
-            }
-            if (document.getElementById("errorMessage")) {
-                document.getElementById("errorMessage").classList.add("show"); // Hiển thị thông báo lỗi
-                hideMessage("errorMessage"); // Sau 5 giây ẩn đi
-            }
+    // Kiểm tra và hiển thị thông báo khi trang tải xong
+    window.onload = function () {
+        if (document.getElementById("successMessage")) {
+            document.getElementById("successMessage").classList.add("show"); // Hiển thị thông báo thành công
+            hideMessage("successMessage"); // Sau 5 giây ẩn đi
         }
+        if (document.getElementById("errorMessage")) {
+            document.getElementById("errorMessage").classList.add("show"); // Hiển thị thông báo lỗi
+            hideMessage("errorMessage"); // Sau 5 giây ẩn đi
+        }
+    }
     // Khi nhấn vào biểu tượng mắt, thay đổi trạng thái mật khẩu
     document.getElementById('toggleOldPassword').addEventListener('click', function () {
         const oldPasswordField = document.getElementById('oldPassword');
@@ -821,8 +814,6 @@
             eyeIcon.classList.add('bi-eye-slash');
         }
     });
-
-
 
 
 </script>
