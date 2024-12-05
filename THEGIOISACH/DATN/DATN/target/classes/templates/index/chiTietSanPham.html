@@ -594,7 +594,7 @@
                 <li th:if="${username != null}" class="nav-item">
                     <a href="/trangcanhan" class="nav-link">
                         <i class="fas fa-user-circle"></i>
-                        <span th:text="${username}"></span>
+<!--                        <span th:text="${username}"></span>-->
                     </a>
                 </li>
             </ul>
@@ -630,7 +630,7 @@
         </div>
         <div class="col-md-6 product-details" th:each="sanpham : ${sanpham}">
             <h2 th:text="${sanpham.tenSach}">Tên Sách - Tập - Quà tặng kèm</h2>
-            <p class="rating">⭐⭐⭐⭐⭐(5/5) | Đã bán (999)</p>
+            <p class="rating">⭐⭐⭐⭐⭐(5/5) | Đã bán (<span th:text="${sanpham.soLuongDaBan}"></span>)</p>
             <p ><strong>Giá: </strong><span class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></span></p>
             <p><strong>Số lượng sản phẩm: </strong><span th:text="${sanpham.soLuongTonKho}"></span></p>
             <p><strong>Nhà xuất bản: </strong><span th:text="${sanpham.nhaXuatBan}"></span></p>
@@ -686,7 +686,7 @@
             <form th:action="@{/sanpham/{id}/danhgia(id=${sanpham.ID_san_pham})}" method="POST">
                 <div class="mb-3">
                     <label for="danhGia" class="form-label">Chọn số sao:</label>
-                    <select class="form-select" id="danhGia" name="danhGia" required>
+                    <select class="form-select" id="danhGia" name="danhGia">
                         <option value="" disabled selected>Chọn đánh giá sao</option>
                         <option value="1">1 Sao</option>
                         <option value="2">2 Sao</option>
@@ -697,7 +697,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="binhLuan" class="form-label">Bình luận:</label>
-                    <textarea class="form-control" id="binhLuan" name="binhLuan" rows="3" placeholder="Ghi nhận đánh giá của bạn..." required></textarea>
+                    <textarea class="form-control" id="binhLuan" name="binhLuan" rows="3" placeholder="Ghi nhận đánh giá của bạn..." ></textarea>
                 </div>
                 <button type="submit" class="btn btn-danger">Gửi đánh giá</button>
             </form>
