@@ -124,6 +124,37 @@
     .footer ul li a:hover {
         color: #FF6347; /* Màu đỏ khi hover */
     }
+
+    .alert {
+        text-align: center;
+        opacity: 0;
+        transform: translateY(30px); /* Bắt đầu từ dưới */
+        transition: opacity 0.5s, transform 0.5s;
+        width: 30%; /* Điều chỉnh chiều dài thành 80% của màn hình */
+        max-width: 400px; /* Chiều rộng tối đa */
+        position: fixed; /* Đặt thông báo cố định */
+        top: 20px; /* Đặt khoảng cách từ đầu trang */
+        left: 50%; /* Đặt thông báo ở giữa màn hình */
+        transform: translateX(-50%) translateY(30px); /* Đưa thông báo vào giữa màn hình */
+        z-index: 1050; /* Đảm bảo thông báo hiển thị trên các phần tử khác */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .alert.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0); /* Thông báo sẽ nổi lên giữa màn hình */
+    }
+
+    /* Đảm bảo thông báo không bị đè lên nhau */
+    .fixed-top {
+        z-index: 1050;
+    }
+
+    /* Tạo khoảng cách cho thông báo */
+    .m-2 {
+        margin: 20px;
+    }
 </style>
 <body>
 <header>
@@ -187,6 +218,13 @@
             </div>
         </div>
     </nav>
+    <div th:if="${success}" class="alert alert-success alert-dismissible fade show fixed-top m-2" role="alert" id="success-alert">
+        <p th:text="${success}"></p>
+    </div>
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show fixed-top m-2" role="alert" id="error-alert">
+        <p th:text="${error}"></p>
+    </div>
+
 </header>
 <div class="container">
     <div class="row text-center" style="margin-top: 30px;">
@@ -198,6 +236,9 @@
 
     <div class="table-container">
         <!-- Hiển thị bảng thống kê -->
+        <form action="/export/excel-to-path" method="get">
+            <button type="submit" class="btn btn-outline-primary">Xuất file excel</button>
+        </form>
         <table th:if="${not #lists.isEmpty(thongKes)}">
             <thead>
             <tr>
@@ -242,7 +283,6 @@
     </div>
 </div>
 
-</div>
 <div class="footer">
     <!-- Footer -->
     <footer class="bg-light py-5 mt-5">
@@ -356,6 +396,44 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let successMessage = /*[[${session.success}]]*/ '';
+        let errorMessage = /*[[${session.error}]]*/ '';
+
+        if (successMessage || errorMessage) {
+            // Show the modal if there's a success or error message
+            var myModal = new bootstrap.Modal(document.getElementById('notificationModal'), {
+                keyboard: false
+            });
+            myModal.show();
+        }
+
+        // Tự động ẩn thông báo sau 5 giây
+        function hideMessage(messageId) {
+            setTimeout(function () {
+                var message = document.getElementById(messageId);
+                if (message) {
+                    message.classList.remove('show');  // Ẩn thông báo
+                }
+            }, 5000);  // Sau 5 giây
+        }
+
+        // Đảm bảo thông báo sẽ ẩn tự động sau khi xuất hiện
+        let successAlert = document.getElementById('success-alert');
+        let errorAlert = document.getElementById('error-alert');
+        if (successAlert) {
+            successAlert.classList.add('show');  // Hiển thị thông báo thành công
+            hideMessage('success-alert');
+        }
+        if (errorAlert) {
+            errorAlert.classList.add('show');  // Hiển thị thông báo lỗi
+            hideMessage('error-alert');
+        }
+    });
+
+</script>
+
 
 
 </html>
