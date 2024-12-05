@@ -90,7 +90,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
+            <img src="/image/logo.png" alt="Logo" width="́81" height="40">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -144,56 +144,6 @@
         </div>
     </div>
 </nav>
-<!--header-->
-<!--<nav class="navbar navbar-expand-lg navbar-light">-->
-<!--    <div class="container">-->
-<!--        <a class="navbar-brand" href="#">-->
-<!--            <img src="image/logo.jpg" alt="logo">-->
-<!--        </a>-->
-<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"-->
-<!--                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
-<!--        <div class="collapse navbar-collapse" id="navbarNav">-->
-<!--            <div class="dropdown me-3">-->
-<!--                <button class="btn dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown"-->
-<!--                        aria-expanded="false">-->
-<!--                    <i class="bi bi-ui-checks-grid"></i> Danh mục-->
-<!--                </button>-->
-<!--                <ul class="dropdown-menu" aria-labelledby="categoryDropdown">-->
-<!--                    <li><a class="dropdown-item" href="#">Sách trong nước</a></li>-->
-<!--                    <li><a class="dropdown-item" href="#">Sách nước ngoài</a></li>-->
-<!--                    <li><a class="dropdown-item" href="#">Đồ chơi</a></li>-->
-<!--                    <li><a class="dropdown-item" href="#">Quà tặng</a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--            <form class="d-flex me-3">-->
-<!--                <input class="form-control search-input" type="search" placeholder="Nhập từ khóa tìm kiếm"-->
-<!--                       aria-label="Search">-->
-<!--                <button class="btn search-button" type="submit"><i class="bi bi-search"></i></button>-->
-<!--            </form>-->
-
-<!--            <div class="nav-icons d-flex align-items-center">-->
-<!--                <a href="#" class="me-3"><i class="bi bi-person"></i></a>-->
-<!--                <a href="#" class="me-3"><i class="bi bi-bell"></i></a>-->
-<!--                <a href="#"><i class="bi bi-cart"></i></a>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div class="dropdown me-3">-->
-<!--            <button class="btn dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown"-->
-<!--                    aria-expanded="false">-->
-<!--                <img src="images/covietnam.webp" alt="VN" style="width: 20px; height: 15px;">-->
-<!--            </button>-->
-<!--            <ul class="dropdown-menu" aria-labelledby="languageDropdown">-->
-<!--                <li><a class="dropdown-item" href="#"><img src="images/coanh.webp" style="width: 20px; height: 15px;">-->
-<!--                    EN</a></li>-->
-<!--                <li><a class="dropdown-item" href="#"><img src="images/covietnam.webp"-->
-<!--                                                           style="width: 20px; height: 15px;"> VN</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
 <!--thanh toán-->
 <div class="container mt-4">
     <h2 class="text-center py-3">Xác nhận đặt hàng</h2>
@@ -283,25 +233,28 @@
 
 
         <!-- Phương thức thanh toán -->
-        <div class="card mb-4">
-            <div class="card-header">Phương thức thanh toán</div>
-            <div class="card-body">
-                <div class="form-check">
-                    <input type="radio" id="momo" name="payment-method" class="form-check-input">
-                    <label for="momo" class="form-check-label">
-                        <img src="" alt="" width="20" class="me-2"> Thanh toán MoMo
-                    </label>
+        <form id="payment-form">
+            <div class="card mb-4">
+                <div class="card-header">Phương thức thanh toán</div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input type="radio" id="momo" name="payment-method" class="form-check-input">
+                        <label for="momo" class="form-check-label">
+                            <img src="" alt="" width="20" class="me-2"> Thanh toán MoMo
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" id="cod" name="payment-method" class="form-check-input">
+                        <label for="cod" class="form-check-label">
+                            Thanh toán khi nhận hàng
+                        </label>
+                    </div>
+                    <hr>
+                    <button class="btn btn-dark w-100" type="submit">Xác nhận đặt hàng</button>
                 </div>
-                <div class="form-check">
-                    <input type="radio" id="cod" name="payment-method" class="form-check-input">
-                    <label for="cod" class="form-check-label">
-                        Thanh toán khi nhận hàng
-                    </label>
-                </div>
-                <hr>
-                <button class="btn btn-dark w-100" type="submit">Xác nhận đặt hàng</button>
             </div>
-        </div>
+        </form>
+
     </form>
 </div>
 <footer class="bg-light py-5 mt-5">
@@ -358,14 +311,6 @@
         </div>
     </div>
 </footer>
-<!--<footer class="bg-light text-center text-lg-start mt-5">-->
-<!--    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0);">-->
-<!--        © 2024 Bản quyền thuộc về Công ty XYZ. | <a href="#" class="text-dark">Điều khoản dịch vụ</a> | <a href="#"-->
-<!--                                                                                                           class="text-dark">Chính-->
-<!--        sách bảo mật</a>-->
-<!--    </div>-->
-<!--</footer>-->
-
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
@@ -385,8 +330,7 @@
     /*]]>*/
 </script>
 <script>
-
-    //mã xử lý đổi đơn vị tiền tệ
+    // Mã xử lý đổi đơn vị tiền tệ
     function formatVND(price) {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
     }
@@ -409,9 +353,15 @@
         return totalPrice;
     }
 
-
     document.querySelector('.btn-dark[type="submit"]').addEventListener('click', function (e) {
         e.preventDefault();
+
+        // Kiểm tra xem phương thức thanh toán có được chọn không
+        const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked');
+        if (!selectedPaymentMethod) {
+            alert('Vui lòng chọn phương thức thanh toán.');
+            return; // Ngừng gửi biểu mẫu
+        }
 
         const products = [];
         document.querySelectorAll('.quantity-display').forEach(product => {
@@ -425,7 +375,7 @@
         const total = calculateTotal();
 
         const formData = new FormData();
-        formData.append('phuong_thuc_thanh_toan', document.querySelector('input[name="payment-method"]:checked').id);
+        formData.append('phuong_thuc_thanh_toan', selectedPaymentMethod.id);
         formData.append('total', total);
         formData.append('productData', JSON.stringify(products));
 
