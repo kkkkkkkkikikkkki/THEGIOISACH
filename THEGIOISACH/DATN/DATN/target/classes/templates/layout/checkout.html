@@ -84,6 +84,20 @@
         object-fit: cover; /* Đảm bảo ảnh không bị biến dạng */
     }
 
+    .bg-pink {
+        background-color: #ff9999;
+    }
+
+    .btn-outline-pink {
+        border-color: #ff9999;
+        color: #ff9999;
+    }
+
+    .btn-outline-pink:hover {
+        background-color: #ff9999;
+        color: #fff;
+    }
+
 
 </style>
 <body>
@@ -156,7 +170,7 @@
     <form id="checkoutForm" method="POST">
         <!-- Địa chỉ nhận hàng -->
         <div class="card mb-4 shadow-sm">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-pink text-white">
                 <h5 class="mb-0">Thông tin khách hàng</h5>
             </div>
             <div class="card-body">
@@ -186,7 +200,58 @@
 
                 <!-- Thay đổi địa chỉ button -->
                 <div class="d-grid">
-                    <a class="btn btn-outline-primary mt-3" href="/trangcanhan" role="button">Thay đổi địa chỉ</a>
+                    <a class="btn btn-outline-pink mt-3" role="button" data-bs-toggle="modal" data-bs-target="#changeCustomerInfoModal">
+                        Thay đổi địa chỉ
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Modal Thay Đổi Thông Tin Khách Hàng -->
+        <div class="modal fade" id="changeCustomerInfoModal" tabindex="-1" aria-labelledby="changeCustomerInfoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header bg-pink text-white">
+                        <h5 class="modal-title" id="changeCustomerInfoModalLabel">Thay đổi thông tin khách hàng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <form id="customerInfoForm" th:action="@{/api/updateThongTin}" method="post">
+                        <!-- Tên khách hàng -->
+                        <div class="mb-3">
+                            <label for="inputTen" class="form-label">Tên</label>
+                            <input type="text" class="form-control" id="inputTen" name="ten" th:value="${user.getHo_va_ten()}" required>
+                        </div>
+
+                        <!-- Số điện thoại -->
+                        <div class="mb-3">
+                            <label for="inputSDT" class="form-label">Số điện thoại</label>
+                            <input type="text" class="form-control" id="inputSDT" name="phone" th:value="${user.getSDT()}" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="inputEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="inputEmail" name="email" th:value="${user.getEmail()}" required>
+                        </div>
+
+                        <!-- Địa chỉ -->
+                        <div class="mb-3">
+                            <label for="inputDiaChi" class="form-label">Địa chỉ nhận hàng</label>
+                            <input type="text" class="form-control" id="inputDiaChi" name="diachi" th:value="${user.getDia_chi()}" required>
+                        </div>
+                    </form>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" form="customerInfoForm" class="btn btn-outline-pink">Lưu thay đổi</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -407,6 +472,73 @@
                 submitButton.innerHTML = 'Xác nhận thanh toán';
             });
     });
+
+    // thay đổi thông tin
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('customerInfoForm');
+        const modalElement = document.getElementById('changeCustomerInfoModal');
+
+        // Xử lý sự kiện submit form
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Ngăn gửi form mặc định
+
+            // Lấy dữ liệu từ các input
+            const customerData = {
+                ho_va_ten: document.getElementById('inputTen').value,
+                sdt: document.getElementById('inputSDT').value,
+                email: document.getElementById('inputEmail').value,
+                dia_chi: document.getElementById('inputDiaChi').value,
+            };
+
+            try {
+                // Gửi dữ liệu qua API hoặc endpoint xử lý
+                const response = await fetch('/api/thongtincanhan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(customerData),
+                });
+
+                if (response.ok) {
+                    // Hiển thị thông báo thành công
+                    alert('Cập nhật thông tin thành công!');
+
+                    // Đóng modal
+                    const modal = bootstrap.Modal.getInstance(modalElement);
+                    modal.hide();
+
+                    // Cập nhật UI nếu cần
+                    document.getElementById('ten').innerText = customerData.ho_va_ten;
+                    document.getElementById('sdt').innerText = customerData.sdt;
+                    document.getElementById('email').innerText = customerData.email;
+                    document.getElementById('dia_chi').innerText = customerData.dia_chi;
+                } else {
+                    // Xử lý lỗi từ server
+                    const errorData = await response.json();
+                    alert(`Lỗi: ${errorData.message || 'Không thể cập nhật thông tin'}`);
+                }
+            } catch (error) {
+                // Xử lý lỗi kết nối hoặc lỗi khác
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+            }
+        });
+
+        // Xử lý nút Hủy trong modal
+        const cancelButton = modalElement.querySelector('.btn-secondary[data-bs-dismiss="modal"]');
+        if (cancelButton) {
+            cancelButton.addEventListener('click', () => {
+                form.reset(); // Reset form về trạng thái ban đầu
+            });
+        }
+
+        // Reset form khi modal được mở lại
+        modalElement.addEventListener('show.bs.modal', () => {
+            form.reset();
+        });
+    });
+
 
     // Cập nhật hiển thị tổng tiền khi trang load
     document.addEventListener('DOMContentLoaded', function () {

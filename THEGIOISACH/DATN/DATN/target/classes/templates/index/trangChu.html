@@ -273,12 +273,17 @@
                             <h5 class="card-title" th:text="${sanpham.tenSach}">Sản phẩm 1</h5>
                             <p class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></p>
                             <!-- Nút nằm trên cùng hàng -->
-                            <div class="btn-group">
-                                <a href="#!Mua ngay" class="btn">Mua ngay</a>
-                                <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="btn">Xem chi tiết</a>
-                            </div>
                         </div>
                     </a>
+                    <div class="card-body">
+                        <div class="btn-group">
+                            <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}" />
+                            <button type="button" class="btn btn-pink mua-ngay">
+                                Mua Ngay
+                            </button>
+                            <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="btn">Xem chi tiết</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -384,6 +389,18 @@
         element.textContent = formatVND(price);
     });
 
+    //Xử lý nút mua ngay
+    document.querySelector('.mua-ngay').addEventListener('click', function () {
+        // Lấy giá trị productId từ input ẩn trong form
+        const productId = document.querySelector('input[name="productId"]').value;
+        if (!productId) {
+            alert('Không tìm thấy sản phẩm để mua!');
+            return;
+        }
+        // Điều hướng tới trang checkout với productId và quantities mặc định là 1
+        window.location.href = `/api/checkout?productIds=${productId}&quantities=1`;
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
         const searchInput = document.getElementById("search-input");
         const suggestionsBox = document.getElementById("suggestions-box");
@@ -429,6 +446,8 @@
             }
         });
     });
+
+
 
 </script>
 </body>

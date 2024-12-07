@@ -84,6 +84,20 @@
         object-fit: cover; /* Đảm bảo ảnh không bị biến dạng */
     }
 
+    .bg-pink {
+        background-color: #ff9999;
+    }
+
+    .btn-outline-pink {
+        border-color: #ff9999;
+        color: #ff9999;
+    }
+
+    .btn-outline-pink:hover {
+        background-color: #ff9999;
+        color: #fff;
+    }
+
 
 </style>
 <body>
@@ -156,7 +170,7 @@
     <form id="checkoutForm" method="POST">
         <!-- Địa chỉ nhận hàng -->
         <div class="card mb-4 shadow-sm">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-pink text-white">
                 <h5 class="mb-0">Thông tin khách hàng</h5>
             </div>
             <div class="card-body">
@@ -186,11 +200,10 @@
 
                 <!-- Thay đổi địa chỉ button -->
                 <div class="d-grid">
-                    <a class="btn btn-outline-primary mt-3" href="/trangcanhan" role="button">Thay đổi địa chỉ</a>
+                    <a class="btn btn-outline-pink mt-3" href="/thongtintaikhoan" role="button">Thay đổi địa chỉ</a>
                 </div>
             </div>
         </div>
-
 
         <!--    thông tin sản phẩm-->
         <div class="card mb-4">
