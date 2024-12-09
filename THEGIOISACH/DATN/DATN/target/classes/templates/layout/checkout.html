@@ -83,63 +83,90 @@
         height: 100%; /* Chiều cao đầy đủ */
         object-fit: cover; /* Đảm bảo ảnh không bị biến dạng */
     }
+    .bg-pink {
+        background-color: #ff9999;
+    }
 
+    .btn-outline-pink {
+        border-color: #ff9999;
+        color: #ff9999;
+    }
 
+    .btn-outline-pink:hover {
+        background-color: #ff9999;
+        color: #fff;
+    }
+    /* Hộp gợi ý tìm kiếm */
+    #suggestions-box {
+        position: absolute;
+        top: 100%;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden; /* Chặn thanh trượt ngang */
+        z-index: 1000;
+    }
 </style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
+        <!-- Logo -->
         <a class="navbar-brand" href="#">
             <img src="/image/logo.png" alt="Logo" width="́81" height="40">
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Toggle button for small screens -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Navbar items (left aligned) -->
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/trangchu">Trang chủ</a>
+                    <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">Thông báo</a>
+                    <a class="nav-link" href="#!Thông báo">Thông báo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/giohang}">Giỏ hàng</a>
                 </li>
             </ul>
-            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="notificationModalLabel">Thông báo</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Success message -->
-                            <p>con</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button></div>
-                    </div>
-                </div>
-            </div>
+
+            <!-- Search Form (centered) -->
+            <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
+                <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search"
+                       aria-label="Search" autocomplete="off">
+                <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div id="suggestions-box" class="list-group position-absolute"
+                     style="width: 357px; z-index: 1000; "></div>
+            </form>
 
 
+            <!-- Navbar items (right aligned) -->
             <ul class="navbar-nav ms-auto">
+                <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
                 <li th:if="${username == null}" class="nav-item">
-                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/login}">Đăng nhập</a>
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/dangnhap}">Đăng nhập</a>
                 </li>
                 <li th:if="${username == null}" class="nav-item">
                     <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
                 </li>
+
+                <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
                 <li th:if="${username != null}" class="nav-item">
-                    <a href="/trangcanhan" class="nav-link">
-                        <i class="fas fa-user-circle"></i>
-                        <span th:text="${username}"></span>
+                    <a href="/thongtintaikhoan" class="nav-link">
+                        <i class="fas fa-user-circle fa-2x"></i> <!-- Thay thế bằng icon thông tin -->
+                        <!--                        <span th:text="${username}"></span>-->
                     </a>
                 </li>
+
             </ul>
         </div>
     </div>
@@ -156,7 +183,7 @@
     <form id="checkoutForm" method="POST">
         <!-- Địa chỉ nhận hàng -->
         <div class="card mb-4 shadow-sm">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-pink text-white">
                 <h5 class="mb-0">Thông tin khách hàng</h5>
             </div>
             <div class="card-body">
@@ -186,7 +213,58 @@
 
                 <!-- Thay đổi địa chỉ button -->
                 <div class="d-grid">
-                    <a class="btn btn-outline-primary mt-3" href="/trangcanhan" role="button">Thay đổi địa chỉ</a>
+                    <a class="btn btn-outline-pink mt-3" role="button" data-bs-toggle="modal" data-bs-target="#changeCustomerInfoModal">
+                        Thay đổi địa chỉ
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Modal Thay Đổi Thông Tin Khách Hàng -->
+        <div class="modal fade" id="changeCustomerInfoModal" tabindex="-1" aria-labelledby="changeCustomerInfoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header bg-pink text-white">
+                        <h5 class="modal-title" id="changeCustomerInfoModalLabel">Thay đổi thông tin khách hàng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <form id="customerInfoForm" th:action="@{/api/updateThongTin}" method="post">
+                        <!-- Tên khách hàng -->
+                        <div class="mb-3">
+                            <label for="inputTen" class="form-label">Tên</label>
+                            <input type="text" class="form-control" id="inputTen" name="ten" th:value="${user.getHo_va_ten()}" required>
+                        </div>
+
+                        <!-- Số điện thoại -->
+                        <div class="mb-3">
+                            <label for="inputSDT" class="form-label">Số điện thoại</label>
+                            <input type="text" class="form-control" id="inputSDT" name="phone" th:value="${user.getSDT()}" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="inputEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="inputEmail" name="email" th:value="${user.getEmail()}" required>
+                        </div>
+
+                        <!-- Địa chỉ -->
+                        <div class="mb-3">
+                            <label for="inputDiaChi" class="form-label">Địa chỉ nhận hàng</label>
+                            <input type="text" class="form-control" id="inputDiaChi" name="diachi" th:value="${user.getDia_chi()}" required>
+                        </div>
+                    </form>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" form="customerInfoForm" class="btn btn-outline-pink">Lưu thay đổi</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -408,12 +486,126 @@
             });
     });
 
+    // thay đổi thông tin
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('customerInfoForm');
+        const modalElement = document.getElementById('changeCustomerInfoModal');
+
+        // Xử lý sự kiện submit form
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Ngăn gửi form mặc định
+
+            // Lấy dữ liệu từ các input
+            const customerData = {
+                ho_va_ten: document.getElementById('inputTen').value,
+                sdt: document.getElementById('inputSDT').value,
+                email: document.getElementById('inputEmail').value,
+                dia_chi: document.getElementById('inputDiaChi').value,
+            };
+
+            try {
+                // Gửi dữ liệu qua API hoặc endpoint xử lý
+                const response = await fetch('/api/thongtincanhan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(customerData),
+                });
+
+                if (response.ok) {
+                    // Hiển thị thông báo thành công
+                    alert('Cập nhật thông tin thành công!');
+
+                    // Đóng modal
+                    const modal = bootstrap.Modal.getInstance(modalElement);
+                    modal.hide();
+
+                    // Cập nhật UI nếu cần
+                    document.getElementById('ten').innerText = customerData.ho_va_ten;
+                    document.getElementById('sdt').innerText = customerData.sdt;
+                    document.getElementById('email').innerText = customerData.email;
+                    document.getElementById('dia_chi').innerText = customerData.dia_chi;
+                } else {
+                    // Xử lý lỗi từ server
+                    const errorData = await response.json();
+                    alert(`Lỗi: ${errorData.message || 'Không thể cập nhật thông tin'}`);
+                }
+            } catch (error) {
+                // Xử lý lỗi kết nối hoặc lỗi khác
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+            }
+        });
+
+        // Xử lý nút Hủy trong modal
+        const cancelButton = modalElement.querySelector('.btn-secondary[data-bs-dismiss="modal"]');
+        if (cancelButton) {
+            cancelButton.addEventListener('click', () => {
+                form.reset(); // Reset form về trạng thái ban đầu
+            });
+        }
+
+        // Reset form khi modal được mở lại
+        modalElement.addEventListener('show.bs.modal', () => {
+            form.reset();
+        });
+    });
+
+
     // Cập nhật hiển thị tổng tiền khi trang load
     document.addEventListener('DOMContentLoaded', function () {
         const totalPrice = calculateTotal();
         document.querySelector('.total-price').textContent = totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     });
     document.addEventListener('DOMContentLoaded', updateTotal);
+
+    // chức năng tìm kiếm sản phẩm theo keyword
+    document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById("search-input");
+        const suggestionsBox = document.getElementById("suggestions-box");
+
+        searchInput.addEventListener("input", () => {
+            const keyword = searchInput.value.trim();
+
+            if (keyword.length === 0) {
+                suggestionsBox.innerHTML = "";
+                return;
+            }
+
+            fetch(`/suggestions?keyword=${keyword}`)
+                .then(response => response.json())
+                .then(suggestions => {
+                    suggestionsBox.innerHTML = "";
+
+                    if (suggestions.length > 0) {
+                        suggestions.forEach(suggestion => {
+                            const item = document.createElement("a");
+                            item.classList.add("list-group-item", "list-group-item-action");
+                            item.textContent = suggestion;
+                            item.href = `/search?keyword=${suggestion}`;
+
+                            item.addEventListener("click", () => {
+                                searchInput.value = suggestion;
+                                suggestionsBox.innerHTML = "";
+                            });
+
+                            suggestionsBox.appendChild(item);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching suggestions:", error);
+                });
+        });
+
+        // Đóng gợi ý khi nhấp ra ngoài
+        document.addEventListener("click", (e) => {
+            if (!searchInput.contains(e.target)) {
+                suggestionsBox.innerHTML = "";
+            }
+        });
+    });
 </script>
 <script src="/js/checkout-handler.js"></script>
 </body>
