@@ -42,7 +42,7 @@ public class DangKyADController {
             user.setHo_va_ten(hovaten);
             user.setMat_khau(matKhau);
             user.setDia_chi(diachi);
-            user.setSDT(Integer.parseInt(sdt));
+            user.setSDT(sdt);
             user.setEmail(email);
             user.setRole(0); // Đặt role là 0 cho admin
             userServiceImpl.saveAdmin(user);
