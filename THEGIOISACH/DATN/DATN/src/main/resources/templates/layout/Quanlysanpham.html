@@ -275,6 +275,18 @@
         border-right: none;
     }
 
+    /* Hộp gợi ý tìm kiếm */
+    #suggestions-box {
+        position: absolute;
+        top: 100%;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden; /* Chặn thanh trượt ngang */
+        z-index: 1000;
+    }
 </style>
 
 <body>
@@ -284,7 +296,7 @@
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
-                <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
+                <img src="/image/logo.png" alt="Logo" width="́81" height="40">
             </a>
 
             <!-- Toggle button for small screens -->
@@ -297,45 +309,46 @@
                 <!-- Navbar items (left aligned) -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">Thông báo</a>
+                        <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Giỏ hàng</a>
+                        <a class="nav-link" href="#!Thông báo">Thông báo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/giohang}">Giỏ hàng</a>
                     </li>
                 </ul>
-                <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="notificationModalLabel">Thông báo</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- Success message -->
-                                <p>con</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button></div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Search Form (centered) -->
-                <form class="d-flex mx-auto" role="search" style="width: 400px;">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
+                    <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search"
+                           aria-label="Search" autocomplete="off">
                     <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
-                        <i class="fas fa-search"></i> <!-- Icon search -->
+                        <i class="fas fa-search"></i>
                     </button>
+                    <div id="suggestions-box" class="list-group position-absolute"
+                         style="width: 357px; z-index: 1000; "></div>
                 </form>
+
 
                 <!-- Navbar items (right aligned) -->
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-secondary me-2" href="#">Đăng nhập</a>
+                    <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
+                    <li th:if="${username == null}" class="nav-item">
+                        <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/dangnhap}">Đăng nhập</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-dark" href="#">Đăng ký</a>
+                    <li th:if="${username == null}" class="nav-item">
+                        <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
                     </li>
+
+                    <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
+                    <li th:if="${username != null}" class="nav-item">
+                        <a href="/thongtintaikhoan" class="nav-link">
+                            <i class="fas fa-user-circle fa-2x"></i> <!-- Thay thế bằng icon thông tin -->
+                            <!--                        <span th:text="${username}"></span>-->
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>
@@ -939,6 +952,53 @@
             currency: 'VND'
         }).format(price);
         element.textContent = formattedPrice;
+    });
+
+    // chức năng tìm kiếm sản phẩm theo keyword
+    document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById("search-input");
+        const suggestionsBox = document.getElementById("suggestions-box");
+
+        searchInput.addEventListener("input", () => {
+            const keyword = searchInput.value.trim();
+
+            if (keyword.length === 0) {
+                suggestionsBox.innerHTML = "";
+                return;
+            }
+
+            fetch(`/suggestions?keyword=${keyword}`)
+                .then(response => response.json())
+                .then(suggestions => {
+                    suggestionsBox.innerHTML = "";
+
+                    if (suggestions.length > 0) {
+                        suggestions.forEach(suggestion => {
+                            const item = document.createElement("a");
+                            item.classList.add("list-group-item", "list-group-item-action");
+                            item.textContent = suggestion;
+                            item.href = `/search?keyword=${suggestion}`;
+
+                            item.addEventListener("click", () => {
+                                searchInput.value = suggestion;
+                                suggestionsBox.innerHTML = "";
+                            });
+
+                            suggestionsBox.appendChild(item);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching suggestions:", error);
+                });
+        });
+
+        // Đóng gợi ý khi nhấp ra ngoài
+        document.addEventListener("click", (e) => {
+            if (!searchInput.contains(e.target)) {
+                suggestionsBox.innerHTML = "";
+            }
+        });
     });
 </script>
 
