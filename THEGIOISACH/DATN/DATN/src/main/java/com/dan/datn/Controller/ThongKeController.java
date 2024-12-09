@@ -52,7 +52,7 @@ public class ThongKeController {
 
         model.addAttribute("thongKes", uniqueThongKes);
         model.addAttribute("totalRevenue", totalRevenue);
-
+        session.setAttribute("email", email);
         return "index/ThongKeDoanhThu";
     }
 

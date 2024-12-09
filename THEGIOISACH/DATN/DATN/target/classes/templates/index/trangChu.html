@@ -280,22 +280,15 @@
                     <div class="card-body">
                         <div class="btn-group">
                             <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}" />
-                            <button type="button" class="btn btn-pink">
                             <button type="button" class="btn btn-pink mua-ngay">
                                 Mua Ngay
                             </button>
                             <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="btn">Xem chi tiết</a>
                         </div>
-                    <div class="btn-group">
-                        <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}" />
-                        <button type="button" class="btn btn-pink">
-                            Mua ngay
-                        </button>
-                        <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="btn">Xem chi tiết</a>
-                    </div>
                     </div>
                 </div>
-            </div>        </div>
+            </div>
+        </div>
     </section>
     <!-- Danh muc san pham -->
     <div class="container mt-4 trend-section">
@@ -467,9 +460,6 @@
             }
         });
     });
-
-
-
 </script>
 </body>
 </html>
