@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>Admin Dashboard</title>
+    <title>Quản lý sản phẩm</title>
+    <link rel="shortcut icon" href="/image/logo.png" type="image/x-icon">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -316,45 +317,6 @@
                     </li>
                     <li class="nav-item">
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#!Thông báo">Thông báo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/giohang}">Giỏ hàng</a>
-                    </li>
-                </ul>
-
-                <!-- Search Form (centered) -->
-                <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
-                    <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search"
-                           aria-label="Search" autocomplete="off">
-                    <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <div id="suggestions-box" class="list-group position-absolute"
-                         style="width: 357px; z-index: 1000; "></div>
-                </form>
-
-
-                <!-- Navbar items (right aligned) -->
-                <ul class="navbar-nav ms-auto">
-                    <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
-                    <li th:if="${username == null}" class="nav-item">
-                        <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/dangnhap}">Đăng nhập</a>
-                    </li>
-                    <li th:if="${username == null}" class="nav-item">
-                        <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
-                    </li>
-
-                    <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
-                    <li th:if="${username != null}" class="nav-item">
-                        <a href="/thongtintaikhoan" class="nav-link">
-                            <i class="fas fa-user-circle"></i> <!-- Thay thế bằng icon thông tin -->
-                            <i class="fas fa-user-circle fa-2x"></i> <!-- Thay thế bằng icon thông tin -->
-                            <!--                        <span th:text="${username}"></span>-->
-                        </a>
-                    </li>
-
                 </ul>
             </div>
         </div>
@@ -375,20 +337,25 @@
                 <a class="user" href="#">
                     <img src="https://img.icons8.com/?size=100&id=15263&format=png&color=000000" alt="infor">
                 </a>
-                <h6>Tên quản lý</h6>
+                <h6>
+                    <i class="fas fa-user-circle fa-2x">
+                        <span th:text="${email}"></span>
+                    </i>
+                </h6>
+
             </div>
-            <a href="">
+            <a href="/admin">
                 <h4 class="title">Home</h4>
             </a>
             <hr>
-            <a href=""><h4 class="title">Tạo quản lý mới</h4>
+            <a href="admin#!/Tạo%20quản%20lý%20mới"><h4 class="title">Tạo quản lý mới</h4>
             </a>
             <hr>
-            <a href="">
+            <a href="admin#!/Thống%20kê">
                 <h4 class="title">Thống kê</h4>
             </a>
             <hr>
-            <a href="">
+            <a href="admin#!/Quản%20lý%20người%20dùng">
                 <h4 class="title">Quản lý người dùng</h4>
             </a>
             <hr>
@@ -396,7 +363,7 @@
                 <h4 class="title">Quản lý sản phẩm</h4>
             </a>
             <hr>
-            <a href="" class="last">
+            <a href="admin#!/Phân%20quyền" class="last">
                 <h4 class="title">Phân quyền</h4>
             </a>
         </div>
