@@ -71,6 +71,19 @@
         .signupbtn {
             border-radius: 10px;
         }
+
+        /* Hộp gợi ý tìm kiếm */
+        #suggestions-box {
+            position: absolute;
+            top: 100%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            overflow-x: hidden; /* Chặn thanh trượt ngang */
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -78,57 +91,61 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
+        <!-- Logo -->
         <a class="navbar-brand" href="#">
-            <img src="https://via.placeholder.com/30x30" alt="Logo" width="30" height="30">
+            <img src="/image/logo.png" alt="Logo" width="́81" height="40">
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Toggle button for small screens -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Navbar items (left aligned) -->
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/trangchu">Trang chủ</a>
+                    <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#notificationModal">Thông báo</a>
+                    <a class="nav-link" href="#!Thông báo">Thông báo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/giohang}">Giỏ hàng</a>
                 </li>
             </ul>
-            <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="notificationModalLabel">Thông báo</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Success message -->
-                            <p>con</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button></div>
-                    </div>
-                </div>
-            </div>
+
+            <!-- Search Form (centered) -->
+            <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
+                <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search"
+                       aria-label="Search" autocomplete="off">
+                <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div id="suggestions-box" class="list-group position-absolute"
+                     style="width: 357px; z-index: 1000; "></div>
+            </form>
 
 
+            <!-- Navbar items (right aligned) -->
             <ul class="navbar-nav ms-auto">
+                <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
                 <li th:if="${username == null}" class="nav-item">
-                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/login}">Đăng nhập</a>
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/dangnhap}">Đăng nhập</a>
                 </li>
                 <li th:if="${username == null}" class="nav-item">
                     <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
                 </li>
+
+                <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
                 <li th:if="${username != null}" class="nav-item">
-                    <a href="/trangcanhan" class="nav-link">
-                        <i class="fas fa-user-circle"></i>
-                        <span th:text="${username}"></span>
+                    <a href="/thongtintaikhoan" class="nav-link">
+                        <i class="fas fa-user-circle fa-2x"></i> <!-- Thay thế bằng icon thông tin -->
+                        <!--                        <span th:text="${username}"></span>-->
                     </a>
                 </li>
+
             </ul>
         </div>
     </div>
@@ -164,7 +181,8 @@
                         <button type="submit" class="btn btn-primary signupbtn">Đăng Nhập</button>
                     </div>
                     <div class="clearfix" style="margin-top: 30px;">
-                        <a th:href="@{/dangky}">Bạn chưa có tài khoản?</a>
+                        <a th:href="@{/dangky}">Bạn chưa có tài khoản? </a>
+                        <a th:href="@{/quen-mat-khau}">Quên mật khẩu</a>
                     </div>
                     <div class="clearfix" style="margin-top: 30px;">
                         <a th:href="@{/quen-mat-khau}">Quên mật khẩu</a>
