@@ -265,6 +265,7 @@
         </div>
         <div class="row">
             <!-- Card sản phẩm -->
+            <!-- Card sản phẩm -->
             <div class="col-md-3" th:each="sanpham : ${sanphamsNoiBat}" style="margin-bottom: 15px">
                 <div class="card">
                     <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="text-decoration-none text-dark">
@@ -279,6 +280,11 @@
                     <div class="card-body">
                         <div class="btn-group">
                             <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}" />
+                            <button type="button" class="btn btn-pink">
+                                Mua Ngay
+                            </button>
+                            <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="btn">Xem chi tiết</a>
+                        </div>
                             <button type="button" class="btn btn-pink mua-ngay">
                                 Mua Ngay
                             </button>
@@ -292,8 +298,7 @@
                     </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>        </div>
     </section>
     <!-- Danh muc san pham -->
     <div class="container mt-4 trend-section">

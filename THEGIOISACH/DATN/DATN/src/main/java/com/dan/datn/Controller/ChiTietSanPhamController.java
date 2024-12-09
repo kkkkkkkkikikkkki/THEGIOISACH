@@ -116,7 +116,7 @@ public class ChiTietSanPhamController {
         String ten = (String) session.getAttribute("username");
         if (ten == null) {
             redirectAttributes.addFlashAttribute("error", "Bạn cần đăng nhập để đánh giá.");
-            return "redirect:/index/dangNhap"; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+            return "redirect:/dangnhap"; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
         }
 
         // Kiểm tra các tham số đầu vào

@@ -31,6 +31,7 @@
             background-color: #FFE4E1;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden; /* Ẩn thanh kéo ngang */
             /*min-height: 100vh; !* Ensure body takes full height of the page *!*/
         }
 
@@ -608,7 +609,7 @@
                        th:value="${user.ten}" readonly>
             </div>
             <div class="mb-3 text-start">
-                <label for="amount" class="form-label fw-bold">Tên</label>
+                <label for="amount" class="form-label fw-bold">Họ và tên</label>
                 <input type="text" class="form-control borderless-input" id="name" name="amount"
                        th:value="${user.Ho_va_ten}" readonly>
             </div>
@@ -644,9 +645,9 @@
     <h5>Chỉnh Sửa Thông Tin Tài Khoản</h5>
     <form id="editAccountForm" action="/updateUser" method="POST">
         <div class="mb-3">
-            <label for="editAmount" class="form-label">Tên</label>
-            <input type="text" class="form-control" id="editAmount" name="ten" readonly placeholder="Nhập tên"
-                   th:value="${user.ten}">
+            <label for="editAmount" class="form-label">Họ và tên</label>
+            <input type="text" class="form-control" id="editAmount" name="ten" placeholder="Họ và tên"
+                   th:value="${user.Ho_va_ten}">
         </div>
         <div class="mb-3">
             <label for="editPhone" class="form-label">Số điện thoại</label>
