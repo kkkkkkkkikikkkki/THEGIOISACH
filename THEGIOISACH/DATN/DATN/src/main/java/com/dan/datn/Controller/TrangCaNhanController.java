@@ -110,7 +110,7 @@ public class TrangCaNhanController {
                 isChanged = true;
             }
             if (!user.getSDT().equals(Integer.valueOf(phone))) {
-                user.setSDT(Integer.valueOf(phone));
+                user.setSDT(phone);
                 isChanged = true;
             }
             if (!user.getEmail().equals(email)) {
