@@ -265,6 +265,7 @@
         </div>
         <div class="row">
             <!-- Card sản phẩm -->
+            <!-- Card sản phẩm -->
             <div class="col-md-3" th:each="sanpham : ${sanphamsNoiBat}" style="margin-bottom: 15px">
                 <div class="card">
                     <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="text-decoration-none text-dark">
@@ -277,6 +278,14 @@
                         </div>
                     </a>
                     <div class="card-body">
+                        <div class="btn-group">
+                            <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}" />
+                            <button type="button" class="btn btn-pink">
+                            <button type="button" class="btn btn-pink mua-ngay">
+                                Mua Ngay
+                            </button>
+                            <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="btn">Xem chi tiết</a>
+                        </div>
                     <div class="btn-group">
                         <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}" />
                         <button type="button" class="btn btn-pink">
@@ -286,8 +295,7 @@
                     </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>        </div>
     </section>
     <!-- Danh muc san pham -->
     <div class="container mt-4 trend-section">
@@ -389,7 +397,17 @@
         const price = element.getAttribute('data-price');
         element.textContent = formatVND(price);
     });
-
+    //Xử lý nút mua ngay
+    document.querySelector('.mua-ngay').addEventListener('click', function () {
+        // Lấy giá trị productId từ input ẩn trong form
+        const productId = document.querySelector('input[name="productId"]').value;
+        if (!productId) {
+            alert('Không tìm thấy sản phẩm để mua!');
+            return;
+        }
+        // Điều hướng tới trang checkout với productId và quantities mặc định là 1
+        window.location.href = `/api/checkout?productIds=${productId}&quantities=1`;
+    });
     document.querySelectorAll('.btn-pink').forEach(button => {
         button.addEventListener('click', function () {
             // Lấy phần tử cha chứa productId
@@ -449,6 +467,8 @@
             }
         });
     });
+
+
 
 </script>
 </body>
