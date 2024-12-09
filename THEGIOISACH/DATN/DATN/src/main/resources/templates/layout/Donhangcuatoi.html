@@ -405,16 +405,6 @@
                 <div id="suggestions-box" class="list-group position-absolute"
                      style="width: 357px; z-index: 1000; "></div>
             </form>
-            <!-- Search Form (centered) -->
-            <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
-                <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search"
-                       aria-label="Search" autocomplete="off">
-                <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
-                    <i class="fas fa-search"></i>
-                </button>
-                <div id="suggestions-box" class="list-group position-absolute"
-                     style="width: 357px; z-index: 1000; "></div>
-            </form>
             <!-- Navbar items (right aligned) -->
             <ul class="navbar-nav ms-auto">
                 <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
@@ -428,7 +418,6 @@
                 <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
                 <li th:if="${username != null}" class="nav-item">
                     <a href="/thongtintaikhoan" class="nav-link">
-                        <i class="fas fa-user-circle"></i> <!-- Thay thế bằng icon thông tin -->
                         <i class="fas fa-user-circle fa-2x"></i> <!-- Thay thế bằng icon thông tin -->
                         <!--                        <span th:text="${username}"></span>-->
                     </a>
@@ -442,7 +431,7 @@
 <div class="row mt-3" style="margin-left: 100px">
     <div class="col-sm-3 trend-section">
         <h4 style="text-align: center; margin-top: 15px">
-            <a href="/trangcanhan">Tài khoản</a>
+            <a href="/thongtintaikhoan">Tài khoản</a>
         </h4>
         <a href="/thongtintaikhoan"  style="margin-bottom: 50px">
             <h4 class="title">Thông tin cá nhân</h4>

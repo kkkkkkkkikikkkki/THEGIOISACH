@@ -44,6 +44,7 @@ public class QuanLySanPhamController {
         }
         List<SanPham> products = sanPhamService.getAllSanPham();  // Lấy danh sách sản phẩm từ service
         model.addAttribute("products", products);  // Thêm sản phẩm vào model để Thymeleaf sử dụng
+        model.addAttribute("email", email);
         return "layout/Quanlysanpham";  // Trả về view
     }
 
