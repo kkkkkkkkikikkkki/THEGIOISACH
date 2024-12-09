@@ -149,6 +149,11 @@
         color: white;
         border-color: #FF9999;
     }
+     .custom-font {
+         font-family: 'Times New Roman', serif;
+         font-weight: bold; /* Làm chữ in đậm */
+     }
+
 </style>
 
 
@@ -252,7 +257,7 @@
 </section>
 
 <section class="container mt-5" style="height: auto">
-    <h3 class="text-center">Sản phẩm nổi bật</h3>
+    <h2 class="text-center custom-font">Sản phẩm nổi bật</h2>
     <section class="container mt-5" style="height: auto">
         <div class="row">
             <div class="col-12">
@@ -280,11 +285,23 @@
                     <div class="card-body">
                         <div class="btn-group">
                             <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}" />
+                            <button type="button" class="btn btn-pink">
                             <button type="button" class="btn btn-pink mua-ngay">
                                 Mua Ngay
                             </button>
                             <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="btn">Xem chi tiết</a>
                         </div>
+                            <button type="button" class="btn btn-pink mua-ngay">
+                                Mua Ngay
+                            </button>
+                            <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="btn">Xem chi tiết</a>
+                    <div class="btn-group">
+                        <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}" />
+                        <button type="button" class="btn btn-pink">
+                            Mua ngay
+                        </button>
+                        <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="btn">Xem chi tiết</a>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -313,7 +330,7 @@
     <!-- Xu huong mua sam -->
     <div class="container mt-4 trend-section">
         <div class="row">
-            <h3 class="text-center">Sản phẩm</h3>
+            <h2 class="text-center custom-font">Sản phẩm</h2>
         </div>
         <div class="row mt-3">
             <!-- Sản phẩm 1 -->
