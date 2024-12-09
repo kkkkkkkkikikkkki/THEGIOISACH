@@ -32,12 +32,14 @@ public class DangKyADController {
                                 @RequestParam String matKhau,
                                 @RequestParam String diachi,
                                 @RequestParam String sdt,
-                                @RequestParam String email) {
+                                @RequestParam String email,
+                                @RequestParam String hovaten ) {
         if (userServiceImpl.isEmailExist(email)) {
             model.addAttribute("error", "Email này đã được đăng ký.");
             return "layoutAdmin/TaoMoi";
         } else {
             user.setTen(ten);
+            user.setHo_va_ten(hovaten);
             user.setMat_khau(matKhau);
             user.setDia_chi(diachi);
             user.setSDT(Integer.parseInt(sdt));
