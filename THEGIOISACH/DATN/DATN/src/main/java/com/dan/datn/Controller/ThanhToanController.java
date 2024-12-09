@@ -161,7 +161,7 @@ public class ThanhToanController {
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             user.setTen(ten);
-            user.setSDT(Integer.valueOf(phone));
+            user.setSDT(phone);
             user.setEmail(email);
             user.setDia_chi(diachi);
 

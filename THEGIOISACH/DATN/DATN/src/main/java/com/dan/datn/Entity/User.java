@@ -24,7 +24,7 @@ public class User {
     private String Ho_va_ten;
 
     @Column(name = "SDT")
-    private Integer SDT;
+    private String SDT;
 
     @Column(name = "Dia_chi")
     private String Dia_chi;
