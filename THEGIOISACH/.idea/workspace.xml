@@ -6,30 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="e8ebf850-c5f4-452f-938b-02b982f4be7b" name="Changes" comment="done bat loi danh">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/DangKyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/DangKyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/GioHangController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/GioHangController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/ThongKeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/ThongKeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/ChiTietSanPhamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Controller/ChiTietSanPhamController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/chiTietSanPham.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/chiTietSanPham.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dangKy.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/dangKy.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangChu.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/index/trangChu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Donhangcuatoi.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Donhangcuatoi.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Thongtincanhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Thongtincanhan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/gioHang.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/gioHang.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Controller/ChiTietSanPhamController.class" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Controller/ChiTietSanPhamController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Controller/DangKyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Controller/DangKyController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Controller/TrangChuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Controller/TrangChuController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/com/dan/datn/Entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/chiTietSanPham.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/chiTietSanPham.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangKy.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangKy.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangChu.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/trangChu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Donhangcuatoi.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Donhangcuatoi.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Thongtincanhan.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/Thongtincanhan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/gioHang.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/layout/gioHang.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="dan" />
+        <entry key="$PROJECT_DIR$/.." value="kiet" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -162,6 +145,10 @@
       <workItem from="1733381981874" duration="136000" />
       <workItem from="1733389567386" duration="13117000" />
       <workItem from="1733405217433" duration="2020000" />
+      <workItem from="1733432434381" duration="535000" />
+      <workItem from="1733459723198" duration="1768000" />
+      <workItem from="1733521209517" duration="87000" />
+      <workItem from="1733588816865" duration="793000" />
     </task>
     <task id="LOCAL-00002" summary="done thong ke, sua lai entity thong ke, xoa entity hoadonchitiet">
       <option name="closed" value="true" />
