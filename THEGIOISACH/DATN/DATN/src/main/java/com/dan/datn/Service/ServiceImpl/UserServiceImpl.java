@@ -45,6 +45,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean isPhoneExist(String sdt) {
+        return userRepository.existsBySDT(sdt); // Gọi đúng phương thức
+    }
+
+
+    @Override
     public void saveUser(User user) {
         user.setRole(1); // Đặt role mặc định là 1
         userRepository.save(user);
