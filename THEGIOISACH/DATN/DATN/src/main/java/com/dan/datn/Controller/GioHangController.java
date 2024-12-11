@@ -122,6 +122,7 @@ public class GioHangController {
         List<SanPham> cart = (List<SanPham>) session.getAttribute("cart");
         if (cart != null) {
             // Tìm sản phẩm trong giỏ hàng và xóa nó
+            // biểu thức lamda
             cart.removeIf(item -> item.getID_san_pham().equals(productId));
 
             // Cập nhật lại giỏ hàng trong session
@@ -137,13 +138,5 @@ public class GioHangController {
         redirectAttributes.addFlashAttribute("username", session.getAttribute("username"));
 
         return "redirect:/giohang";  // Trả về view giỏ hàng
-    }
-    @PostMapping("/update-cart")
-    public ResponseEntity<Void> updateCart(@RequestBody Map<String, Integer> payload, HttpSession session) {
-        Integer quantity = payload.get("quantity");
-
-        // Cập nhật session với số lượng mới
-        session.setAttribute("cartQuantity", quantity);
-        return ResponseEntity.ok().build();
     }
 }

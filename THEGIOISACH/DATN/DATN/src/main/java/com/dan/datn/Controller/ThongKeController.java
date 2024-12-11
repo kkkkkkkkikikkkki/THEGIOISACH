@@ -3,6 +3,8 @@ package com.dan.datn.Controller;
 import com.dan.datn.Entity.ThongKe;
 import com.dan.datn.Service.ServiceImpl.UserServiceImpl;
 import com.dan.datn.Service.ThongKeService;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -16,7 +18,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.TextStyle;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class ThongKeController {
@@ -40,16 +46,66 @@ public class ThongKeController {
 
         // Nếu đã đăng nhập
         model.addAttribute("email", email);
-
         // Lấy dữ liệu thống kê
         List<ThongKe> thongKes = thongKeService.getAllThongKe();
-
         // Lọc các sản phẩm trùng lặp và tính tổng
         List<ThongKe> uniqueThongKes = getUniqueThongKes(thongKes);
-        double totalRevenue = uniqueThongKes.stream()
-                .mapToDouble(tk -> tk.getThanhToan().getTongTien())
-                .sum();
+        double totalRevenue = 0;
+        for (ThongKe tk : uniqueThongKes) {
+            totalRevenue += tk.getThanhToan().getTongTien();
+        }
+        Map<String, Double> revenueByMonth = thongKes.stream()
+                .filter(thongKe -> thongKe.getThanhToan() != null && thongKe.getThanhToan().getNgayDatHang() != null) // Kiểm tra null
+                .collect(Collectors.groupingBy(
+                        thongKe -> {
+                            LocalDate date = thongKe.getThanhToan().getNgayDatHang().toInstant()
+                                    .atZone(ZoneId.systemDefault())
+                                    .toLocalDate();
+                            // Lấy tên tháng (loại bỏ năm)
+                            return date.getMonth().getDisplayName(TextStyle.FULL, new Locale("vi", "VN")) + " " + date.getYear();
+                            },
+                        Collectors.summingDouble(thongKe -> thongKe.getThanhToan().getTongTien())
+                ));
 
+        for (Map.Entry<String, Double> entry : revenueByMonth.entrySet()) {
+            System.out.println("Tháng: " + entry.getKey() + ", Tổng doanh thu: " + entry.getValue());
+        }
+        Map<Integer, Double> revenueByYear = thongKes.stream()
+                .filter(thongKe -> thongKe.getThanhToan() != null && thongKe.getThanhToan().getNgayDatHang() != null) // Kiểm tra null
+                .collect(Collectors.groupingBy(
+                        thongKe -> {
+                            LocalDate date = thongKe.getThanhToan().getNgayDatHang().toInstant()
+                                    .atZone(ZoneId.systemDefault())
+                                    .toLocalDate();
+                            return date.getYear();  // Lấy năm
+                        },
+                        Collectors.summingDouble(thongKe -> thongKe.getThanhToan().getTongTien())
+                ));
+
+        for (Map.Entry<Integer, Double> entry : revenueByYear.entrySet()) {
+            System.out.println("Năm: " + entry.getKey() + ", Tổng doanh thu: " + entry.getValue());
+        }
+
+
+        int totalQuantitySold = thongKes.stream()
+                .filter(thongKe -> thongKe.getThanhToan() != null)  // Kiểm tra null trước khi lấy số lượng
+                .mapToInt(thongKe -> thongKe.getThanhToan().getSoLuong())
+                .sum();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String revenueJson = objectMapper.writeValueAsString(revenueByMonth);
+            model.addAttribute("revenueByMonthJson", revenueJson);
+            String revenueByYearJson = objectMapper.writeValueAsString(revenueByYear);
+            objectMapper.configure(JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN, true);
+            model.addAttribute("revenueByYearJson", revenueByYearJson); // Truyền vào model// Truyền vào model
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        model.addAttribute("totalQuantitySold", totalQuantitySold);
+//        model.addAttribute("revenueByMonth", revenueByMonth);
+        model.addAttribute("totalQuantitySold", totalQuantitySold); // Truyền giá trị vào model
         model.addAttribute("thongKes", uniqueThongKes);
         model.addAttribute("totalRevenue", totalRevenue);
         session.setAttribute("email", email);

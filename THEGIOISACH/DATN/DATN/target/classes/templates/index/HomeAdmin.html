@@ -136,6 +136,16 @@
         overflow-x: hidden; /* Chặn thanh trượt ngang */
         z-index: 1000;
     }
+    .btn-logout:hover {
+        background-color: #cc0000;
+        border-color: #FF9999;
+        color: white;
+    }
+    .btn-logout {
+        /* Có thể tùy chỉnh màu sắc và các thuộc tính khác cho nút Đăng xuất */
+        border: 1px solid red;
+        margin-left: 30%;
+    }
 </style>
 
 <body ng-app="myAppAdmin">
@@ -222,6 +232,10 @@
             <a href="#!Phân quyền" class="last">
                 <h4 class="title">Phân quyền</h4>
             </a>
+            <hr>
+                <form action="/logoutsadmin" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-logout">Đăng xuất</button>
+                </form>
         </div>
 
         <!-- Cột bên phải (col-sm-9) -->
