@@ -361,10 +361,6 @@
         <div class="chart-container">
             <canvas id="revenueChart"></canvas>
         </div>
-
-
-
-
     </div>
     <div th:if="${#lists.isEmpty(thongKes)}">
         <p>Không có thống kê nào.</p>
@@ -568,13 +564,15 @@
             updateChart(selectedYear); // Cập nhật biểu đồ với năm đã chọn
         });
 
-        // Cập nhật biểu đồ với năm đầu tiên có trong dữ liệu (ví dụ: năm 2021)
-        const firstYear = [...years][0]; // Lấy năm đầu tiên từ Set
-        updateChart(firstYear); // Hiển thị biểu đồ ban đầu
+        // Cập nhật biểu đồ với năm mới nhất
+        const latestYear = [...years].sort((a, b) => b - a)[0]; // Lấy năm mới nhất từ Set
+        updateChart(latestYear); // Hiển thị biểu đồ ban đầu với năm mới nhất
+
+        // Cập nhật dropdown để chọn năm mới nhất mặc định
+        yearSelect.value = latestYear;
     }
     /*]]>*/
 </script>
-
 <script th:inline="javascript">
 
     /*<![CDATA[*/

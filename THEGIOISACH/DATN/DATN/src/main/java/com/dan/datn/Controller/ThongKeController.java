@@ -38,22 +38,30 @@ public class ThongKeController {
     // Lấy thống kê doanh thu
     @GetMapping("/thongke")
     public String getThongKe(HttpSession session, Model model, RedirectAttributes redirectAttributes) {
-        String email = (String) session.getAttribute("email");
-        if (email == null) {
+        String ten = (String) session.getAttribute("ten");
+        if (ten == null) {
             redirectAttributes.addFlashAttribute("error", "Vui lòng đăng nhập với vai trò admin để xem thống kê.");
             return "redirect:/dangnhapadmin";
         }
 
         // Nếu đã đăng nhập
-        model.addAttribute("email", email);
+        model.addAttribute("email", ten);
+
         // Lấy dữ liệu thống kê
         List<ThongKe> thongKes = thongKeService.getAllThongKe();
-        // Lọc các sản phẩm trùng lặp và tính tổng
+
+        // Lọc các sản phẩm trùng lặp và tính tổng doanh thu
         List<ThongKe> uniqueThongKes = getUniqueThongKes(thongKes);
         double totalRevenue = 0;
+        int totalQuantitySold = 0;  // Khai báo biến để tính tổng số lượng sản phẩm bán được
+
+        // Duyệt qua danh sách ThongKe và tính tổng doanh thu và số lượng bán được
         for (ThongKe tk : uniqueThongKes) {
-            totalRevenue += tk.getThanhToan().getTongTien();
+            totalRevenue += tk.getThanhToan().getTongTien();  // Tổng doanh thu
+            totalQuantitySold += tk.getThanhToan().getSoLuong();  // Tổng số lượng sản phẩm bán được
         }
+
+        // Doanh thu theo tháng
         Map<String, Double> revenueByMonth = thongKes.stream()
                 .filter(thongKe -> thongKe.getThanhToan() != null && thongKe.getThanhToan().getNgayDatHang() != null) // Kiểm tra null
                 .collect(Collectors.groupingBy(
@@ -61,15 +69,12 @@ public class ThongKeController {
                             LocalDate date = thongKe.getThanhToan().getNgayDatHang().toInstant()
                                     .atZone(ZoneId.systemDefault())
                                     .toLocalDate();
-                            // Lấy tên tháng (loại bỏ năm)
                             return date.getMonth().getDisplayName(TextStyle.FULL, new Locale("vi", "VN")) + " " + date.getYear();
-                            },
+                        },
                         Collectors.summingDouble(thongKe -> thongKe.getThanhToan().getTongTien())
                 ));
 
-        for (Map.Entry<String, Double> entry : revenueByMonth.entrySet()) {
-            System.out.println("Tháng: " + entry.getKey() + ", Tổng doanh thu: " + entry.getValue());
-        }
+        // Doanh thu theo năm
         Map<Integer, Double> revenueByYear = thongKes.stream()
                 .filter(thongKe -> thongKe.getThanhToan() != null && thongKe.getThanhToan().getNgayDatHang() != null) // Kiểm tra null
                 .collect(Collectors.groupingBy(
@@ -77,40 +82,50 @@ public class ThongKeController {
                             LocalDate date = thongKe.getThanhToan().getNgayDatHang().toInstant()
                                     .atZone(ZoneId.systemDefault())
                                     .toLocalDate();
-                            return date.getYear();  // Lấy năm
+                            return date.getYear();
                         },
                         Collectors.summingDouble(thongKe -> thongKe.getThanhToan().getTongTien())
                 ));
 
-        for (Map.Entry<Integer, Double> entry : revenueByYear.entrySet()) {
-            System.out.println("Năm: " + entry.getKey() + ", Tổng doanh thu: " + entry.getValue());
-        }
+        // Log doanh thu theo tháng
+        revenueByMonth.forEach((key, value) -> System.out.println("Tháng: " + key + ", Tổng doanh thu: " + value));
 
+        // Log doanh thu theo năm
+        revenueByYear.forEach((key, value) -> System.out.println("Năm: " + key + ", Tổng doanh thu: " + value));
 
-        int totalQuantitySold = thongKes.stream()
-                .filter(thongKe -> thongKe.getThanhToan() != null)  // Kiểm tra null trước khi lấy số lượng
-                .mapToInt(thongKe -> thongKe.getThanhToan().getSoLuong())
-                .sum();
+        // Thử xử lý và truyền JSON vào model
         try {
             ObjectMapper objectMapper = new ObjectMapper();
+
+            // Doanh thu theo tháng
             String revenueJson = objectMapper.writeValueAsString(revenueByMonth);
+            System.out.println("Doanh thu theo tháng (JSON): " + revenueJson);
             model.addAttribute("revenueByMonthJson", revenueJson);
-            String revenueByYearJson = objectMapper.writeValueAsString(revenueByYear);
+
+            // Doanh thu theo năm
             objectMapper.configure(JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN, true);
-            model.addAttribute("revenueByYearJson", revenueByYearJson); // Truyền vào model// Truyền vào model
+            String revenueByYearJson = objectMapper.writeValueAsString(revenueByYear);
+            System.out.println("Doanh thu theo năm (JSON): " + revenueByYearJson);
+            model.addAttribute("revenueByYearJson", revenueByYearJson);
+
         } catch (Exception e) {
+            // Log lỗi nếu có
+            System.err.println("Lỗi khi xử lý JSON hoặc thêm vào model: " + e.getMessage());
             e.printStackTrace();
         }
 
-
-        model.addAttribute("totalQuantitySold", totalQuantitySold);
-//        model.addAttribute("revenueByMonth", revenueByMonth);
-        model.addAttribute("totalQuantitySold", totalQuantitySold); // Truyền giá trị vào model
+        // Truyền các giá trị vào model
         model.addAttribute("thongKes", uniqueThongKes);
         model.addAttribute("totalRevenue", totalRevenue);
-        session.setAttribute("email", email);
+        model.addAttribute("totalQuantitySold", totalQuantitySold);  // Thêm tổng số lượng sản phẩm đã bán vào model
+
+        // Cập nhật session với email
+        session.setAttribute("email", ten);
+
         return "index/ThongKeDoanhThu";
     }
+
+
 
     // Phương thức để lọc và gộp các sản phẩm trùng lặp
     private List<ThongKe> getUniqueThongKes(List<ThongKe> thongKes) {
@@ -173,6 +188,8 @@ public class ThongKeController {
         // Điền dữ liệu vào các dòng
         int rowIndex = 1;
         double totalRevenue = 0;
+        int totalProductsSold = 0; // Tổng sản phẩm bán được
+
         for (ThongKe thongKe : uniqueThongKes) {
             Row row = sheet.createRow(rowIndex++);
             row.createCell(0).setCellValue(thongKe.getThanhToan().getSanPham().getID_san_pham());
@@ -184,6 +201,7 @@ public class ThongKeController {
             priceCell.setCellStyle(currencyStyle);
 
             row.createCell(3).setCellValue(thongKe.getThanhToan().getSoLuong());
+            totalProductsSold += thongKe.getThanhToan().getSoLuong(); // Cộng tổng sản phẩm bán được
 
             // Định dạng tổng tiền
             Cell totalCell = row.createCell(4);
@@ -193,18 +211,31 @@ public class ThongKeController {
             totalRevenue += thongKe.getThanhToan().getTongTien();
         }
 
-        // Tạo dòng "Tổng doanh thu" ở một hàng riêng dưới các sản phẩm
-        Row totalRow = sheet.createRow(rowIndex);
-        totalRow.createCell(0).setCellValue("");  // Cột "ID Sản phẩm"
-        totalRow.createCell(1).setCellValue("");  // Cột "Tên sản phẩm"
-        totalRow.createCell(2).setCellValue("");  // Cột "Giá"
-        totalRow.createCell(3).setCellValue("Tổng doanh thu");  // Cột "Số lượng"
+        // Tạo dòng "Tổng sản phẩm bán được" ở một hàng riêng
+        Row totalProductsRow = sheet.createRow(rowIndex++);
+        totalProductsRow.createCell(0).setCellValue("");  // Cột "ID Sản phẩm"
+        totalProductsRow.createCell(1).setCellValue("");  // Cột "Tên sản phẩm"
+        totalProductsRow.createCell(2).setCellValue("");  // Cột "Giá"
+        totalProductsRow.createCell(3).setCellValue("Tổng sản phẩm bán được");  // Cột "Số lượng"
 
-        // Tạo style cho chữ "Tổng doanh thu" để in đậm
+        // Định dạng chữ "Tổng sản phẩm bán được" để in đậm
         CellStyle boldStyle = workbook.createCellStyle();
         Font boldFont = workbook.createFont();
         boldFont.setBold(true);  // Đặt font chữ in đậm
         boldStyle.setFont(boldFont);
+        totalProductsRow.getCell(3).setCellStyle(boldStyle);
+
+        // Ghi tổng sản phẩm bán được vào cột tiếp theo
+        Cell totalProductsCell = totalProductsRow.createCell(4);
+        totalProductsCell.setCellValue(totalProductsSold);
+        totalProductsCell.setCellStyle(boldStyle);
+
+        // Tạo dòng "Tổng doanh thu" ngay bên dưới
+        Row totalRow = sheet.createRow(rowIndex++);
+        totalRow.createCell(0).setCellValue("");  // Cột "ID Sản phẩm"
+        totalRow.createCell(1).setCellValue("");  // Cột "Tên sản phẩm"
+        totalRow.createCell(2).setCellValue("");  // Cột "Giá"
+        totalRow.createCell(3).setCellValue("Tổng doanh thu");  // Cột "Số lượng"
         totalRow.getCell(3).setCellStyle(boldStyle);
 
         // Định dạng tổng doanh thu
@@ -242,4 +273,5 @@ public class ThongKeController {
         // Trả về thông báo thành công
         return "redirect:/thongke";
     }
+
 }

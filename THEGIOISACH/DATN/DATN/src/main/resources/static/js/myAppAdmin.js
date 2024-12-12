@@ -8,9 +8,6 @@ app.config(function($routeProvider) {
         .when('/Home', {
             templateUrl: 'layoutAdmin/Home.html'
         })
-        .when('/Tạo quản lý mới', {
-            templateUrl: 'layoutAdmin/TaoMoi.html'
-        })
         .when('/Thống kê', {
             templateUrl: 'layoutAdmin/ThongKe.html'
         })
