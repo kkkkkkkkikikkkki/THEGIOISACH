@@ -22,8 +22,8 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
 
     @Override
     public boolean verifyCode(String email, String verificationCode) {
-        String storedCode = verificationCodes.get(email);
-        Long expiryTime = verificationCodeExpiry.get(email);
+        String storedCode = verificationCodes.get(email);//lấy ma otp được lưu cho email
+        Long expiryTime = verificationCodeExpiry.get(email);//lấy tgian hết hạn của otp
 
         // Debug in ra mã xác nhận
         System.out.println("Stored code: " + storedCode);
