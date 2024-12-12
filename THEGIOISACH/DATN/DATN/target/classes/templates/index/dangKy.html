@@ -157,55 +157,47 @@
         <div class="col-md-6">
             <div class="form-container">
                 <form action="/dangky" method="post">
-                    <h1 class="text-center">Đăng Ký</h1>
-                    <p class="text-center">Vui lòng điền thông tin để tạo tài khoản.</p>
+                    <div th:if="${error}" class="alert alert-danger text-center" role="alert">
+                        <p th:text="${error}"></p>
+                    </div>
+                    <!-- Thông báo thành công -->
+                    <div th:if="${success}" class="alert alert-success text-center" role="alert">
+                        <p th:text="${success}"></p>
+                    </div>
+                    <div class="row text-center">
+                        <h1>Đăng ký</h1>
+                    </div>
                     <hr>
-
                     <div class="mb-3">
                         <label class="form-label"><b>Tên đăng nhập</b></label>
                         <input type="text" placeholder="Nhập Tên đăng nhập" class="form-control" name="ten" required>
                     </div>
-                    
                     <div class="mb-3">
                         <label class="form-label"><b>Tên người dùng</b></label>
-                        <input type="text" placeholder="Nhập Tên đăng nhập" class="form-control" name="hovaten" required>
+                        <input type="text" placeholder="Nhập Tên người dùng" class="form-control" name="hovaten" required>
                     </div>
-
                     <div class="mb-3">
                         <label class="form-label"><b>Số điện thoại</b></label>
                         <input type="tel" placeholder="Nhập Số điện thoại" class="form-control" name="sdt" required>
                     </div>
-
                     <div class="mb-3">
                         <label class="form-label"><b>Email</b></label>
                         <input type="email" placeholder="Nhập Email" class="form-control" name="email" required>
                     </div>
-
                     <div class="mb-3">
                         <label class="form-label"><b>Mật khẩu</b></label>
-                        <input type="password" placeholder="Nhập Mật khẩu" class="form-control" name="matKhau" required>
+                        <input type="password" placeholder="Mật khẩu ít nhất 8 chữ số" class="form-control" name="matKhau" required>
                     </div>
-
                     <div class="mb-3">
                         <label class="form-label"><b>Nhập lại Mật khẩu</b></label>
                         <input type="password" placeholder="Nhập lại Mật khẩu" class="form-control" name="confirm-password" required>
                     </div>
-
                     <div class="mb-3">
-                        <label for="diachi">Địa chỉ:</label>
-                        <input class="form-control" placeholder="Nhập địa chỉ" type="text" id="diachi" name="diachi" required>
+                        <label class="form-label"><b>Địa chỉ</b></label>
+                        <textarea class="form-control" name="diachi" placeholder="Nhập địa chỉ cụ thể" style="height: 200px;" required></textarea>
                     </div>
-                    <p class="text-center">Bằng cách tạo tài khoản, bạn đồng ý với <a href="#" style="color:dodgerblue">Điều khoản & Quyền riêng tư</a>.</p>
-
-                    <div class="clearfix">
-                        <button type="submit" class="btn btn-primary signupbtn">Đăng Ký</button>
-                    </div>
-
-                    <div class="text-danger text-center">
-                        <p th:if="${error}" th:text="${error}"></p>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng Ký</button>
                 </form>
-
             </div>
         </div>
     </div>

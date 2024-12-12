@@ -43,12 +43,12 @@ public class UserServiceImpl implements UserService {
     public boolean isEmailExist(String email) {
         return userRepository.existsByEmail(email);
     }
-
+// bắt lỗi email
     @Override
     public boolean isPhoneExist(String sdt) {
         return userRepository.existsBySDT(sdt); // Gọi đúng phương thức
     }
-
+// bắt lỗi sai sdt
 
     @Override
     public void saveUser(User user) {
