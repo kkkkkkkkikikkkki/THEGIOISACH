@@ -1,0 +1,646 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Quản lý sản phẩm</title>
+    <link rel="shortcut icon" href="/image/logo.png" type="image/x-icon">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+
+</head>
+
+<style>
+    /* Tổng thể */
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #FFE4E1;
+        font-family: Arial, sans-serif;
+    }
+
+    .title {
+        color: #000000;
+        font-weight: bold;
+    }
+
+    /* Navbar */
+    .navbar {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Cách điệu form tìm kiếm */
+    form.d-flex input {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    form.d-flex button {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        padding: 0 15px;
+    }
+
+    /* Căn chỉnh phần Sidebar */
+    .box {
+        background-color: white;
+        padding: 20px;
+        border-radius: 15px 0px 0px 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    /* Hình ảnh người dùng (bỏ khung viền) */
+    .user-image img {
+        border: none;
+        /* Bỏ khung viền xung quanh ảnh */
+        padding: 10px;
+        border-radius: 50%;
+        background-color: #F8F8F8;
+        width: 80px;
+    }
+
+    .user-image {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    /* Các thẻ a trong sidebar (Bỏ gạch chân) */
+    a {
+        text-decoration: none;
+        /* Bỏ gạch chân */
+    }
+
+    a h4 {
+        color: #343a40;
+        font-size: 1.2rem;
+        padding: 10px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    a:hover h4 {
+        background-color: #87CEFA;
+        color: white;
+    }
+
+    /* Sidebar links last element */
+    .last h4 {
+        margin-bottom: 0;
+    }
+
+    /* Cột chính (Main content) */
+    #mainContent {
+        background-color: white;
+        padding: 30px;
+        border-radius: 0px 15px 15px 0px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Phần Header nội dung */
+    header h4 {
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    /* Margin cho hàng (row) trong nội dung */
+    .row {
+        margin-bottom: 20px;
+    }
+
+    /* Hiệu ứng hover cho các nút */
+    .btn-outline-secondary:hover,
+    .btn-dark:hover {
+        background-color: #FF9999;
+        border-color: #FF9999;
+        color: white;
+    }
+
+    hr {
+        border-top: 3px solid;
+    }
+
+    body {
+        background-color: #FFE4E1; /* Màu nền */
+    }
+
+    h2 {
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+    }
+
+    .table {
+        background-color: white; /* Màu nền của bảng */
+    }
+
+    .table th,
+    .table td {
+        vertical-align: middle;
+    }
+
+    .modal-header {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .modal-footer {
+        background-color: #f1f1f1;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border: none;
+    }
+
+    .btn-info:hover {
+        background-color: #138496;
+    }
+
+    .img-thumbnail {
+        border: 1px solid #007bff;
+    }
+
+    /* Custom styles for the modal */
+    .modal-content {
+        border-radius: 10px;
+    }
+
+    /* Styling the search bar */
+    .search-bar {
+        border-radius: 20px;
+        border: 1px solid #007bff;
+        padding: 10px 20px;
+    }
+
+    /* Custom card for add product button */
+    .add-product-card {
+        background-color: white; /* Màu nút thêm mới sản phẩm */
+        color: #007bff; /* Màu chữ nút thêm mới sản phẩm */
+        border-radius: 10px;
+        padding: 10px 15px;
+        text-align: center;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        border: 1px solid #007bff; /* Đường viền cho nút thêm sản phẩm */
+    }
+
+    .add-product-card:hover {
+        background-color: #FF9999; /* Màu nền khi hover */
+        color: white; /* Màu chữ khi hover */
+    }
+
+    #modalProductImage {
+        max-width: 100%;
+        max-height: 300px;
+        object-fit: cover; /* Đảm bảo hình ảnh hiển thị cân đối */
+        border: 1px solid #ccc;
+        padding: 5px;
+    }
+
+    #chooseImageButton {
+        display: inline-block;
+        margin-top: 15px;
+    }
+    /* Modal Content Layout */
+    /* Đặt chiều rộng modal là 80% */
+    .modal-dialog {
+        width: 80% !important;
+    }
+
+    /* Căn lề cho nội dung modal */
+    .modal-content {
+        display: flex;
+        justify-content: flex-start; /* Căn lề trái */
+    }
+
+    /* Căn lề cho phần hình ảnh (bên trái) */
+    .flex-shrink-0 {
+        width: 30%; /* Điều chỉnh chiều rộng của cột hình ảnh */
+        margin-right: 20px; /* Khoảng cách giữa cột hình ảnh và cột thông tin */
+    }
+
+    /* Căn lề cho phần thông tin sản phẩm (bên phải) */
+    .flex-grow-1 {
+        width: 70%; /* Điều chỉnh chiều rộng của cột thông tin sản phẩm */
+    }
+
+    /* Căn lề các trường nhập liệu */
+    .form-control {
+        text-align: left; /* Đảm bảo trường nhập liệu căn lề trái */
+    }
+
+
+    .alert {
+        text-align: center;
+        opacity: 0;
+        transform: translateY(30px); /* Bắt đầu từ dưới */
+        transition: opacity 0.5s, transform 0.5s;
+        width: 30%; /* Điều chỉnh chiều dài thành 80% của màn hình */
+        max-width: 400px; /* Chiều rộng tối đa */
+        position: fixed; /* Đặt thông báo cố định */
+        top: 20px; /* Đặt khoảng cách từ đầu trang */
+        left: 50%; /* Đặt thông báo ở giữa màn hình */
+        transform: translateX(-50%) translateY(30px); /* Đưa thông báo vào giữa màn hình */
+        z-index: 1050; /* Đảm bảo thông báo hiển thị trên các phần tử khác */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .alert.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0); /* Thông báo sẽ nổi lên giữa màn hình */
+    }
+
+    /* Đảm bảo thông báo không bị đè lên nhau */
+    .fixed-top {
+        z-index: 1050;
+    }
+
+    /* Tạo khoảng cách cho thông báo */
+    .m-2 {
+        margin: 20px;
+    }
+
+
+    .table th, .table td {
+        border-left: none;
+        border-right: none;
+    }
+
+    /* Hộp gợi ý tìm kiếm */
+    #suggestions-box {
+        position: absolute;
+        top: 100%;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden; /* Chặn thanh trượt ngang */
+        z-index: 1000;
+    }
+    .btn-logout:hover {
+        background-color: #cc0000;
+        border-color: #FF9999;
+        color: white;
+    }
+    .btn-logout {
+        /* Có thể tùy chỉnh màu sắc và các thuộc tính khác cho nút Đăng xuất */
+        border: 1px solid red;
+        margin-left: 30%;
+    }
+     .title {
+         color: #000000;
+         font-weight: bold;
+     }
+
+    hr {
+        border-top: 3px solid;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: #343a40;
+        margin-top: 30px;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        color: black;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    .table {
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .table th,
+    .table td {
+        vertical-align: middle;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Cách điệu cho phần chọn giới tính */
+    .form-check-input {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        accent-color: #007bff;
+        /* Đổi màu radio buttons thành xanh dương */
+    }
+
+    .gender-label {
+        font-size: 1.1rem;
+        margin-right: 20px;
+        color: #343a40;
+        /* Đổi màu chữ thành đậm hơn */
+    }
+
+    .form-label {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        color: #495057;
+    }
+
+    /* Cách điệu thông báo */
+    .alert {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-30px); /* Ẩn thông báo ban đầu */
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+        z-index: 1050;
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .alert.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0); /* Hiển thị thông báo ở giữa màn hình */
+    }
+
+
+    /* Tùy chỉnh màu sắc thông báo */
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    /* Giảm chiều rộng các phần tử khác nếu cần */
+    .container {
+        margin-top: 80px; /* Đảm bảo thông báo không bị đè bởi nội dung */
+    }
+
+</style>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="/image/logo.png" alt="Logo" width="́81" height="40">
+            </a>
+
+            <!-- Toggle button for small screens -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Navbar items (left aligned) -->
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#!Thông báo">Thông báo</a>
+                    </li>
+                    <li class="nav-item">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="row text-center" style="margin-top: 50px;">
+    <h1 class="title">Trang chủ quản lý</h1>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <!-- Cột bên trái (col-sm-2) -->
+        <div class="col-3 box" style="margin-top: 20px; ">
+            <!-- Căn giữa hình ảnh người dùng -->
+            <div class="user-image">
+                <a class="user" href="#">
+                    <img src="https://img.icons8.com/?size=100&id=15263&format=png&color=000000" alt="infor">
+                </a>
+                <h6>
+                    <i class="fas fa-user-circle fa-2x">
+                        <span th:text="${email}"></span>
+                    </i>
+                </h6>
+
+            </div>
+            <a href="/admin">
+                <h4 class="title">Home</h4>
+            </a>
+            <hr>
+            <a href="admin#!/Tạo%20quản%20lý%20mới"><h4 class="title">Tạo quản lý mới</h4>
+            </a>
+            <hr>
+            <a href="admin#!/Thống%20kê">
+                <h4 class="title">Thống kê</h4>
+            </a>
+            <hr>
+            <a href="admin#!/Quản%20lý%20người%20dùng">
+                <h4 class="title">Quản lý người dùng</h4>
+            </a>
+            <hr>
+            <a href="/quanlysanpham">
+                <h4 class="title">Quản lý sản phẩm</h4>
+            </a>
+            <hr>
+            <a href="admin#!/Phân%20quyền" class="last">
+                <h4 class="title">Phân quyền</h4>
+            </a>
+            <hr>
+            <form action="/logoutsadmin" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-logout">Đăng xuất</button>
+            </form>
+        </div>
+
+        <!-- Cột bên phải (col-sm-9) -->
+        <div class="col-9 box" id="mainContent" style="margin-top: 20px; ">
+            <div class="container">
+                <!-- Hiển thị thông báo lỗi -->
+                <div th:if="${error}" id="error-alert" class="alert alert-danger show text-center" role="alert">
+                    <p th:text="${error}"></p>
+                </div>
+                <div th:if="${success}" id="success-alert" class="alert alert-success show text-center" role="alert">
+                    <p th:text="${success}"></p>
+                </div>
+
+                <div class="row text-center">
+                    <h1 class="title">Tạo quản lý mới</h1>
+                </div>
+                <hr>
+                <form action="/dangkyadmin" method="post">
+                    <div class="row mb-3">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Tên đăng nhập</label>
+                                <input type="text" class="form-control" name="ten" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Họ và tên</label>
+                                <input type="text" class="form-control" name="hovaten" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Mật khẩu</label>
+                                <input type="password" class="form-control" name="matKhau" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Nhập lại mật khẩu</label>
+                                <input type="password" class="form-control" name="confirm-password" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Số điện thoại</label>
+                                <input type="text" class="form-control" name="sdt" required>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Địa chỉ</label>
+                                <input type="text" class="form-control" name="diachi" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary">Tạo mới</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- Footer -->
+<footer class="bg-light py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Company Info -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">THEGIOISACH</h5>
+                <p class="text-dark">© 2024 THEGIOISACH. Bản quyền thuộc về công ty THEGIOISACH.</p>
+            </div>
+
+            <!-- Services -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Dịch vụ</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Điều khoản hệ thống</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chính sách đổi trả</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chính sách vận chuyển</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chăm sóc khách hàng</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Hỗ trợ</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Câu hỏi thường gặp</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Liên hệ hỗ trợ</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Bảo mật và thanh toán</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Liên hệ</h5>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-phone"></i> 1900696969</li>
+                    <li><i class="fas fa-envelope"></i> thegioisach2024@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Thêm thư viện jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Thêm thư viện Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+        // Tự động ẩn thông báo sau 5 giây
+        setTimeout(() => {
+        const errorAlert = document.getElementById('error-alert');
+        const successAlert = document.getElementById('success-alert');
+
+        if (errorAlert) {
+        errorAlert.classList.remove('show'); // Ẩn thông báo lỗi
+    }
+        if (successAlert) {
+        successAlert.classList.remove('show'); // Ẩn thông báo thành công
+    }
+    }, 5000); // 5000ms = 5 giây
+</script>
+
+</script>
+
+</body>
+
+</html>

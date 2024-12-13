@@ -8,9 +8,6 @@ app.config(function($routeProvider) {
         .when('/Home', {
             templateUrl: 'layoutAdmin/Home.html'
         })
-        .when('/Tạo quản lý mới', {
-            templateUrl: 'layoutAdmin/TaoMoi.html'
-        })
         .when('/Thống kê', {
             templateUrl: 'layoutAdmin/ThongKe.html'
         })
@@ -45,7 +42,7 @@ app.controller('NguoiDungController', function($scope, $http) {
         try {
             await $http.delete('/api/nguoidung/' + userId);
             $scope.users = $scope.users.filter(function(user) {
-                return user.ID_nguoi_dung !== userId;
+                return user.id_nguoi_dung !== userId;
             });
             alert('Người dùng đã được xóa thành công!');
             $scope.loadUsers();

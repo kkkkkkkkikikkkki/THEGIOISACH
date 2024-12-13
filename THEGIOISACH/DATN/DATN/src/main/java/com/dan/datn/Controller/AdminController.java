@@ -18,12 +18,12 @@ public class AdminController {
     @GetMapping("/admin")
     public String showAdminPage(HttpSession session, Model model) {
         // Lấy email từ session
-        String email = (String) session.getAttribute("email");
+        String ten = (String) session.getAttribute("ten");
 
         // Kiểm tra xem email có tồn tại trong session không
-        if (email != null) {
+        if (ten != null) {
             // Nếu có, tiếp tục xử lý trang quản trị
-            model.addAttribute("email", email);  // Truyền email vào model nếu cần
+            model.addAttribute("email", ten);  // Truyền email vào model nếu cần
             return "index/HomeAdmin";  // Hiển thị trang quản trị
         } else {
             // Nếu không có email trong session (chưa đăng nhập), chuyển hướng về trang admin
@@ -38,12 +38,12 @@ public class AdminController {
     }
 
     @PostMapping("/loginadmin")
-    public String loginAdmin(@RequestParam("email") String email,
+    public String loginAdmin(@RequestParam("ten") String ten,
                         @RequestParam("password") String matKhau,
                         Model model,
                         HttpSession session) {
-        if (userServiceImpl.validateAdmin(email, matKhau)) {
-            session.setAttribute("email", email);
+        if (userServiceImpl.validateAdmin(ten, matKhau)) {
+            session.setAttribute("ten", ten);
             return "redirect:/admin";
         } else {
             model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
