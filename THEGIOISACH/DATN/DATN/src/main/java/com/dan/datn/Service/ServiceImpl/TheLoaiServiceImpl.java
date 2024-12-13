@@ -18,4 +18,7 @@ public class TheLoaiServiceImpl {
     public TheLoai save(TheLoai theLoai) {
         return theLoaiRepository.save(theLoai);
     }
+
+    public void saveTheLoai(TheLoai theLoai) {
+    }
 }

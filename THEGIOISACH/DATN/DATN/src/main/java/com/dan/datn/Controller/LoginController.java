@@ -35,17 +35,43 @@ public class LoginController {
     }
     @PostMapping("/logouts")
     public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-        session.invalidate();
+        // Xóa username khỏi session
+        session.removeAttribute("username");
 
+        // Không cần xóa toàn bộ cookie nếu chỉ xử lý username
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                cookie.setMaxAge(0);
-                cookie.setPath("/");
-                response.addCookie(cookie);
+                // Kiểm tra nếu cookie có tên liên quan đến username thì mới xóa
+                if ("username".equals(cookie.getName())) {
+                    cookie.setMaxAge(0);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
+                }
             }
         }
         return "redirect:/trangchu";
+    }
+
+
+    @PostMapping("/logoutsadmin")
+    public String logoutadmin(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        // Xóa username khỏi session
+        session.removeAttribute("email");
+
+        // Không cần xóa toàn bộ cookie nếu chỉ xử lý username
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                // Kiểm tra nếu cookie có tên liên quan đến username thì mới xóa
+                if ("email".equals(cookie.getName())) {
+                    cookie.setMaxAge(0);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
+                }
+            }
+        }
+        return "redirect:/admin";
     }
 }
 

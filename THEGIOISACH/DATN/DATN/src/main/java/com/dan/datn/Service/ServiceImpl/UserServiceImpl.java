@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean validateAdmin(String email, String matKhau) {
-        Optional<User> userOptional = userRepository.findByEmail(email);
+    public boolean validateAdmin(String ten, String matKhau) {
+        Optional<User> userOptional = userRepository.findByTen(ten);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             if (user.getRole() == 0 && user.getMat_khau().equals(matKhau)) {

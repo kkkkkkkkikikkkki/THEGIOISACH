@@ -2,9 +2,9 @@ package com.dan.datn.Controller;
 
 import com.dan.datn.Entity.Hinh;
 import com.dan.datn.Entity.TheLoai;
-import com.dan.datn.Service.HinhService;
-import com.dan.datn.Service.ServiceImpl.SanPhamServiceImpl;
 import com.dan.datn.Entity.SanPham;
+import com.dan.datn.Service.HinhService;
+import com.dan.datn.Service.SanPhamService;
 import com.dan.datn.Service.ServiceImpl.TheLoaiServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,50 +16,51 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 
 @Controller
 public class QuanLySanPhamController {
 
-    private final SanPhamServiceImpl sanPhamService;
+    private final SanPhamService sanPhamService;
     private final HinhService hinhService;
     private final TheLoaiServiceImpl theLoaiService;
 
     @Autowired
-    public QuanLySanPhamController(SanPhamServiceImpl sanPhamService, HinhService hinhService, TheLoaiServiceImpl theLoaiService) {
-        this.sanPhamService = sanPhamService;
+    public QuanLySanPhamController(SanPhamService sanPhamService, HinhService hinhService, TheLoaiServiceImpl theLoaiService) {
+        this.sanPhamService = sanPhamService;  // Dùng interface SanPhamService
         this.hinhService = hinhService;
         this.theLoaiService = theLoaiService;
     }
 
     @GetMapping("/quanlysanpham")
-    public String quanlysanpham(Model model, HttpSession session,
-                                RedirectAttributes redirectAttributes) {
-        String email = (String) session.getAttribute("email");
-        if (email == null) {
+    public String quanlysanpham(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+        String ten = (String) session.getAttribute("ten");
+        if (ten == null) {
             redirectAttributes.addFlashAttribute("error", "Vui lòng đăng nhập với vai trò admin để xem quản lý sản phẩm.");
             return "redirect:/dangnhapadmin";
         }
-        List<SanPham> products = sanPhamService.getAllSanPham();  // Lấy danh sách sản phẩm từ service
+        List<SanPham> products = sanPhamService.getAllSanPham();  // Sử dụng phương thức từ SanPhamService
         model.addAttribute("products", products);  // Thêm sản phẩm vào model để Thymeleaf sử dụng
-        model.addAttribute("email", email);
+        model.addAttribute("email", ten);
         return "layout/Quanlysanpham";  // Trả về view
     }
 
     @GetMapping("/api/image/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
-        SanPham sanPham = sanPhamService.getSanPhamById(id);
-        if (sanPham == null || sanPham.getHinh() == null) {
+        try {
+            SanPham sanPham = sanPhamService.getSanPhamById(id);  // Sử dụng phương thức từ SanPhamService
+            if (sanPham == null || sanPham.getHinh() == null) {
+                return ResponseEntity.notFound().build();
+            }
+            byte[] imageBytes = Base64.getDecoder().decode(sanPham.getHinh().getBase64MainImage());
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_PNG)
+                    .body(imageBytes);
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }
-        byte[] imageBytes = Base64.getDecoder().decode(sanPham.getHinh().getBase64MainImage());
-        return ResponseEntity.ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(imageBytes);
     }
-
 
     @PostMapping("/addProduct")
     public String addProduct(@RequestParam(value = "imageMain", required = false) MultipartFile imageMain,
@@ -83,14 +84,9 @@ public class QuanLySanPhamController {
             Hinh newHinh = hinhService.saveMultipleImages(
                     imageMain.getBytes(), image1.getBytes(), image2.getBytes(), image3.getBytes(), image4.getBytes());
 
-            // 2. Thêm thể loại vào bảng TheLoai nếu chưa có
+            // 2. Thêm thể loại vào bảng TheLoai
             TheLoai theLoai = theLoaiService.findByCategoryName(category);
-            if (theLoai == null) {
-                model.addAttribute("error", "Thêm sản phẩm không thành công" );
-
-                theLoai.setTheLoai(category);
-                // Lưu thể loại mới vào DB
-            }
+            theLoaiService.saveTheLoai(theLoai);
 
             // 3. Tạo sản phẩm mới
             SanPham sanPham = new SanPham();
@@ -102,12 +98,12 @@ public class QuanLySanPhamController {
             sanPham.setMoTa(description);
             sanPham.setSoLuongTongSanPham(stockQuantity); // Đảm bảo thông tin tổng số lượng sản phẩm được lưu
             sanPham.setTheLoai(theLoai);
-            sanPham.setHinh(newHinh);  // Gán hình ảnh đã lưu vào sản phẩms
+            sanPham.setHinh(newHinh);  // Gán hình ảnh đã lưu vào sản phẩm
             sanPham.setSoLuongTonKho(soluongtonkho);
             sanPham.setSoLuongDaBan(soluongdaban);
 
             // 4. Lưu sản phẩm vào DB
-            sanPhamService.saveSanPham(sanPham);
+            sanPhamService.saveSanPham(sanPham);  // Sử dụng phương thức từ SanPhamService
 
             // Thêm thông báo thành công vào model
             redirectAttributes.addFlashAttribute("success", "Sản phẩm đã được thêm thành công!");
