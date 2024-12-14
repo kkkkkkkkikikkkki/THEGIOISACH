@@ -10,6 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="shortcut icon" href="/image/logo.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <style>
@@ -168,6 +170,109 @@
         overflow-x: hidden; /* Chặn thanh trượt ngang */
         z-index: 1000;
     }
+
+
+
+
+    .dashboard-container {
+        padding: 20px;
+        max-width: 1900px;
+        margin: 0 auto;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+
+    .stat-card {
+        flex: 1;
+        background: white;
+        margin: 0 10px;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-card h2 {
+        margin: 0;
+        font-size: 18px;
+        color: #666;
+    }
+
+    .stat-card p {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin: 10px 0 0;
+    }
+
+    .chart-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        height: 400px; /* Chiều cao container */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .chart-container select {
+        margin-bottom: 20px; /* Khoảng cách giữa dropdown và canvas */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f4f4f9;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    #yearSelect {
+        padding: 10px 15px; /* Tăng khoảng cách trong */
+        font-size: 16px; /* Kích thước chữ */
+        border: 1px solid #ddd; /* Viền mờ */
+        margin-bottom: 25%;
+        border-radius: 8px; /* Bo tròn các góc */
+        background-color: #fff; /* Màu nền trắng */
+        color: #333; /* Màu chữ */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng cho dropdown */
+        width: auto; /* Chiều rộng tự động tùy thuộc vào nội dung */
+        margin-right: 15px; /* Khoảng cách giữa dropdown và các phần tử khác */
+        cursor: pointer; /* Con trỏ khi di chuột vào */
+        transition: all 0.3s ease; /* Hiệu ứng mượt khi hover */
+    }
+
+    #yearSelect:hover {
+        border-color: #66b3ff; /* Màu viền khi hover */
+        box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2); /* Tăng độ sáng bóng khi hover */
+    }
+
+    #yearSelect:focus {
+        outline: none; /* Xóa viền khi đang focus */
+        border-color: #007bff; /* Màu viền khi focus */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Bóng khi focus */
+    }
 </style>
 <body>
 <header>
@@ -230,6 +335,33 @@
     <div class="row text-center" style="margin-top: 30px;">
         <h1>Thống kê doanh thu</h1>
     </div>
+    <div class="dashboard-container">
+        <div class="stats">
+            <div class="stat-card">
+                <h2>Tổng Số Lượng Sản Phẩm Đã Bán</h2>
+                <p th:text="${totalQuantitySold}">0</p>  <!-- Hiển thị tổng số lượng sản phẩm đã bán -->
+            </div>
+
+            <div class="stat-card">
+                <h2>Tổng Doanh Thu</h2>
+                <p id="total-revenue" th:text="thongKe.tongDoanhThu">0</p>
+            </div>
+        </div>
+
+
+
+        <h3 style="text-align: center">Doanh Thu Tháng</h3>
+        <div class="chart-container">
+            <select id="yearSelect">
+                <!-- Các option sẽ được thêm vào từ mã JavaScript -->
+            </select>
+            <canvas id="trafficChart"></canvas>
+        </div>
+        <h3 style="text-align: center; margin-top: 20px">Doanh Thu Năm</h3>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
     <div th:if="${#lists.isEmpty(thongKes)}">
         <p>Không có thống kê nào.</p>
     </div>
@@ -265,20 +397,8 @@
                 <!-- Tổng tiền -->
                 <!-- Hiển thị giá trị tongTien (Double) từ ThanhToan -->
                 <td class="gia-san-pham" th:text="${thongKe.thanhToan.tongTien}"></td>
-
             </tr>
             </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="5">
-                    <!-- Hiển thị tổng doanh thu -->
-                    <h2 style="margin-top: 50px" class="total-revenue">
-                        Tổng doanh thu:
-                        <span id="total-revenue" th:text="thongKe.tongDoanhThu">0 VND</span>
-                    </h2>
-                </td>
-            </tr>
-            </tfoot>
         </table>
     </div>
 </div>
@@ -328,7 +448,248 @@
         </div>
     </footer>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const revenueByMonth = /*[[${revenueByMonthJson}]]*/;
+
+    console.log("Dữ liệu doanh thu theo tháng:", revenueByMonth);
+
+    if (revenueByMonth) {
+        const revenueData = JSON.parse(revenueByMonth);
+
+        // Lấy tất cả các năm từ dữ liệu doanh thu theo tháng
+        const years = new Set(); // Set để loại bỏ trùng lặp
+        Object.keys(revenueData).forEach(month => {
+            const year = month.split(" ")[2]; // Lấy năm từ chuỗi tháng (split bằng " " và lấy phần tử thứ 2)
+            years.add(year);
+        });
+
+        // Cập nhật dropdown với các năm
+        const yearSelect = document.getElementById('yearSelect');
+        years.forEach(year => {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        });
+
+        // Hàm để lọc doanh thu theo năm
+        function filterRevenueByYear(year) {
+            // Tất cả 12 tháng theo thứ tự cố định
+            const allMonths = [
+                "tháng 1", "tháng 2", "tháng 3", "tháng 4", "tháng 5", "tháng 6",
+                "tháng 7", "tháng 8", "tháng 9", "tháng 10", "tháng 11", "tháng 12"
+            ];
+
+            // Duyệt qua các tháng và ánh xạ dữ liệu doanh thu
+            const monthsWithRevenue = allMonths.map(month => {
+                const fullMonthName = `${month} ${year}`; // Thêm năm vào tên tháng
+                return {
+                    month: month, // Tên tháng (không bao gồm năm)
+                    revenue: revenueData[fullMonthName] || 0 // Doanh thu hoặc 0 nếu không có dữ liệu
+                };
+            });
+
+            return monthsWithRevenue;
+        }
+
+        // Hàm để cập nhật biểu đồ
+        let trafficChart = null; // Khai báo biến trafficChart ngoài hàm để có thể truy cập và hủy biểu đồ cũ
+
+        function updateChart(year) {
+            const monthsWithRevenue = filterRevenueByYear(year);
+
+            // Không sắp xếp, giữ nguyên thứ tự các tháng
+            const sortedMonths = monthsWithRevenue.map(item => item.month); // Thứ tự tháng cố định
+            const sortedRevenues = monthsWithRevenue.map(item => item.revenue); // Doanh thu tương ứng
+
+            // Hủy biểu đồ cũ nếu tồn tại
+            if (trafficChart) {
+                trafficChart.destroy();
+            }
+
+            // Tạo biểu đồ mới
+            const ctx = document.getElementById('trafficChart').getContext('2d');
+            trafficChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sortedMonths, // Thứ tự tháng
+                    datasets: [{
+                        label: 'Doanh thu',
+                        data: sortedRevenues, // Dữ liệu doanh thu
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.raw.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Lắng nghe sự kiện thay đổi của dropdown
+        document.getElementById('yearSelect').addEventListener('change', function(event) {
+            const selectedYear = event.target.value;
+            console.log("Năm đã chọn:", selectedYear); // Kiểm tra giá trị của năm đã chọn
+            updateChart(selectedYear); // Cập nhật biểu đồ với năm đã chọn
+        });
+
+        // Cập nhật biểu đồ với năm mới nhất
+        const latestYear = [...years].sort((a, b) => b - a)[0]; // Lấy năm mới nhất từ Set
+        updateChart(latestYear); // Hiển thị biểu đồ ban đầu với năm mới nhất
+
+        // Cập nhật dropdown để chọn năm mới nhất mặc định
+        yearSelect.value = latestYear;
+    }
+    /*]]>*/
+</script>
+<script th:inline="javascript">
+
+    /*<![CDATA[*/
+    const revenueByYear = /*[[${revenueByYearJson}]]*/; // Đây là dữ liệu doanh thu theo năm
+    console.log("Dữ liệu doanh thu theo năm:", revenueByYear);
+
+    if (revenueByYear) {
+        // Chuyển dữ liệu JSON thành đối tượng
+        const revenueData = JSON.parse(revenueByYear);
+        const years = Object.keys(revenueData); // Các năm (trục X)
+        const revenues = Object.values(revenueData); // Doanh thu (trục Y)
+
+        // Tạo biểu đồ
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(ctx, {
+            type: 'bar', // Biểu đồ cột
+            data: {
+                labels: years, // Trục X: Năm
+                datasets: [{
+                    label: 'Doanh thu (VND)', // Nhãn của dữ liệu
+                    data: revenues, // Trục Y: Doanh thu
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)', // Màu nền của các cột
+                    borderColor: 'rgba(54, 162, 235, 1)', // Màu viền của các cột
+                    borderWidth: 1 // Độ dày của viền
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top', // Vị trí của chú thích
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                // Định dạng tooltip để hiển thị doanh thu với định dạng tiền tệ
+                                return tooltipItem.raw.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Năm' // Tên trục X
+                        }
+                    },
+                    y: {
+                        beginAtZero: false, // Bắt đầu trục Y từ 0
+                        title: {
+                            display: true,
+                            text: 'Doanh thu (VND)' // Tên trục Y
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                // Định dạng số trên trục Y thành tiền tệ
+                                return value.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    /*]]>*/
+</script>
+
+
+
 <script>
+    /*<![CDATA[*/
+    var successMessage = /*[[${session.success}]]*/ '';
+    var errorMessage = /*[[${session.error}]]*/ '';
+
+    if (successMessage || errorMessage) {
+        // Show the modal if there's a success or error message
+        var myModal = new bootstrap.Modal(document.getElementById('notificationModal'), {
+            keyboard: false
+        });
+        myModal.show();
+    }
+    /*]]>*/
+    document.addEventListener("DOMContentLoaded", function () {
+        let successMessage = /*[[${session.success}]]*/ '';
+        let errorMessage = /*[[${session.error}]]*/ '';
+
+        if (successMessage || errorMessage) {
+            // Show the modal if there's a success or error message
+            var myModal = new bootstrap.Modal(document.getElementById('notificationModal'), {
+                keyboard: false
+            });
+            myModal.show();
+        }
+
+        // Tự động ẩn thông báo sau 5 giây
+        function hideMessage(messageId) {
+            setTimeout(function () {
+                var message = document.getElementById(messageId);
+                if (message) {
+                    message.classList.remove('show');  // Ẩn thông báo
+                }
+            }, 5000);  // Sau 5 giây
+        }
+
+        // Đảm bảo thông báo sẽ ẩn tự động sau khi xuất hiện
+        let successAlert = document.getElementById('success-alert');
+        let errorAlert = document.getElementById('error-alert');
+        if (successAlert) {
+            successAlert.classList.add('show');  // Hiển thị thông báo thành công
+            hideMessage('success-alert');
+        }
+        if (errorAlert) {
+            errorAlert.classList.add('show');  // Hiển thị thông báo lỗi
+            hideMessage('error-alert');
+        }
+    });
     document.addEventListener("DOMContentLoaded", function () {
         let totalRevenue = 0;
 
@@ -369,118 +730,7 @@
             currency: 'VND'
         }).format(totalRevenue);
     });
-
-
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    /*<![CDATA[*/
-    var successMessage = /*[[${session.success}]]*/ '';
-    var errorMessage = /*[[${session.error}]]*/ '';
-
-    if (successMessage || errorMessage) {
-        // Show the modal if there's a success or error message
-        var myModal = new bootstrap.Modal(document.getElementById('notificationModal'), {
-            keyboard: false
-        });
-        myModal.show();
-    }
-    /*]]>*/
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let successMessage = /*[[${session.success}]]*/ '';
-        let errorMessage = /*[[${session.error}]]*/ '';
-
-        if (successMessage || errorMessage) {
-            // Show the modal if there's a success or error message
-            var myModal = new bootstrap.Modal(document.getElementById('notificationModal'), {
-                keyboard: false
-            });
-            myModal.show();
-        }
-
-        // Tự động ẩn thông báo sau 5 giây
-        function hideMessage(messageId) {
-            setTimeout(function () {
-                var message = document.getElementById(messageId);
-                if (message) {
-                    message.classList.remove('show');  // Ẩn thông báo
-                }
-            }, 5000);  // Sau 5 giây
-        }
-
-        // Đảm bảo thông báo sẽ ẩn tự động sau khi xuất hiện
-        let successAlert = document.getElementById('success-alert');
-        let errorAlert = document.getElementById('error-alert');
-        if (successAlert) {
-            successAlert.classList.add('show');  // Hiển thị thông báo thành công
-            hideMessage('success-alert');
-        }
-        if (errorAlert) {
-            errorAlert.classList.add('show');  // Hiển thị thông báo lỗi
-            hideMessage('error-alert');
-        }
-    });
-
-    // chức năng tìm kiếm sản phẩm theo keyword
-    document.addEventListener("DOMContentLoaded", () => {
-        const searchInput = document.getElementById("search-input");
-        const suggestionsBox = document.getElementById("suggestions-box");
-
-        searchInput.addEventListener("input", () => {
-            const keyword = searchInput.value.trim();
-
-            if (keyword.length === 0) {
-                suggestionsBox.innerHTML = "";
-                return;
-            }
-
-            fetch(`/suggestions?keyword=${keyword}`)
-                .then(response => response.json())
-                .then(suggestions => {
-                    suggestionsBox.innerHTML = "";
-
-                    if (suggestions.length > 0) {
-                        suggestions.forEach(suggestion => {
-                            const item = document.createElement("a");
-                            item.classList.add("list-group-item", "list-group-item-action");
-                            item.textContent = suggestion;
-                            item.href = `/search?keyword=${suggestion}`;
-
-                            item.addEventListener("click", () => {
-                                searchInput.value = suggestion;
-                                suggestionsBox.innerHTML = "";
-                            });
-
-                            suggestionsBox.appendChild(item);
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.error("Error fetching suggestions:", error);
-                });
-        });
-
-        // Đóng gợi ý khi nhấp ra ngoài
-        document.addEventListener("click", (e) => {
-            if (!searchInput.contains(e.target)) {
-                suggestionsBox.innerHTML = "";
-            }
-        });
-    });
-
-</script>
-
-
-
 </html>
