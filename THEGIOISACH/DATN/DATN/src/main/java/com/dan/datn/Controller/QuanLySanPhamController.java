@@ -6,6 +6,7 @@ import com.dan.datn.Entity.SanPham;
 import com.dan.datn.Service.HinhService;
 import com.dan.datn.Service.SanPhamService;
 import com.dan.datn.Service.ServiceImpl.TheLoaiServiceImpl;
+import com.dan.datn.Service.TheLoaiService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,17 +22,13 @@ import java.util.List;
 
 @Controller
 public class QuanLySanPhamController {
-
-    private final SanPhamService sanPhamService;
-    private final HinhService hinhService;
-    private final TheLoaiServiceImpl theLoaiService;
-
     @Autowired
-    public QuanLySanPhamController(SanPhamService sanPhamService, HinhService hinhService, TheLoaiServiceImpl theLoaiService) {
-        this.sanPhamService = sanPhamService;  // Dùng interface SanPhamService
-        this.hinhService = hinhService;
-        this.theLoaiService = theLoaiService;
-    }
+    private SanPhamService sanPhamService;
+    @Autowired
+    private HinhService hinhService;
+    @Autowired
+    private TheLoaiService theLoaiService;
+
 
     @GetMapping("/quanlysanpham")
     public String quanlysanpham(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
@@ -42,14 +39,14 @@ public class QuanLySanPhamController {
         }
         List<SanPham> products = sanPhamService.getAllSanPham();  // Sử dụng phương thức từ SanPhamService
         model.addAttribute("products", products);  // Thêm sản phẩm vào model để Thymeleaf sử dụng
-        model.addAttribute("email", ten);
+        model.addAttribute("ten", ten);
         return "layout/Quanlysanpham";  // Trả về view
     }
 
-    @GetMapping("/api/image/{id}")
+    @GetMapping("/image/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
         try {
-            SanPham sanPham = sanPhamService.getSanPhamById(id);  // Sử dụng phương thức từ SanPhamService
+            SanPham sanPham = sanPhamService.getSanPhamById(id);
             if (sanPham == null || sanPham.getHinh() == null) {
                 return ResponseEntity.notFound().build();
             }
@@ -64,30 +61,98 @@ public class QuanLySanPhamController {
 
     @PostMapping("/addProduct")
     public String addProduct(@RequestParam(value = "imageMain", required = false) MultipartFile imageMain,
-                             @RequestParam("image1") MultipartFile image1,
-                             @RequestParam("image2") MultipartFile image2,
-                             @RequestParam("image3") MultipartFile image3,
-                             @RequestParam("image4") MultipartFile image4,
-                             @RequestParam("name") String name,
-                             @RequestParam("category") String category,
-                             @RequestParam("author") String author,
-                             @RequestParam("publisher") String publisher,
-                             @RequestParam("productionDate") String productionDate,
-                             @RequestParam("price") Integer price,
-                             @RequestParam("description") String description,
-                             @RequestParam("stockQuantity") Integer stockQuantity,
-                             @RequestParam("soluongtonkho") Integer soluongtonkho,
-                             @RequestParam("soluongdaban") Integer soluongdaban,
+                             @RequestParam(value = "image1", required = false) MultipartFile image1,
+                             @RequestParam(value = "image2", required = false) MultipartFile image2,
+                             @RequestParam(value = "image3", required = false) MultipartFile image3,
+                             @RequestParam(value = "image4", required = false) MultipartFile image4,
+                             @RequestParam(value = "name", required = false) String name,
+                             @RequestParam(value = "category", required = false) String category,
+                             @RequestParam(value = "author", required = false) String author,
+                             @RequestParam(value = "publisher", required = false) String publisher,
+                             @RequestParam(value = "productionDate", required = false) String productionDate,
+                             @RequestParam(value = "price", required = false) Integer price,
+                             @RequestParam(value = "description", required = false) String description,
+                             @RequestParam(value = "stockQuantity", required = false) Integer stockQuantity,
+                             @RequestParam(value = "soluongtonkho", required = false) Integer soluongtonkho,
+                             @RequestParam(value = "soluongdaban", required = false) Integer soluongdaban,
                              Model model, RedirectAttributes redirectAttributes) {
         try {
+            if (imageMain == null || imageMain.isEmpty()
+            && image1 == null || image1.isEmpty()
+            && name == null || name.trim().isEmpty()
+            && category == null || category.trim().isEmpty()
+            && author == null || author.trim().isEmpty()
+            && publisher == null || publisher.trim().isEmpty()
+            && productionDate == null || productionDate.trim().isEmpty()
+            && stockQuantity == null
+            && soluongtonkho == null
+            && soluongdaban == null
+            && description == null || description.trim().isEmpty()
+            && price == null
+
+            ) {
+                redirectAttributes.addFlashAttribute("error", "Bạn chưa điền dữ liệu.");
+                return "redirect:/quanlysanpham";
+            }
+            // Kiểm tra các trường không được để trống
+            if (imageMain == null || imageMain.isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Hình ảnh chính không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (image1 == null || image1.isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Hình ảnh phụ thứ nhất không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (name == null || name.trim().isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Tên sản phẩm không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (category == null || category.trim().isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Thể loại không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (author == null || author.trim().isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Tác giả không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (publisher == null || publisher.trim().isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Nhà xuất bản không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (productionDate == null || productionDate.trim().isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Ngày sản xuất không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (price == null) {
+                redirectAttributes.addFlashAttribute("error", "Giá sản phẩm không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (description == null || description.trim().isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Mô tả sản phẩm không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (stockQuantity == null) {
+                redirectAttributes.addFlashAttribute("error", "Số lượng sản phẩm không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (soluongtonkho == null) {
+                redirectAttributes.addFlashAttribute("error", "Số lượng tồn kho không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (soluongdaban == null) {
+                redirectAttributes.addFlashAttribute("error", "Số lượng đã bán không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+
             // 1. Thêm hình ảnh vào bảng Hinh
             Hinh newHinh = hinhService.saveMultipleImages(
                     imageMain.getBytes(), image1.getBytes(), image2.getBytes(), image3.getBytes(), image4.getBytes());
 
             // 2. Thêm thể loại vào bảng TheLoai
             TheLoai theLoai = theLoaiService.findByCategoryName(category);
-            theLoaiService.saveTheLoai(theLoai);
-
+            if (theLoai == null) {
+                redirectAttributes.addFlashAttribute("error", "Thể loại không tồn tại.");
+                return "redirect:/quanlysanpham";            }
             // 3. Tạo sản phẩm mới
             SanPham sanPham = new SanPham();
             sanPham.setTenSach(name);

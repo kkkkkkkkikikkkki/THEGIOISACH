@@ -113,5 +113,9 @@ public class TrangChuController {
     public String showHuongDanMuaHang(){
         return "index/huongDanMuaHang";
     }
+
+    @GetMapping("/hotrokhachhang")
+    public String showHoTroKhachHang(){return "index/HoTroKhachHang";
+    }
 }
 

@@ -21,6 +21,8 @@ public class SanPhamServicesImpl implements SanPhamService {
     // Lấy danh sách tất cả sản phẩm
     @Override
     public List<SanPham> getAllSanPham() {
+        List<SanPham> sanPhams = sanPhamRepository.findAll();
+        System.out.println("Danh sách sản phẩm: " + sanPhams);
         return sanPhamRepository.findAll();
     }
 

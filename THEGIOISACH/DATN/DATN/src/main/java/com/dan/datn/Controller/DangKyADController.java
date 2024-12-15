@@ -82,13 +82,13 @@ public class DangKyADController {
             userServiceImpl.saveAdmin(user);  // Lưu admin mới vào cơ sở dữ liệu
 
             // Thông báo thành công
-            redirectAttributes.addFlashAttribute("success", "Đăng ký admin thành công! Bạn có thể đăng nhập ngay bây giờ.");
+            model.addAttribute("success", "Đăng ký admin thành công! Bạn có thể đăng nhập ngay bây giờ.");
             return "index/LoginAdmin";  // Chuyển hướng đến trang đăng nhập admin
 
         } catch (Exception e) {
             // Log lỗi chi tiết nếu có ngoại lệ
             e.printStackTrace();
-            redirectAttributes.addFlashAttribute("error", "Đã có lỗi xảy ra, vui lòng thử lại.");
+            model.addAttribute("error", "Đã có lỗi xảy ra, vui lòng thử lại.");
             return "redirect:/taomoi";  // Quay lại trang tạo admin
         }
     }
