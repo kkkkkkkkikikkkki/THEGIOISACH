@@ -270,7 +270,7 @@
         </div>
         <div class="row">
             <!-- Card sản phẩm -->
-            <!-- Card sản phẩm -->
+            <!-- Xu huong mua sam -->
             <div class="col-md-3" th:each="sanpham : ${sanphamsNoiBat}" style="margin-bottom: 15px">
                 <div class="card">
                     <a th:href="@{/sanpham/{id}(id=${sanpham.ID_san_pham})}" class="text-decoration-none text-dark">
@@ -278,7 +278,7 @@
                              alt="Hình sản phẩm">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${sanpham.tenSach}">Sản phẩm 1</h5>
-                            <p class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></p>
+                            <p class="gia-san-pham" style="color: red" th:attr="data-price=${sanpham.gia}"></p>
                             <!-- Nút nằm trên cùng hàng -->
                         </div>
                     </a>
@@ -315,7 +315,7 @@
             </div>
         </div>
     </div>
-    <!-- Xu huong mua sam -->
+    <!-- Card sản phẩm -->
     <div class="container mt-4 trend-section">
         <div class="row">
             <h2 class="text-center custom-font">Sản phẩm</h2>
