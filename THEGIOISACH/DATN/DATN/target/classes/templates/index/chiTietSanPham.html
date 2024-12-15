@@ -341,32 +341,24 @@
 
     /* Nút mua ngay */
     .btn-pink {
-        background-color: #007bff;
-        /* Màu xanh */
+        background-color: white;
         color: black;
-        /* Màu chữ trắng */
-        border: none;
-        /* Bỏ viền */
-        border-radius: 5px;
-        /* Bo tròn nhẹ góc nút */
+        border: 2px solid black;
+        border-radius: 4px;
         padding: 10px 20px;
-        /* Tăng padding để nút trông cân đối hơn */
-        font-size: 1rem;
-        /* Kích thước chữ hợp lý */
-        transition: transform 0.2s ease;
-        /* Chỉ hiệu ứng phóng to */
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
     }
 
     .btn-pink:hover {
-        background-color: #007bff;
-        /* Giữ màu nền không đổi */
-        color: black;
-        /* Giữ màu chữ không đổi */
-        border: none;
-        /* Giữ viền không đổi */
-        transform: scale(1.05);
-        /* Hiệu ứng phóng to nhẹ khi hover */
+        background-color: #ff7f7f;
+        color: white;
+        border-color: #ff7f7f;
+        transform: scale(1.1); /* Phóng to 10% */
+        cursor: pointer;
     }
+
     body{
         background-color: #FFE4E1;
     }
@@ -401,109 +393,150 @@
         }
     }
 
-    .related-products .col-sm-2, .related-products .col-md-2 {
-        position: relative;
-        height: 520px;
-    }
+    /*.related-products .col-sm-2, .related-products .col-md-2 {*/
+    /*    position: relative;*/
+    /*    height: 520px;*/
+    /*}*/
 
-    .related-products .col-sm-2 .border {
-        position: relative;
-        height: 100%;
-    }
+    /*.related-products .col-sm-2 .border {*/
+    /*    position: relative;*/
+    /*    height: 100%;*/
+    /*}*/
 
-    .related-products .col-sm-2 .border .price-container {
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        text-align: center;
-    }
+    /*.related-products .col-sm-2 .border .price-container {*/
+    /*    position: absolute;*/
+    /*    bottom: 10px;*/
+    /*    left: 50%;*/
+    /*    transform: translateX(-50%);*/
+    /*    width: 100%;*/
+    /*    text-align: center;*/
+    /*}*/
 
-    .related-products .col-sm-2 .border .price-container p {
-        margin: 0;
-    }
+    /*.related-products .col-sm-2 .border .price-container p {*/
+    /*    margin: 0;*/
+    /*}*/
 
-    .related-products .col-sm-2, .related-products .col-md-2 {
-        margin-right: 15px;
-        margin-left: 15px;
-    }
+    /*.related-products .col-sm-2, .related-products .col-md-2 {*/
+    /*    margin-right: 15px;*/
+    /*    margin-left: 15px;*/
+    /*}*/
 
-    .related-products .col-sm-2:last-child, .related-products .col-md-2:last-child {
-        margin-right: 0; /* Removes right margin on the last item */
-    }
+    /*.related-products .col-sm-2:last-child, .related-products .col-md-2:last-child {*/
+    /*    margin-right: 0; !* Removes right margin on the last item *!*/
+    /*}*/
 
+    /*.related-products-container {*/
+    /*    position: relative;*/
+    /*    display: flex;*/
+    /*    align-items: center;*/
+    /*    justify-content: center;*/
+    /*}*/
+
+    /*.related-products {*/
+    /*    display: flex;*/
+    /*    overflow-x: auto;*/
+    /*    scroll-behavior: smooth;*/
+    /*}*/
+
+    /*.related-products .col-sm-2, .related-products .col-md-2 {*/
+    /*    margin-right: 15px;*/
+    /*    margin-left: 15px;*/
+    /*}*/
+
+    /*.related-products .col-sm-2:last-child, .related-products .col-md-2:last-child {*/
+    /*    margin-right: 0;*/
+    /*}*/
+
+    /*.related-products-container {*/
+    /*    position: relative;*/
+    /*    display: flex;*/
+    /*    align-items: center;*/
+    /*    justify-content: center;*/
+    /*    overflow: hidden; !* Hide horizontal scrollbar *!*/
+    /*}*/
+
+    /*.related-products {*/
+    /*    display: flex;*/
+    /*    flex-wrap: nowrap;*/
+    /*    overflow-x: auto;*/
+    /*    scroll-behavior: smooth;*/
+    /*    -webkit-overflow-scrolling: touch; !* Enable smooth scrolling for iOS devices *!*/
+    /*}*/
+
+    /*.related-products .col-sm-2, .related-products .col-md-2 {*/
+    /*    margin-right: 20px;*/
+    /*    margin-left: 20px;*/
+    /*}*/
+
+    /*.related-products .col-sm-2:last-child, .related-products .col-md-2:last-child {*/
+    /*    margin-right: 0;*/
+    /*}*/
+
+    /*.scroll-left, .scroll-right {*/
+    /*    position: absolute;*/
+    /*    top: 50%;*/
+    /*    transform: translateY(-50%);*/
+    /*    background-color: rgba(0, 0, 0, 0.5);*/
+    /*    color: white;*/
+    /*    border: none;*/
+    /*    font-size: 30px;*/
+    /*    cursor: pointer;*/
+    /*    z-index: 1;*/
+    /*    padding: 10px;*/
+    /*}*/
+
+    /*.scroll-left {*/
+    /*    left: 0;*/
+    /*}*/
+
+    /*.scroll-right {*/
+    /*    right: 0;*/
+    /*}*/
+
+    /*.scroll-left:hover, .scroll-right:hover {*/
+    /*    background-color: rgba(0, 0, 0, 0.7);*/
+    /*}*/
     .related-products-container {
-        position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
-    }
-
-    .related-products {
-        display: flex;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-    }
-
-    .related-products .col-sm-2, .related-products .col-md-2 {
-        margin-right: 15px;
-        margin-left: 15px;
-    }
-
-    .related-products .col-sm-2:last-child, .related-products .col-md-2:last-child {
-        margin-right: 0;
-    }
-
-    .related-products-container {
         position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden; /* Hide horizontal scrollbar */
+        overflow: hidden;
     }
 
-    .related-products {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch; /* Enable smooth scrolling for iOS devices */
-    }
-
-    .related-products .col-sm-2, .related-products .col-md-2 {
-        margin-right: 20px;
-        margin-left: 20px;
-    }
-
-    .related-products .col-sm-2:last-child, .related-products .col-md-2:last-child {
-        margin-right: 0;
-    }
-
-    .scroll-left, .scroll-right {
+    .scroll-button {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         background-color: rgba(0, 0, 0, 0.5);
-        color: white;
         border: none;
-        font-size: 30px;
+        color: white;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
         cursor: pointer;
-        z-index: 1;
-        padding: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    .scroll-button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
     }
 
     .scroll-left {
-        left: 0;
+        left: 10px;
     }
 
     .scroll-right {
-        right: 0;
+        right: 10px;
     }
 
-    .scroll-left:hover, .scroll-right:hover {
-        background-color: rgba(0, 0, 0, 0.7);
+    .scroll-button i {
+        font-size: 18px;
     }
+
     .alert {
         max-width: 400px; /* Giới hạn chiều rộng */
         position: fixed; /* Đặt vị trí cố định */
@@ -676,7 +709,9 @@
         <div class="related-products-wrapper mt-4">
             <h4>Sản phẩm liên quan</h4>
             <div class="related-products-container position-relative">
-                <button class="scroll-left" onclick="scrollLeft()">&#9664;</button>
+                <button class="scroll-button scroll-left" onclick="scrollToLeft()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
                 <div class="related-products d-flex">
                     <div class="col-sm-2 col-md-2 text-center" th:each="sanPhamLienQuan : ${sanPhamLienQuan}" style="margin-bottom: 15px">
                         <div class="border p-2 rounded" style="height: 520px">
@@ -691,7 +726,9 @@
                     </div>
                     <!-- Repeat the above div for each product -->
                 </div>
-                <button class="scroll-right" onclick="scrollRight()">&#9654;</button>
+                <button class="scroll-button scroll-right" onclick="scrollToRight()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
 
 
@@ -852,21 +889,20 @@
         window.location.href = `/api/checkout?productIds=${productId}&quantities=1`;
     });
 
-    function scrollLeft() {
+    function scrollToLeft() {
         const container = document.querySelector('.related-products');
-        container.scrollBy({
-            left: -300,  // Adjust this value based on how far you want to scroll per click
-            behavior: 'smooth'
-        });
+        if (container) {
+            container.scrollBy({ left: -200, behavior: 'smooth' });
+        }
     }
 
-    function scrollRight() {
+    function scrollToRight() {
         const container = document.querySelector('.related-products');
-        container.scrollBy({
-            left: 300,  // Adjust this value based on how far you want to scroll per click
-            behavior: 'smooth'
-        });
+        if (container) {
+            container.scrollBy({ left: 200, behavior: 'smooth' });
+        }
     }
+
 
     // chức năng tìm kiếm sản phẩm theo keyword
     document.addEventListener("DOMContentLoaded", () => {
