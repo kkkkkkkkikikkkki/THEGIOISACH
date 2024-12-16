@@ -31,8 +31,14 @@ public class DangKyController {
                                @RequestParam String diachi,
                                @RequestParam String sdt, // Đổi kiểu dữ liệu sang String
                                @RequestParam String email) {
+
         if (ten == null || ten.trim().isEmpty()) {
             model.addAttribute("error", "Tên đăng nhập không được để trống.");
+            return "index/dangKy";
+        }
+        String regex = "^[a-zA-Z0-9]+$";
+        if (!ten.matches(regex)) {
+            model.addAttribute("error", "Tên đăng nhập không được chứa khoảng trắng, chữ có dấu hoặc ký tự đặc biệt.");
             return "index/dangKy";
         }
         if (!sdt.startsWith("0")) { // Kiểm tra số điện thoại phải bắt đầu bằng 0
