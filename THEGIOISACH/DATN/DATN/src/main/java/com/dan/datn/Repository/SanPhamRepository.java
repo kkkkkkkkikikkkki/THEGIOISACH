@@ -43,13 +43,12 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Long> {
     List<SanPham> findSanPhamsByPriceRange(@Param("minPrice") Integer minPrice, @Param("maxPrice") Integer maxPrice);
 
     @Query("SELECT s FROM SanPham s " +
-            "JOIN FETCH s.hinh h " +
             "JOIN FETCH s.theLoai tl " +
             "WHERE LOWER(s.tenSach) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
             "OR LOWER(s.nhaXuatBan) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
             "OR LOWER(s.tacGia) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
-            "OR LOWER(s.moTa) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
-            "OR LOWER(tl.theLoai) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+            "OR LOWER(s.moTa) LIKE LOWER(CONCAT('%', :keyword, '%')) " )
+//            "OR LOWER(tl.theLoai) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<SanPham> searchAllFields(String keyword);
 
     @Query("SELECT s.tenSach FROM SanPham s WHERE LOWER(s.tenSach) LIKE LOWER(CONCAT('%', :keyword, '%'))")

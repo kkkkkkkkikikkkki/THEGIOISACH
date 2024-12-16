@@ -42,7 +42,6 @@ public class QuanLySanPhamController {
         model.addAttribute("ten", ten);
         return "layout/Quanlysanpham";  // Trả về view
     }
-
     @PostMapping("/updateProduct")
     public String updateProduct(
             @RequestParam("modalProductid") Long id,
@@ -91,10 +90,6 @@ public class QuanLySanPhamController {
             return "redirect:/quanlysanpham";
         }
     }
-
-
-
-
     @GetMapping("/api/image/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
         try {
