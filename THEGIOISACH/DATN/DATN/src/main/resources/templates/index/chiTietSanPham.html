@@ -165,16 +165,7 @@
         /* Bo góc cho hình ảnh */
     }
 
-    .related-products-wrapper {
-        background-color: #fff;
-        /* Nền trắng cho ô bọc */
-        border-radius: 10px;
-        /* Bo góc cho ô bọc */
-        padding: 20px;
-        /* Padding cho ô bọc */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        /* Thêm đổ bóng cho ô bọc */
-    }
+
 
     /* Textarea cho đánh giá sản phẩm */
     textarea {
@@ -393,115 +384,12 @@
         }
     }
 
-    /*.related-products .col-sm-2, .related-products .col-md-2 {*/
-    /*    position: relative;*/
-    /*    height: 520px;*/
-    /*}*/
-
-    /*.related-products .col-sm-2 .border {*/
-    /*    position: relative;*/
-    /*    height: 100%;*/
-    /*}*/
-
-    /*.related-products .col-sm-2 .border .price-container {*/
-    /*    position: absolute;*/
-    /*    bottom: 10px;*/
-    /*    left: 50%;*/
-    /*    transform: translateX(-50%);*/
-    /*    width: 100%;*/
-    /*    text-align: center;*/
-    /*}*/
-
-    /*.related-products .col-sm-2 .border .price-container p {*/
-    /*    margin: 0;*/
-    /*}*/
-
-    /*.related-products .col-sm-2, .related-products .col-md-2 {*/
-    /*    margin-right: 15px;*/
-    /*    margin-left: 15px;*/
-    /*}*/
-
-    /*.related-products .col-sm-2:last-child, .related-products .col-md-2:last-child {*/
-    /*    margin-right: 0; !* Removes right margin on the last item *!*/
-    /*}*/
-
     /*.related-products-container {*/
-    /*    position: relative;*/
     /*    display: flex;*/
     /*    align-items: center;*/
-    /*    justify-content: center;*/
-    /*}*/
-
-    /*.related-products {*/
-    /*    display: flex;*/
-    /*    overflow-x: auto;*/
-    /*    scroll-behavior: smooth;*/
-    /*}*/
-
-    /*.related-products .col-sm-2, .related-products .col-md-2 {*/
-    /*    margin-right: 15px;*/
-    /*    margin-left: 15px;*/
-    /*}*/
-
-    /*.related-products .col-sm-2:last-child, .related-products .col-md-2:last-child {*/
-    /*    margin-right: 0;*/
-    /*}*/
-
-    /*.related-products-container {*/
     /*    position: relative;*/
-    /*    display: flex;*/
-    /*    align-items: center;*/
-    /*    justify-content: center;*/
-    /*    overflow: hidden; !* Hide horizontal scrollbar *!*/
+    /*    overflow: hidden;*/
     /*}*/
-
-    /*.related-products {*/
-    /*    display: flex;*/
-    /*    flex-wrap: nowrap;*/
-    /*    overflow-x: auto;*/
-    /*    scroll-behavior: smooth;*/
-    /*    -webkit-overflow-scrolling: touch; !* Enable smooth scrolling for iOS devices *!*/
-    /*}*/
-
-    /*.related-products .col-sm-2, .related-products .col-md-2 {*/
-    /*    margin-right: 20px;*/
-    /*    margin-left: 20px;*/
-    /*}*/
-
-    /*.related-products .col-sm-2:last-child, .related-products .col-md-2:last-child {*/
-    /*    margin-right: 0;*/
-    /*}*/
-
-    /*.scroll-left, .scroll-right {*/
-    /*    position: absolute;*/
-    /*    top: 50%;*/
-    /*    transform: translateY(-50%);*/
-    /*    background-color: rgba(0, 0, 0, 0.5);*/
-    /*    color: white;*/
-    /*    border: none;*/
-    /*    font-size: 30px;*/
-    /*    cursor: pointer;*/
-    /*    z-index: 1;*/
-    /*    padding: 10px;*/
-    /*}*/
-
-    /*.scroll-left {*/
-    /*    left: 0;*/
-    /*}*/
-
-    /*.scroll-right {*/
-    /*    right: 0;*/
-    /*}*/
-
-    /*.scroll-left:hover, .scroll-right:hover {*/
-    /*    background-color: rgba(0, 0, 0, 0.7);*/
-    /*}*/
-    .related-products-container {
-        display: flex;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-    }
 
     .scroll-button {
         position: absolute;
@@ -587,6 +475,61 @@
         overflow-y: auto;
         overflow-x: hidden; /* Chặn thanh trượt ngang */
         z-index: 1000;
+    }
+    /*.related-products .col-sm-2 {*/
+    /*    display: flex;*/
+    /*    flex-direction: column; !* Sắp xếp các phần tử theo cột *!*/
+    /*    justify-content: space-between; !* Đẩy các phần tử cách nhau tối đa *!*/
+    /*    !*height: 100%; !* Chiều cao cố định *!*!*/
+    /*}*/
+    .related-products-wrapper {
+        background-color: #fff;
+        /* Nền trắng cho ô bọc */
+        border-radius: 10px;
+        /* Bo góc cho ô bọc */
+        padding: 20px;
+        /* Padding cho ô bọc */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Thêm đổ bóng cho ô bọc */
+
+    }
+    .related-products .border{
+        height: 350px;
+
+    }
+    .related-products .product-name {
+        flex-grow: 1; /* Tên sách chiếm không gian còn lại */
+        text-align: center; /* Căn giữa tên sách */
+    }
+
+    .related-products .price-container {
+        text-align: center; /* Căn giữa giá */
+        margin-top: auto; /* Đẩy phần giá xuống dưới cùng */
+    }
+    .related-products .col-sm-2 {
+        max-width: 250px; /* Giới hạn chiều rộng của mỗi khung sản phẩm */
+        margin: 0 10px; /* Giảm khoảng cách giữa các khung */
+    }
+
+    /*.related-products .border {*/
+    /*    height: 50px; !* Giảm chiều cao tổng thể của khung *!*/
+    /*    padding: 10px; !* Giảm padding *!*/
+    /*}*/
+
+    .related-products img {
+        width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng */
+        height: 200px; /* Giảm kích thước chiều cao của hình ảnh */
+        object-fit: cover; /* Đảm bảo không méo hình */
+    }
+
+    .related-products .product-name {
+        font-size: 14px; /* Giảm kích thước font tên sách */
+        margin-top: 5px; /* Giảm khoảng cách trên */
+    }
+
+    .related-products .price-container p {
+        font-size: 16px; /* Giảm kích thước font của giá */
+        /*margin-top: 10px; !* Tăng khoảng cách giữa tên sách và giá *!*/
     }
 
 </style>
@@ -680,7 +623,10 @@
         </div>
         <div class="col-md-6 product-details" th:each="sanpham : ${sanpham}">
             <h2 th:text="${sanpham.tenSach}">Tên Sách - Tập - Quà tặng kèm</h2>
-            <p class="rating">⭐⭐⭐⭐⭐(5/5) | Đã bán (<span th:text="${sanpham.soLuongDaBan}"></span>)</p>
+            <p class="rating">
+                 <span th:text="${#numbers.formatDecimal(averageRating, 1, 1)}"></span>/5⭐
+                | Đã bán (<span th:text="${sanpham.soLuongDaBan}"></span>)
+            </p>
             <p ><strong>Giá: </strong><span class="gia-san-pham" th:attr="data-price=${sanpham.gia}"></span></p>
             <p><strong>Số lượng sản phẩm: </strong><span th:text="${sanpham.soLuongTonKho}"></span></p>
             <p><strong>Nhà xuất bản: </strong><span th:text="${sanpham.nhaXuatBan}"></span></p>
@@ -714,9 +660,12 @@
                 </button>
                 <div class="related-products d-flex">
                     <div class="col-sm-2 col-md-2 text-center" th:each="sanPhamLienQuan : ${sanPhamLienQuan}" style="margin-bottom: 15px">
-                        <div class="border p-2 rounded" style="height: 520px">
+                        <div class="border p-2 rounded d-flex flex-column">
                             <a th:href="@{/sanpham/{id}(id=${sanPhamLienQuan.ID_san_pham})}" style="text-decoration: none; color: black">
-                                <img th:src="'data:image/png;base64,' + ${sanPhamLienQuan.hinh.base64Image}" alt="Sản phẩm liên quan" class="img-fluid" style="aspect-ratio: 9 / 16;object-fit: cover;">
+                                <img th:src="'data:image/png;base64,' + ${sanPhamLienQuan.hinh.base64Image}"
+                                     alt="Sản phẩm liên quan"
+                                     class="img-fluid"
+                                     style="aspect-ratio: 9 / 16; object-fit: cover;">
                                 <p class="mt-2 product-name text-dark" th:text="${sanPhamLienQuan.tenSach}"></p>
                             </a>
                             <div class="price-container">
@@ -724,16 +673,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Repeat the above div for each product -->
                 </div>
                 <button class="scroll-button scroll-right" onclick="scrollToRight()">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
-
-
-
         </div>
+
         <div class="review-wrapper mt-4">
             <h4>Đánh giá sản phẩm</h4>
             <!-- Form đánh giá -->

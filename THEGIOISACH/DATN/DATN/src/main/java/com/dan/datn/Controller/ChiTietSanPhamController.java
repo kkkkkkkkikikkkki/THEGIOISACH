@@ -41,8 +41,10 @@ public class ChiTietSanPhamController {
                 .orElseThrow(() -> new IllegalArgumentException("Sản phẩm không tồn tại với ID: " + id));
         session.setAttribute("sanpham", sanpham);  // Lưu sản phẩm vào session
         model.addAttribute("sanpham", sanpham);
-
-        // Kiểm tra sản phẩm có hình ảnh không và chuyển các hình ảnh thành base64
+// Lấy trung bình số sao
+        Double averageRating = danhGiaServiceImpl.getAverageRating(sanpham);
+        model.addAttribute("averageRating", averageRating);
+        // Kiểm tra sản phẩm có hình ảnh không và chuyển các     hình ảnh thành base64
         if (sanpham.getHinh() != null) {
             Hinh hinh = sanpham.getHinh();
 

@@ -283,11 +283,11 @@
                              alt="Hình sản phẩm">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${sanpham.tenSach}">Sản phẩm 1</h5>
-                            <p class="gia-san-pham" style="color: red" th:attr="data-price=${sanpham.gia}"></p>
+                            <p class="gia-san-pham" style="color: red; font-size: larger    " th:attr="data-price=${sanpham.gia}"></p>
                             <!-- Nút nằm trên cùng hàng -->
                         </div>
                     </a>
-                    <div class="card-body">
+                    <div class="card-body" style="margin-top: -50px">
                         <div class="btn-group">
                             <input type="hidden" name="productId" th:value="${sanpham.ID_san_pham}" />
                             <button type="button" class="btn btn-pink mua-ngay">
