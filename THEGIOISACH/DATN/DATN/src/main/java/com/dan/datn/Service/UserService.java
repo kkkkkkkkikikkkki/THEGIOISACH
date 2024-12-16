@@ -9,6 +9,7 @@ public interface UserService {
     boolean validateUser(String ten, String matKhau);
     boolean validateAdmin(String ten, String matKhau);
     boolean isEmailExist(String email);
+    boolean istenExist(String ten);
     boolean isPhoneExist(String sdt);
     void saveUser(User user);
     void saveAdmin(User user);

@@ -42,4 +42,14 @@ public class SanPhamServicesImpl implements SanPhamService {
     public SanPham saveSanPham(SanPham sanPham) {
         return sanPhamRepository.save(sanPham);
     }
+
+    @Override
+    public boolean deleteProductById(Long id) {
+        Optional<SanPham> product = sanPhamRepository.findById(id);
+        if (product.isPresent()) {
+            sanPhamRepository.delete(product.get());
+            return true;  // Deletion successful
+        }
+        return false;  // Product not found, deletion failed
+    }
 }

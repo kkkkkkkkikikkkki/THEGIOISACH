@@ -149,10 +149,10 @@
         color: white;
         border-color: #FF9999;
     }
-     .custom-font {
-         font-family: 'Times New Roman', serif;
-         font-weight: bold; /* Làm chữ in đậm */
-     }
+    .custom-font {
+        font-family: 'Times New Roman', serif;
+        font-weight: bold; /* Làm chữ in đậm */
+    }
 
 </style>
 
@@ -210,7 +210,7 @@
                 <li th:if="${username != null}" class="nav-item">
                     <a href="/thongtintaikhoan" class="nav-link">
                         <i class="fas fa-user-circle fa-2x"></i> <!-- Thay thế bằng icon thông tin -->
-<!--                        <span th:text="${username}"></span>-->
+                        <!--                        <span th:text="${username}"></span>-->
                     </a>
                 </li>
 
@@ -232,7 +232,7 @@
                         <img src="/image/banner%20sach%202.png" class="d-block w-100 h-100" alt="Banner 2">
                     </div>
                     <div class="carousel-item">
-                        <img src="/image/Banner%20sach%203.png" class="d-block w-100 h-100" alt="Banner 3">
+                        <img src="/image/banner%20sach%203.png" class="d-block w-100 h-100" alt="Banner 3">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel"
@@ -250,13 +250,8 @@
 
         <!-- Phần bên phải là hai hình ảnh tĩnh xếp chồng nhau -->
         <div class="col-md-4 d-flex flex-column">
-            <a href="http://localhost:8080/sanpham/8" target="_blank">
-                <img src="/image/banner%204.png" class="img-fluid mb-2 half-height" alt="Banner Tĩnh 1">
-            </a>
-            <a href="http://localhost:8080/sanpham/17" target="_blank">
-                <img src="/image/banner%205.png" class="img-fluid half-height" alt="Banner Tĩnh 2">
-            </a>
-
+            <img src="/image/banner%20sach%204.png" class="img-fluid mb-2 half-height" alt="Banner Tĩnh 1">
+            <img src="/image/banner%20sach%205.png" class="img-fluid half-height" alt="Banner Tĩnh 2">
         </div>
     </div>
 </section>
@@ -370,7 +365,7 @@
                 <h5 class="mb-4 text-dark">Hỗ trợ</h5>
                 <ul class="list-unstyled">
                     <li><a th:href="@{/cauhoithuonggap}" class="text-dark" style="text-decoration: none;">Câu hỏi thường gặp</a></li>
-                    <li><a th:href="@{/hotrokhachhang}" class="text-dark" style="text-decoration: none;">Liên hệ hỗ trợ</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Liên hệ hỗ trợ</a></li>
                     <li><a th:href="@{/huongdanmuahang}" class="text-dark" style="text-decoration: none;">Hướng dẫn mua hàng</a></li>
                     <li><a href="#" class="text-dark" style="text-decoration: none;">Bảo mật và thanh toán</a></li>
                 </ul>

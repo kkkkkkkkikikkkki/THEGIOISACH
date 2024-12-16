@@ -45,6 +45,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean istenExist(String ten) {
+        return userRepository.existsByten(ten);
+    }
+
+    @Override
     public boolean isPhoneExist(String sdt) {
         return userRepository.existsBySDT(sdt); // Gọi đúng phương thức
     }
