@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8ebf850-c5f4-452f-938b-02b982f4be7b" name="Changes" comment="done hinh">
+    <list default="true" id="e8ebf850-c5f4-452f-938b-02b982f4be7b" name="Changes" comment="done dia ly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/ThongKe.java" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/java/com/dan/datn/Entity/ThongKe.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/image/banner sach 3.png" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/static/image/banner sach 3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Quanlysanpham.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/src/main/resources/templates/layout/Quanlysanpham.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/static/image/banner sach 3.png" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/static/image/banner sach 3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangKy.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangKy.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangNhap.html" beforeDir="false" afterPath="$PROJECT_DIR$/DATN/DATN/target/classes/templates/index/dangNhap.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +284,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734331809697</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="done dia ly">
+      <option name="closed" value="true" />
+      <created>1734346458557</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1734346458557</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +313,8 @@
     <MESSAGE value="don sanpham service" />
     <MESSAGE value="done" />
     <MESSAGE value="done hinh" />
-    <option name="LAST_COMMIT_MESSAGE" value="done hinh" />
+    <MESSAGE value="done dia ly" />
+    <option name="LAST_COMMIT_MESSAGE" value="done dia ly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

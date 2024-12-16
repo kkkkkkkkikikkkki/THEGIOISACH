@@ -17,7 +17,7 @@ public class ThongKe {
     @Column(name = "tong_doanh_thu")
     private Integer tongDoanhThu;
     // Relationships
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "ID_thanh_toan", nullable = false) // Foreign key referencing Thanh_Toan
     private ThanhToan thanhToan; // This is mapped to the Thanh_Toan table
 }
