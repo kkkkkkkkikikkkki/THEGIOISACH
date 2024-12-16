@@ -5,10 +5,10 @@ import com.dan.datn.Entity.TheLoai;
 import com.dan.datn.Entity.SanPham;
 import com.dan.datn.Service.HinhService;
 import com.dan.datn.Service.SanPhamService;
-import com.dan.datn.Service.ServiceImpl.TheLoaiServiceImpl;
 import com.dan.datn.Service.TheLoaiService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -43,7 +43,59 @@ public class QuanLySanPhamController {
         return "layout/Quanlysanpham";  // Trả về view
     }
 
-    @GetMapping("/image/{id}")
+    @PostMapping("/updateProduct")
+    public String updateProduct(
+            @RequestParam("modalProductid") Long id,
+            @RequestParam("modalProductName") String name,
+            @RequestParam("modalProductCategory") String categoryName,
+            @RequestParam("modalProductAuthor") String author,
+            @RequestParam("modalProductPublisher") String publisher,
+            @RequestParam("modalProductDesc") String description,
+            @RequestParam("modalProductPrice") Integer price,
+            @RequestParam("modalProductSoldQty") Integer soldQuantity,
+            @RequestParam("modalProductStockQty") Integer stockQuantity,
+            @RequestParam("modalProductTotalQty") Integer totalQuantity,
+            Model model, HttpSession session, RedirectAttributes redirectAttributes){
+
+        try {
+            // Xử lý cập nhật sản phẩm như bình thường
+            SanPham product = sanPhamService.getSanPhamById(id);
+            if (product == null) {
+                return "redirect:/quanlysanpham";
+            }
+
+            // Cập nhật thông tin sản phẩm
+            product.setTenSach(name);
+            product.setTacGia(author);
+            product.setNhaXuatBan(publisher);
+            product.setMoTa(description);
+            product.setGia(price);
+            product.setSoLuongTonKho(stockQuantity);
+            product.setSoLuongDaBan(soldQuantity);
+            product.setSoLuongTongSanPham(totalQuantity);
+
+            // Cập nhật thể loại
+            TheLoai theLoai = theLoaiService.findByCategoryName(categoryName);
+            if (theLoai == null) {
+                return "redirect:/quanlysanpham";
+            }
+            product.setTheLoai(theLoai);
+
+            // Lưu sản phẩm đã cập nhật
+            sanPhamService.saveSanPham(product);
+            redirectAttributes.addFlashAttribute("success", "Thay đổi thông tin thành công.");
+            return "redirect:/quanlysanpham";
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("error", "Thay đổi thông tin không thành công.");
+            return "redirect:/quanlysanpham";
+        }
+    }
+
+
+
+
+    @GetMapping("/api/image/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
         try {
             SanPham sanPham = sanPhamService.getSanPhamById(id);
@@ -56,6 +108,17 @@ public class QuanLySanPhamController {
                     .body(imageBytes);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/quanlysanpham/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        boolean deleted = sanPhamService.deleteProductById(id);
+
+        if (deleted) {
+            return ResponseEntity.ok().build();  // Return HTTP 200 OK
+        } else {
+            return ResponseEntity.status(404).build();  // Return HTTP 404 Not Found
         }
     }
 

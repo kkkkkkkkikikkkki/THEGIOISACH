@@ -11,7 +11,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByTen(String ten);
     boolean existsByEmail(String email);
-    boolean existsBySDT(String sdt); // Đổi tên phương thức cho khớp với Entity
+    boolean existsBySDT(String sdt);
+    boolean existsByten(String ten); // Đổi tên phương thức cho khớp với Entity
     Optional<User> findByEmail(String email);// tìm admin bằng email
     List<User> findByRole(int role);
 

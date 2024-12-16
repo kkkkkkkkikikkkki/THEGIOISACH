@@ -401,29 +401,30 @@
                 <table class="table table-bordered table-striped table-hover">
                     <thead class="table-dark">
                     <tr style="text-align: center">
-                        <th style="width: 50px">ID</th>
-                        <th>Tên Sản Phẩm</th>
-                        <th style="width: 100px">Thể Loại</th>
-                        <th>Tác Giả</th>
+                        <th style="width: 250px;">Tên Sản Phẩm</th> <!-- Increased width for "Tên Sản Phẩm" -->
+                        <th style="width: 120px">Thể Loại</th>
+                        <th style="width: 150px">Tác Giả</th>
                         <th style="width: 150px">Nhà Xuất Bản</th>
-                        <th>Giá</th>
-                        <th style="width: 150px; text-align: center">Hành Động</th>
+                        <th style="width: 130px">Giá</th>
+                        <th style="width: 160px; text-align: center">Chi Tiết</th>
+                        <th style="width: 100px; text-align: center">Hành Động</th> <!-- Reduced width for "Hành Động" -->
                     </tr>
                     </thead>
                     <tbody style="text-align: center">
                     <!-- Loop through products list -->
                     <tr th:each="product : ${products}">
-                        <td th:text="${product.ID_san_pham}">1</td>
                         <td th:text="${product.tenSach}">Sách ABC</td>
                         <td th:text="${product.theLoai.theLoai}">Sách Kinh Tế</td>
                         <td th:text="${product.tacGia}">Nguyễn Văn A</td>
                         <td th:text="${product.nhaXuatBan}">NXB Kim Đồng</td>
-                        <td class="gia-san-pham1" th:text="${product.gia}">100,000 VND</td>
+                        <td class="gia-san-pham" th:attr="data-price=${product.gia}">100,000 VND</td>
+
                         <td>
-                            <!-- Mở Modal với id sản phẩm -->
+                            <!-- View details button -->
                             <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"
-                                    th:data-hinh="@{'/image/' + ${product.ID_san_pham}}"
+                                    th:data-hinh="@{'/api/image/' + ${product.ID_san_pham}}"
                                     th:data-ten="${product.tenSach}"
+                                    th:data-id="${product.ID_san_pham}"
                                     th:data-theloai="${product.theLoai.theLoai}"
                                     th:data-tacgia="${product.tacGia}"
                                     th:data-nhaxuatban="${product.nhaXuatBan}"
@@ -433,16 +434,23 @@
                                     th:data-soluongtonkho="${product.soLuongTonKho}"
                                     th:data-soluongtong="${product.soLuongTongSanPham}"
                                     th:data-nsx="${product.nsx}"
-                                    style="background-color: pink">
+                                    style="background-color: pink; width: 100%;">
                                 Xem Chi Tiết
                             </button>
-
+                        </td>
+                        <td>
+                            <!-- Delete button -->
+                            <button type="button" class="btn btn-sm delete-btn"
+                                    th:data-id="${product.ID_san_pham}" style="background-color: red; width: 100%;">
+                                Xóa
+                            </button>
                         </td>
                     </tr>
                     </tbody>
                 </table>
 
                 <!-- Modal -->
+                <form action="/updateProduct" method="post">
                 <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -456,84 +464,86 @@
                                 <div class="row">
                                     <!-- Hình Ảnh Sản Phẩm -->
                                     <div class="col-md-4 text-center">
-
-                                        <img id="modalProductImage" src="" alt="Hình ảnh sản phẩm" class="img-fluid"
+                                        <img id="modalProductImage1" src="" alt="Hình ảnh sản phẩm" class="img-fluid"
                                              style="max-width: 100%; max-height: 300px; border: 1px solid #ccc; padding: 5px;">
-                                        <button type="button" class="btn btn-primary mt-3" id="chooseImageButton">Chọn Hình Ảnh</button>
+<!--                                        <button type="button" class="btn btn-primary mt-3" id="chooseImageButton1">Chọn Hình Ảnh</button>-->
                                     </div>
-
                                     <!-- Thông Tin Sản Phẩm -->
                                     <div class="col-md-8">
                                         <!-- Tên Sản Phẩm -->
                                         <div class="mb-3">
                                             <label for="modalProductName" class="form-label">Tên sản phẩm:</label>
-                                            <textarea id="modalProductName" class="form-control" rows="3"></textarea>
+                                            <textarea id="modalProductName" name="modalProductName" class="form-control" rows="3"></textarea>
                                         </div>
-
-
+                                        <div class="mb-3">
+                                            <label for="modalProductid" class="form-label">Mã sản phẩm:</label>
+                                            <input id="modalProductid" name="modalProductid" class="form-control" rows="3" readonly>
+                                        </div>
                                         <!-- Thể Loại -->
                                         <div class="mb-3">
                                             <label for="modalProductCategory" class="form-label">Thể loại:</label>
-                                            <input type="text" id="modalProductCategory" class="form-control">
+                                            <select class="form-select" id="modalProductCategory" name="modalProductCategory" >
+                                                <option value="Văn học">Văn Học</option>
+                                                <option value="Cổ tích">Cổ Tích</option>
+                                                <option value="Tiểu thuyết">Tiểu thuyết</option>
+                                                <option value="Khoa học">Khoa học</option>
+                                                <option value="Lịch sử">Lịch sử</option>
+                                                <option value="Địa Lý">Địa Lý</option>
+                                            </select>
                                         </div>
 
                                         <!-- Tác Giả -->
                                         <div class="mb-3">
                                             <label for="modalProductAuthor" class="form-label">Tác giả:</label>
-                                            <input type="text" id="modalProductAuthor" class="form-control">
+                                            <input type="text" id="modalProductAuthor" name="modalProductAuthor" class="form-control">
                                         </div>
 
                                         <!-- Nhà Xuất Bản -->
                                         <div class="mb-3">
                                             <label for="modalProductPublisher" class="form-label">Nhà xuất bản:</label>
-                                            <input type="text" id="modalProductPublisher" class="form-control">
+                                            <input type="text" id="modalProductPublisher" name="modalProductPublisher" class="form-control">
                                         </div>
 
-                                        <!-- Mô Tả -->
+                                        <!-- Mô tả -->
                                         <div class="mb-3">
                                             <label for="modalProductDesc" class="form-label">Mô tả:</label>
-                                            <textarea id="modalProductDesc" class="form-control" rows="3"></textarea>
+                                            <textarea id="modalProductDesc" name="modalProductDesc" class="form-control" rows="3"></textarea>
                                         </div>
 
                                         <!-- Giá -->
                                         <div class="mb-3">
                                             <label for="modalProductPrice" class="form-label">Giá:</label>
-                                            <input type="text" id="modalProductPrice" class="gia-san-pham form-control">
+                                            <input type="text" id="modalProductPrice" name="modalProductPrice" class="form-control">
                                         </div>
 
-                                        <!-- Số Lượng Đã Bán -->
+                                        <!-- Số lượng đã bán -->
                                         <div class="mb-3">
                                             <label for="modalProductSoldQty" class="form-label">Số lượng đã bán:</label>
-                                            <input type="text" id="modalProductSoldQty" class="form-control">
+                                            <input type="text" id="modalProductSoldQty" name="modalProductSoldQty" class="form-control" readonly>
                                         </div>
 
-                                        <!-- Số Lượng Tồn Kho -->
+                                        <!-- Số lượng tồn kho -->
                                         <div class="mb-3">
                                             <label for="modalProductStockQty" class="form-label">Số lượng tồn kho:</label>
-                                            <input type="text" id="modalProductStockQty" class="form-control">
+                                            <input type="text" id="modalProductStockQty" name="modalProductStockQty" class="form-control">
                                         </div>
 
-                                        <!-- Số Lượng Tổng -->
+                                        <!-- Số lượng tổng -->
                                         <div class="mb-3">
                                             <label for="modalProductTotalQty" class="form-label">Số lượng tổng:</label>
-                                            <input type="text" id="modalProductTotalQty" class="form-control">
-                                        </div>
-
-                                        <!-- Ngày Sản Xuất -->
-                                        <div class="mb-3">
-                                            <label for="modalProductManufactureDate" class="form-label">Ngày sản xuất:</label>
-                                            <input type="text" id="modalProductManufactureDate" class="form-control">
+                                            <input type="text" id="modalProductTotalQty" name="modalProductTotalQty" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button type="submit" id="updateProductButton" class="btn btn-secondary">Sửa sản phẩm</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                </form>
             </div>
             <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert" id="successMessage">
                 <span th:text="${success}"></span>
@@ -745,6 +755,51 @@
     /*]]>*/
 </script>
 <script>
+    function formatVND(price) {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+    }
+
+    document.querySelectorAll('.gia-san-pham').forEach(element => {
+        const price = element.getAttribute('data-price'); // Ensure it matches your HTML attribute name
+        if (price) {
+            // Convert the price to a number before formatting
+            element.textContent = formatVND(Number(price));
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                //Lấy data id sản phẩm
+                const productId = this.getAttribute('data-id');
+
+                if (confirm('Bạn có chắc muốn xóa sản phẩm này?')) {
+                    fetch(`/quanlysanpham/${productId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                this.closest('tr').remove();
+                                alert('Xóa sản phẩm thành công');
+                            } else {
+                                alert('Error deleting product.');
+                            }
+                        })
+                        .catch(error => {
+                            alert('Xóa sản phẩm thất bại');
+                            console.error(error);
+                        });
+                }
+            });
+        });
+    });
+
+    //Chỉnh số lượng trong thêm sản phẩm mới
     const totalQuantityInput = document.getElementById('addProductStockQuantity');
     const stockQuantityInput = document.getElementById('soluongtonkho');
 
@@ -780,7 +835,8 @@
     myModal.addEventListener('show.bs.modal', function (event) {
         // Lấy thông tin từ thuộc tính data-* của nút nhấn
         var button = event.relatedTarget; // Nút đã nhấn để mở modal
-        var productImage = button.getAttribute('data-hinh');
+        var productImage1 = button.getAttribute('data-hinh');
+        var id = button.getAttribute('data-id');
         var productName = button.getAttribute('data-ten');
         var productCategory = button.getAttribute('data-theloai');
         var productAuthor = button.getAttribute('data-tacgia');
@@ -793,8 +849,11 @@
         var productManufactureDate = button.getAttribute('data-nsx');
 
         // Cập nhật thông tin vào các thẻ input trong modal
+        var productImageElement = document.getElementById('modalProductImage1');
+        productImageElement.src = productImage1 ? productImage1 : 'placeholder.png';  // Nếu không có ảnh, hiển thị ảnh placeholder
         document.getElementById('modalProductName').value = productName;
         document.getElementById('modalProductCategory').value = productCategory;
+        document.getElementById('modalProductid').value = id;
         document.getElementById('modalProductAuthor').value = productAuthor;
         document.getElementById('modalProductPublisher').value = productPublisher;
         document.getElementById('modalProductDesc').value = productDesc;
@@ -803,19 +862,8 @@
         document.getElementById('modalProductStockQty').value = productStockQty;
         document.getElementById('modalProductTotalQty').value = productTotalQty;
         document.getElementById('modalProductManufactureDate').value = productManufactureDate;
-        document.getElementById('modalProductImage').src = productImage ? productImage : 'placeholder.png';
-
         // Cập nhật giá sản phẩm dưới dạng tiền tệ
-        document.querySelectorAll('.gia-san-pham').forEach(element => {
-            const price = parseInt(element.value);
-            if (!isNaN(price)) {
-                const formattedPrice = new Intl.NumberFormat('vi-VN', {
-                    style: 'currency',
-                    currency: 'VND'
-                }).format(price);
-                element.value = formattedPrice;
-            }
-        });
+
 
         // Cập nhật ảnh Base64 vào thẻ <img>
         if (productImage) {
@@ -824,6 +872,42 @@
             document.getElementById('modalProductImage').src = 'placeholder.png';  // Ảnh mặc định nếu không có ảnh
         }
     });
+    //Chỉnh số lượng trong cập nhật sản phẩm
+    const totalQuantityInputs = document.getElementById('modalProductTotalQty');
+    const stockQuantityInputs = document.getElementById('modalProductStockQty');
+
+    // Lắng nghe sự kiện 'input' trên trường Tổng Số Lượng
+    totalQuantityInputs.addEventListener('input', function () {
+        stockQuantityInputs.value = this.value; // Cập nhật giá trị của Số lượng tồn kho
+    });
+
+    document.getElementById('chooseImageButton1').addEventListener('click', function () {
+        // Mở file picker để chọn hình ảnh
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*'; // Chỉ cho phép chọn hình ảnh
+
+        input.onchange = function (event) {
+            const file = event.target.files[0]; // Lấy tệp hình ảnh đã chọn
+            const imageContainer = document.getElementById('modalProductImage1');
+
+            // Nếu có hình ảnh được chọn
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // Đặt nguồn hình ảnh vào thẻ <img>
+                    imageContainer.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file); // Đọc tệp hình ảnh và chuyển thành URL
+            }
+        };
+
+        input.click(); // Kích hoạt mở file picker
+    });
+
+
     document.getElementById('chooseImageButton').addEventListener('click', function () {
         // Mở file picker để chọn hình ảnh
         const input = document.createElement('input');
@@ -901,14 +985,6 @@
         }
     }
 
-    document.querySelectorAll('.gia-san-pham1').forEach(element => {
-        const price = parseInt(element.textContent);
-        const formattedPrice = new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND'
-        }).format(price);
-        element.textContent = formattedPrice;
-    });
 </script>
 
 </body>

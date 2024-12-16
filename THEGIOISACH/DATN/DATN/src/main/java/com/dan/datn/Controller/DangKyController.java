@@ -35,12 +35,20 @@ public class DangKyController {
                                @RequestParam String diachi,
                                @RequestParam String sdt, // Đổi kiểu dữ liệu sang String
                                @RequestParam String email) {
+        if (userServiceImpl.istenExist(ten)) {
+            model.addAttribute("error", "Tên này đã được đăng ký.");
+            return "index/dangKy";
+        }
         if (ten == null || ten.trim().isEmpty()) {
             model.addAttribute("error", "Tên đăng nhập không được để trống.");
             return "index/dangKy";
         }
-        if (!sdt.startsWith("0")) { // Kiểm tra số điện thoại phải bắt đầu bằng 0
+        if (!sdt.startsWith("0") ) { // Kiểm tra số điện thoại phải bắt đầu bằng 0
             model.addAttribute("error", "Số điện thoại phải bắt đầu bằng số 0.");
+            return "index/dangKy";
+        }
+        if (sdt.length() != 10){
+            model.addAttribute("error", "Số điện thoại không hơpj lệ.");
             return "index/dangKy";
         }
         if (userServiceImpl.isPhoneExist(sdt)) {

@@ -39,6 +39,15 @@ public class DangKyADController {
                                 @RequestParam String hovaten, RedirectAttributes redirectAttributes) {
 
         try {
+            if (!sdt.startsWith("0") ) {
+                model.addAttribute("error", "Số điện thoại phải bắt đầu bằng số 0.");
+                return "index/dangKy";
+            }
+            if (userServiceImpl.istenExist(ten)) {
+                redirectAttributes.addFlashAttribute("error", "Tên này đã được đăng ký.");
+                return "redirect:/taomoi";
+            }
+
             // Kiểm tra các điều kiện lỗi
             if (ten == null || ten.trim().isEmpty()) {
                 redirectAttributes.addFlashAttribute("error", "Tên đăng nhập không được để trống.");

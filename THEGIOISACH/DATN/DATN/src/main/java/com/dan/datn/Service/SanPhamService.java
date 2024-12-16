@@ -14,4 +14,7 @@ public interface SanPhamService {
 
     // Lưu sản phẩm
     SanPham saveSanPham(SanPham sanPham);
+
+    boolean deleteProductById(Long id);
+
 }
