@@ -54,12 +54,35 @@ public class QuanLySanPhamController {
             @RequestParam("modalProductSoldQty") Integer soldQuantity,
             @RequestParam("modalProductStockQty") Integer stockQuantity,
             @RequestParam("modalProductTotalQty") Integer totalQuantity,
-            Model model, HttpSession session, RedirectAttributes redirectAttributes){
+            Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 
         try {
-            // Xử lý cập nhật sản phẩm như bình thường
+            // Lấy sản phẩm từ database
             SanPham product = sanPhamService.getSanPhamById(id);
             if (product == null) {
+                redirectAttributes.addFlashAttribute("error", "Sản phẩm không tồn tại.");
+                return "redirect:/quanlysanpham";
+            }
+
+            // Lấy thể loại từ database
+            TheLoai theLoai = theLoaiService.findByCategoryName(categoryName);
+            if (theLoai == null) {
+                redirectAttributes.addFlashAttribute("error", "Thể loại không tồn tại.");
+                return "redirect:/quanlysanpham";
+            }
+            boolean noChange =
+                    product.getTenSach().equals(name) &&
+                            product.getTacGia().equals(author) &&
+                            product.getNhaXuatBan().equals(publisher) &&
+                            product.getMoTa().equals(description) &&
+                            product.getGia().equals(price) &&
+                            product.getSoLuongTonKho().equals(stockQuantity) &&
+                            product.getSoLuongDaBan().equals(soldQuantity) &&
+                            product.getSoLuongTongSanPham().equals(totalQuantity) &&
+                            product.getTheLoai().equals(theLoai);
+
+            if (noChange) {
+                redirectAttributes.addFlashAttribute("error", "Chưa phát hiện thay đổi để cập nhật.");
                 return "redirect:/quanlysanpham";
             }
 
@@ -72,24 +95,20 @@ public class QuanLySanPhamController {
             product.setSoLuongTonKho(stockQuantity);
             product.setSoLuongDaBan(soldQuantity);
             product.setSoLuongTongSanPham(totalQuantity);
-
-            // Cập nhật thể loại
-            TheLoai theLoai = theLoaiService.findByCategoryName(categoryName);
-            if (theLoai == null) {
-                return "redirect:/quanlysanpham";
-            }
             product.setTheLoai(theLoai);
 
             // Lưu sản phẩm đã cập nhật
             sanPhamService.saveSanPham(product);
             redirectAttributes.addFlashAttribute("success", "Thay đổi thông tin thành công.");
             return "redirect:/quanlysanpham";
+
         } catch (Exception e) {
             e.printStackTrace();
             redirectAttributes.addFlashAttribute("error", "Thay đổi thông tin không thành công.");
             return "redirect:/quanlysanpham";
         }
     }
+
     @GetMapping("/api/image/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
         try {
