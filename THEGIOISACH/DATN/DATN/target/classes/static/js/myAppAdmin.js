@@ -8,9 +8,6 @@ app.config(function($routeProvider) {
         .when('/Home', {
             templateUrl: 'layoutAdmin/Home.html'
         })
-        .when('/Tạo quản lý mới', {
-            templateUrl: 'layoutAdmin/TaoMoi.html'
-        })
         .when('/Thống kê', {
             templateUrl: 'layoutAdmin/ThongKe.html'
         })
@@ -41,11 +38,11 @@ app.controller('NguoiDungController', function($scope, $http) {
     };
 
     // Hàm xóa người dùng
-    $scope.xoaNguoiDung = async function(userId) {
+    $scope.xoaNguoiDung = async function(id_nguoi_dung) {
         try {
-            await $http.delete('/api/nguoidung/' + userId);
+            await $http.delete('/api/nguoidung/' + id_nguoi_dung);
             $scope.users = $scope.users.filter(function(user) {
-                return user.ID_nguoi_dung !== userId;
+                return user.id_nguoi_dung !== id_nguoi_dung;
             });
             alert('Người dùng đã được xóa thành công!');
             $scope.loadUsers();
@@ -54,8 +51,6 @@ app.controller('NguoiDungController', function($scope, $http) {
             alert('Có lỗi xảy ra khi xóa người dùng!');
         }
     };
-
-
     // Gọi hàm loadUsers khi controller được khởi tạo
     $scope.loadUsers();
 });

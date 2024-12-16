@@ -1,35 +1,36 @@
-<div class="container mt-5" ng-controller="NguoiDungController">
-    <h2 class="text-center mb-4">Quản Lý Người Dùng</h2>
+    <div class="container mt-5" ng-controller="NguoiDungController">
+        <h2 class="text-center mb-4">Quản Lý Người Dùng</h2>
 
-    <!-- Bảng hiển thị danh sách người dùng -->
-    <table class="table table-bordered table-hover">
-        <thead class="table-dark text-center">
-        <tr>
-            <th>ID</th>
-            <th>Tên</th>
-            <th>Email</th>
-            <th>Số Điện Thoại</th>
-            <th>Địa Chỉ</th>
-            <th>Vai Trò</th>
-            <th>Hành Động</th> <!-- Thêm cột "Hành Động" -->
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-if="!users.length">
-            <td colspan="7" class="text-center">Không có người dùng</td>
-        </tr>
-        <tr ng-repeat="user in users">
-            <td class="text-center">{{ user.id_nguoi_dung }}</td>
-            <td>{{ user.ten }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.sdt }}</td>
-            <td>{{ user.dia_chi }}</td>
-            <td class="text-center">{{ user.role === 0 ? 'Admin' : 'Người dùng' }}</td>
-            <td class="text-center">
-                <button class="btn btn-danger" ng-click="xoaNguoiDung(user.ID_nguoi_dung)">Xóa</button>
-            </td>
-        </tr>
-        </tbody>
-
-    </table>
-</div>
+        <!-- Bảng hiển thị danh sách người dùng -->
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark text-center">
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Mật khẩu</th>
+                <th>Email</th>
+                <th>Số Điện Thoại</th>
+                <th>Địa Chỉ</th>
+                <th>Vai Trò</th>
+                <th>Hành Động</th> <!-- Thêm cột "Hành Động" -->
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-if="!users.length">
+                <td colspan="7" class="text-center">Không có người dùng</td>
+            </tr>
+            <tr ng-repeat="user in users">
+                <td class="text-center">{{ user.id_nguoi_dung }}</td>
+                <td>{{ user.ho_va_ten }}</td>
+                <td>{{ user.mat_khau }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.sdt }}</td>
+                <td>{{ user.dia_chi }}</td>
+                <td class="text-center">{{ user.role === 0 ? 'Admin' : 'Người dùng' }}</td>
+                <td class="text-center">
+                    <button class="btn btn-danger" ng-click="xoaNguoiDung(user.id_nguoi_dung)">Xóa</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>

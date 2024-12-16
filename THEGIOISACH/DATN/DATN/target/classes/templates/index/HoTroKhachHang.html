@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html xmlns:th="http://www.thymeleaf.org">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>ROLE</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #FFE4E1;
+        }
+
+        /* Hiệu ứng hover cho nút Đăng nhập */
+        .btn-outline-secondary:hover {
+            background-color: #FF9999;
+            border-color: #FF9999;
+            color: white;
+        }
+
+        /* Hiệu ứng hover cho nút Đăng ký */
+        .btn-dark:hover {
+            background-color: #FF9999;
+            border-color: #FF9999;
+            color: white;
+        }
+
+        /* Form styling */
+        .form-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        /* Button styling */
+        .btn-primary {
+            background-color: #FF6666;
+            border-color: #FF6666;
+        }
+
+        .btn-primary:hover {
+            background-color: #FF9999;
+            border-color: #FF9999;
+        }
+
+        .btn-secondary {
+            background-color: #999;
+            border-color: #999;
+        }
+
+        .btn-secondary:hover {
+            background-color: #666;
+            border-color: #666;
+        }
+        #form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto; /* Căn giữa form trên trang */
+        }
+        #form h1 {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #FF6666;  /* Màu đỏ nhẹ để làm nổi bật */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 50px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Các trường nhập liệu */
+        .formgroup {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            border-color: #FF6666;
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Button */
+        .center-button-container {
+            display: flex;
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            margin-top: 20px; /* Khoảng cách phía trên, nếu cần */
+        }
+        button {
+            background-color: #FF6666; /* Màu nền của nút */
+            color: white; /* Màu chữ */
+            padding: 12px 20px; /* Khoảng cách bên trong */
+            border: none; /* Xóa đường viền */
+            border-radius: 8px; /* Bo góc cho nút */
+            font-size: 16px; /* Kích thước chữ */
+            cursor: pointer; /* Hiển thị con trỏ khi hover */
+            transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu khi hover */
+            font-weight: bold; /* Chữ in đậm */
+            width: auto; /* Đảm bảo chiều rộng tự động theo nội dung */
+            display: inline-block; /* Cho phép nút xếp thành dòng */
+        }
+
+
+        button:hover {
+            background-color: #FF9999;
+        }
+
+        input[type="hidden"] {
+            display: none;
+        }
+
+        /* Hiệu ứng động cho các phần tử */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hiệu ứng di chuyển cho cá */
+        .fish {
+            width: 30px;
+            height: 30px;
+            background-color: #FF6666;
+            border-radius: 50%;
+            position: absolute;
+            animation: fishMove 5s infinite;
+            z-index: 1; /* Thêm thuộc tính này để đảm bảo chúng không bị chồng lên nhau */
+        }
+
+        #fish {
+            left: -40px;
+            animation-delay: 0s;
+        }
+
+        #fish2 {
+            right: -40px;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes fishMove {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-20px) translateX(50px);
+            }
+            50% {
+                transform: translateY(0) translateX(100px);
+            }
+            75% {
+                transform: translateY(20px) translateX(50px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
+
+
+
+
+    </style>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+            <img src="/image/logo.png" alt="Logo" width="́81" height="40">
+        </a>
+
+        <!-- Toggle button for small screens -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Navbar items (left aligned) -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/trangchu}">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#!Thông báo">Thông báo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/giohang}">Giỏ hàng</a>
+                </li>
+            </ul>
+
+            <!-- Search Form (centered) -->
+            <form class="d-flex mx-auto" role="search" style="width: 400px;" th:action="@{/search}" method="get">
+                <input id="search-input" class="form-control" type="search" name="keyword" placeholder="Search"
+                       aria-label="Search" autocomplete="off">
+                <button class="btn btn-danger" type="submit" style="margin-left: -1px;">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div id="suggestions-box" class="list-group position-absolute"
+                     style="width: 357px; z-index: 1000; "></div>
+            </form>
+
+
+            <!-- Navbar items (right aligned) -->
+            <ul class="navbar-nav ms-auto">
+                <!-- Hiển thị nút Đăng nhập và Đăng ký khi chưa đăng nhập -->
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary me-2" th:href="@{/dangnhap}">Đăng nhập</a>
+                </li>
+                <li th:if="${username == null}" class="nav-item">
+                    <a class="nav-link btn btn-dark" th:href="@{/dangky}">Đăng ký</a>
+                </li>
+
+                <!-- Hiển thị icon thông tin người dùng khi đã đăng nhập -->
+                <li th:if="${username != null}" class="nav-item">
+                    <a href="/thongtintaikhoan" class="nav-link">
+                        <i class="fas fa-user-circle fa-2x"></i> <!-- Thay thế bằng icon thông tin -->
+                        <!--                        <span th:text="${username}"></span>-->
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Centering Container -->
+
+</head>
+<body>
+<div id="form">
+    <h1>Hỗ Trợ Khách Hàng</h1>
+
+
+    <div class="fish" id="fish"></div>
+    <div class="fish" id="fish2"></div>
+
+
+
+    <form action="https://formsubmit.co/thegioisach2024@gmail.com " method="POST" id=" waterform">
+
+        <div class="formgroup" id="name-form">
+            <label for="name">Họ và Tên*</label>
+            <input spellcheck="false" type="text" id="name" name="Họ và Tên" />
+        </div>
+
+        <div class="formgroup" id="email-form">
+            <label for="email">E-mail*</label>
+            <input spellcheck="false" type="email" id="email" name="E-mail" />
+        </div>
+
+        <div class="formgroup" id="message-form">
+            <label for="message">Lời Nhắn</label>
+            <textarea spellcheck="false" id="message" name="Lời nhắn"></textarea>
+        </div>
+        <div class="center-button-container">
+            <button type="submit">Gửi ngay cho tôi</button>
+        </div>
+        <input type="hidden" name="_next" value="http://localhost:8080/sendmail">
+    </form>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="bg-light py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Company Info -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">THEGIOISACH</h5>
+                <p class="text-dark">© 2024 THEGIOISACH. Bản quyền thuộc về công ty THEGIOISACH.</p>
+            </div>
+
+            <!-- Services -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Dịch vụ</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Mua sách trực tuyến</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chính sách đổi trả</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Giao hàng tận nơi</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chăm sóc khách hàng</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Hỗ trợ</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Câu hỏi thường gặp</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Liên hệ hỗ trợ</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#" class="text-dark" style="text-decoration: none;">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-3">
+                <h5 class="mb-4 text-dark">Liên hệ</h5>
+                <p class="text-dark">Email: support@thegioisach.com</p>
+                <p class="text-dark">Điện thoại: 1900 1234</p>
+                <div class="d-flex justify-content-start">
+                    <a href="#" class="me-3 text-dark" style="text-decoration: none;">
+                        <i class="bi bi-facebook" style="font-size: 24px;"></i>
+                    </a>
+                    <a href="#" class="me-3 text-dark" style="text-decoration: none;">
+                        <i class="bi bi-instagram" style="font-size: 24px;"></i>
+                    </a>
+                    <a href="#" class="me-3 text-dark" style="text-decoration: none;">
+                        <i class="bi bi-tiktok" style="font-size: 24px;"></i>
+                    </a>
+                    <a href="#" class="text-dark" style="text-decoration: none;">
+                        <i class="bi bi-twitter" style="font-size: 24px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+</body>
+</html>
+</title>
+</head>
+</body>
+
+</body>
+</html>
