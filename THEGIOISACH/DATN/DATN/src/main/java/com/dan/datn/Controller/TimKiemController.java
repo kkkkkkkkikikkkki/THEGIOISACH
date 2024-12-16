@@ -29,17 +29,25 @@ public class TimKiemController {
             Model model) {
 
         List<SanPham> sanPhams;
+
         if (theLoai != null && !theLoai.isEmpty()) {
             sanPhams = sanPhamServiceImpl.getSanPhamsByTheLoai(theLoai);
         } else if (keyword != null && !keyword.isEmpty()) {
             sanPhams = sanPhamServiceImpl.searchAllFields(keyword);
         } else {
             sanPhams = sanPhamServiceImpl.getAllSanPham();
+
+        }
+        for (SanPham sp : sanPhams) {
+            if (sp.getHinh() != null && sp.getHinh().getHinhMain() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(sp.getHinh().getHinhMain());
+                sp.getHinh().setBase64Image(base64Image);
+            }
         }
 
         model.addAttribute("sanPhams", sanPhams);
-        String username = (String) httpSession.getAttribute("username");
-        model.addAttribute("username", username);
+//        String username = (String) httpSession.getAttribute("username");
+//        model.addAttribute("username", username);
 
         return "index/sanPhamSauTimKiem"; // Trang hiển thị kết quả
     }
@@ -68,8 +76,8 @@ public class TimKiemController {
         }
 
         model.addAttribute("sanPhams", sanPhams);
-        String username = (String) httpSession.getAttribute("username");
-        model.addAttribute("username", username);
+//        String username = (String) httpSession.getAttribute("username");
+//        model.addAttribute("username", username);
 
         return "index/sanPhamSauTimKiem"; // Trả về trang hiển thị kết quả
     }
@@ -95,8 +103,8 @@ public class TimKiemController {
         }
 
         model.addAttribute("sanPhams", sanPhams);
-        String username = (String) httpSession.getAttribute("username");
-        model.addAttribute("username", username);
+//        String username = (String) httpSession.getAttribute("username");
+//        model.addAttribute("username", username);
 
         return "index/sanPhamSauTimKiem"; // Trả về trang hiển thị kết quả
     }

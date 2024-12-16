@@ -43,7 +43,7 @@ public class QuanLySanPhamController {
         return "layout/Quanlysanpham";  // Trả về view
     }
 
-    @GetMapping("/image/{id}")
+    @GetMapping("/api/image/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
         try {
             SanPham sanPham = sanPhamService.getSanPhamById(id);

@@ -24,5 +24,13 @@
         public void save(DanhGia danhGia) {
             danhGiaRepository.save(danhGia);
         }
+        public Double getAverageRating(SanPham sanPham) {
+            List<DanhGia> danhGiaList = danhGiaRepository.findBySanPham(sanPham);
+            if (danhGiaList.isEmpty()) {
+                return 0.0; // Nếu chưa có đánh giá nào
+            }
+            double totalStars = danhGiaList.stream().mapToDouble(DanhGia::getDanhGia).sum();
+            return totalStars / danhGiaList.size();
+        }
     }
 
