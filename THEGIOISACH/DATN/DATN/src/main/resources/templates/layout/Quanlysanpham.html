@@ -418,7 +418,6 @@
                         <td th:text="${product.tacGia}">Nguyễn Văn A</td>
                         <td th:text="${product.nhaXuatBan}">NXB Kim Đồng</td>
                         <td class="gia-san-pham" th:attr="data-price=${product.gia}">100,000 VND</td>
-
                         <td>
                             <!-- View details button -->
                             <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"
@@ -521,17 +520,15 @@
                                             <label for="modalProductSoldQty" class="form-label">Số lượng đã bán:</label>
                                             <input type="text" id="modalProductSoldQty" name="modalProductSoldQty" class="form-control" readonly>
                                         </div>
-
-                                        <!-- Số lượng tồn kho -->
-                                        <div class="mb-3">
-                                            <label for="modalProductStockQty" class="form-label">Số lượng tồn kho:</label>
-                                            <input type="text" id="modalProductStockQty" name="modalProductStockQty" class="form-control">
-                                        </div>
-
                                         <!-- Số lượng tổng -->
                                         <div class="mb-3">
                                             <label for="modalProductTotalQty" class="form-label">Số lượng tổng:</label>
                                             <input type="text" id="modalProductTotalQty" name="modalProductTotalQty" class="form-control">
+                                        </div>
+                                        <!-- Số lượng tồn kho -->
+                                        <div class="mb-3">
+                                            <label for="modalProductStockQty" class="form-label">Số lượng tồn kho:</label>
+                                            <input type="text" id="modalProductStockQty" name="modalProductStockQty" class="form-control" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -776,7 +773,7 @@
                 const productId = this.getAttribute('data-id');
 
                 if (confirm('Bạn có chắc muốn xóa sản phẩm này?')) {
-                    fetch(`/quanlysanpham/${productId}`, {
+                    fetch(`/xoasanpham/${productId}`, {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json'

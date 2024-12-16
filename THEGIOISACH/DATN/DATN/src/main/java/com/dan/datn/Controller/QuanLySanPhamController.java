@@ -59,6 +59,53 @@ public class QuanLySanPhamController {
         try {
             // Lấy sản phẩm từ database
             SanPham product = sanPhamService.getSanPhamById(id);
+            // Kiểm tra xem các trường có rỗng không và thêm thông báo lỗi tương ứng
+            if (name == null || name.trim().isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Tên sản phẩm không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (categoryName == null || categoryName.trim().isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Thể loại sản phẩm không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (author == null || author.trim().isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Tác giả không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (publisher == null || publisher.trim().isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Nhà xuất bản không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (description == null || description.trim().isEmpty()) {
+                redirectAttributes.addFlashAttribute("error", "Mô tả sản phẩm không được để trống.");
+                return "redirect:/quanlysanpham";
+            }
+            if (price == null || price <= 0) {
+                redirectAttributes.addFlashAttribute("error", "Giá sản phẩm phải lớn hơn 0.");
+                return "redirect:/quanlysanpham";
+            }
+            if (soldQuantity == null || soldQuantity < 0) {
+                redirectAttributes.addFlashAttribute("error", "Số lượng đã bán phải không âm.");
+                return "redirect:/quanlysanpham";
+            }
+            if (stockQuantity == null || stockQuantity < 0) {
+                redirectAttributes.addFlashAttribute("error", "Số lượng trong kho phải không âm.");
+                return "redirect:/quanlysanpham";
+            }
+            if (totalQuantity == null || totalQuantity < 0) {
+                redirectAttributes.addFlashAttribute("error", "Số lượng tổng phải không âm.");
+                return "redirect:/quanlysanpham";
+            }
+
+
+            // Nếu có lỗi, chuyển hướng lại trang quản lý sản phẩm
+            if (redirectAttributes.containsAttribute("errorName") || redirectAttributes.containsAttribute("errorCategory")
+                    || redirectAttributes.containsAttribute("errorAuthor") || redirectAttributes.containsAttribute("errorPublisher")
+                    || redirectAttributes.containsAttribute("errorDescription") || redirectAttributes.containsAttribute("errorPrice")
+                    || redirectAttributes.containsAttribute("errorSoldQty") || redirectAttributes.containsAttribute("errorStockQty")
+                    || redirectAttributes.containsAttribute("errorTotalQty")) {
+                return "redirect:/quanlysanpham";
+            }
             if (product == null) {
                 redirectAttributes.addFlashAttribute("error", "Sản phẩm không tồn tại.");
                 return "redirect:/quanlysanpham";
@@ -86,7 +133,7 @@ public class QuanLySanPhamController {
                 return "redirect:/quanlysanpham";
             }
 
-            // Cập nhật thông tin sản phẩm
+            // Tiến hành cập nhật sản phẩm nếu tất cả các điều kiện hợp lệ
             product.setTenSach(name);
             product.setTacGia(author);
             product.setNhaXuatBan(publisher);
@@ -97,35 +144,16 @@ public class QuanLySanPhamController {
             product.setSoLuongTongSanPham(totalQuantity);
             product.setTheLoai(theLoai);
 
-            // Lưu sản phẩm đã cập nhật
             sanPhamService.saveSanPham(product);
-            redirectAttributes.addFlashAttribute("success", "Thay đổi thông tin thành công.");
-            return "redirect:/quanlysanpham";
 
+            redirectAttributes.addFlashAttribute("success", "Cập nhật sản phẩm thành công.");
+            return "redirect:/quanlysanpham";
         } catch (Exception e) {
-            e.printStackTrace();
-            redirectAttributes.addFlashAttribute("error", "Thay đổi thông tin không thành công.");
+            redirectAttributes.addFlashAttribute("error", "Có lỗi xảy ra khi cập nhật sản phẩm.");
             return "redirect:/quanlysanpham";
         }
     }
-
-    @GetMapping("/api/image/{id}")
-    public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
-        try {
-            SanPham sanPham = sanPhamService.getSanPhamById(id);
-            if (sanPham == null || sanPham.getHinh() == null) {
-                return ResponseEntity.notFound().build();
-            }
-            byte[] imageBytes = Base64.getDecoder().decode(sanPham.getHinh().getBase64MainImage());
-            return ResponseEntity.ok()
-                    .contentType(MediaType.IMAGE_PNG)
-                    .body(imageBytes);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @DeleteMapping("/quanlysanpham/{id}")
+    @DeleteMapping("/xoasanpham/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         boolean deleted = sanPhamService.deleteProductById(id);
 
@@ -229,7 +257,8 @@ public class QuanLySanPhamController {
             TheLoai theLoai = theLoaiService.findByCategoryName(category);
             if (theLoai == null) {
                 redirectAttributes.addFlashAttribute("error", "Thể loại không tồn tại.");
-                return "redirect:/quanlysanpham";            }
+                return "redirect:/quanlysanpham";
+            }
             // 3. Tạo sản phẩm mới
             SanPham sanPham = new SanPham();
             sanPham.setTenSach(name);
@@ -261,4 +290,20 @@ public class QuanLySanPhamController {
             return "redirect:/quanlysanpham";  // Quay lại trang thêm sản phẩm hoặc trang quản lý sản phẩm với thông báo lỗi
         }
     }
+    @GetMapping("/api/image/{id}")
+    public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
+        try {
+            SanPham sanPham = sanPhamService.getSanPhamById(id);
+            if (sanPham == null || sanPham.getHinh() == null) {
+                return ResponseEntity.notFound().build();
+            }
+            byte[] imageBytes = Base64.getDecoder().decode(sanPham.getHinh().getBase64MainImage());
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_PNG)
+                    .body(imageBytes);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
+

@@ -1,3 +1,4 @@
+
     <div class="container mt-5" ng-controller="NguoiDungController">
         <h2 class="text-center mb-4">Quản Lý Người Dùng</h2>
 
@@ -5,7 +6,6 @@
         <table class="table table-bordered table-hover">
             <thead class="table-dark text-center">
             <tr>
-                <th>ID</th>
                 <th>Tên</th>
                 <th>Mật khẩu</th>
                 <th>Email</th>
@@ -20,13 +20,12 @@
                 <td colspan="7" class="text-center">Không có người dùng</td>
             </tr>
             <tr ng-repeat="user in users">
-                <td class="text-center">{{ user.id_nguoi_dung }}</td>
-                <td>{{ user.ho_va_ten }}</td>
+                <td style="width: 190px">{{ user.ho_va_ten }}</td>
                 <td>{{ user.mat_khau }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.sdt }}</td>
-                <td>{{ user.dia_chi }}</td>
-                <td class="text-center">{{ user.role === 0 ? 'Admin' : 'Người dùng' }}</td>
+                <td>{{ user.sdt ? '0' + user.sdt : 'Dữ liệu không hợp lệ' }}</td>
+                <td style="width: 190px">{{ user.dia_chi }}</td>
+                <td class="text-center" style="width: 120px">{{ user.role === 0 ? 'Admin' : 'Người dùng' }}</td>
                 <td class="text-center">
                     <button class="btn btn-danger" ng-click="xoaNguoiDung(user.id_nguoi_dung)">Xóa</button>
                 </td>
