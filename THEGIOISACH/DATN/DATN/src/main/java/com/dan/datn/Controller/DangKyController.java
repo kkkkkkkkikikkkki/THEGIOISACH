@@ -1,8 +1,7 @@
 package com.dan.datn.Controller;
 
 import com.dan.datn.Entity.User;
-import com.dan.datn.Service.ServiceImpl.EmailService;
-import com.dan.datn.Service.ServiceImpl.UserServiceImpl;
+import com.dan.datn.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DangKyController {
 
     @Autowired
-    private UserServiceImpl userServiceImpl;
-
-    @Autowired
-    private EmailService emailService; // Inject EmailValidator
+    private UserService userService;
 
     @GetMapping("/dangky")
     public String showDangKyForm(Model model) {
@@ -43,11 +39,11 @@ public class DangKyController {
             model.addAttribute("error", "Số điện thoại phải bắt đầu bằng số 0.");
             return "index/dangKy";
         }
-        if (userServiceImpl.isPhoneExist(sdt)) {
+        if (userService.isPhoneExist(sdt)) {
             model.addAttribute("error", "Số điện thoại này đã được đăng ký.");
             return "index/dangKy";
         }
-        if (userServiceImpl.isEmailExist(email)) {
+        if (userService.isEmailExist(email)) {
             model.addAttribute("error", "Email này đã được đăng ký.");
             return "index/dangKy";
         }
@@ -71,7 +67,7 @@ public class DangKyController {
             user.setSDT(sdt);
             user.setEmail(email);
             user.setRole(1);
-            userServiceImpl.saveUser(user); // Lưu người dùng mới vào cơ sở dữ liệu
+            userService.saveUser(user); // Lưu người dùng mới vào cơ sở dữ liệu
             // Thêm thông báo thành công
             model.addAttribute("success", "Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.");
             return "index/dangNhap"; // Hiển thị lại trang đăng ký kèm thông báo
